@@ -6,6 +6,9 @@ const authMiddleware = require('../utils/authMiddleware');
 const router = express.Router();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+// FRONTEND domen (Netlify)
+const FRONTEND_URL = 'https://fundedaccounts.netlify.app';
+
 // POST /payments/stripe/checkout-session
 router.post('/checkout-session', authMiddleware, async (req, res) => {
   const { planId } = req.body;
@@ -25,9 +28,8 @@ router.post('/checkout-session', authMiddleware, async (req, res) => {
           quantity: 1,
         },
       ],
-      success_url:
-        'http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'http://localhost:5173/cancel',
+      success_url: `${FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${FRONTEND_URL}/cancel`,
       metadata: {
         userId: req.user.id.toString(),
         planId: plan._id.toString(),
