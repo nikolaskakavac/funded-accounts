@@ -51,32 +51,39 @@ app.post('/webhooks/stripe', express.json(), async (req, res) => {
         const user = await User.findById(userId);
 
         console.log('Stripe webhook: plan found =', !!plan, 'user found =', !!user);
+if (plan && user) {
+  console.log('Stripe webhook: creating Transaction for user', user._id, 'plan', plan._id);
 
-        if (plan && user) {
-          const tx = await Transaction.create({
-            user: user._id,
-            plan: plan._id,
-            provider: 'stripe',
-            providerPaymentId: session.id,
-            amount: plan.price,
-            currency: plan.currency,
-            status: 'paid',
-          });
+  try {
+    const tx = await Transaction.create({
+      user: user._id,
+      plan: plan._id,
+      provider: 'stripe',
+      providerPaymentId: session.id,
+      amount: plan.price,
+      currency: plan.currency,
+      status: 'paid',
+    });
 
-          console.log('Stripe TX saved with _id =', tx._id);
+    console.log('Stripe TX saved with _id =', tx._id);
+  } catch (e) {
+    console.error('Stripe TX create failed:', e);
+  }
 
-          user.currentPlan = plan._id;
-          await user.save();
+  user.currentPlan = plan._id;
+  await user.save();
 
-          try {
-            console.log('Sending payment email (Stripe) to', user.email);
-            await sendWelcomeEmail(user.email);
-          } catch (e) {
-            console.error('Payment email failed (Stripe):', e.message);
-          }
+  try {
+    console.log('Sending payment email (Stripe) to', user.email);
+    await sendWelcomeEmail(user.email);
+  } catch (e) {
+    console.error('Payment email failed (Stripe):', e.message);
+  }
 
-          console.log('Transaction created and user updated (Stripe)');
-        } else {
+  console.log('Transaction created and user updated (Stripe)');
+}
+
+ else {
           console.log('Plan or user not found for Stripe webhook', {
             userId,
             planId,

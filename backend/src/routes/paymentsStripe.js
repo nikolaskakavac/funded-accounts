@@ -14,8 +14,11 @@ router.post('/checkout-session', authMiddleware, async (req, res) => {
   const { planId } = req.body;
 
   try {
+    console.log('Stripe checkout-session called by user', req.user?.id, 'for plan', planId);
+
     const plan = await Plan.findById(planId);
     if (!plan) {
+      console.warn('Stripe checkout-session: Plan not found for id', planId);
       return res.status(404).json({ message: 'Plan not found' });
     }
 
@@ -36,9 +39,11 @@ router.post('/checkout-session', authMiddleware, async (req, res) => {
       },
     });
 
+    console.log('Stripe checkout-session created:', session.id, 'for user', req.user.id);
+
     res.json({ url: session.url });
   } catch (err) {
-    console.error('Stripe checkout error:', err.message);
+    console.error('Stripe checkout error:', err);
     res.status(500).json({ message: 'Stripe error', error: err.message });
   }
 });
