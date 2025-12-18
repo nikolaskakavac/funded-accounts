@@ -9,7 +9,7 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
 const stripeRoutes = require('./routes/paymentsStripe');
 const nowRoutes = require('./routes/paymentsNow');
-const adminRoutes = require('./routes/admin'); // DODATO GORE
+const adminRoutes = require('./routes/admin');
 
 const User = require('./models/User');
 const Plan = require('./models/Plan');
@@ -24,14 +24,19 @@ connectDB();
 // 2) Stripe instanca
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// 3) Stripe webhook BEZ verifikacije potpisa (za lokalni razvoj)
+// 3) Stripe webhook (bez verifikacije potpisa – OK za test/prod dok je URL tajan)
 app.post('/webhooks/stripe', express.json(), async (req, res) => {
-  console.log('Stripe webhook hit (no verify)');
+  console.log('Stripe webhook HIT (no verify)');
+  console.log('Stripe event headers:', req.headers);
+  console.log('Stripe event body:', JSON.stringify(req.body, null, 2));
 
   const event = req.body;
+  console.log('Stripe event type:', event.type);
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
+    console.log('Stripe session object:', session);
+
     const metadata = session.metadata || {};
     const userId = metadata.userId;
     const planId = metadata.planId;
@@ -39,12 +44,16 @@ app.post('/webhooks/stripe', express.json(), async (req, res) => {
     console.log('checkout.session.completed metadata:', metadata);
 
     try {
+      console.log('Stripe webhook: userId =', userId, 'planId =', planId);
+
       if (userId && planId) {
         const plan = await Plan.findById(planId);
         const user = await User.findById(userId);
 
+        console.log('Stripe webhook: plan found =', !!plan, 'user found =', !!user);
+
         if (plan && user) {
-          await Transaction.create({
+          const tx = await Transaction.create({
             user: user._id,
             plan: plan._id,
             provider: 'stripe',
@@ -53,6 +62,8 @@ app.post('/webhooks/stripe', express.json(), async (req, res) => {
             currency: plan.currency,
             status: 'paid',
           });
+
+          console.log('Stripe TX saved with _id =', tx._id);
 
           user.currentPlan = plan._id;
           await user.save();
@@ -66,7 +77,10 @@ app.post('/webhooks/stripe', express.json(), async (req, res) => {
 
           console.log('Transaction created and user updated (Stripe)');
         } else {
-          console.log('Plan or user not found for Stripe webhook');
+          console.log('Plan or user not found for Stripe webhook', {
+            userId,
+            planId,
+          });
         }
       } else {
         console.log('Missing userId or planId in Stripe metadata');
@@ -87,6 +101,9 @@ app.use(express.json());
 
 // 5) NOWPayments IPN webhook
 app.post('/webhooks/now/ipn', async (req, res) => {
+  console.log('NOWPayments IPN HIT');
+  console.log('NOWPayments body:', JSON.stringify(req.body, null, 2));
+
   const body = req.body;
   const paymentId = body.payment_id;
   const status = body.payment_status; // 'waiting', 'confirming', 'finished', 'failed', ...
@@ -113,15 +130,17 @@ app.post('/webhooks/now/ipn', async (req, res) => {
         tx.status = 'failed';
         await tx.save();
         console.log('NOWPayments: payment failed/expired');
+      } else {
+        console.log('NOWPayments: status update', status);
       }
     } else {
       console.log('NOWPayments IPN: transaction not found for payment_id', paymentId);
     }
 
+    // IPN endpoint ne sme da vraća 5xx, uvek šaljemo ok
     res.json({ received: true });
   } catch (err) {
     console.error('NOWPayments IPN error:', err);
-    // IPN endpoint ne sme da 5xx prema NOW-u, ali log je bitan
     res.json({ received: true });
   }
 });
@@ -130,7 +149,7 @@ app.post('/webhooks/now/ipn', async (req, res) => {
 app.use('/auth', authRoutes);
 app.use('/payments/stripe', stripeRoutes);
 app.use('/payments/now', nowRoutes);
-app.use('/api/admin', adminRoutes); // ADMIN ROUTES MOUNT
+app.use('/api/admin', adminRoutes);
 
 // 7) Health check
 app.get('/', (req, res) => {
