@@ -67,7 +67,8 @@ const Landing = ({ navigate, token }) => {
             NovaFunded
           </div>
 
-          <nav className="hidden md:flex items-center gap-2 text-sm">
+          <nav className="flex flex-wrap items-center gap-2 text-sm">
+
             {[
               { label: 'Paketi naloga', path: '/pricing' },
               { label: 'O nama', path: '/about' },
