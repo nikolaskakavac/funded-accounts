@@ -14,7 +14,8 @@ const plans = [
     name: 'Pro 25K',
     balance: '$25.000',
     price: '$399',
-    description: 'Više kapitala, jasnija pravila rizika i bolji potencijal skaliranja.',
+    description:
+      'Više kapitala, jasnija pravila rizika i bolji potencijal skaliranja.',
     tag: 'Najčešći izbor klijenata',
     highlighted: true,
   },
@@ -59,7 +60,7 @@ const Landing = ({ navigate, token }) => {
     <div className="relative min-h-screen bg-white text-slate-900 overflow-hidden">
       {/* HEADER WRAPPER */}
       <div className="relative mx-auto max-w-6xl px-4 pt-8 lg:px-8">
-        <header className="mb-8 flex items-center justify-between">
+        <header className="mb-8 flex flex-col gap-3 items-start justify-between md:flex-row md:items-center">
           <div
             className="cursor-pointer text-lg font-semibold tracking-tight text-sky-700 transition-colors duration-200 hover:text-sky-900"
             onClick={() => navigate('/')}
@@ -68,7 +69,6 @@ const Landing = ({ navigate, token }) => {
           </div>
 
           <nav className="flex flex-wrap items-center gap-2 text-sm">
-
             {[
               { label: 'Paketi naloga', path: '/pricing' },
               { label: 'O nama', path: '/about' },
@@ -140,8 +140,9 @@ const Landing = ({ navigate, token }) => {
               </h1>
 
               <p className="text-sm sm:text-base text-slate-200/90">
-                Kupiš nalog, dobiješ kapital firme i jasna pravila rizika – profit delimo 70% za tebe,
-                30% za fond. Bez kredita i poluga na sopstveni novac.
+                Kupiš nalog, dobiješ kapital firme i jasna pravila rizika – profit
+                delimo 70% za tebe, 30% za fond. Bez kredita i poluga na sopstveni
+                novac.
               </p>
 
               <div className="flex flex-wrap items-center gap-3 text-[11px] text-sky-100/90">
@@ -166,7 +167,8 @@ const Landing = ({ navigate, token }) => {
                   Prvi korak
                 </p>
                 <p className="mb-4 text-sm text-slate-100">
-                  Izaberi veličinu naloga i odmah rezerviši kapital. Plaćanje karticom ili kriptom.
+                  Izaberi veličinu naloga i odmah rezerviši kapital. Plaćanje
+                  karticom ili kriptom.
                 </p>
 
                 <div className="grid gap-3 text-xs text-slate-200">
@@ -221,7 +223,8 @@ const Landing = ({ navigate, token }) => {
                 Sve objašnjeno u 6 jasnih tačaka
               </h2>
               <p className="text-base sm:text-lg text-slate-700 text-center">
-                Kratko i jasno, bez suvišnih reči – svaki nalog uključuje sledeće stavke.
+                Kratko i jasno, bez suvišnih reči – svaki nalog uključuje sledeće
+                stavke.
               </p>
 
               <div className="mt-6 divide-y divide-slate-200 border-t border-b border-slate-200">
@@ -271,14 +274,15 @@ const Landing = ({ navigate, token }) => {
           </div>
         </section>
 
-        {/* PRICING / CHECKOUT SA STRIPE + NOWPAYMENTS */}
+        {/* PRICING / CHECKOUT */}
         <section id="pricing-section" className="w-full max-w-6xl px-4">
           <div className="max-w-4xl mx-auto text-center mb-6">
             <h2 className="text-2xl sm:text-3xl font-semibold text-slate-900">
               Izaberi nalog i plati odmah
             </h2>
             <p className="mt-2 text-sm sm:text-base text-slate-600">
-              Jednokratna naknada, jasna pravila rizika i instant pristup dashboard‑u nakon uplate.
+              Jednokratna naknada, jasna pravila rizika i instant pristup dashboard‑u
+              nakon uplate.
             </p>
           </div>
 
@@ -294,7 +298,8 @@ const Landing = ({ navigate, token }) => {
           </div>
 
           <p className="mt-6 text-xs text-slate-500 text-center">
-            Nakon uspešne uplate, aktivni plan se prikazuje u tvom klijent dashboard‑u zajedno sa pravilima trgovanja.
+            Nakon uspešne uplate, aktivni plan se prikazuje u tvom klijent
+            dashboard‑u zajedno sa pravilima trgovanja.
           </p>
         </section>
 
@@ -306,21 +311,30 @@ const Landing = ({ navigate, token }) => {
             </h2>
             <div className="space-y-4 text-sm sm:text-base">
               <div>
-                <p className="font-semibold text-slate-900">Da li rizikujem svoj novac?</p>
+                <p className="font-semibold text-slate-900">
+                  Da li rizikujem svoj novac?
+                </p>
                 <p className="text-slate-700">
-                  Ne. Trguješ našim kapitalom. Tvoj lični novac je izložen samo prilikom kupovine naloga.
+                  Ne. Trguješ našim kapitalom. Tvoj lični novac je izložen samo
+                  prilikom kupovine naloga.
                 </p>
               </div>
               <div>
-                <p className="font-semibold text-slate-900">Kada dobijam pristup nalogu?</p>
+                <p className="font-semibold text-slate-900">
+                  Kada dobijam pristup nalogu?
+                </p>
                 <p className="text-slate-700">
-                  U roku od nekoliko minuta nakon uspešne uplate dobijaš email sa podacima za prijavu.
+                  U roku od nekoliko minuta nakon uspešne uplate dobijaš email sa
+                  podacima za prijavu.
                 </p>
               </div>
               <div>
-                <p className="font-semibold text-slate-900">Kako se isplaćuje profit?</p>
+                <p className="font-semibold text-slate-900">
+                  Kako se isplaćuje profit?
+                </p>
                 <p className="text-slate-700">
-                  Profit se deli 70% za tebe, 30% za firmu i isplata ide jednom mesečno na tvoj račun ili kripto novčanik.
+                  Profit se deli 70% za tebe, 30% za firmu i isplata ide jednom mesečno
+                  na tvoj račun ili kripto novčanik.
                 </p>
               </div>
             </div>
@@ -328,7 +342,7 @@ const Landing = ({ navigate, token }) => {
         </section>
       </main>
 
-      {/* FOOTER – PLAV (#3B82F6) */}
+      {/* FOOTER */}
       <footer className="mt-6 w-full border-t border-blue-600/60 bg-blue-500">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-4 text-xs sm:flex-row sm:text-sm text-blue-50">
           <p className="text-center sm:text-left">
@@ -379,9 +393,7 @@ const PlanCard = ({ plan, onStripe, onCrypto }) => {
 
       {tag && <div className="mb-3 text-[11px] text-slate-600">{tag}</div>}
 
-      <p className="mb-4 text-sm sm:text-base text-slate-700">
-        {description}
-      </p>
+      <p className="mb-4 text-sm sm:text-base text-slate-700">{description}</p>
 
       <div className="mt-auto flex flex-col gap-2">
         <button
