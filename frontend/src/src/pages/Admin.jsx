@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000';
 
-
 const Admin = ({ navigate, token }) => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -59,101 +58,136 @@ const Admin = ({ navigate, token }) => {
   if (!token) return null;
 
   return (
-    <div className="relative min-h-screen bg-slate-50 text-slate-900">
+    <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
       <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-8 lg:px-8">
-        <header className="mb-6 flex items-center justify-between">
+        {/* Header */}
+        <header className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+            <p className="font-display text-[13px] uppercase tracking-[0.26em] text-emerald-400">
+              Admin zona
+            </p>
+            <h1 className="mt-1 font-display text-[30px] sm:text-[34px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
               Admin panel
             </h1>
-            <p className="mt-1 text-xs text-slate-600">
-              Pregled svih plaćenih naloga, ručno uključivanje/isključivanje pristupa i evidencija
-              poslatih account podataka.
+            <p className="mt-2 font-sans text-[15px] text-emerald-100/90">
+              Transakcije, aktivacija naloga i slanje account podataka.
             </p>
           </div>
           <button
             onClick={() => navigate('/dashboard')}
-            className="rounded-full border border-sky-500/80 px-3 py-1.5 text-xs text-sky-700 transition-all duration-200 hover:bg-sky-50 hover:-translate-y-[1px]"
+            className="rounded-full border border-emerald-500/80 px-4 py-1.5 text-[13px] font-sans uppercase tracking-[0.14em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px]"
           >
-            Nazad na klijentski prikaz
+            Klijentski prikaz
           </button>
         </header>
 
-        <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        {/* Tabela */}
+        <section className="rounded-3xl border border-emerald-800/60 bg-black/80 p-5 shadow-xl shadow-emerald-500/20">
           {loading ? (
-            <p className="text-xs text-slate-600">Učitavanje transakcija...</p>
+            <p className="font-sans text-[15px] text-emerald-100/90">
+              Učitavanje transakcija...
+            </p>
           ) : transactions.length === 0 ? (
-            <p className="text-xs text-slate-600">Nema pronađenih plaćenih transakcija.</p>
+            <p className="font-sans text-[15px] text-emerald-100/90">
+              Nema evidentiranih plaćenih transakcija.
+            </p>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="min-w-full text-left text-xs text-slate-700">
-                <thead className="border-b border-slate-200 text-[11px] uppercase tracking-[0.16em] text-slate-500">
-                  <tr>
+            <div className="overflow-x-auto md:overflow-visible">
+              <table className="min-w-full font-sans text-[14px] text-slate-100">
+                <thead className="border-b border-emerald-900 text-[12px] uppercase tracking-[0.16em] text-emerald-300">
+                  <tr className="text-left">
                     <th className="py-2 pr-4">Korisnik</th>
                     <th className="py-2 pr-4">Plan</th>
-                    <th className="py-2 pr-4">Iznos</th>
-                    <th className="py-2 pr-4">Plaćeno</th>
+                    <th className="hidden py-2 pr-4 md:table-cell">Iznos</th>
+                    <th className="hidden py-2 pr-4 md:table-cell">Plaćeno</th>
                     <th className="py-2 pr-4">Aktivno</th>
-                    <th className="py-2 pr-4">Account poslat</th>
+                    <th className="py-2 pr-0">Account</th>
                   </tr>
                 </thead>
                 <tbody>
                   {transactions.map((tx) => (
-                    <tr key={tx._id} className="border-b border-slate-100">
-                      <td className="py-2 pr-4">
+                    <tr
+                      key={tx._id}
+                      className="border-b border-emerald-900/40 last:border-0"
+                    >
+                      {/* Korisnik */}
+                      <td className="py-3 pr-4 align-top">
                         <div className="flex flex-col">
-                          <span className="text-[11px] font-medium text-slate-900">
+                          <span className="text-[14px] font-medium text-slate-50">
                             {tx.user?.email || 'N/A'}
                           </span>
-                          <span className="text-[10px] text-slate-500">
-                            {tx.user?.name || ''}
-                          </span>
+                          {tx.user?.name && (
+                            <span className="text-[12px] text-slate-400">
+                              {tx.user.name}
+                            </span>
+                          )}
                         </div>
                       </td>
-                      <td className="py-2 pr-4">
+
+                      {/* Plan */}
+                      <td className="py-3 pr-4 align-top">
                         <div className="flex flex-col">
-                          <span className="text-[11px] font-medium text-slate-900">
+                          <span className="text-[14px] font-medium text-slate-50">
                             {tx.plan?.name || 'N/A'}
                           </span>
-                          <span className="text-[10px] text-slate-500">
+                          <span className="text-[12px] text-slate-400">
                             {tx.provider === 'stripe' ? 'Kartica' : 'Kripto'}
                           </span>
+
+                          {/* Na mobilnom ispod plana prikaži iznos i vreme da ne mora horizontalni scroll */}
+                          <div className="mt-1 space-y-0.5 text-[12px] text-slate-400 md:hidden">
+                            <div>
+                              ${tx.amount}{' '}
+                              <span className="text-[10px] uppercase text-slate-500">
+                                {tx.currency}
+                              </span>
+                            </div>
+                            <div>{new Date(tx.createdAt).toLocaleString()}</div>
+                          </div>
                         </div>
                       </td>
-                      <td className="py-2 pr-4">
-                        <span className="text-[11px] font-medium text-slate-900">
+
+                      {/* Iznos – samo desktop */}
+                      <td className="hidden py-3 pr-4 align-top md:table-cell">
+                        <span className="text-[14px] font-semibold text-emerald-300">
                           ${tx.amount}
                         </span>{' '}
-                        <span className="text-[10px] uppercase text-slate-500">
+                        <span className="text-[11px] uppercase text-slate-500">
                           {tx.currency}
                         </span>
                       </td>
-                      <td className="py-2 pr-4">
-                        <span className="text-[11px] text-slate-600">
+
+                      {/* Plaćeno – samo desktop */}
+                      <td className="hidden py-3 pr-4 align-top md:table-cell">
+                        <span className="text-[13px] text-slate-300">
                           {new Date(tx.createdAt).toLocaleString()}
                         </span>
                       </td>
-                      <td className="py-2 pr-4">
+
+                      {/* Aktivno */}
+                      <td className="py-3 pr-4 align-top">
                         <button
                           onClick={() =>
                             updateTransaction(tx._id, { active: !tx.active })
                           }
-                          className={`inline-flex items-center rounded-full px-3 py-1 text-[11px] font-medium transition ${
+                          className={`inline-flex items-center rounded-full px-3 py-1.5 text-[13px] font-medium transition ${
                             tx.active
-                              ? 'bg-emerald-50 text-emerald-700'
-                              : 'bg-slate-100 text-slate-600'
+                              ? 'bg-emerald-500/10 text-emerald-300'
+                              : 'bg-slate-800 text-slate-300'
                           }`}
                         >
                           <span
-                            className={`mr-1 h-1.5 w-1.5 rounded-full ${
-                              tx.active ? 'bg-emerald-500' : 'bg-slate-400'
+                            className={`mr-1.5 h-1.5 w-1.5 rounded-full ${
+                              tx.active ? 'bg-emerald-400' : 'bg-slate-500'
                             }`}
                           />
                           {tx.active ? 'Aktivno' : 'Neaktivno'}
                         </button>
                       </td>
-                      <td className="py-2 pr-4">
-                        <label className="inline-flex cursor-pointer items-center gap-2 text-[11px]">
+
+                      {/* Account poslat – poslednja kolona, uvek vidljiva */}
+                      <td className="py-3 pr-0 align-top">
+                        <label className="inline-flex cursor-pointer items-center gap-2 text-[13px] text-slate-300">
                           <input
                             type="checkbox"
                             checked={!!tx.accountSent}
@@ -162,11 +196,9 @@ const Admin = ({ navigate, token }) => {
                                 accountSent: !tx.accountSent,
                               })
                             }
-                            className="h-3 w-3 rounded border-slate-300 text-sky-600 focus:ring-sky-500"
+                            className="h-4 w-4 rounded border-emerald-700 bg-black text-emerald-500 focus:ring-emerald-500"
                           />
-                          <span className="text-slate-700">
-                            {tx.accountSent ? 'Poslato' : 'Nije poslato'}
-                          </span>
+                          <span>{tx.accountSent ? 'Poslato' : 'Nije poslato'}</span>
                         </label>
                       </td>
                     </tr>

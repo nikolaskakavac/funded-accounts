@@ -36,7 +36,7 @@ const App = () => {
     localStorage.setItem('role', data.user.role);
     setToken(data.token);
     setRole(data.user.role);
-    navigate('/dashboard');
+    navigate('/dashboard'); // posle login + register uvek na dashboard
   };
 
   const handleLogout = () => {
@@ -95,7 +95,7 @@ const App = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50">
+    <div className="min-h-screen">
       {page}
     </div>
   );

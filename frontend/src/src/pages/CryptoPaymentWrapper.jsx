@@ -15,10 +15,10 @@ const CryptoPaymentPage = ({ navigate, token, planId }) => {
       }
       try {
         const res = await createNowPayment(token, planId, 'btc');
-        setData(res); // očekuje { payment_id, pay_address, pay_amount, pay_currency }
+        setData(res); // { payment_id, pay_address, pay_amount, pay_currency }
       } catch (e) {
         console.error(e);
-        setErr('Greška pri kreiranju crypto uplate.');
+        setErr('Greška pri kreiranju kripto uplate.');
       } finally {
         setLoading(false);
       }
@@ -27,27 +27,33 @@ const CryptoPaymentPage = ({ navigate, token, planId }) => {
   }, [token, planId, navigate]);
 
   if (loading) {
-    return <div className="p-6">Učitavanje uplate...</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
+        <p className="font-sans text-[15px] text-emerald-100/90">Učitavanje uplate…</p>
+      </div>
+    );
   }
 
   if (err) {
     return (
-      <div className="p-6">
-        <p className="mb-4 text-red-400">{err}</p>
-        <button
-          onClick={() => navigate('/pricing')}
-          className="rounded-full border border-slate-700 px-3 py-1.5 text-xs text-slate-200"
-        >
-          Nazad na pakete
-        </button>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50 px-4">
+        <div className="max-w-md w-full rounded-3xl border border-emerald-800/60 bg-black/80 p-6 text-center shadow-xl shadow-emerald-500/20">
+          <p className="mb-3 font-sans text-[15px] text-red-400">{err}</p>
+          <button
+            onClick={() => navigate('/pricing')}
+            className="mt-1 inline-flex items-center justify-center rounded-full border border-emerald-600 px-4 py-2 text-[13px] font-sans uppercase tracking-[0.14em] text-emerald-200 hover:bg-emerald-500/10 transition-colors"
+          >
+            Nazad na planove
+          </button>
+        </div>
       </div>
     );
   }
 
   if (!data) {
     return (
-      <div className="p-6">
-        <p>Nema podataka o uplati.</p>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
+        <p className="font-sans text-[15px] text-emerald-100/90">Nema podataka o uplati.</p>
       </div>
     );
   }
@@ -55,44 +61,51 @@ const CryptoPaymentPage = ({ navigate, token, planId }) => {
   const { payment_id, pay_address, pay_amount, pay_currency } = data;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
       <div className="mx-auto max-w-lg px-4 pb-16 pt-10">
         <button
           onClick={() => navigate('/pricing')}
-          className="mb-6 inline-flex items-center gap-1 text-xs text-slate-400 hover:text-sky-300"
+          className="mb-6 inline-flex items-center gap-2 text-[12px] font-sans uppercase tracking-[0.16em] text-emerald-300 hover:text-emerald-100"
         >
-          <span className="text-slate-500">←</span>
-          Back to plans
+          <span className="text-emerald-400 text-sm">←</span>
+          Nazad na planove
         </button>
 
-        <h1 className="mb-4 text-2xl font-semibold">Crypto plaćanje</h1>
+        <p className="font-display text-[12px] uppercase tracking-[0.26em] text-emerald-400">
+          Kripto uplata
+        </p>
+        <h1 className="mt-2 font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
+          Plati BTC‑om
+        </h1>
 
-        <p className="mb-4 text-sm text-slate-300">
+        <p className="mt-4 mb-4 font-sans text-[15px] text-emerald-100/90">
           Pošalji tačno{' '}
           <span className="font-semibold">
             {pay_amount} {pay_currency.toUpperCase()}
           </span>{' '}
-          na sledeću adresu:
+          na ovu adresu:
         </p>
 
-        <p className="mb-3 break-all font-mono text-xs text-emerald-300">
+        <p className="mb-3 break-all font-mono text-[13px] text-emerald-200">
           {pay_address}
         </p>
 
         <button
           onClick={() => navigator.clipboard.writeText(pay_address)}
-          className="mb-6 rounded-full border border-slate-700 px-3 py-1.5 text-xs text-slate-200 hover:border-sky-500 hover:text-sky-300"
+          className="mb-6 inline-flex items-center justify-center rounded-full border border-emerald-600 px-4 py-2 text-[13px] font-sans text-emerald-200 hover:bg-emerald-500/10 transition-colors"
         >
           Kopiraj adresu
         </button>
 
         <div className="mb-6 flex justify-center">
-          <QRCode value={pay_address} size={180} />
+          <QRCode value={pay_address} size={190} bgColor="#020617" fgColor="#a7f3d0" />
         </div>
 
-        <p className="mb-2 text-[11px] text-slate-500">Payment ID: {payment_id}</p>
-        <p className="text-[11px] text-slate-500">
-          Nakon potvrde uplate na mreži, paket će ti se automatski aktivirati na nalogu.
+        <p className="mb-2 font-sans text-[12px] text-slate-400">
+          Payment ID: {payment_id}
+        </p>
+        <p className="font-sans text-[12px] text-slate-400">
+          Nakon potvrde uplate na mreži, paket se automatski aktivira na tvom nalogu.
           Potvrda može da potraje nekoliko minuta u zavisnosti od mreže.
         </p>
       </div>

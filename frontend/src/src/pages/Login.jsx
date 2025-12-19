@@ -20,35 +20,43 @@ const Login = ({ navigate, onLogin }) => {
   };
 
   return (
-    <div className="relative min-h-screen bg-slate-50 text-slate-900">
+    <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
       <div className="relative mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-4 py-10 lg:px-8">
         {/* Back link */}
         <button
           onClick={() => navigate('/')}
-          className="mb-6 inline-flex items-center gap-1 text-xs text-sky-700 transition hover:text-sky-900"
+          className="mb-8 inline-flex items-center gap-2 text-xs font-sans uppercase tracking-[0.18em] text-emerald-300 transition hover:text-emerald-100"
         >
-          <span className="text-sky-500">←</span> Nazad na sajt
+          <span className="text-emerald-400 text-sm">←</span>
+          Nazad na sajt
         </button>
 
-        <div className="grid w-full max-w-xl gap-10 md:grid-cols-[1.1fr,0.9fr]">
+        <div className="grid w-full max-w-3xl gap-8 md:grid-cols-[1.1fr,0.9fr]">
           {/* Form */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="mb-5 space-y-1">
-              <h1 className="text-xl font-semibold tracking-tight text-slate-900">
-                Prijava klijenta
+          <div className="rounded-3xl border border-emerald-700/60 bg-black/80 p-7 shadow-xl shadow-emerald-500/20">
+            <div className="mb-6 space-y-2">
+              <p className="font-display text-[11px] uppercase tracking-[0.26em] text-emerald-400">
+                Klijent pristup
+              </p>
+              <h1 className="font-display text-[26px] sm:text-[30px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
+                Prijava na dashboard
               </h1>
-              <p className="text-xs text-slate-600">
-                Prijavite se da pristupite funded nalogu, vidite aktivan plan i istoriju isplata.
+              <p className="font-sans text-[14px] sm:text-[15px] text-emerald-100/90 leading-relaxed">
+                Unesi email i lozinku da vidiš svoj funded nalog, aktivan plan i istoriju
+                isplata na jednom mestu.
               </p>
             </div>
 
-            <form onSubmit={submit} className="space-y-3">
+            <form onSubmit={submit} className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-medium text-slate-700">Email</label>
+                <label className="font-sans text-[13px] font-medium text-emerald-100">
+                  Email
+                </label>
                 <input
-                  className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+                  className="w-full rounded-2xl border border-emerald-700 bg-black/60 px-3.5 py-2.5 text-[14px] font-sans text-slate-50 outline-none transition
+                             placeholder:text-slate-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400"
                   type="email"
-                  placeholder="vi@primer.com"
+                  placeholder="ti@primer.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -56,9 +64,12 @@ const Login = ({ navigate, onLogin }) => {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-medium text-slate-700">Lozinka</label>
+                <label className="font-sans text-[13px] font-medium text-emerald-100">
+                  Lozinka
+                </label>
                 <input
-                  className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+                  className="w-full rounded-2xl border border-emerald-700 bg-black/60 px-3.5 py-2.5 text-[14px] font-sans text-slate-50 outline-none transition
+                             placeholder:text-slate-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400"
                   type="password"
                   placeholder="Vaša lozinka"
                   value={password}
@@ -69,16 +80,19 @@ const Login = ({ navigate, onLogin }) => {
 
               <button
                 type="submit"
-                className="mt-2 flex w-full items-center justify-center rounded-full bg-gradient-to-r from-sky-500 to-emerald-400 px-4 py-2 text-sm font-semibold text-slate-950 shadow-sm transition-all duration-200 hover:brightness-110 hover:shadow-md hover:-translate-y-[1px]"
+                className="mt-3 flex w-full items-center justify-center rounded-full bg-emerald-500 px-4 py-2.5
+                           text-[14px] sm:text-[15px] font-sans font-semibold uppercase tracking-[0.16em] text-black
+                           shadow-[0_0_20px_rgba(16,185,129,0.7)]
+                           transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
               >
                 Prijava
               </button>
             </form>
 
-            <p className="mt-4 text-xs text-slate-600">
+            <p className="mt-5 font-sans text-[13px] text-slate-400">
               Nemate nalog?{' '}
               <button
-                className="font-medium text-sky-700 transition hover:text-sky-900"
+                className="font-semibold text-emerald-300 hover:text-emerald-100 transition-colors"
                 onClick={() => navigate('/register')}
               >
                 Registrujte se
@@ -87,23 +101,25 @@ const Login = ({ navigate, onLogin }) => {
           </div>
 
           {/* Side block */}
-          <div className="hidden flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 text-xs text-slate-700 shadow-sm md:flex">
+          <div className="hidden flex-col justify-between rounded-3xl border border-emerald-800/60 bg-gradient-to-b from-black via-[#02110b] to-black p-6 text-xs text-slate-200 shadow-lg shadow-emerald-500/10 md:flex">
             <div className="space-y-3">
-              <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-blue-600">
-                Šta vidite u dashboard‑u
+              <p className="font-display text-[11px] uppercase tracking-[0.2em] text-emerald-300">
+                Šta vidiš u dashboard‑u
               </p>
-              <p className="text-xs text-slate-600">
-                Pregled aktivnog plana, status naloga i osnovne informacije o isplatama na jednom
-                mestu.
+              <p className="font-sans text-[13px] text-emerald-100/90 leading-relaxed">
+                Pregled aktivnih planova, limite rizika i istoriju isplata – sve na jednom
+                mestu, uz jasne metrike napretka.
               </p>
             </div>
 
             <div className="mt-4 space-y-2">
-              <p className="text-[11px] font-medium text-slate-900">Saveti</p>
-              <ul className="space-y-1 text-[11px] text-slate-600">
-                <li>• Koristite isti email koji ste upotrebili pri kupovini naloga.</li>
-                <li>• Ako promenite lozinku, sve aktivne sesije će biti odjavljene.</li>
-                <li>• Ako ne vidite aktivan plan, pišite podršci iz dashboard‑a.</li>
+              <p className="font-display text-[12px] uppercase tracking-[0.16em] text-emerald-300">
+                Kratki saveti
+              </p>
+              <ul className="space-y-1 font-sans text-[12px] text-slate-300">
+                <li>• Koristi isti email koji si upotrebio pri kupovini naloga.</li>
+                <li>• Ako promeniš lozinku, sve aktivne sesije će biti odjavljene.</li>
+                <li>• Ako ne vidiš aktivan plan, javi se podršci iz dashboard‑a.</li>
               </ul>
             </div>
           </div>

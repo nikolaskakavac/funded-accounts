@@ -2,7 +2,11 @@
 export default {
   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+  fontFamily: {
+    sans: ['Metropolis Web', 'system-ui', 'sans-serif'],
   },
+  extend: {},
+},
+
   plugins: [],
 };

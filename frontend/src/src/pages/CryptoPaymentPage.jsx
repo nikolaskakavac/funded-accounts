@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { QRCodeCanvas } from 'qrcode.react';
 import { createNowPayment } from '../api';
 
-export default function CryptoPaymentPage({ token, planId }) {
+export default function CryptoPaymentPage({ token, planId, navigate }) {
   const [coin, setCoin] = useState('usdc'); // 'usdc' | 'usdt' | 'eth'
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -26,55 +26,75 @@ export default function CryptoPaymentPage({ token, planId }) {
   const { payment_id, pay_address, pay_amount, pay_currency } = data || {};
 
   return (
-    <div className="relative min-h-screen bg-slate-50 text-slate-900">
+    <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
       <div className="relative mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-4 py-10 lg:px-8">
-        <h1 className="mb-6 text-2xl font-semibold tracking-tight text-slate-900">
-          Plaćanje kriptom
-        </h1>
+        {/* Header */}
+        <div className="mb-8 w-full flex items-center justify-between">
+          <div>
+            <p className="font-display text-[12px] uppercase tracking-[0.26em] text-emerald-400">
+              Kripto uplata
+            </p>
+            <h1 className="mt-2 font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
+              Plati kriptom
+            </h1>
+            <p className="mt-2 font-sans text-[15px] text-emerald-100/90">
+              Izaberi coin i generiši jedinstvenu adresu za uplatu.
+            </p>
+          </div>
 
-        <div className="w-full rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          {navigate && (
+            <button
+              onClick={() => navigate('/pricing')}
+              className="hidden rounded-full border border-emerald-500/70 px-4 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-emerald-200 transition-colors hover:bg-emerald-500/10 sm:inline-flex"
+            >
+              Nazad na planove
+            </button>
+          )}
+        </div>
+
+        <div className="w-full rounded-3xl border border-emerald-800/60 bg-black/80 p-6 shadow-xl shadow-emerald-500/20">
           {/* Izbor coina */}
-          <p className="mb-3 text-sm font-medium text-slate-800">
-            Izaberite coin za uplatu:
+          <p className="mb-3 font-sans text-[15px] font-medium text-slate-50">
+            Izaberi coin:
           </p>
           <div className="mb-6 flex flex-wrap gap-3">
             <button
               type="button"
               onClick={() => setCoin('usdc')}
-              className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition ${
+              className={`flex items-center gap-2 rounded-full border px-4 py-2 text-[14px] transition ${
                 coin === 'usdc'
-                  ? 'border-sky-500 bg-sky-50 text-sky-800'
-                  : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                  ? 'border-emerald-500 bg-emerald-500/10 text-emerald-200'
+                  : 'border-emerald-700 bg-black/60 text-slate-200 hover:bg-emerald-500/5'
               }`}
             >
               <span className="font-semibold">USDC</span>
-              <span className="text-[11px] text-slate-500">Ethereum mreža</span>
+              <span className="text-[11px] text-slate-400">Ethereum mreža</span>
             </button>
 
             <button
               type="button"
               onClick={() => setCoin('usdt')}
-              className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition ${
+              className={`flex items-center gap-2 rounded-full border px-4 py-2 text-[14px] transition ${
                 coin === 'usdt'
-                  ? 'border-sky-500 bg-sky-50 text-sky-800'
-                  : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                  ? 'border-emerald-500 bg-emerald-500/10 text-emerald-200'
+                  : 'border-emerald-700 bg-black/60 text-slate-200 hover:bg-emerald-500/5'
               }`}
             >
               <span className="font-semibold">USDT</span>
-              <span className="text-[11px] text-slate-500">Ethereum mreža</span>
+              <span className="text-[11px] text-slate-400">Ethereum mreža</span>
             </button>
 
             <button
               type="button"
               onClick={() => setCoin('eth')}
-              className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition ${
+              className={`flex items-center gap-2 rounded-full border px-4 py-2 text-[14px] transition ${
                 coin === 'eth'
-                  ? 'border-sky-500 bg-sky-50 text-sky-800'
-                  : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                  ? 'border-emerald-500 bg-emerald-500/10 text-emerald-200'
+                  : 'border-emerald-700 bg-black/60 text-slate-200 hover:bg-emerald-500/5'
               }`}
             >
               <span className="font-semibold">ETH</span>
-              <span className="text-[11px] text-slate-500">Ethereum mreža</span>
+              <span className="text-[11px] text-slate-400">Ethereum mreža</span>
             </button>
           </div>
 
@@ -83,50 +103,49 @@ export default function CryptoPaymentPage({ token, planId }) {
             type="button"
             onClick={revealAddress}
             disabled={loading}
-            className="mb-4 flex w-full items-center justify-center rounded-full bg-gradient-to-r from-sky-500 to-emerald-400 px-4 py-2 text-sm font-semibold text-slate-950 shadow-sm transition-all duration-200 hover:brightness-110 hover:shadow-md hover:-translate-y-[1px] disabled:cursor-not-allowed disabled:opacity-60"
+            className="mb-4 flex w-full items-center justify-center rounded-full bg-emerald-500 px-4 py-2.5 text-[14px] font-sans font-semibold uppercase tracking-[0.16em] text-black shadow-[0_0_18px_rgba(16,185,129,0.7)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {loading ? 'Kreiranje uplate…' : 'Prikaži kripto adresu za uplatu'}
+            {loading ? 'Kreiranje uplate…' : 'Prikaži adresu za uplatu'}
           </button>
 
           {err && (
-            <p className="mb-3 text-xs text-red-500">
+            <p className="mb-3 font-sans text-[13px] text-red-400">
               {err}
             </p>
           )}
 
-          {/* Adresa & QR tek nakon kreiranja */}
+          {/* Adresa & QR */}
           {data && (
-            <div className="mt-4 space-y-3 text-xs text-slate-700">
+            <div className="mt-5 space-y-3 font-sans text-[13px] text-slate-200">
               <p>
-                Pošaljite tačno{' '}
+                Pošalji tačno{' '}
                 <span className="font-semibold">
                   {pay_amount} {pay_currency?.toUpperCase()}
                 </span>{' '}
-                na sledeću adresu:
+                na ovu adresu:
               </p>
 
-              <p className="break-all font-mono text-[11px] text-slate-900">
+              <p className="break-all font-mono text-[12px] text-emerald-100">
                 {pay_address}
               </p>
 
               <button
                 type="button"
                 onClick={() => navigator.clipboard.writeText(pay_address)}
-                className="rounded-full border border-slate-300 px-3 py-1 text-[11px] text-slate-700 hover:bg-slate-50 transition-colors"
+                className="rounded-full border border-emerald-600 px-3 py-1.5 text-[13px] text-emerald-200 hover:bg-emerald-500/10 transition-colors"
               >
                 Kopiraj adresu
               </button>
 
               <div className="mt-4 flex justify-center">
-                <QRCodeCanvas value={pay_address} size={180} />
+                <QRCodeCanvas value={pay_address} size={190} bgColor="#020617" fgColor="#a7f3d0" />
               </div>
 
-              <p className="mt-2 text-[11px] text-slate-500">
+              <p className="mt-2 text-[12px] text-slate-400">
                 Payment ID: {payment_id}
               </p>
-              <p className="mt-1 text-[11px] text-slate-500">
-                Nakon što uplata bude potvrđena na blockchain‑u, vaš funded nalog i plan će se
-                automatski aktivirati.
+              <p className="mt-1 text-[12px] text-slate-400">
+                Nakon potvrde na blockchain‑u, tvoj plan se automatski aktivira u dashboard‑u.
               </p>
             </div>
           )}
