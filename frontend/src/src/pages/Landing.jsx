@@ -11,22 +11,18 @@ const Landing = ({ navigate, token }) => {
   return (
     <div className="min-h-screen bg-black text-white font-sans">
       {/* HERO sa BTC pozadinom */}
- <div
-  className="
-    flex flex-col
-    bg-no-repeat
-    bg-left
-    bg-contain
--   min-h-[600px]
--   sm:min-h-[700px]
--   md:bg-cover md:bg-[center_top] md:min-h-screen
-+   min-h-[520px]
-+   sm:min-h-[580px]
-+   md:bg-cover md:bg-[center_top] md:min-h-[640px]
-  "
-  style={{ backgroundImage: "url('/img/crypto-bg.jpeg')" }}
->
-
+      <div
+        className="
+          flex flex-col
+          bg-no-repeat
+          bg-left
+          bg-contain
+          min-h-[520px]
+          sm:min-h-[580px]
+          md:bg-cover md:bg-[center_top] md:min-h-[640px]
+        "
+        style={{ backgroundImage: "url('/img/crypto-bg.jpeg')" }}
+      >
         {/* tamniji overlay radi čitljivosti teksta */}
         <div className="flex-1 bg-black/80 flex flex-col relative overflow-hidden border-b border-emerald-500/10">
           {/* HEADER */}
@@ -203,7 +199,7 @@ const Landing = ({ navigate, token }) => {
       </div>
 
       {/* ŠTA DOBIJAŠ / PODELA / CILJ */}
-      <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12 -mt-4 sm:-mt-6">
+      <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
         {/* suptilni gornji border kao čist prelaz */}
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
 
@@ -361,7 +357,7 @@ const Landing = ({ navigate, token }) => {
             </p>
           </div>
 
-          <div className="grid gap-7 md:grid-cols-2 md:justify-items-center">
++ <div className="grid gap-7 justify-items-center sm:grid-cols-2">
             {/* Starter 10K */}
             <div className="w-full max-w-sm">
               <div
