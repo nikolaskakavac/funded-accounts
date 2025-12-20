@@ -6,7 +6,8 @@ const authMiddleware = require('../utils/authMiddleware');
 
 const router = express.Router();
 
-const NOW_API_BASE = 'https://api.nowpayments.io/v1';
+// čitaš base URL iz .env, pada na prod URL ako nije setovano
+const NOW_API_BASE = process.env.NOWPAYMENTS_BASE_URL || 'https://api.nowpayments.io/v1';
 
 // POST /payments/now/create
 router.post('/create', authMiddleware, async (req, res) => {
@@ -20,7 +21,7 @@ router.post('/create', authMiddleware, async (req, res) => {
 
     const payload = {
       price_amount: plan.price,
-      price_currency: plan.currency || 'usd', // npr. 'usd'
+      price_currency: plan.currency || 'usd',
       pay_currency: (pay_currency || 'btc').toLowerCase(),
       ipn_callback_url: 'http://localhost:4000/webhooks/now/ipn',
       order_id: `${req.user._id}-${plan._id}-${Date.now()}`,
@@ -32,7 +33,7 @@ router.post('/create', authMiddleware, async (req, res) => {
 
     const response = await axios.post(`${NOW_API_BASE}/payment`, payload, {
       headers: {
-        'x-api-key': process.env.NOWPAYMENTS_API_KEY,
+        'x-api-key': process.env.NOWPAYMENTS_API_KEY, // 79KZAN6-...
         'Content-Type': 'application/json',
       },
     });
@@ -50,7 +51,7 @@ router.post('/create', authMiddleware, async (req, res) => {
       status: 'pending',
     });
 
-    // Frontendu vraćamo polja koja koristi CryptoPaymentPage
+    // front koristi ova polja
     res.json({
       payment_id: payment.payment_id,
       pay_address: payment.pay_address,
