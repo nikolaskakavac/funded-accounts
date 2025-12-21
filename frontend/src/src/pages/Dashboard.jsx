@@ -23,6 +23,7 @@ const Dashboard = ({ navigate, token, onLogout }) => {
   if (!token) return null;
 
   const hasPlan = !!user?.currentPlan;
+  const isAdmin = user?.role === 'admin' || user?.isAdmin;
   const balance = user?.currentPlan?.balance || user?.currentPlan?.price || 0;
 
   return (
@@ -41,21 +42,30 @@ const Dashboard = ({ navigate, token, onLogout }) => {
               Pregled naloga, plana i balansa.
             </p>
           </div>
+<div className="flex items-center gap-3">
+  {isAdmin && (
+    <button
+      onClick={() => navigate('/admin')}
+      className="rounded-full border border-emerald-500/80 px-4 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-emerald-300 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px]"
+    >
+      Admin panel
+    </button>
+  )}
 
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => navigate('/pricing')}
-              className="hidden rounded-full border border-emerald-500/70 px-4 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px] sm:inline-flex"
-            >
-              Planovi
-            </button>
-            <button
-              onClick={onLogout}
-              className="rounded-full border border-red-500/80 px-4 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-red-300 transition-all duration-200 hover:bg-red-600/10 hover:-translate-y-[1px]"
-            >
-              Odjava
-            </button>
-          </div>
+  <button
+    onClick={() => navigate('/pricing')}
+    className="hidden rounded-full border border-emerald-500/70 px-4 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px] sm:inline-flex"
+  >
+    Planovi
+  </button>
+  <button
+    onClick={onLogout}
+    className="rounded-full border border-red-500/80 px-4 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-red-300 transition-all duration-200 hover:bg-red-600/10 hover:-translate-y-[1px]"
+  >
+    Odjava
+  </button>
+</div>
+
         </header>
 
         {/* Main grid */}

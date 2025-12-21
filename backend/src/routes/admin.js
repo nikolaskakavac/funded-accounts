@@ -14,11 +14,12 @@ router.use((req, res, next) => {
   }
   next();
 });
+
 // GET /api/admin/transactions - lista plaćenih transakcija
 router.get('/transactions', async (req, res) => {
   try {
     const txs = await Transaction.find({ status: 'paid' })
-      .populate('user', 'email name')
+      .populate('user', 'email')
       .populate('plan', 'name price')
       .sort({ createdAt: -1 });
 
@@ -39,14 +40,35 @@ router.patch('/transactions/:id', async (req, res) => {
     if (typeof accountSent === 'boolean') update.accountSent = accountSent;
     if (expiresAt) update.expiresAt = expiresAt;
 
+    // apdejtuj transakciju i odma povuci user + plan
     const tx = await Transaction.findByIdAndUpdate(
       req.params.id,
       update,
       { new: true }
-    );
+    ).populate('user plan');
 
     if (!tx) {
       return res.status(404).json({ message: 'Transaction not found' });
+    }
+
+    // ako je admin DEAKTIVIRAO ovu transakciju → skini plan sa usera
+    if (typeof active === 'boolean' && active === false) {
+      if (tx.user && tx.user.currentPlan) {
+        if (tx.plan && tx.user.currentPlan.toString() === tx.plan._id.toString()) {
+          tx.user.currentPlan = null;
+          await tx.user.save();
+          console.log('Admin: plan removed from user', tx.user.email);
+        }
+      }
+    }
+
+    // ako je admin AKTIVIRAO ovu transakciju → dodeli plan useru
+    if (typeof active === 'boolean' && active === true) {
+      if (tx.user && tx.plan) {
+        tx.user.currentPlan = tx.plan._id;
+        await tx.user.save();
+        console.log('Admin: plan set for user', tx.user.email);
+      }
     }
 
     res.json(tx);

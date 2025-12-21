@@ -1,56 +1,56 @@
-import { createStripeCheckout } from '../api';
+import { useState } from 'react';
+import { createNowPayment } from '../api';  // ← DODAO CRYPTO
+import OnSiteStripeCheckout from '../components/OnSiteStripeCheckout';
 
 const plans = [
   {
     id: '693db3e0e9cf589519c144fe',
-    name: 'Starter 10K',
-    balance: '$10.000',
-    price: '$199',
-    description: 'Ulazni funded nalog za disciplinovane tradere.',
-    tag: 'Idealno za prvi prop nalog',
+    name: '10K Kapital',
+    price: 79,
+    currency: 'usd',
+    balance: 10000,
+    description: 'Testiraj sistem sa manjim kapitalom. Savršen za nove tradere.',
+    tag: 'Idealno za početak'
   },
   {
     id: '693db3ede9cf589519c14500',
-    name: 'Pro 25K',
-    balance: '$25.000',
-    price: '$399',
-    description: 'Više kapitala, jasnija pravila rizika i bolji potencijal skaliranja.',
-    tag: 'Najčešći izbor klijenata',
-    highlighted: true,
-  },
+    name: '20K Kapital',
+    price: 169,
+    currency: 'usd',
+    balance: 20000,
+    description: 'Veći kapital, bolji profit potencijal. Za ozbiljne tradere.',
+    tag: 'Najčešći izbor',
+    highlighted: true
+  }
 ];
 
 const Pricing = ({ navigate, token }) => {
-  const handleStripe = async (planId) => {
+  const [onSitePlanId, setOnSitePlanId] = useState(null);
+
+  const handleCrypto = async (planId) => {
     if (!token) {
       navigate('/login');
       return;
     }
     try {
-      const res = await createStripeCheckout(token, planId);
-      if (res.url) {
-        window.location.href = res.url;
+      const res = await createNowPayment(token, planId, 'BTC'); // ili 'USDT'
+      if (res.invoice_url) {
+        window.location.href = res.invoice_url;
       } else {
-        alert('Ne može da se kreira Stripe sesija.');
+        alert('Crypto greška. Pokušaj ponovo.');
       }
     } catch (e) {
       console.error(e);
-      alert('Stripe greška. Pokušajte ponovo.');
+      alert('Crypto greška.');
     }
   };
 
-  const handleCrypto = (planId) => {
-    if (!token) {
-      navigate('/login');
-      return;
-    }
-    navigate(`/pay-crypto/${planId}`);
-  };
+  const selectedPlan = plans.find((p) => p.id === onSitePlanId);
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
       <div className="mx-auto max-w-5xl px-4 pt-8 pb-16 lg:px-8">
-        {/* Header / back link */}
+        {/* Header */}
         <div className="mb-10 flex items-center justify-between gap-4">
           <button
             onClick={() => navigate('/')}
@@ -79,50 +79,77 @@ const Pricing = ({ navigate, token }) => {
             Izaberi veličinu funded naloga.
           </h1>
           <p className="font-sans max-w-3xl text-[16px] sm:text-[18px] text-emerald-100/90 leading-relaxed">
-            Jednokratna naknada, jasno definisana pravila rizika i instant pristup klijent
-            dashboard‑u nakon potvrde uplate. Kreni od 10K ako testiraš sistem ili odmah
-            pređi na 25K ako već trguješ sa većim kapitalom.
+            Plati karticom na licu mesta ili kriptom. Instant dashboard pristup nakon uplate.
           </p>
         </header>
 
-        {/* Plans grid */}
+        {/* Plans */}
         <main>
           <div className="grid gap-7 md:grid-cols-2 md:justify-items-center">
             {plans.map((plan) => (
               <div key={plan.id} className="w-full max-w-sm">
                 <PlanCard
                   plan={plan}
-                  onStripe={handleStripe}
-                  onCrypto={handleCrypto}
+                  token={token}
+                  onChooseOnSite={() => setOnSitePlanId(plan.id)}
+                  isOnSiteSelected={onSitePlanId === plan.id}
+                  onCrypto={() => handleCrypto(plan.id)}
                 />
               </div>
             ))}
           </div>
 
-          <p className="mt-8 font-sans text-[13px] text-slate-400 max-w-3xl">
-            Nakon uspešne uplate, tvoj aktivni plan se prikazuje u klijent dashboard‑u zajedno
-            sa pravilima trgovanja. Uvek možeš kasnije da pređeš na veći nalog kada ti rezultati
-            postanu stabilni.
-          </p>
+          {/* ON-SITE PLAĆANJE */}
+          {token && selectedPlan && (
+            <div className="mt-12 flex justify-center">
+              <div className="w-full max-w-lg rounded-3xl border-2 border-emerald-500/80 bg-gradient-to-b from-emerald-500/10 via-black/80 to-emerald-900/10 p-8 shadow-2xl shadow-emerald-500/30 backdrop-blur-sm">
+                <div className="text-center mb-6">
+                  <p className="inline-flex items-center gap-2 rounded-full bg-emerald-500/20 border border-emerald-500/50 px-4 py-1.5 text-xs font-display uppercase tracking-[0.2em] text-emerald-300">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    ✅ Plaćanje na licu mesta
+                  </p>
+                  <p className="mt-4 text-2xl font-display font-extrabold tracking-[0.1em] uppercase text-slate-50">
+                    {selectedPlan.name}
+                  </p>
+                  <p className="text-4xl font-display font-extrabold tracking-[0.15em] text-emerald-400 mt-2">
+                    {selectedPlan.price}€
+                  </p>
+                  <p className="text-lg font-semibold text-emerald-200 mt-1">
+                    {selectedPlan.balance.toLocaleString()}€ kapitala
+                  </p>
+                </div>
+
+                <OnSiteStripeCheckout
+                  token={token}
+                  planId={selectedPlan.id}
+                  onSuccess={() => (window.location.href = '/success')}
+                />
+              </div>
+            </div>
+          )}
         </main>
       </div>
     </div>
   );
 };
 
-const PlanCard = ({ plan, onStripe, onCrypto }) => {
-  const { id, name, balance, price, description, tag, highlighted } = plan;
+const PlanCard = ({
+  plan,
+  token,
+  onChooseOnSite,
+  isOnSiteSelected,
+  onCrypto
+}) => {
+  const { name, balance, price, description, tag, highlighted } = plan;
 
   return (
     <div
-      className={`relative flex h-full flex-col rounded-3xl border p-6 shadow-lg
-                  bg-gradient-to-b from-black via-[#02110b] to-black
-                  transition-all duration-200 ease-out
-                  ${
-                    highlighted
-                      ? 'border-emerald-400 shadow-emerald-500/30 hover:-translate-y-2'
-                      : 'border-emerald-700/40 hover:border-emerald-400/80 hover:-translate-y-1'
-                  }`}
+      className={
+        'relative flex h-full flex-col rounded-3xl border p-6 shadow-lg bg-gradient-to-b from-black via-[#02110b] to-black transition-all duration-200 ease-out ' +
+        (highlighted
+          ? 'border-emerald-400 shadow-emerald-500/30 hover:-translate-y-2 ring-2 ring-emerald-500/20'
+          : 'border-emerald-700/40 hover:border-emerald-400/80 hover:-translate-y-1')
+      }
     >
       {highlighted && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-300 px-4 py-0.5 text-[10px] font-display uppercase tracking-[0.2em] text-black shadow-md">
@@ -132,44 +159,52 @@ const PlanCard = ({ plan, onStripe, onCrypto }) => {
 
       <div className="mb-4 space-y-1">
         <div className="font-sans text-[13px] font-medium uppercase tracking-[0.18em] text-emerald-300">
-          {balance}
+          {balance.toLocaleString()}€
         </div>
         <div className="font-display text-[20px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
           {name}
         </div>
         <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
-          {price}
+          {price}€
         </div>
       </div>
 
-      {tag && (
-        <div className="mb-3 font-sans text-[12px] text-emerald-200/90">
-          {tag}
-        </div>
-      )}
+      <div className="mb-3 font-sans text-[12px] text-emerald-200/90">{tag}</div>
 
-      <p className="mb-5 font-sans text-[14px] sm:text-[15px] text-slate-100/90 leading-relaxed">
+      <p className="mb-6 font-sans text-[14px] sm:text-[15px] text-slate-100/90 leading-relaxed flex-1">
         {description}
       </p>
 
-      <div className="mt-auto flex flex-col gap-2">
-        <button
-          onClick={() => onStripe(id)}
-          className="group inline-flex items-center justify-center gap-2 rounded-full 
-                     bg-emerald-500 px-4 py-2.5 text-[13px] sm:text-[14px] font-sans font-semibold 
-                     uppercase tracking-[0.14em] text-black shadow-[0_0_20px_rgba(16,185,129,0.6)]
-                     transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
-        >
-          Plati karticom (Stripe)
-          <span className="transition-transform group-hover:translate-x-0.5">→</span>
-        </button>
-        <button
-          onClick={() => onCrypto(id)}
-          className="inline-flex items-center justify-center rounded-full border border-emerald-600 px-4 py-2 text-[13px] sm:text-[14px] font-sans uppercase tracking-[0.14em] text-emerald-200
-                     hover:bg-emerald-500/10 transition-all duration-200"
-        >
-          Plati kriptom (NOWPayments)
-        </button>
+      <div className="space-y-2">
+        {token ? (
+          <>
+            <button
+              onClick={onChooseOnSite}
+              disabled={isOnSiteSelected}
+              className={
+                'w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg ' +
+                (isOnSiteSelected
+                  ? 'bg-emerald-500/90 text-black shadow-emerald-500/50 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5')
+              }
+            >
+              {isOnSiteSelected ? '✅ IZABRAN - PLAĆAJ ISPOD' : '💳 Plati karticom'}
+            </button>
+            <button
+              onClick={onCrypto}
+              className="w-full rounded-2xl border-2 border-emerald-500/60 bg-emerald-500/10 py-3 font-sans font-semibold uppercase tracking-[0.16em] text-emerald-200 hover:bg-emerald-500/20 hover:border-emerald-400/80 hover:-translate-y-0.5 transition-all duration-200"
+            >
+              🪙 Plati kriptom
+            </button>
+          </>
+        ) : (
+          <button
+            onClick={() => navigate('/login')}
+            className="w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 py-3.5 font-sans font-semibold uppercase tracking-[0.16em] text-black shadow-[0_0_25px_rgba(16,185,129,0.6)] hover:shadow-[0_0_35px_rgba(16,185,129,0.9)] hover:-translate-y-0.5 transition-all duration-200"
+          >
+            PRIJAVI SE DA KUPIŠ
+          </button>
+        )}
       </div>
     </div>
   );

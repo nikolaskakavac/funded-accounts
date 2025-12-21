@@ -12,6 +12,7 @@ const transactionSchema = new mongoose.Schema(
     active: { type: Boolean, default: false },
     accountSent: { type: Boolean, default: false },
     expiresAt: { type: Date },
+    phone: { type: String },
   },
   { timestamps: true }
 );

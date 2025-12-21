@@ -140,9 +140,9 @@ const Landing = ({ navigate, token }) => {
                              drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]
                              opacity-0 translate-y-3 animate-[fadeUp_0.6s_ease-out_forwards]"
                 >
-                  ULOŽI U KRIPTO
+                  Dobij novac od nas da investiraš u kripto.
                   <br />
-                  <span className="text-emerald-400">SA NAŠIM KAPITALOM</span>
+                  <span className="text-emerald-400">Ostvari velike profite.</span>
                 </h1>
 
                 <p
@@ -198,6 +198,74 @@ const Landing = ({ navigate, token }) => {
         </div>
       </div>
 
+      {/* BLOK: Kako funkcioniše + Pravila rizika u istom containeru */}
+      <div className="bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
+        <div className="max-w-5xl mx-auto">
+          <section className="mt-4 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
+            <h2 className="font-display text-[18px] sm:text-[22px] uppercase tracking-[0.26em] text-emerald-400 mb-4">
+              Kako funkcioniše
+            </h2>
+
+            <p className="font-sans text-[16px] sm:text-[18px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-4">
+              Kada kupiš nalog na našem sajtu, dobijaš login podatke za već postojeći,
+              unapred <span className="font-semibold text-emerald-300">“napunjeni” kripto nalog</span>.
+              Svaki kupac dobija svoj, zaseban račun – nema deljenja naloga sa drugim traderima.
+            </p>
+
+            <p className="font-sans text-[16px] sm:text-[18px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto">
+              Tvoj zadatak je jasan:{' '}
+              <span className="font-semibold text-emerald-300">
+                ostvari profit na kripto tržištu
+              </span>{' '}
+              koristeći kapital koji mi obezbeđujemo. Ti se fokusiraš samo na trgovanje, dok mi
+              brinemo o nalogu, kapitalu i tehničkoj infrastrukturi.
+            </p>
+          </section>
+
+          <section className="mt-10 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10">
+            <h2 className="text-center font-display text-[18px] sm:text-[22px] uppercase tracking-[0.26em] text-emerald-400 mb-4">
+              Pravila rizika
+            </h2>
+
+            <p className="font-sans text-[16px] sm:text-[18px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto text-center mb-6">
+              Da bi nalog ostao aktivan, dovoljno je da poštuješ dva jednostavna pravila rizika.
+              Kršenje bilo kog od njih automatski deaktivira nalog.
+            </p>
+
+            <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
+              {/* Pravilo 1 */}
+              <div className="rounded-2xl border border-emerald-700 bg-black/70 px-4 py-5 shadow-lg shadow-emerald-900/40">
+                <div className="mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500/15 text-[13px] font-semibold text-emerald-300">
+                  1
+                </div>
+                <h3 className="mb-1 font-sans text-[15px] sm:text-[16px] font-semibold text-emerald-200">
+                  Maksimalni ukupni gubitak
+                </h3>
+                <p className="font-sans text-[14px] sm:text-[15px] text-emerald-50/90 leading-relaxed">
+                  Ako izgubiš više od{' '}
+                  <span className="font-semibold text-emerald-300">20% ukupnog kapitala</span> koji
+                  ti je dodeljen, nalog se deaktivira.
+                </p>
+              </div>
+
+              {/* Pravilo 2 */}
+              <div className="rounded-2xl border border-emerald-700 bg-black/70 px-4 py-5 shadow-lg shadow-emerald-900/40">
+                <div className="mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500/15 text-[13px] font-semibold text-emerald-300">
+                  2
+                </div>
+                <h3 className="mb-1 font-sans text-[15px] sm:text-[16px] font-semibold text-emerald-200">
+                  Maksimalni dnevni gubitak
+                </h3>
+                <p className="font-sans text-[14px] sm:text-[15px] text-emerald-50/90 leading-relaxed">
+                  Ako u jednom danu izgubiš više od{' '}
+                  <span className="font-semibold text-emerald-300">1.000 €</span>, nalog se
+                  deaktivira.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
       {/* ŠTA DOBIJAŠ / PODELA / CILJ */}
       <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
         {/* suptilni gornji border kao čist prelaz */}
@@ -342,125 +410,87 @@ const Landing = ({ navigate, token }) => {
         </div>
       </section>
 
-      {/* PLANOVI – iz Pricing sekcije */}
-      <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-14">
-        <div className="max-w-5xl mx-auto space-y-8">
-          <div className="text-center">
-            <p className="font-display text-[11px] uppercase tracking-[0.26em] text-emerald-400">
-              Funding planovi
-            </p>
-            <h2 className="mt-2 font-display text-[28px] sm:text-[34px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
-              Izaberi veličinu naloga.
-            </h2>
-            <p className="mt-3 font-sans text-[15px] sm:text-[17px] text-emerald-100/90 max-w-3xl mx-auto leading-relaxed">
-              Dva jasna plana – 10K za prvi funded nalog i 25K za tradere koji već rade sa većim kapitalom.
-            </p>
+    
+{/* PLANOVI – NOVI CENE 79€ / 169€ */}
+<section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-14">
+  <div className="max-w-5xl mx-auto space-y-8">
+    <div className="text-center">
+      <p className="font-display text-[11px] uppercase tracking-[0.26em] text-emerald-400">
+        Funding planovi
+      </p>
+      <h2 className="mt-2 font-display text-[28px] sm:text-[34px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
+        Izaberi veličinu naloga.
+      </h2>
+      <p className="mt-3 font-sans text-[15px] sm:text-[17px] text-emerald-100/90 max-w-3xl mx-auto leading-relaxed">
+       10K za 79€ ili 20K za 169€ – jasne cene, bez skrivenih naknada.
+      </p>
+    </div>
+
+    <div className="grid gap-7 justify-items-center sm:grid-cols-2">
+      {/* 10K - 79€ */}
+      <div className="w-full max-w-sm">
+        <div className="relative flex h-full flex-col rounded-3xl border p-6 shadow-lg bg-gradient-to-b from-black via-[#02110b] to-black border-emerald-700/40 hover:border-emerald-400/80 hover:-translate-y-1 transition-all duration-200 ease-out">
+          <div className="mb-4 space-y-1">
+            <div className="font-sans text-[13px] font-medium uppercase tracking-[0.18em] text-emerald-300">
+              10.000€
+            </div>
+            <div className="font-display text-[20px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
+              10K Kapital
+            </div>
+            <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
+              79€
+            </div>
           </div>
+          <div className="mb-3 font-sans text-[12px] text-emerald-200/90">Idealno za početak</div>
+          <p className="mb-5 font-sans text-[14px] sm:text-[15px] text-slate-100/90 leading-relaxed">Testiraj sistem sa manjim kapitalom.</p>
+          <div className="mt-auto flex flex-col gap-2">
+            <button onClick={() => navigate('/pricing')} className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-4 py-2.5 text-[13px] sm:text-[14px] font-sans font-semibold uppercase tracking-[0.14em] text-black shadow-[0_0_20px_rgba(16,185,129,0.6)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400">
+              Plati karticom <span className="transition-transform group-hover:translate-x-0.5">→</span>
+            </button>
+            <button onClick={() => navigate('/pricing')} className="inline-flex items-center justify-center rounded-full border border-emerald-600 px-4 py-2 text-[13px] sm:text-[14px] font-sans uppercase tracking-[0.14em] text-emerald-200 hover:bg-emerald-500/10 transition-all duration-200">
+              Plati kriptom
+            </button>
+          </div>
+        </div>
+      </div>
 
-+ <div className="grid gap-7 justify-items-center sm:grid-cols-2">
-            {/* Starter 10K */}
-            <div className="w-full max-w-sm">
-              <div
-                className="relative flex h-full flex-col rounded-3xl border p-6 shadow-lg
-                           bg-gradient-to-b from-black via-[#02110b] to-black
-                           border-emerald-700/40 hover:border-emerald-400/80 hover:-translate-y-1
-                           transition-all duration-200 ease-out"
-              >
-                <div className="mb-4 space-y-1">
-                  <div className="font-sans text-[13px] font-medium uppercase tracking-[0.18em] text-emerald-300">
-                    $10.000
-                  </div>
-                  <div className="font-display text-[20px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
-                    Starter 10K
-                  </div>
-                  <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
-                    $199
-                  </div>
-                </div>
+      {/* 20K - 169€ PREPORUČENO */}
+      <div className="w-full max-w-sm">
+  <div className="relative flex h-full flex-col rounded-3xl border p-6 shadow-lg
+                  bg-gradient-to-b from-black via-[#02110b] to-black
+                  border-emerald-400 shadow-emerald-500/30 hover:-translate-y-2 ring-2 ring-emerald-500/20
+                  transition-all duration-200 ease-out">
+    <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-300 px-4 py-0.5 text-[10px] font-display uppercase tracking-[0.2em] text-black shadow-md">
+      Preporučeno
+    </div>
+    <div className="mb-4 space-y-1">
+      <div className="font-sans text-[13px] font-medium uppercase tracking-[0.18em] text-emerald-300">
+        20.000€
+      </div>
+      <div className="font-display text-[20px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
+        20K Kapital
+      </div>
+      <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
+        169€
+      </div>
+    </div>
+    <div className="mb-3 font-sans text-[12px] text-emerald-200/90">
+      Najčešći izbor
+    </div>
+    <p className="mb-5 font-sans text-[14px] sm:text-[15px] text-slate-100/90 leading-relaxed">
+      Veći kapital, bolji profit potencijal.
+    </p>
+    <div className="mt-auto flex flex-col gap-2">
+      <button onClick={() => navigate('/pricing')} className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-4 py-2.5 text-[13px] sm:text-[14px] font-sans font-semibold uppercase tracking-[0.14em] text-black shadow-[0_0_20px_rgba(16,185,129,0.6)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400">
+        Plati karticom <span className="transition-transform group-hover:translate-x-0.5">→</span>
+      </button>
+      <button onClick={() => navigate('/pricing')} className="inline-flex items-center justify-center rounded-full border border-emerald-600 px-4 py-2 text-[13px] sm:text-[14px] font-sans uppercase tracking-[0.14em] text-emerald-200 hover:bg-emerald-500/10 transition-all duration-200">
+        Plati kriptom
+      </button>
+    </div>
+  </div>
+</div>
 
-                <div className="mb-3 font-sans text-[12px] text-emerald-200/90">
-                  Idealno za prvi prop nalog
-                </div>
-
-                <p className="mb-5 font-sans text-[14px] sm:text-[15px] text-slate-100/90 leading-relaxed">
-                  Ulazni funded nalog za disciplinovane tradere.
-                </p>
-
-                <div className="mt-auto flex flex-col gap-2">
-                  <button
-                    onClick={() => navigate('/pricing')}
-                    className="group inline-flex items-center justify-center gap-2 rounded-full 
-                               bg-emerald-500 px-4 py-2.5 text-[13px] sm:text-[14px] font-sans font-semibold 
-                               uppercase tracking-[0.14em] text-black shadow-[0_0_20px_rgba(16,185,129,0.6)]
-                               transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
-                  >
-                    Plati karticom (Stripe)
-                    <span className="transition-transform group-hover:translate-x-0.5">→</span>
-                  </button>
-                  <button
-                    onClick={() => navigate('/pricing')}
-                    className="inline-flex items-center justify-center rounded-full border border-emerald-600 px-4 py-2 text-[13px] sm:text-[14px] font-sans uppercase tracking-[0.14em] text-emerald-200
-                               hover:bg-emerald-500/10 transition-all duration-200"
-                  >
-                    Plati kriptom (NOWPayments)
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Pro 25K – preporučen */}
-            <div className="w-full max-w-sm">
-              <div
-                className="relative flex h-full flex-col rounded-3xl border p-6 shadow-lg
-                           bg-gradient-to-b from-black via-[#02110b] to-black
-                           border-emerald-400 shadow-emerald-500/30 hover:-translate-y-2
-                           transition-all duration-200 ease-out"
-              >
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-300 px-4 py-0.5 text-[10px] font-display uppercase tracking-[0.2em] text-black shadow-md">
-                  Preporučeno
-                </div>
-
-                <div className="mb-4 space-y-1">
-                  <div className="font-sans text-[13px] font-medium uppercase tracking-[0.18em] text-emerald-300">
-                    $25.000
-                  </div>
-                  <div className="font-display text-[20px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
-                    Pro 25K
-                  </div>
-                  <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
-                    $399
-                  </div>
-                </div>
-
-                <div className="mb-3 font-sans text-[12px] text-emerald-200/90">
-                  Najčešći izbor klijenata
-                </div>
-
-                <p className="mb-5 font-sans text-[14px] sm:text-[15px] text-slate-100/90 leading-relaxed">
-                  Više kapitala, jasnija pravila rizika i bolji potencijal skaliranja.
-                </p>
-
-                <div className="mt-auto flex flex-col gap-2">
-                  <button
-                    onClick={() => navigate('/pricing')}
-                    className="group inline-flex items-center justify-center gap-2 rounded-full 
-                               bg-emerald-500 px-4 py-2.5 text-[13px] sm:text-[14px] font-sans font-semibold 
-                               uppercase tracking-[0.14em] text-black shadow-[0_0_20px_rgba(16,185,129,0.6)]
-                               transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
-                  >
-                    Plati karticom (Stripe)
-                    <span className="transition-transform group-hover:translate-x-0.5">→</span>
-                  </button>
-                  <button
-                    onClick={() => navigate('/pricing')}
-                    className="inline-flex items-center justify-center rounded-full border border-emerald-600 px-4 py-2 text-[13px] sm:text-[14px] font-sans uppercase tracking-[0.14em] text-emerald-200
-                               hover:bg-emerald-500/10 transition-all duration-200"
-                  >
-                    Plati kriptom (NOWPayments)
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
 
           <p className="mt-8 font-sans text-[13px] text-slate-400 max-w-3xl mx-auto text-center">

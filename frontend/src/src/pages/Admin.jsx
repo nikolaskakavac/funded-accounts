@@ -110,19 +110,25 @@ const Admin = ({ navigate, token }) => {
                       key={tx._id}
                       className="border-b border-emerald-900/40 last:border-0"
                     >
-                      {/* Korisnik */}
-                      <td className="py-3 pr-4 align-top">
-                        <div className="flex flex-col">
-                          <span className="text-[14px] font-medium text-slate-50">
-                            {tx.user?.email || 'N/A'}
-                          </span>
-                          {tx.user?.name && (
-                            <span className="text-[12px] text-slate-400">
-                              {tx.user.name}
-                            </span>
-                          )}
-                        </div>
-                      </td>
+                     {/* Korisnik */}
+<td className="py-3 pr-4 align-top">
+  <div className="flex flex-col">
+    <span className="text-[14px] font-medium text-slate-50">
+      {tx.user?.email || 'N/A'}
+    </span>
+    {tx.user?.name && (
+      <span className="text-[12px] text-slate-400">
+        {tx.user.name}
+      </span>
+    )}
+    {tx.phone && (
+      <span className="text-[12px] text-emerald-300">
+        {tx.phone}
+      </span>
+    )}
+  </div>
+</td>
+
 
                       {/* Plan */}
                       <td className="py-3 pr-4 align-top">
