@@ -92,7 +92,7 @@ const Admin = ({ navigate, token }) => {
               Nema evidentiranih plaćenih transakcija.
             </p>
           ) : (
-            <div className="overflow-x-auto md:overflow-visible">
+            <div className="overflow-x-auto">
               <table className="min-w-full font-sans text-[14px] text-slate-100">
                 <thead className="border-b border-emerald-900 text-[12px] uppercase tracking-[0.16em] text-emerald-300">
                   <tr className="text-left">
