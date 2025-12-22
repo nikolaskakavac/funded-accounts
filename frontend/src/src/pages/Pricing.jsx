@@ -10,7 +10,7 @@ const plans = [
     currency: 'usd',
     balance: 10000,
     description: 'Testiraj sistem sa manjim kapitalom. Savršen za nove tradere.',
-    tag: 'Idealno za početak'
+    tag: 'Idealno za početak',
   },
   {
     id: '693db3ede9cf589519c14500',
@@ -20,8 +20,8 @@ const plans = [
     balance: 20000,
     description: 'Veći kapital, bolji profit potencijal. Za ozbiljne tradere.',
     tag: 'Najčešći izbor',
-    highlighted: true
-  }
+    highlighted: true,
+  },
 ];
 
 const Pricing = ({ navigate, token }) => {
@@ -88,15 +88,14 @@ const Pricing = ({ navigate, token }) => {
           <div className="grid gap-7 md:grid-cols-2 md:justify-items-center">
             {plans.map((plan) => (
               <div key={plan.id} className="w-full max-w-sm">
-              <PlanCard
-  plan={plan}
-  token={token}
-  navigate={navigate}
-  onChooseOnSite={() => setOnSitePlanId(plan.id)}
-  isOnSiteSelected={onSitePlanId === plan.id}
-  onCrypto={() => handleCrypto(plan.id)}
-/>
-
+                <PlanCard
+                  plan={plan}
+                  token={token}
+                  navigate={navigate}
+                  onChooseOnSite={() => setOnSitePlanId(plan.id)}
+                  isOnSiteSelected={onSitePlanId === plan.id}
+                  onCrypto={() => handleCrypto(plan.id)}
+                />
               </div>
             ))}
           </div>
@@ -136,7 +135,7 @@ const Pricing = ({ navigate, token }) => {
 };
 
 const PlanCard = ({
- plan,
+  plan,
   token,
   navigate,
   onChooseOnSite,
@@ -201,13 +200,12 @@ const PlanCard = ({
             </button>
           </>
         ) : (
-        <button
-  onClick={() => navigate('/login')}
-  className="w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 py-3.5 font-sans font-semibold uppercase tracking-[0.16em] text-black shadow-[0_0_25px_rgba(16,185,129,0.6)] hover:shadow-[0_0_35px_rgba(16,185,129,0.9)] hover:-translate-y-0.5 transition-all duration-200"
->
-  PRIJAVI SE DA KUPIŠ
-</button>
-
+          <button
+            onClick={() => navigate('/login')}
+            className="w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 py-3.5 font-sans font-semibold uppercase tracking-[0.16em] text-black shadow-[0_0_25px_rgba(16,185,129,0.6)] hover:shadow-[0_0_35px_rgba(16,185,129,0.9)] hover:-translate-y-0.5 transition-all duration-200"
+          >
+            PRIJAVI SE DA KUPIŠ
+          </button>
         )}
       </div>
     </div>
