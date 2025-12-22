@@ -100,7 +100,7 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
 
       {/* vidljiv i klikabilan CardElement container */}
       <div
-        className="mt-2 rounded-2xl border-2 border-emerald-500/80 bg-black/70 px-4 py-4 shadow-[0_0_25px_rgba(16,185,129,0.45)] min-h-[56px] flex items-center cursor-text"
+        className="mt-2 rounded-2xl border-2 border-emerald-500/80 bg-black/70 px-4 py-4 shadow-[0_0_25px_rgba(16,185,129,0.45)] min-h-[56px]  cursor-text"
         onClick={focusCard}
       >
         <CardElement options={cardStyle} />
