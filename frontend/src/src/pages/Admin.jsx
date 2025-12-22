@@ -75,7 +75,7 @@ const Admin = ({ navigate, token }) => {
           </div>
           <button
             onClick={() => navigate('/dashboard')}
-            className="rounded-full border border-emerald-500/80 px-4 py-1.5 text-[13px] font-sans uppercase tracking-[0.14em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px]"
+           className="rounded-full border border-emerald-500/80 px-6 py-1.5 text-[13px] font-sans uppercase tracking-[0.12em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px] whitespace-nowrap"
           >
             Klijentski prikaz
           </button>
