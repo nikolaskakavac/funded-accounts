@@ -59,7 +59,7 @@ const Admin = ({ navigate, token }) => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
-      <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-8 lg:px-8">
+      <div className="relative mx-auto max-w-6xl pb-16 pt-8 lg:px-8">
         {/* Header */}
         <header className="mb-8 flex items-center justify-between">
           <div>
