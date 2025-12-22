@@ -204,7 +204,7 @@ const PlanCard = ({
             onClick={() => navigate('/login')}
             className="w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 py-3.5 font-sans font-semibold uppercase tracking-[0.16em] text-black shadow-[0_0_25px_rgba(16,185,129,0.6)] hover:shadow-[0_0_35px_rgba(16,185,129,0.9)] hover:-translate-y-0.5 transition-all duration-200"
           >
-            PRIJAVI SE DA KUPIŠ
+            KREIRAJ NALOG DA ZAVRŠIŠ PLAĆANJE
           </button>
         )}
       </div>
