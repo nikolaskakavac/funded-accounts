@@ -79,7 +79,8 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
         />
       </label>
 
-      <div className="rounded-2xl border border-emerald-700/70 bg-black/40 px-3 py-3">
+      {/* jači, vidljiviji CardElement container */}
+      <div className="mt-2 rounded-2xl border-2 border-emerald-500/80 bg-black/70 px-4 py-4 shadow-[0_0_25px_rgba(16,185,129,0.45)]">
         <CardElement options={cardStyle} />
       </div>
 
@@ -92,7 +93,7 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
       <button
         type="submit"
         disabled={!stripe || loading}
-        className="mt-2 w-full rounded-2xl bg-emerald-500 py-3 text-sm font-sans font-semibold uppercase tracking-[0.18em] text-black shadow-[0_0_20px_rgba(16,185,129,0.7)] transition-all duration-200 disabled:opacity-60 hover:-translate-y-[1px] hover:bg-emerald-400"
+        className="mt-4 w-full rounded-2xl bg-emerald-500 py-3 text-sm font-sans font-semibold uppercase tracking-[0.18em] text-black shadow-[0_0_20px_rgba(16,185,129,0.7)] transition-all duration-200 disabled:opacity-60 hover:-translate-y-[1px] hover:bg-emerald-400"
       >
         {loading ? 'Obrada uplate...' : 'Plati karticom'}
       </button>
