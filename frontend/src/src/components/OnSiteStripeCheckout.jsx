@@ -6,7 +6,8 @@ const cardStyle = {
   style: {
     base: {
       color: '#e5e7eb',
-      fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      fontFamily:
+        'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
       fontSmoothing: 'antialiased',
       fontSize: '16px',
       '::placeholder': {
@@ -27,15 +28,23 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
   const [err, setErr] = useState('');
   const [phone, setPhone] = useState('');
 
+  console.log('STRIPE DEBUG → stripe =', stripe, 'elements =', elements);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!stripe || !elements) return;
+    if (!stripe || !elements) {
+      setErr('Plaćanje trenutno nije dostupno. Pokušaj ponovo kasnije.');
+      return;
+    }
 
     setErr('');
     setLoading(true);
 
     try {
-      const res = await createStripeCheckout(token, planId, { mode: 'intent', phone });
+      const res = await createStripeCheckout(token, planId, {
+        mode: 'intent',
+        phone,
+      });
       const { clientSecret } = res;
 
       if (!clientSecret) {
@@ -45,6 +54,11 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
       }
 
       const card = elements.getElement(CardElement);
+      if (!card) {
+        setErr('Polje za karticu nije učitano. Osveži stranicu.');
+        setLoading(false);
+        return;
+      }
 
       const result = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -66,6 +80,11 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
     }
   };
 
+  const focusCard = () => {
+    const card = elements?.getElement(CardElement);
+    if (card) card.focus();
+  };
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4 text-left">
       <label className="block text-xs font-sans uppercase tracking-[0.18em] text-slate-400">
@@ -79,16 +98,15 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
         />
       </label>
 
-      {/* jači, vidljiviji CardElement container */}
-      <div className="mt-2 rounded-2xl border-2 border-emerald-500/80 bg-black/70 px-4 py-4 shadow-[0_0_25px_rgba(16,185,129,0.45)]">
+      {/* vidljiv i klikabilan CardElement container */}
+      <div
+        className="mt-2 rounded-2xl border-2 border-emerald-500/80 bg-black/70 px-4 py-4 shadow-[0_0_25px_rgba(16,185,129,0.45)] min-h-[56px] flex items-center cursor-text"
+        onClick={focusCard}
+      >
         <CardElement options={cardStyle} />
       </div>
 
-      {err && (
-        <p className="text-xs text-red-400">
-          {err}
-        </p>
-      )}
+      {err && <p className="text-xs text-red-400">{err}</p>}
 
       <button
         type="submit"
