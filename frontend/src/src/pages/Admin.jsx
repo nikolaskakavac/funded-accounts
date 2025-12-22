@@ -61,7 +61,8 @@ const Admin = ({ navigate, token }) => {
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
       <div className="relative mx-auto max-w-6xl pb-16 pt-8 lg:px-8">
         {/* Header */}
-        <header className="mb-8 flex items-center justify-between">
+        <header className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
           <div>
             <p className="font-display text-[13px] uppercase tracking-[0.26em] text-emerald-400">
               Admin zona
