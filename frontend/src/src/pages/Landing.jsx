@@ -276,10 +276,7 @@ const Landing = ({ navigate, token }) => {
             <h2 className="font-display text-3xl sm:text-4xl lg:text-[34px] font-extrabold tracking-[0.12em] uppercase text-emerald-400">
               Šta tačno dobijaš kupovinom naloga?
             </h2>
-            <p className="mt-3 font-sans text-[17px] sm:text-[18px] text-slate-200/90 max-w-3xl mx-auto font-medium tracking-[0.02em]">
-              Sve je podešeno da trguješ sa većim kapitalom, uz potpunu zaštitu tvog
-              ličnog novca i jasno definisana pravila rizika.
-            </p>
+         
           </div>
 
           {/* tri glavne kartice */}
@@ -304,8 +301,7 @@ const Landing = ({ navigate, token }) => {
                 Kapital za trgovanje
               </h3>
               <p className="font-sans text-[16px] sm:text-[17px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
-                Dobijaš pristup novcu naše firme koji možeš da investiraš na kripto
-                tržištu. Ne rizikuješ sopstveni novac, već koristiš naš kapital.
+                Dobijaš novac od nas koji možeš da investiraš na kripto tržištu. Ne rizikuješ sopstveni novac, već koristiš naš kapital.
               </p>
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
             </div>
@@ -338,54 +334,30 @@ const Landing = ({ navigate, token }) => {
             </div>
 
             {/* 3. Rizik preuzimamo mi */}
-            <div
-              className="group relative overflow-hidden rounded-3xl border border-emerald-500/40 
-                         bg-gradient-to-r from-[#02110b] via-black to-[#02110b]
-                         p-6 shadow-lg shadow-emerald-500/10 transition-all duration-200 ease-out 
-                         hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
-                         hover:border-emerald-400/70 hover:-rotate-1"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-                  🛡️
-                </div>
-                <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
-                  3
-                </div>
-              </div>
-              <h3 className="font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
-                Rizik preuzimamo mi
-              </h3>
-              <p className="font-sans text-[16px] sm:text-[17px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
-                Naša firma snosi trošak svakog gubitka koji napraviš na nalogu.
-                Tvoj lični novac je 100% zaštićen od gubitka – rizik je na našoj strani.
-              </p>
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
-            </div>
-          </div>
-
-          {/* Podela profita – kartica 4 */}
-          <div
-            className="group rounded-3xl border border-emerald-500/60 
-                       bg-gradient-to-r from-[#02110b] via-black to-[#02110b] 
-                       px-7 py-7 sm:px-9 sm:py-8 text-center 
-                       shadow-xl shadow-emerald-500/20 transition-all duration-200 ease-out 
-                       hover:-translate-y-1 hover:shadow-emerald-500/50 hover:shadow-2xl hover:border-emerald-400/80"
-          >
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-5 py-1.5">
-              <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              <span className="font-display text-[13px] tracking-[0.22em] uppercase text-emerald-300">
-                Podela profita
-              </span>
-            </div>
-            <p className="font-sans text-[16px] sm:text-[18px] text-slate-100/90 max-w-3xl mx-auto leading-relaxed font-medium tracking-[0.01em]">
-              Od svakog ostvarenog profita,{` `}
-              <span className="font-semibold text-emerald-300">70%</span> ide tebi, a{` `}
-              <span className="font-semibold text-emerald-300">30%</span> firmi. Sve je
-              potpuno transparentno i poznato unapred.
-            </p>
-          </div>
-
+         <div
+  className="group relative overflow-hidden rounded-3xl border border-emerald-500/40 
+             bg-gradient-to-r from-[#02110b] via-black to-[#02110b]
+             p-6 shadow-lg shadow-emerald-500/10 transition-all duration-200 ease-out 
+             hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
+             hover:border-emerald-400/70 hover:-rotate-1"
+>
+  <div className="flex items-center justify-between mb-4">
+    <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
+      💰
+    </div>
+    <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
+      3
+    </div>
+  </div>
+  <h3 className="text-center font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
+    Podela profita
+  </h3>
+  <p className="text-center font-sans text-[16px] sm:text-[17px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
+    Od svakog ostvarenog profita, 70% ide tebi, a 30% firmi. Sve je potpuno transparentno i poznato unapred.
+  </p>
+  <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
+</div>
+</div>
           {/* Naš cilj – kartica 5 */}
           <div
             className="group rounded-3xl border border-emerald-500/40 
