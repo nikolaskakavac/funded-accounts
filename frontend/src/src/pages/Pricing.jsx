@@ -88,13 +88,15 @@ const Pricing = ({ navigate, token }) => {
           <div className="grid gap-7 md:grid-cols-2 md:justify-items-center">
             {plans.map((plan) => (
               <div key={plan.id} className="w-full max-w-sm">
-                <PlanCard
-                  plan={plan}
-                  token={token}
-                  onChooseOnSite={() => setOnSitePlanId(plan.id)}
-                  isOnSiteSelected={onSitePlanId === plan.id}
-                  onCrypto={() => handleCrypto(plan.id)}
-                />
+              <PlanCard
+  plan={plan}
+  token={token}
+  navigate={navigate}
+  onChooseOnSite={() => setOnSitePlanId(plan.id)}
+  isOnSiteSelected={onSitePlanId === plan.id}
+  onCrypto={() => handleCrypto(plan.id)}
+/>
+
               </div>
             ))}
           </div>
@@ -134,11 +136,12 @@ const Pricing = ({ navigate, token }) => {
 };
 
 const PlanCard = ({
-  plan,
+ plan,
   token,
+  navigate,
   onChooseOnSite,
   isOnSiteSelected,
-  onCrypto
+  onCrypto,
 }) => {
   const { name, balance, price, description, tag, highlighted } = plan;
 
@@ -198,12 +201,13 @@ const PlanCard = ({
             </button>
           </>
         ) : (
-          <button
-            onClick={() => navigate('/login')}
-            className="w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 py-3.5 font-sans font-semibold uppercase tracking-[0.16em] text-black shadow-[0_0_25px_rgba(16,185,129,0.6)] hover:shadow-[0_0_35px_rgba(16,185,129,0.9)] hover:-translate-y-0.5 transition-all duration-200"
-          >
-            PRIJAVI SE DA KUPIŠ
-          </button>
+        <button
+  onClick={() => navigate('/login')}
+  className="w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 py-3.5 font-sans font-semibold uppercase tracking-[0.16em] text-black shadow-[0_0_25px_rgba(16,185,129,0.6)] hover:shadow-[0_0_35px_rgba(16,185,129,0.9)] hover:-translate-y-0.5 transition-all duration-200"
+>
+  PRIJAVI SE DA KUPIŠ
+</button>
+
         )}
       </div>
     </div>
