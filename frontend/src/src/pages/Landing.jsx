@@ -208,26 +208,15 @@ const Landing = ({ navigate, token }) => {
 
 <p className="font-sans text-[18px] sm:text-[20px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-4">
   Kada kupiš nalog na našem websajtu, dobijaš log in podatke od već postojećeg,
-  unapred <span className="font-semibold text-emerald-300">“napunjenog” kripto naloga</span>.
+  unapred <span className="font-semibold text-emerald-300">„napunjenog“ kripto naloga</span>.
   Svaki kupac dobija svoj, zaseban nalog – nema deljenja sa drugima.
+  <br /><br />
+  Tvoj zadatak je jasan: ostvari profit investirajući u neku od kripto-valuta
+  sa našim novcem. Ti se fokusiraš isključivo na investiranje, dok mi brinemo o
+  nalogu, kapitalu i kompletnoj tehničkoj infrastrukturi.
 </p>
-
-<p className="font-sans text-[18px] sm:text-[20px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto">
-  Tvoj zadatak je jasan: ostvari profit investiranjem u neku od kripto-valuta sa našim novcem.
-  Ti se fokusiraš samo na investiranje, dok mi brinemo o nalogu, kapitalu i tehničkoj infrastrukturi.
-</p>
-
-
-            <p className="font-sans text-[16px] sm:text-[18px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto">
-              Tvoj zadatak je jasan:{' '}
-              <span className="font-semibold text-emerald-300">
-                ostvari profit na kripto tržištu
-              </span>{' '}
-              koristeći kapital koji mi obezbeđujemo. Ti se fokusiraš samo na trgovanje, dok mi
-              brinemo o nalogu, kapitalu i tehničkoj infrastrukturi.
-            </p>
           </section>
-<Leaderboard />
+
 
           <section className="mt-10 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10">
             <h2 className="text-center font-display text-[18px] sm:text-[22px] uppercase tracking-[0.26em] text-emerald-400 mb-4">
@@ -478,7 +467,7 @@ const Landing = ({ navigate, token }) => {
           </p>
         </div>
       </section>
-
+<Leaderboard />
       {/* FAQ sekcija */}
       <section className="bg-gradient-to-b from-black via-[#020617] to-black px-4 pt-10 pb-12">
         <div className="max-w-5xl mx-auto space-y-6">
