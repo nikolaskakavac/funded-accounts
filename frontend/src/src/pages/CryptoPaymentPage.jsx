@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { QRCodeCanvas } from 'qrcode.react';
 import { createNowPayment } from '../api';
+import Header from '../components/Header';
 
-export default function CryptoPaymentPage({ token, planId, navigate }) {
+export default function CryptoPaymentPage({ token, planId, navigate, onLogout }) {
   const [coin, setCoin] = useState('usdc'); // 'usdc' | 'usdt' | 'eth'
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -27,6 +28,7 @@ export default function CryptoPaymentPage({ token, planId, navigate }) {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
+      <Header navigate={navigate} token={token} onLogout={onLogout} />
       <div className="relative mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-4 py-10 lg:px-8">
         {/* Header */}
         <div className="mb-8 w-full flex items-center justify-between">

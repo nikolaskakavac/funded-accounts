@@ -1,7 +1,8 @@
   import { useState } from 'react';
   import { register } from '../api';
+  import Header from '../components/Header';
 
-  const Register = ({ navigate, onRegister }) => {
+  const Register = ({ navigate, onRegister, onLogout }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
   const submit = async (e) => {
@@ -22,6 +23,7 @@
 
     return (
       <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
+        <Header navigate={navigate} token={''} onLogout={onLogout} />
         <div className="relative mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-4 py-10 lg:px-8">
           {/* Back link */}
           <button

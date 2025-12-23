@@ -50,17 +50,17 @@ const App = () => {
   let page = null;
 
   if (path === '/') {
-    page = <Landing navigate={navigate} token={token} />;
+    page = <Landing navigate={navigate} token={token} onLogout={handleLogout} />;
   } else if (path === '/pricing') {
-    page = <Pricing navigate={navigate} token={token} />;
+    page = <Pricing navigate={navigate} token={token} onLogout={handleLogout} />;
   } else if (path === '/about') {
-    page = <About navigate={navigate} token={token} />;
+    page = <About navigate={navigate} token={token} onLogout={handleLogout} />;
   } else if (path === '/contact') {
-    page = <Contact navigate={navigate} token={token} />;
+    page = <Contact navigate={navigate} token={token} onLogout={handleLogout} />;
   } else if (path === '/login') {
-    page = <Login navigate={navigate} onLogin={handleAuthSuccess} />;
+    page = <Login navigate={navigate} onLogin={handleAuthSuccess} onLogout={handleLogout} />;
   } else if (path === '/register') {
-    page = <Register navigate={navigate} onRegister={handleAuthSuccess} />;
+    page = <Register navigate={navigate} onRegister={handleAuthSuccess} onLogout={handleLogout} />;
   } else if (path === '/dashboard') {
     page = (
       <Dashboard
@@ -74,12 +74,12 @@ const App = () => {
       navigate('/dashboard');
       page = null;
     } else {
-      page = <Admin navigate={navigate} token={token} />;
+      page = <Admin navigate={navigate} token={token} onLogout={handleLogout} />;
     }
   } else if (path.startsWith('/success')) {
-    page = <Success navigate={navigate} />;
+    page = <Success navigate={navigate} onLogout={handleLogout} />;
   } else if (path === '/cancel') {
-    page = <Cancel navigate={navigate} />;
+    page = <Cancel navigate={navigate} onLogout={handleLogout} />;
   } else if (path.startsWith('/pay-crypto/')) {
     const parts = path.split('/');
     const planId = parts[2];
@@ -88,10 +88,11 @@ const App = () => {
         navigate={navigate}
         token={token}
         planId={planId}
+        onLogout={handleLogout}
       />
     );
   } else {
-    page = <Landing navigate={navigate} token={token} />;
+    page = <Landing navigate={navigate} token={token} onLogout={handleLogout} />;
   }
 
   return (

@@ -1,7 +1,11 @@
 // Cancel.jsx
-const Cancel = ({ navigate }) => {
+import Header from '../components/Header';
+
+const Cancel = ({ navigate, onLogout }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
+      <Header navigate={navigate} token={''} onLogout={onLogout} />
+      <div className="flex items-center justify-center px-4 min-h-[calc(100vh-80px)]">
       <div className="max-w-md w-full rounded-3xl border border-emerald-700/60 bg-black/80 p-7 text-center shadow-xl shadow-emerald-500/30">
         <p className="font-display text-[12px] uppercase tracking-[0.26em] text-emerald-400">
           Uplata otkazana
@@ -20,6 +24,7 @@ const Cancel = ({ navigate }) => {
         >
           Nazad na planove
         </button>
+      </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { createNowPayment } from '../api';  // ← DODAO CRYPTO
 import OnSiteStripeCheckout from '../components/OnSiteStripeCheckout';
+import Header from '../components/Header';
 
 const plans = [
   {
@@ -24,7 +25,7 @@ const plans = [
   },
 ];
 
-const Pricing = ({ navigate, token }) => {
+const Pricing = ({ navigate, token, onLogout }) => {
   const [onSitePlanId, setOnSitePlanId] = useState(null);
 
   const handleCrypto = async (planId) => {
@@ -49,26 +50,8 @@ const Pricing = ({ navigate, token }) => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
+      <Header navigate={navigate} token={token} onLogout={onLogout} />
       <div className="mx-auto max-w-5xl px-4 pt-8 pb-16 lg:px-8">
-        {/* Header */}
-        <div className="mb-10 flex items-center justify-between gap-4">
-          <button
-            onClick={() => navigate('/')}
-            className="inline-flex items-center gap-2 text-xs font-sans uppercase tracking-[0.18em] text-emerald-300 transition hover:text-emerald-100"
-          >
-            <span className="text-emerald-400 text-sm">←</span>
-            Nazad na početnu
-          </button>
-
-          {!token && (
-            <button
-              onClick={() => navigate('/login')}
-              className="rounded-full border border-emerald-500/70 px-4 py-1.5 text-[11px] font-sans uppercase tracking-[0.16em] text-emerald-200 hover:bg-emerald-500/10 transition-colors"
-            >
-              Prijavite se da kupite nalog
-            </button>
-          )}
-        </div>
 
         {/* Title */}
         <header className="mb-12 space-y-4 text-left">

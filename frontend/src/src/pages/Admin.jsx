@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
+import Header from '../components/Header';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000';
 
-const Admin = ({ navigate, token }) => {
+const Admin = ({ navigate, token, onLogout }) => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -59,6 +60,7 @@ const Admin = ({ navigate, token }) => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
+      <Header navigate={navigate} token={token} onLogout={onLogout} />
       <div className="relative mx-auto max-w-6xl pb-16 pt-8 lg:px-8">
         {/* Header */}
         <header className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

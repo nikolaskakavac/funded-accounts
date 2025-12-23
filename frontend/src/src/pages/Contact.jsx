@@ -1,8 +1,10 @@
 import React from 'react';
+import Header from '../components/Header';
 
-const Contact = ({ navigate }) => {
+const Contact = ({ navigate, token, onLogout }) => {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
+      <Header navigate={navigate} token={token} onLogout={onLogout} />
       <main className="relative mx-auto max-w-4xl px-4 py-14 space-y-10">
         {/* Header */}
         <section className="flex items-start justify-between gap-4">

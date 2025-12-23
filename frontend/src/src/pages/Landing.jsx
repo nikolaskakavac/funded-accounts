@@ -69,7 +69,9 @@ const Landing = ({ navigate, token }) => {
           <div className="relative flex-1">
             {menuOpen && (
               <div className="absolute inset-x-0 top-0 z-30 bg-black/85 backdrop-blur-sm border-b border-emerald-500/30">
-                <div className="max-w-5xl mx-auto px-4 pt-3 pb-4">
+                <div className="max-w-5xl mx-auto px-4 pt-3 pb-4 relative">
+                  {/* CLOSE BUTTON */}
+                
                   <nav className="flex flex-col gap-2 text-sm font-sans font-medium tracking-[0.14em] uppercase text-center">
                     <button
                       onClick={() => {

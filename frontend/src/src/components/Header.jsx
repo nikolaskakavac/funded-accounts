@@ -49,16 +49,19 @@ const Header = ({ navigate, token, onLogout }) => {
         </div>
       </header>
 
-      {/* OVERLAY MENI - IDENTIČAN LANDINGU + ZATVARA KLIKOM VAN */}
+      {/* OVERLAY MENI - IDENTIČAN LANDINGU */}
       {menuOpen && (
-        <div 
-          className="fixed inset-0 z-30 bg-black/85 backdrop-blur-sm border-b border-emerald-500/30"
-          onClick={() => setMenuOpen(false)}  // ✅ ZATVARA KLIKOM VAN
-        >
-          <div 
-            className="max-w-5xl mx-auto px-4 pt-3 pb-4"
-            onClick={(e) => e.stopPropagation()}  // ✅ NE ZATVARA KLIKOM UNUTR
-          >
+        <div className="fixed inset-0 z-30 bg-black/85 backdrop-blur-sm border-b border-emerald-500/30">
+          <div className="max-w-5xl mx-auto px-4 pt-3 pb-4 relative">
+            {/* CLOSE BUTTON */}
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="absolute top-3 right-4 text-white/70 hover:text-white transition-colors"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
             <nav className="flex flex-col gap-2 text-sm font-sans font-medium tracking-[0.14em] uppercase text-center">
               <button
                 onClick={() => {
