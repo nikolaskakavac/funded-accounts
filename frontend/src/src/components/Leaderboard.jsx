@@ -25,93 +25,95 @@ const badgeByRank = (rank) => {
 
 const rowSizeByRank = (rank) =>
   rank === 1
-    ? 'py-4 sm:py-5'
-    : rank === 2
     ? 'py-3.5 sm:py-4.5'
-    : rank === 3
+    : rank === 2
     ? 'py-3.5 sm:py-4'
-    : 'py-3 sm:py-3.5';
+    : rank === 3
+    ? 'py-3 sm:py-3.5'
+    : 'py-2.5 sm:py-3';
 
 const avatarSizeByRank = (rank) =>
   rank === 1 ? 'h-11 w-11' : rank === 2 ? 'h-10 w-10' : rank === 3 ? 'h-9 w-9' : 'h-8 w-8';
 
 const profitTextSizeByRank = (rank) =>
   rank === 1
-    ? 'text-[18px] sm:text-[20px]'
+    ? 'text-[20px] sm:text-[22px]'
     : rank === 2
-    ? 'text-[17px] sm:text-[19px]'
+    ? 'text-[19px] sm:text-[21px]'
     : rank === 3
-    ? 'text-[16px] sm:text-[18px]'
-    : 'text-[14px] sm:text-[16px]';
+    ? 'text-[18px] sm:text-[20px]'
+    : 'text-[16px] sm:text-[18px]';
 
 const Leaderboard = () => {
   return (
-    <section className="mt-20">
-      <div className="relative mx-auto max-w-4xl">
-        {/* glow pozadina */}
-        <div className="pointer-events-none absolute -inset-2 rounded-[32px] bg-gradient-to-r from-emerald-500/20 via-emerald-400/5 to-cyan-400/20 blur-3xl opacity-60" />
+    <section className="mt-16 px-4 sm:px-0">
+      <div className="relative mx-auto max-w-md sm:max-w-2xl">
+        {/* glow pozadina (olakšan) */}
+        <div className="pointer-events-none absolute -inset-2 rounded-[28px] bg-gradient-to-r from-emerald-500/10 via-emerald-400/0 to-cyan-400/10 blur-2xl opacity-40" />
 
-        <div className="relative rounded-3xl border border-emerald-700/70 bg-gradient-to-b from-black/95 via-emerald-950/70 to-black/95 p-5 sm:p-7 shadow-[0_0_60px_rgba(16,185,129,0.35)] overflow-hidden">
+        <div className="relative rounded-3xl border border-emerald-700/70 bg-gradient-to-b from-black/95 via-emerald-950/70 to-black/95 p-4 sm:p-5 shadow-lg overflow-hidden">
           {/* gornji svetlucavi border */}
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-400/70 to-transparent opacity-70" />
 
           {/* Header */}
-          <div className="mb-6 text-center">
-            <p className="font-display text-[11px] uppercase tracking-[0.26em] text-emerald-400/90">
+          <div className="mb-5 text-center">
+            <p className="font-display text-[10px] sm:text-[11px] uppercase tracking-[0.26em] text-emerald-400/90">
               Leaderboard
             </p>
-            <h2 className="mt-1 font-display text-[22px] sm:text-[30px] lg:text-[34px] font-extrabold tracking-[0.18em] uppercase text-emerald-300">
+            <h2 className="mt-1 font-display text-[20px] sm:text-[26px] lg:text-[30px] font-extrabold tracking-[0.18em] uppercase text-emerald-300">
               Top performeri
             </h2>
-            <p className="mt-2 font-sans text-[13px] sm:text-[14px] text-emerald-100/80">
+            <p className="mt-2 font-sans text-[12px] sm:text-[14px] text-emerald-100/80">
               Najuspešniji traderi na funded nalozima po ukupnom ostvarenomm profitu.
             </p>
           </div>
 
           {/* List */}
-          <div className="space-y-3">
+          <div className="space-y-2.5 sm:space-y-3">
             {mockLeaders.map((item) => (
               <div
                 key={item.rank}
                 className={
-                  'group flex items-center justify-between rounded-2xl bg-gradient-to-r from-emerald-900/40 via-black/90 to-emerald-900/40 px-4 sm:px-5 border border-emerald-800/80 transition-all duration-200 hover:border-emerald-400/80 hover:-translate-y-[2px] hover:shadow-[0_0_30px_rgba(16,185,129,0.55)] ' +
+                  'flex items-center justify-between gap-2 rounded-2xl bg-gradient-to-r from-emerald-900/40 via-black/90 to-emerald-900/40 px-3 sm:px-5 border border-emerald-800/80 ' +
                   rowSizeByRank(item.rank)
                 }
               >
                 {/* Left: rank + avatar + email */}
-                <div className="flex items-center gap-3 sm:gap-4">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/15 border border-emerald-400/80 font-sans text-[12px] font-semibold text-emerald-200">
+                <div className="flex items-center gap-2.5 sm:gap-4 min-w-0">
+                  <div className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-emerald-500/15 border border-emerald-400/80 font-sans text-[11px] sm:text-[12px] font-semibold text-emerald-200">
                     #{item.rank}
                   </div>
 
-                  <div className="flex items-center gap-2 sm:gap-3">
-                    <div className="relative">
+                  <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                    <div className="relative flex-shrink-0">
                       <img
                         src={item.avatar}
                         alt="Trader avatar"
+                        loading="lazy"
                         className={
                           avatarSizeByRank(item.rank) +
-                          ' rounded-full object-cover border border-emerald-300/60 transition-transform duration-200 group-hover:scale-105'
+                          ' rounded-full object-cover border border-emerald-300/60'
                         }
                       />
-                      <span className="absolute -bottom-1 -right-1 text-[13px] drop-shadow">
+                      <span className="absolute -bottom-1 -right-1 text-[12px] sm:text-[13px] drop-shadow">
                         {badgeByRank(item.rank)}
                       </span>
                     </div>
 
-                    <div className="font-sans text-emerald-50">
-                      <div className="text-[13px] sm:text-[14px]">{item.email}</div>
-                      <div className="text-[11px] text-emerald-300/70">Profit share trader</div>
+                    <div className="font-sans text-emerald-50 min-w-0">
+                      <div className="text-[12px] sm:text-[14px] truncate">{item.email}</div>
+                      <div className="text-[10px] sm:text-[11px] text-emerald-300/70">
+                        Profit share trader
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Right: profit */}
-                <div className="text-right">
+                <div className="text-right flex-shrink-0">
                   <div
                     className={
-                      'font-display font-bold text-emerald-400 ' +
-                      profitTextSizeByRank(item.rank)
+                      'font-display font-bold text-emerald-400 ' + profitTextSizeByRank(item.rank)
                     }
                   >
                     €
@@ -119,7 +121,7 @@ const Leaderboard = () => {
                       minimumFractionDigits: 0,
                     })}
                   </div>
-                  <div className="mt-0.5 font-sans text-[11px] text-emerald-200/70">
+                  <div className="mt-0.5 font-sans text-[12px] sm:text-[13px] text-emerald-200/70">
                     ukupno od početka
                   </div>
                 </div>
@@ -128,7 +130,7 @@ const Leaderboard = () => {
           </div>
 
           {/* Footnote */}
-          <p className="mt-4 text-center font-sans text-[11px] sm:text-[12px] text-emerald-100/60">
+          <p className="mt-4 text-center font-sans text-[10px] sm:text-[12px] text-emerald-100/60">
             Prikazane cifre su primeri performansa na demo i live funded nalozima i služe isključivo
             u informativne svrhe.
           </p>
