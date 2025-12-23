@@ -1,11 +1,7 @@
 // Success.jsx
-import Header from '../components/Header';
-
-const Success = ({ navigate, onLogout }) => {
+const Success = ({ navigate }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
-      <Header navigate={navigate} token={''} onLogout={onLogout} />
-      <div className="flex items-center justify-center px-4 min-h-[calc(100vh-80px)]">
+    <div className="min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50 flex items-center justify-center px-4">
       <div className="max-w-md w-full rounded-3xl border border-emerald-600/60 bg-black/80 p-7 text-center shadow-xl shadow-emerald-500/30">
         <p className="font-display text-[12px] uppercase tracking-[0.26em] text-emerald-400">
           Uplata uspešna
@@ -25,7 +21,8 @@ const Success = ({ navigate, onLogout }) => {
           Idi na dashboard
         </button>
       </div>
-      </div>
     </div>
   );
 };
+
+export default Success;
