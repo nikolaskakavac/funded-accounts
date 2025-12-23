@@ -357,24 +357,30 @@ const Landing = ({ navigate, token }) => {
             </div>
           </div>
 
-  <section className="bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
-  <div className="max-w-5xl mx-auto">
-    <div className="rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
-      <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
-        Naš cilj
-      </h2>
-      <p className="font-sans text-[18px] sm:text-[20px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto">
-        Želimo da razvijemo profitabilne tradere sa jasnim pravilima rizika.
-        Naš posao je da obezbedimo kapital, infrastrukturu i podršku,
-        dok se ti fokusiraš isključivo na rezultate. Kada ostvaruješ profit,
-        delimo dobit fer i transparentno – gubitke preuzimamo mi.
-      </p>
-    </div>
-  </div>
-</section>
+
+
 
         </div>
       </section>
+<section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
+  {/* gornja linija */}
+  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
+  {/* donja linija */}
+  <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
+
+  <div className="max-w-5xl mx-auto text-center">
+    <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
+      Naš cilj
+    </h2>
+    <p className="font-sans text-[18px] sm:text-[20px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto">
+    Naš model je zasnovan na jednostavnom principu — mi zarađujemo samo kada zarađuju naši klijenti.
+
+Kroz prirodan proces selekcije, naš kapital se vremenom usmerava ka onima koji ostvaruju najbolje rezultate, čime se rizik za nas smanjuje, a dobit raste.
+
+Na taj način stvaramo sistem u kome i početnici mogu da ostvare značajne profite, dok se uspešnima otvara prostor za veće investicije i zajednički rast.
+    </p>
+  </div>
+</section>
 
       {/* PLANOVI */}
       <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-14">
