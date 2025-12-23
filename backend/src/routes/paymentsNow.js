@@ -6,34 +6,41 @@ const authMiddleware = require('../utils/authMiddleware');
 
 const router = express.Router();
 
-// čitaš base URL iz .env, pada na prod URL ako nije setovano
-const NOW_API_BASE = process.env.NOWPAYMENTS_BASE_URL || 'https://api.nowpayments.io/v1';
+const NOW_API_BASE =
+  process.env.NOWPAYMENTS_BASE_URL || 'https://api.nowpayments.io/v1';
 
-// POST /payments/now/create
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:4000';
+
 router.post('/create', authMiddleware, async (req, res) => {
-  const { planId, pay_currency } = req.body; // npr. "btc" ili "usdttrc20"
+  const { planId, pay_currency } = req.body;
 
   try {
+    console.log('NOW create user:', req.user);
+    console.log('NOW create headers:', req.headers.authorization);
+
     const plan = await Plan.findById(planId);
     if (!plan) {
       return res.status(404).json({ message: 'Plan not found' });
     }
 
+    const userId = req.user?.id; // ako auth radi, ovo je setovano
+
     const payload = {
       price_amount: plan.price,
       price_currency: plan.currency || 'usd',
       pay_currency: (pay_currency || 'btc').toLowerCase(),
-      ipn_callback_url: 'http://localhost:4000/webhooks/now/ipn',
-      order_id: `${req.user._id}-${plan._id}-${Date.now()}`,
-      success_url: 'http://localhost:5173/success',
-      cancel_url: 'http://localhost:5173/cancel',
+      ipn_callback_url: `${BACKEND_URL}/webhooks/now/ipn`,
+      order_id: `${userId || 'unknown'}-${plan._id}-${Date.now()}`,
+      success_url: `${FRONTEND_URL}/success`,
+      cancel_url: `${FRONTEND_URL}/cancel`,
     };
 
     console.log('NOWPayments payload:', payload);
 
     const response = await axios.post(`${NOW_API_BASE}/payment`, payload, {
       headers: {
-        'x-api-key': process.env.NOWPAYMENTS_API_KEY, // 79KZAN6-...
+        'x-api-key': process.env.NOWPAYMENTS_API_KEY,
         'Content-Type': 'application/json',
       },
     });
@@ -41,8 +48,15 @@ router.post('/create', authMiddleware, async (req, res) => {
     const payment = response.data;
     console.log('NOWPayments response:', payment);
 
+    if (!userId) {
+      console.error('NOWPayments: userId missing, cannot create Transaction');
+      return res
+        .status(401)
+        .json({ message: 'Unauthorized: user not resolved from token' });
+    }
+
     await Transaction.create({
-      user: req.user._id,
+      user: userId,
       plan: plan._id,
       provider: 'nowpayments',
       providerPaymentId: String(payment.payment_id),
@@ -51,7 +65,6 @@ router.post('/create', authMiddleware, async (req, res) => {
       status: 'pending',
     });
 
-    // front koristi ova polja
     res.json({
       payment_id: payment.payment_id,
       pay_address: payment.pay_address,
@@ -62,8 +75,9 @@ router.post('/create', authMiddleware, async (req, res) => {
     console.error(
       'NOWPayments create error:',
       err.response?.status,
-      err.response?.data || err.message
+      err.response?.data || err.message,
     );
+
     return res
       .status(500)
       .json({ message: 'NOWPayments error', detail: err.response?.data || err.message });

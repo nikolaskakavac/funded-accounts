@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Leaderboard from '../components/Leaderboard';
 const Landing = ({ navigate, token }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -202,15 +202,21 @@ const Landing = ({ navigate, token }) => {
       <div className="bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
         <div className="max-w-5xl mx-auto">
           <section className="mt-4 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
-            <h2 className="font-display text-[18px] sm:text-[22px] uppercase tracking-[0.26em] text-emerald-400 mb-4">
-              Kako funkcioniše
-            </h2>
+        <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
+  Kako funkcioniše
+</h2>
 
-            <p className="font-sans text-[16px] sm:text-[18px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-4">
-              Kada kupiš nalog na našem sajtu, dobijaš login podatke za već postojeći,
-              unapred <span className="font-semibold text-emerald-300">“napunjeni” kripto nalog</span>.
-              Svaki kupac dobija svoj, zaseban račun – nema deljenja naloga sa drugim traderima.
-            </p>
+<p className="font-sans text-[18px] sm:text-[20px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-4">
+  Kada kupiš nalog na našem websajtu, dobijaš log in podatke od već postojećeg,
+  unapred <span className="font-semibold text-emerald-300">“napunjenog” kripto naloga</span>.
+  Svaki kupac dobija svoj, zaseban nalog – nema deljenja sa drugima.
+</p>
+
+<p className="font-sans text-[18px] sm:text-[20px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto">
+  Tvoj zadatak je jasan: ostvari profit investiranjem u neku od kripto-valuta sa našim novcem.
+  Ti se fokusiraš samo na investiranje, dok mi brinemo o nalogu, kapitalu i tehničkoj infrastrukturi.
+</p>
+
 
             <p className="font-sans text-[16px] sm:text-[18px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto">
               Tvoj zadatak je jasan:{' '}
@@ -221,6 +227,7 @@ const Landing = ({ navigate, token }) => {
               brinemo o nalogu, kapitalu i tehničkoj infrastrukturi.
             </p>
           </section>
+<Leaderboard />
 
           <section className="mt-10 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10">
             <h2 className="text-center font-display text-[18px] sm:text-[22px] uppercase tracking-[0.26em] text-emerald-400 mb-4">
@@ -323,12 +330,10 @@ const Landing = ({ navigate, token }) => {
                 </div>
               </div>
               <h3 className="font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
-                Platforma i obuka
+                LOG IN + OBUKA
               </h3>
               <p className="font-sans text-[16px] sm:text-[17px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
-                Dobijaš log in podatke za našu profesionalnu trgovačku platformu i
-                pristup MT5 infrastrukturi, uz mogućnost dodatne obuke da bi brže
-                ušao u ritam trgovanja.
+                Dobijaš log in podatke od svog "napunjenog" kripto naloga, uz besplatnu obuku o investiranju da bi brže ušao u ritam
               </p>
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
             </div>
@@ -353,7 +358,8 @@ const Landing = ({ navigate, token }) => {
     Podela profita
   </h3>
   <p className="text-center font-sans text-[16px] sm:text-[17px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
-    Od svakog ostvarenog profita, 70% ide tebi, a 30% firmi. Sve je potpuno transparentno i poznato unapred.
+    Kada kripto-valuta u koju si odlučio da investiraš zabeleži rast, i ti odlučiš da napraviš "CASH OUT"
+80% profita se isplaćuje na tvoju kreditnu karticu ili lični kripto račun, a 20% skupljamo mi.
   </p>
   <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
 </div>

@@ -193,15 +193,29 @@ const PlanCard = ({
               {isOnSiteSelected ? '✅ IZABRAN - PLAĆAJ ISPOD' : '💳 Plati karticom'}
             </button>
             <button
-              onClick={onCrypto}
-              className="w-full rounded-2xl border-2 border-emerald-500/60 bg-emerald-500/10 py-3 font-sans font-semibold uppercase tracking-[0.16em] text-emerald-200 hover:bg-emerald-500/20 hover:border-emerald-400/80 hover:-translate-y-0.5 transition-all duration-200"
-            >
-              🪙 Plati kriptom
-            </button>
+  onClick={onCrypto}
+  className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/10 via-emerald-400/15 to-cyan-400/15 p-[1px] shadow-[0_0_25px_rgba(34,197,94,0.45)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(34,197,94,0.75)]"
+>
+  <div className="flex w-full items-center justify-center gap-2 rounded-2xl bg-black/90 px-4 py-3 sm:py-3.5">
+    <span className="text-lg sm:text-xl">
+      🪙
+    </span>
+    <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.18em] text-emerald-100 group-hover:text-emerald-50">
+      Plati kriptom
+    </span>
+    <span className="text-[11px] sm:text-[12px] text-emerald-300/80 group-hover:text-emerald-200/90">
+      BTC • ETH • USDT
+    </span>
+  </div>
+
+  {/* subtle shine animacija preko dugmeta */}
+  <span className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-[100%] transition-all duration-700" />
+</button>
+
           </>
         ) : (
           <button
-            onClick={() => navigate('/login')}
+            onClick={() => navigate('/register')}
             className="w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 py-3.5 font-sans font-semibold uppercase tracking-[0.16em] text-black shadow-[0_0_25px_rgba(16,185,129,0.6)] hover:shadow-[0_0_35px_rgba(16,185,129,0.9)] hover:-translate-y-0.5 transition-all duration-200"
           >
             KREIRAJ NALOG DA ZAVRŠIŠ PLAĆANJE

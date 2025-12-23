@@ -1,5 +1,7 @@
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000';
 
+// AUTH
+
 export const register = async (email, password) => {
   const res = await fetch(`${API_BASE}/auth/register`, {
     method: 'POST',
@@ -26,6 +28,7 @@ export const getMe = async (token) => {
 };
 
 // Stripe – redirect + on‑site (intent)
+
 export const createStripeCheckout = async (token, planId, opts) => {
   const url =
     opts?.mode === 'intent'
@@ -46,7 +49,6 @@ export const createStripeCheckout = async (token, planId, opts) => {
     body: JSON.stringify(body),
   });
 
-  // ovde vidiš tačnu backend grešku u konzoli
   if (!res.ok) {
     const errBody = await res.json().catch(() => ({}));
     console.error('createStripeCheckout backend error:', errBody);
@@ -55,6 +57,8 @@ export const createStripeCheckout = async (token, planId, opts) => {
 
   return res.json(); // checkout: { url }, intent: { clientSecret }
 };
+
+// NOWPayments – crypto
 
 export const createNowPayment = async (token, planId, payCurrency) => {
   const res = await fetch(`${API_BASE}/payments/now/create`, {
