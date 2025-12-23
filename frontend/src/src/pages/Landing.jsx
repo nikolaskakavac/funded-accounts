@@ -207,7 +207,7 @@ const Landing = ({ navigate, token }) => {
               Kako funkcioniše
             </h2>
 
-            <p className="font-sans text-[18px] sm:text-[20px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-4">
+            <p className="font-sans text-[20px] sm:text-[22px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-4">
               Kada kupiš nalog na našem websajtu, dobijaš log in podatke od već postojećeg,
               unapred <span className="font-semibold text-emerald-300">„napunjenog“ kripto naloga</span>.
               Svaki kupac dobija svoj, zaseban nalog – nema deljenja sa drugima.
@@ -296,7 +296,7 @@ const Landing = ({ navigate, token }) => {
               <h3 className="font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
                 Kapital za trgovanje
               </h3>
-              <p className="font-sans text-[16px] sm:text-[18px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
+              <p className="font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
                 Dobijaš novac od nas koji možeš da investiraš na kripto tržištu. Ne rizikuješ
                 sopstveni novac, već koristiš naš kapital.
               </p>
@@ -322,7 +322,7 @@ const Landing = ({ navigate, token }) => {
               <h3 className="font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
                 LOG IN + OBUKA
               </h3>
-              <p className="font-sans text-[16px] sm:text-[18px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
+              <p className="font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
                 Dobijaš log in podatke od svog "napunjenog" kripto naloga, uz besplatnu obuku o
                 investiranju da bi brže ušao u ritam.
               </p>
@@ -348,7 +348,7 @@ const Landing = ({ navigate, token }) => {
               <h3 className="text-center font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
                 Podela profita
               </h3>
-              <p className="text-center font-sans text-[16px] sm:text-[18px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
+              <p className="text-center font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
                 Kada kripto-valuta u koju si odlučio da investiraš zabeleži rast i ti odlučiš da
                 napraviš "CASH OUT", 80% profita se isplaćuje na tvoju kreditnu karticu ili lični
                 kripto račun, a 20% skupljamo mi.
@@ -369,16 +369,28 @@ const Landing = ({ navigate, token }) => {
   <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
 
   <div className="max-w-5xl mx-auto text-center">
-    <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
-      Naš cilj
-    </h2>
-    <p className="font-sans text-[18px] sm:text-[20px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto">
-    Naš model je zasnovan na jednostavnom principu — mi zarađujemo samo kada zarađuju naši klijenti.
+   <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.2em] text-emerald-400 mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+  Naš cilj
+</h2>
+<p className="font-sans text-[18px] sm:text-[20px] leading-[1.5] sm:leading-relaxed max-w-3xl mx-auto text-emerald-50/95 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
+  Naš model je zasnovan na jednostavnom principu —{' '}
+  <span className="font-semibold text-emerald-200 drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
+    mi zarađujemo samo kada zarađuju naši klijenti.
+  </span>
+  
+  <br className="sm:hidden" />
+  <br />
+  
+  Kroz prirodan proces selekcije, naš kapital se vremenom usmerava ka onima koji ostvaruju najbolje rezultate, 
+  čime se rizik za nas smanjuje, a dobit raste.
+  
+  <br className="sm:hidden" />
+  <br />
+  
+  Na taj način stvaramo sistem u kome i početnici mogu da ostvare značajne profite, 
+  dok se uspešnima otvara prostor za veće investicije i zajednički rast.
+</p>
 
-Kroz prirodan proces selekcije, naš kapital se vremenom usmerava ka onima koji ostvaruju najbolje rezultate, čime se rizik za nas smanjuje, a dobit raste.
-
-Na taj način stvaramo sistem u kome i početnici mogu da ostvare značajne profite, dok se uspešnima otvara prostor za veće investicije i zajednički rast.
-    </p>
   </div>
 </section>
 

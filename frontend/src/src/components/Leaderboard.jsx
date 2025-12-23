@@ -25,24 +25,24 @@ const badgeByRank = (rank) => {
 
 const rowSizeByRank = (rank) =>
   rank === 1
-    ? 'py-3.5 sm:py-4.5'
+    ? 'py-4 sm:py-5'
     : rank === 2
-    ? 'py-3.5 sm:py-4'
+    ? 'py-3.5 sm:py-4.5'
     : rank === 3
-    ? 'py-3 sm:py-3.5'
-    : 'py-2.5 sm:py-3';
+    ? 'py-3.5 sm:py-4'
+    : 'py-3 sm:py-3.5';
 
 const avatarSizeByRank = (rank) =>
-  rank === 1 ? 'h-11 w-11' : rank === 2 ? 'h-10 w-10' : rank === 3 ? 'h-9 w-9' : 'h-8 w-8';
+  rank === 1 ? 'h-12 w-12' : rank === 2 ? 'h-11 w-11' : rank === 3 ? 'h-10 w-10' : 'h-9 w-9';
 
 const profitTextSizeByRank = (rank) =>
   rank === 1
-    ? 'text-[20px] sm:text-[22px]'
+    ? 'text-[22px] sm:text-[26px]'
     : rank === 2
-    ? 'text-[19px] sm:text-[21px]'
+    ? 'text-[21px] sm:text-[24px]'
     : rank === 3
-    ? 'text-[18px] sm:text-[20px]'
-    : 'text-[16px] sm:text-[18px]';
+    ? 'text-[20px] sm:text-[22px]'
+    : 'text-[18px] sm:text-[20px]';
 
 const Leaderboard = () => {
   return (
@@ -51,40 +51,40 @@ const Leaderboard = () => {
         {/* glow pozadina (olakšan) */}
         <div className="pointer-events-none absolute -inset-2 rounded-[28px] bg-gradient-to-r from-emerald-500/10 via-emerald-400/0 to-cyan-400/10 blur-2xl opacity-40" />
 
-        <div className="relative rounded-3xl border border-emerald-700/70 bg-gradient-to-b from-black/95 via-emerald-950/70 to-black/95 p-4 sm:p-5 shadow-lg overflow-hidden">
+        <div className="relative rounded-3xl border border-emerald-700/70 bg-gradient-to-b from-black/95 via-emerald-950/70 to-black/95 p-5 sm:p-6 shadow-lg overflow-hidden">
           {/* gornji svetlucavi border */}
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-400/70 to-transparent opacity-70" />
 
           {/* Header */}
-          <div className="mb-5 text-center">
-            <p className="font-display text-[10px] sm:text-[11px] uppercase tracking-[0.26em] text-emerald-400/90">
+          <div className="mb-6 text-center">
+            <p className="font-display text-[12px] sm:text-[14px] uppercase tracking-[0.26em] text-emerald-400/90">
               Leaderboard
             </p>
-            <h2 className="mt-1 font-display text-[20px] sm:text-[26px] lg:text-[30px] font-extrabold tracking-[0.18em] uppercase text-emerald-300">
+            <h2 className="mt-2 font-display text-[24px] sm:text-[32px] lg:text-[36px] font-extrabold tracking-[0.18em] uppercase text-emerald-300">
               Top performeri
             </h2>
-            <p className="mt-2 font-sans text-[12px] sm:text-[14px] text-emerald-100/80">
+            <p className="mt-3 font-sans text-[14px] sm:text-[16px] text-emerald-100/80">
               Najuspešniji traderi na funded nalozima po ukupnom ostvarenomm profitu.
             </p>
           </div>
 
           {/* List */}
-          <div className="space-y-2.5 sm:space-y-3">
+          <div className="space-y-3 sm:space-y-4">
             {mockLeaders.map((item) => (
               <div
                 key={item.rank}
                 className={
-                  'flex items-center justify-between gap-2 rounded-2xl bg-gradient-to-r from-emerald-900/40 via-black/90 to-emerald-900/40 px-3 sm:px-5 border border-emerald-800/80 ' +
+                  'flex items-center justify-between gap-3 sm:gap-4 rounded-2xl bg-gradient-to-r from-emerald-900/40 via-black/90 to-emerald-900/40 px-4 sm:px-6 border border-emerald-800/80 ' +
                   rowSizeByRank(item.rank)
                 }
               >
                 {/* Left: rank + avatar + email */}
-                <div className="flex items-center gap-2.5 sm:gap-4 min-w-0">
-                  <div className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-emerald-500/15 border border-emerald-400/80 font-sans text-[11px] sm:text-[12px] font-semibold text-emerald-200">
+                <div className="flex items-center gap-3 sm:gap-5 min-w-0">
+                  <div className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-emerald-500/15 border border-emerald-400/80 font-sans text-[13px] sm:text-[14px] font-semibold text-emerald-200">
                     #{item.rank}
                   </div>
 
-                  <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                  <div className="flex items-center gap-3 sm:gap-4 min-w-0">
                     <div className="relative flex-shrink-0">
                       <img
                         src={item.avatar}
@@ -95,14 +95,14 @@ const Leaderboard = () => {
                           ' rounded-full object-cover border border-emerald-300/60'
                         }
                       />
-                      <span className="absolute -bottom-1 -right-1 text-[12px] sm:text-[13px] drop-shadow">
+                      <span className="absolute -bottom-1 -right-1 text-[14px] sm:text-[16px] drop-shadow">
                         {badgeByRank(item.rank)}
                       </span>
                     </div>
 
                     <div className="font-sans text-emerald-50 min-w-0">
-                      <div className="text-[12px] sm:text-[14px] truncate">{item.email}</div>
-                      <div className="text-[10px] sm:text-[11px] text-emerald-300/70">
+                      <div className="text-[14px] sm:text-[16px] truncate">{item.email}</div>
+                      <div className="text-[11px] sm:text-[13px] text-emerald-300/70">
                         Profit share trader
                       </div>
                     </div>
@@ -121,7 +121,7 @@ const Leaderboard = () => {
                       minimumFractionDigits: 0,
                     })}
                   </div>
-                  <div className="mt-0.5 font-sans text-[12px] sm:text-[13px] text-emerald-200/70">
+                  <div className="mt-1 font-sans text-[13px] sm:text-[15px] text-emerald-200/70 font-medium">
                     ukupno od početka
                   </div>
                 </div>
@@ -130,7 +130,7 @@ const Leaderboard = () => {
           </div>
 
           {/* Footnote */}
-          <p className="mt-4 text-center font-sans text-[10px] sm:text-[12px] text-emerald-100/60">
+          <p className="mt-6 text-center font-sans text-[12px] sm:text-[14px] text-emerald-100/60">
             Prikazane cifre su primeri performansa na demo i live funded nalozima i služe isključivo
             u informativne svrhe.
           </p>
