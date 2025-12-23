@@ -46,7 +46,7 @@ const Dashboard = ({ navigate, token, onLogout }) => {
   {isAdmin && (
     <button
       onClick={() => navigate('/admin')}
-      className="rounded-full border border-emerald-500/80 px-4 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-emerald-300 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px]"
+      className="rounded-full border border-emerald-500/80 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-emerald-300 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px]"
     >
       Admin panel
     </button>
