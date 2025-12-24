@@ -51,7 +51,7 @@ const Leaderboard = () => {
               LEADERBOARD
             </p>
             <h2 className="mt-2 font-display text-[24px] sm:text-[32px] lg:text-[36px] font-extrabold tracking-[0.18em] uppercase text-slate-100">
-              Pogledaj kako se rangiraš
+              TOP 10 KLIJENATA
             </h2>
           </div>
 
