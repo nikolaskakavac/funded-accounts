@@ -1,28 +1,19 @@
-import user1 from '../../assets/avatars/user1.jpg?as=webp&width=80';
-import user2 from '../../assets/avatars/user2.jpg?as=webp&width=80';
-import user3 from '../../assets/avatars/user3.jpg?as=webp&width=80';
-import user4 from '../../assets/avatars/user4.jpg?as=webp&width=80';
-import user5 from '../../assets/avatars/user5.jpg?as=webp&width=80';
-import user6 from '../../assets/avatars/user6.jpg?as=webp&width=80';
-import user7 from '../../assets/avatars/user7.jpg?as=webp&width=80';
+// Avatars removed per request (bez slike)
 
 const mockLeaders = [
-  { rank: 1, email: 'mar***@gmail.com', profit: 248_730, avatar: user1 },
-  { rank: 2, email: 'ana***@outlook.com', profit: 191_420, avatar: user2 },
-  { rank: 3, email: 'nik***@proton.me', profit: 136_980, avatar: user3 },
-  { rank: 4, email: 'dav***@gmail.com', profit: 74_260, avatar: user4 },
-  { rank: 5, email: 'lea***@yahoo.com', profit: 52_890, avatar: user5 },
-  { rank: 6, email: 'pet***@gmail.com', profit: 39_440, avatar: user6 },
-  { rank: 7, email: 'ivo***@outlook.com', profit: 27_310, avatar: user7 },
+  { rank: 1, email: 'damjan_gotal87@gmail.com', countryFlag: '/img/croatia.png', countryName: 'Croatia', profit: 65_012 },
+  { rank: 2, email: 'stojanovic_m303@gmail.com', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 33_950 },
+  { rank: 3, email: 'kucina.ivan977@gmail.com', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 31_400 },
+  { rank: 4, email: 'olga.panova.office@gmail.com', countryFlag: '/img/russia.jpg', countryName: 'Russia', profit: 27_632 },
+  { rank: 5, email: 'sergey.dorofeev1985@yandex.ru', countryFlag: '/img/russia.jpg', countryName: 'Russia', profit: 27_470 },
+  { rank: 6, email: 'bojan_lukic5@gmail.com', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 27_113 },
+  { rank: 7, email: 'grbovic_andrej55@gmail.com', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 22_000 },
+  { rank: 8, email: 'nikola.milicnm@gmail.com', countryFlag: '/img/montenegro.png', countryName: 'Montenegro', profit: 18_371 },
+  { rank: 9, email: 'anna.ryabova1979@yandex.ru', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 15_114 },
+  { rank: 10, email: 'miroslav.kosta.investor@gmail.com', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 12_806 },
 ];
 
 const Leaderboard = () => {
-  const badgeByRank = (rank) => {
-    if (rank === 1) return '🥇';
-    if (rank === 2) return '🥈';
-    if (rank === 3) return '🥉';
-    return '🔥';
-  };
 
   const rowSizeByRank = (rank) =>
     rank === 1
@@ -33,8 +24,7 @@ const Leaderboard = () => {
       ? 'py-3.5 sm:py-4'
       : 'py-3 sm:py-3.5';
 
-  const avatarSizeByRank = (rank) =>
-    rank === 1 ? 'h-12 w-12' : rank === 2 ? 'h-11 w-11' : rank === 3 ? 'h-10 w-10' : 'h-9 w-9';
+  // Avatars removed; no avatar sizing needed
 
   const profitTextSizeByRank = (rank) =>
     rank === 1
@@ -52,20 +42,17 @@ const Leaderboard = () => {
 
   return (
     <section className="mt-16 px-4 sm:px-0">
-      <div className="relative mx-auto max-w-md sm:max-w-2xl">
-        <div className="relative rounded-[28px] p-5 sm:p-6 bg-gradient-to-b from-black/95 via-emerald-950/70 to-black/95 border border-emerald-700/70 shadow-lg overflow-hidden">
+      <div className="relative mx-auto max-w-lg sm:max-w-3xl">
+        <div className="relative rounded-[28px] p-5 sm:p-7 bg-gradient-to-b from-black/95 via-slate-900/80 to-black/95 border border-slate-800/70 shadow-lg overflow-hidden">
           
           {/* Header */}
           <div className="mb-6 text-center">
-            <p className="font-display text-[12px] sm:text-[14px] uppercase tracking-[0.26em] text-emerald-400/90">
-              Leaderboard
+            <p className="font-display text-[12px] sm:text-[14px] uppercase tracking-[0.26em] text-green-400/90">
+              LEADERBOARD
             </p>
-            <h2 className="mt-2 font-display text-[24px] sm:text-[32px] lg:text-[36px] font-extrabold tracking-[0.18em] uppercase text-emerald-300">
-              Top performeri
+            <h2 className="mt-2 font-display text-[24px] sm:text-[32px] lg:text-[36px] font-extrabold tracking-[0.18em] uppercase text-slate-100">
+              Pogledaj kako se rangiraš
             </h2>
-            <p className="mt-3 font-sans text-[14px] sm:text-[16px] text-emerald-100/80">
-              Najuspešniji traderi na funded nalozima po ukupnom profitu.
-            </p>
           </div>
 
           {/* List */}
@@ -74,39 +61,21 @@ const Leaderboard = () => {
               <div
                 key={item.rank}
                 className={
-                  'flex items-center justify-between gap-3 sm:gap-4 rounded-2xl bg-gradient-to-r from-emerald-900/40 via-black/90 to-emerald-900/40 px-4 sm:px-6 border border-emerald-800/80 shadow-sm hover:shadow-emerald-500/20 transition-shadow ' +
+                  'flex items-center justify-between gap-3 sm:gap-5 rounded-2xl bg-gradient-to-r from-slate-900/60 via-black/90 to-slate-900/60 px-5 sm:px-7 border border-slate-800/80 shadow-sm hover:shadow-green-500/20 transition-shadow ' +
                   rowSizeByRank(item.rank)
                 }
               >
                 {/* Left side */}
                 <div className="flex items-center gap-3 sm:gap-5 min-w-0 flex-1">
-                  <div className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-emerald-500/15 border border-emerald-400/80 font-sans text-[13px] sm:text-[14px] font-semibold text-emerald-200 flex-shrink-0">
+                  <div className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-green-500/15 border border-green-400/80 font-sans text-[13px] sm:text-[14px] font-semibold text-green-200 flex-shrink-0">
                     #{item.rank}
                   </div>
 
                   <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
-                    <div className="relative flex-shrink-0">
-                      <img
-                        src={item.avatar}
-                        alt={`Trader ${item.rank}`}
-                        width={80}
-                        height={80}
-                        loading="lazy"
-                        className={
-                          avatarSizeByRank(item.rank) +
-                          ' rounded-full object-cover border-2 border-emerald-300/60 shadow-lg'
-                        }
-                        decoding="async"
-                      />
-                      <span className="absolute -bottom-0.5 -right-0.5 text-[14px] sm:text-[16px] drop-shadow-md p-0.5">
-                        {badgeByRank(item.rank)}
-                      </span>
-                    </div>
-
                     <div className="font-sans text-emerald-50 min-w-0 flex-1">
-                      <div className="text-[14px] sm:text-[16px] truncate font-medium">{item.email}</div>
-                      <div className="text-[11px] sm:text-[13px] text-emerald-300/80 mt-0.5">
-                        Profit share trader
+                      <div className="text-[14px] sm:text-[16px] truncate font-medium flex items-center gap-2">
+                        <img src={item.countryFlag} alt={item.countryName} className="h-5 w-6 object-cover rounded-sm" />
+                        <span>{item.email}</span>
                       </div>
                     </div>
                   </div>
@@ -116,13 +85,10 @@ const Leaderboard = () => {
                 <div className="text-right flex-shrink-0 ml-4">
                   <div
                     className={
-                      'font-display font-bold text-emerald-400 drop-shadow-md ' + profitTextSizeByRank(item.rank)
+                      'font-display font-bold text-green-400 drop-shadow-md ' + profitTextSizeByRank(item.rank)
                     }
                   >
-                    €{formattedProfits[index]}
-                  </div>
-                  <div className="mt-1 font-sans text-[13px] sm:text-[15px] text-emerald-200/80 font-medium">
-                    ukupno od početka
+                    {formattedProfits[index]}€
                   </div>
                 </div>
               </div>
@@ -130,9 +96,7 @@ const Leaderboard = () => {
           </div>
 
           {/* Footnote */}
-          <p className="mt-6 text-center font-sans text-[12px] sm:text-[14px] text-emerald-100/60 leading-relaxed">
-            Prikazane cifre su primeri performansi na demo i live funded nalozima.
-          </p>
+  
         </div>
       </div>
     </section>

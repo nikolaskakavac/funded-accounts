@@ -73,8 +73,18 @@ export const createNowPayment = async (token, planId, payCurrency) => {
 };
 
 // NOWPayments – status check
+export const checkNowPaymentStatus = async (paymentId, token) => {
+  const authToken = token || (typeof localStorage !== 'undefined' ? localStorage.getItem('token') : null);
+  const res = await fetch(`${API_BASE}/payments/now/status/${paymentId}`, {
+    headers: {
+      Authorization: `Bearer ${authToken || ''}`,
+    },
+  });
 
-export const checkNowPaymentStatus = async (paymentId) => {
-  const res = await fetch(`${API_BASE}/payments/now/status/${paymentId}`);
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body.message || 'Status check failed');
+  }
+
   return res.json();
 };

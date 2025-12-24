@@ -5,7 +5,7 @@ const About = ({ navigate, token, onLogout }) => {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50 overflow-x-hidden">
       <Header navigate={navigate} token={token} onLogout={onLogout} />
-      <main className="relative mx-auto max-w-5xl px-4 py-16 space-y-12">
+      <main className="relative mx-auto max-w-5xl px-4 pb-16 space-y-12">
 
         {/* Naslov + uvod */}
         <section>
@@ -87,120 +87,60 @@ const About = ({ navigate, token, onLogout }) => {
             <span className="text-emerald-400/60 text-2xl">⸻</span>
           </div>
 
-          {/* CTA dugme */}
-          <button
-            onClick={() => navigate && navigate('/partnerstvo')}
-            className="mt-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/80 bg-emerald-500/15 px-6 py-2.5 text-[16px] font-sans font-semibold text-emerald-100 hover:bg-emerald-500/25 hover:border-emerald-400 transition"
-          >
-            🔗 Saznajte više o našem partnerstvu
-          </button>
+        {/* CTA dugme */}
+<button
+  onClick={() => {
+    navigate && navigate('/partnerstvo');
+    // skroluj na vrh nove stranice
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }, 0);
+  }}
+  className="mt-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/80 bg-emerald-500/15 px-6 py-2.5 text-[16px] font-sans font-semibold text-emerald-100 hover:bg-emerald-500/25 hover:border-emerald-400 transition"
+>
+  🔗 Saznajte više o našem partnerstvu
+</button>
+
         </section>
 
         {/* Statistike / highlight-i */}
-        <section className="grid gap-5 sm:grid-cols-3">
-          <div className="rounded-2xl border border-emerald-800/70 bg-black/80 p-5 shadow-lg shadow-emerald-500/20 space-y-1.5">
-            <p className="font-display text-[22px] uppercase tracking-[0.22em] text-emerald-300">
-              Traderi
-            </p>
-            <p className="font-display text-[28px] font-extrabold text-emerald-300">
-              200+
-            </p>
-            <p className="font-sans text-[20px] text-slate-300">
-              Aktivnih naloga na kripto tržištima.
-            </p>
-          </div>
+        {/* Statistike / highlight-i */}
+<section className="grid gap-5 sm:grid-cols-2">
+  {/* Klijenti */}
+  <div className="rounded-2xl border border-emerald-800/70 bg-black/80 p-6 shadow-lg shadow-emerald-500/20 space-y-2">
+    <p className="font-display text-[13px] uppercase tracking-[0.22em] text-emerald-300">
+      Klijenti
+    </p>
+    <p className="font-display text-[30px] font-extrabold text-emerald-300">
+      200+
+    </p>
+    <p className="font-sans text-[17px] text-slate-300 leading-relaxed">
+      Aktivnih naloga na kripto tržištima sa stabilnim rezultatima.
+    </p>
+  </div>
 
-          <div className="rounded-2xl border border-emerald-800/70 bg-black/80 p-5 shadow-lg shadow-emerald-500/20 space-y-1.5">
-            <p className="font-display text-[22px] uppercase tracking-[0.22em] text-emerald-300">
-              Maksimalni nalog
-            </p>
-            <p className="font-display text-[28px] font-extrabold text-emerald-300">
-              $200K
-            </p>
-            <p className="font-sans text-[20px] text-slate-300">
-              Skaliranje kapitala za dosledne tradere.
-            </p>
-          </div>
-
-          <div className="rounded-2xl border border-emerald-800/70 bg-black/80 p-5 shadow-lg shadow-emerald-500/20 space-y-1.5">
-            <p className="font-display text-[22px] uppercase tracking-[0.22em] text-emerald-300">
-              Podela profita
-            </p>
-            <p className="font-display text-[28px] font-extrabold text-emerald-300">
-              Do 70%
-            </p>
-            <p className="font-sans text-[20px] text-slate-300">
-              Veći deo dobiti ostaje traderu.
-            </p>
-          </div>
-        </section>
-
-        {/* Kako radimo */}
-        <section className="grid gap-8 lg:grid-cols-[1.4fr,1fr]">
-          <div className="space-y-4">
-            <p className="font-sans text-[18px] text-emerald-100/90 leading-relaxed">
-              Mi obezbeđujemo kapital i limite rizika. Ti biraš veličinu naloga, završavaš uplatu i
-              pratiš sve kroz jednostavan, pregledan dashboard.
-            </p>
-            <p className="font-sans text-[18px] text-emerald-100/90 leading-relaxed">
-              Trguješ na platformi koju znaš (npr. MT5), dok mi vodimo računa o aktivaciji naloga,
-              praćenju pravila i isplatama profita.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <div className="rounded-2xl border border-emerald-800/70 bg-black/80 p-5 shadow-lg shadow-emerald-500/20">
-              <p className="mb-1.5 font-display text-[12px] uppercase tracking-[0.22em] text-emerald-300">
-                Naša filozofija
-              </p>
-              <p className="font-sans text-[16px] text-slate-300">
-                Partnerstvo, ne “test”. Kada ti praviš rezultate, zajedno širimo kapital.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-emerald-800/70 bg-black/80 p-5 shadow-lg shadow-emerald-500/20">
-              <p className="mb-1.5 font-display text-[12px] uppercase tracking-[0.22em] text-emerald-300">
-                Fokus na rizik
-              </p>
-              <p className="font-sans text-[16px] text-slate-300">
-                Jasni dnevni limiti i ukupni drawdown štite i fond i tradera od prevelikog gubitka.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-emerald-800/70 bg-black/80 p-5 shadow-lg shadow-emerald-500/20">
-              <p className="mb-1.5 font-display text-[12px] uppercase tracking-[0.22em] text-emerald-300">
-                Tehnologija
-              </p>
-              <p className="font-sans text-[16px] text-slate-300">
-                Stripe i kripto gateway za uplate, automatska aktivacija naloga i praćenje u realnom
-                vremenu kroz dashboard.
-              </p>
-            </div>
-          </div>
-        </section>
+  {/* Podela profita */}
+  <div className="rounded-2xl border border-emerald-800/70 bg-black/80 p-6 shadow-lg shadow-emerald-500/20 space-y-2">
+    <p className="font-display text-[13px] uppercase tracking-[0.22em] text-emerald-300">
+      Podela profita
+    </p>
+    <p className="font-display text-[30px] font-extrabold text-emerald-300">
+      80% 
+    </p>
+    <p className="font-sans text-[17px] text-slate-300 leading-relaxed">
+      <span className="text-emerald-300 font-semibold">80% profita</span> ide klijentu,
+      dok <span className="text-emerald-300 font-semibold">20%</span> zadržava fond, uz fokus
+      na dugoročnu saradnju.
+    </p>
+  </div>
+</section>
 
         {/* Vrednosti / šta garantujemo */}
         <section className="mt-2 rounded-2xl border border-emerald-800/70 bg-black/80 p-6 shadow-lg shadow-emerald-500/20">
           <p className="mb-4 font-display text-[12px] uppercase tracking-[0.23em] text-emerald-300">
             Šta možeš da očekuješ
           </p>
-          <div className="grid gap-6 sm:grid-cols-3">
-            <div>
-              <p className="mb-1.5 font-display text-[16px] font-semibold text-emerald-200">
-                Jasni uslovi
-              </p>
-              <p className="font-sans text-[15px] text-slate-300">
-                Limiti, troškovi i pravila su prikazani pre kupovine naloga.
-              </p>
-            </div>
-            <div>
-              <p className="mb-1.5 font-display text-[16px] font-semibold text-emerald-200">
-                Fokus na traderu
-              </p>
-              <p className="font-sans text-[15px] text-slate-300">
-                Podrška oko naloga i plaćanja da se ti baviš samo tradingom.
-              </p>
-            </div>
+          <div className="grid gap-6 sm:grid-cols-2">
             <div>
               <p className="mb-1.5 font-display text-[16px] font-semibold text-emerald-200">
                 Dugoročna igra

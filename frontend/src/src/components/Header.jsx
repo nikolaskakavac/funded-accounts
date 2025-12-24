@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Header = ({ navigate, token, onLogout }) => {
+const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handlePrimary = () => {
@@ -10,44 +10,69 @@ const Header = ({ navigate, token, onLogout }) => {
 
   return (
     <>
-      {/* HEADER - IDENTIČAN KAO NA LANDINGU */}
-      <header className="flex items-center justify-between px-4 pt-4 pb-2 max-w-5xl mx-auto w-full relative z-20">
-        <div className="text-lg font-display font-semibold tracking-[0.12em] uppercase">
-          Vault<span className="text-emerald-400">Funding</span>
-        </div>
-
-        <div className="flex items-center gap-4 text-xs font-sans">
-          <button className="uppercase tracking-[0.18em] text-slate-300">
-            SRB
-          </button>
-
-          {/* HAMBURGER SA ANIMACIJOM - IDENTIČAN LANDINGU */}
-          <button
-            type="button"
-            className="relative h-6 w-7 flex items-center justify-center"
-            onClick={() => setMenuOpen((o) => !o)}
+      {/* HEADER - fixed na vrhu */}
+      <header className="fixed top-0 left-0 right-0 z-40 w-full bg-black/88 backdrop-blur-lg border-b border-emerald-800/60">
+        <div className="flex items-center justify-between px-4 pt-4 pb-2 max-w-5xl mx-auto w-full relative">
+          <div
+            className="text-lg font-display font-semibold tracking-[0.12em] uppercase cursor-pointer"
+            role="button"
+            tabIndex={0}
+            onClick={() => navigate('/')}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') navigate('/');
+            }}
           >
-            <span
-              className={
-                'absolute h-0.5 w-6 bg-white rounded-full transition-transform duration-200 ' +
-                (menuOpen ? 'translate-y-0 rotate-45' : '-translate-y-2')
-              }
-            />
-            <span
-              className={
-                'absolute h-0.5 w-6 bg-white rounded-full transition-opacity duration-150 ' +
-                (menuOpen ? 'opacity-0' : 'opacity-100')
-              }
-            />
-            <span
-              className={
-                'absolute h-0.5 w-6 bg-white rounded-full transition-transform duration-200 ' +
-                (menuOpen ? 'translate-y-0 -rotate-45' : 'translate-y-2')
-              }
-            />
-          </button>
+            Vault<span className="text-emerald-400">Funding</span>
+          </div>
+
+          <div className="flex items-center gap-4 text-xs font-sans">
+            <button className="uppercase tracking-[0.18em] text-slate-300">
+              SRB
+            </button>
+
+            {/* HAMBURGER SA ANIMACIJOM - IDENTIČAN LANDINGU */}
+            <button
+              type="button"
+              className="relative h-6 w-7 flex items-center justify-center"
+              onClick={() => setMenuOpen((o) => !o)}
+            >
+              <span
+                className={
+                  'absolute h-0.5 w-6 bg-white rounded-full transition-transform duration-200 ' +
+                  (menuOpen ? 'translate-y-0 rotate-45' : '-translate-y-2')
+                }
+              />
+              <span
+                className={
+                  'absolute h-0.5 w-6 bg-white rounded-full transition-opacity duration-150 ' +
+                  (menuOpen ? 'opacity-0' : 'opacity-100')
+                }
+              />
+              <span
+                className={
+                  'absolute h-0.5 w-6 bg-white rounded-full transition-transform duration-200 ' +
+                  (menuOpen ? 'translate-y-0 -rotate-45' : 'translate-y-2')
+                }
+              />
+            </button>
+          </div>
         </div>
+
+        {showBackLink && (
+          <div className="max-w-5xl mx-auto px-4 pb-3">
+            <button
+              onClick={() => navigate('/')}
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-500/60 bg-emerald-500/10 px-3 py-2 text-[12px] font-sans uppercase tracking-[0.16em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/20 hover:-translate-y-[1px]"
+            >
+              <span className="text-emerald-300">←</span>
+              <span>Nazad na sajt</span>
+            </button>
+          </div>
+        )}
       </header>
+
+      {/* Spacer da sadržaj ne ode ispod fixa */}
+      <div className="h-[88px] sm:h-[100px]" aria-hidden="true" />
 
       {/* OVERLAY MENI - IDENTIČAN LANDINGU */}
       {menuOpen && (

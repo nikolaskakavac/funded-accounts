@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
+import Header from '../components/Header';
 import Leaderboard from '../components/Leaderboard';
+import OnSiteStripeCheckout from '../components/OnSiteStripeCheckout';
+
+// payment badge images
+import visaLogo from '/img/visa.png';
+import mastercardLogo from '/img/mastercard-logo.svg';
+import raiffeisenLogo from '/img/raiffeisen.png';
 
 const Landing = ({ navigate, token }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   const handlePrimary = () => {
     if (token) navigate('/dashboard');
     else navigate('/pricing');
   };
+
+  const [onSitePlanId, setOnSitePlanId] = useState(null);
+
+  const landingPlans = [
+    { id: '693db3e0e9cf589519c144fe', name: 'Nalog sa 10.000€', price: 99 },
+    { id: '693db3ede9cf589519c14500', name: 'Nalog sa 20.000€', price: 189 },
+  ];
+
+  const selectedPlan = landingPlans.find((p) => p.id === onSitePlanId);
 
   return (
     <div className="min-h-screen bg-black text-white font-sans">
@@ -25,115 +39,8 @@ const Landing = ({ navigate, token }) => {
         style={{ backgroundImage: "url('/img/crypto-bg.jpeg')" }}
       >
         {/* tamniji overlay radi čitljivosti teksta */}
-        <div className="flex-1 bg-black/80 flex flex-col relative overflow-hidden border-b border-emerald-500/10">
-          {/* HEADER */}
-          <header className="flex items-center justify-between px-4 pt-4 pb-2 max-w-5xl mx-auto w-full relative z-20">
-            <div className="text-lg font-display font-semibold tracking-[0.12em] uppercase">
-              Vault<span className="text-emerald-400">Funding</span>
-            </div>
-
-            <div className="flex items-center gap-4 text-xs font-sans">
-              <button className="uppercase tracking-[0.18em] text-slate-300">
-                SRB
-              </button>
-
-              {/* HAMBURGER SA ANIMACIJOM */}
-              <button
-                type="button"
-                className="relative h-6 w-7 flex items-center justify-center"
-                onClick={() => setMenuOpen((o) => !o)}
-              >
-                <span
-                  className={
-                    'absolute h-0.5 w-6 bg-white rounded-full transition-transform duration-200 ' +
-                    (menuOpen ? 'translate-y-0 rotate-45' : '-translate-y-2')
-                  }
-                />
-                <span
-                  className={
-                    'absolute h-0.5 w-6 bg-white rounded-full transition-opacity duration-150 ' +
-                    (menuOpen ? 'opacity-0' : 'opacity-100')
-                  }
-                />
-                <span
-                  className={
-                    'absolute h-0.5 w-6 bg-white rounded-full transition-transform duration-200 ' +
-                    (menuOpen ? 'translate-y-0 -rotate-45' : 'translate-y-2')
-                  }
-                />
-              </button>
-            </div>
-          </header>
-
-          {/* OVERLAY MENI */}
-          <div className="relative flex-1">
-            {menuOpen && (
-              <div className="absolute inset-x-0 top-0 z-30 bg-black/85 backdrop-blur-sm border-b border-emerald-500/30">
-                <div className="max-w-5xl mx-auto px-4 pt-3 pb-4 relative">
-                  {/* CLOSE BUTTON */}
-                
-                  <nav className="flex flex-col gap-2 text-sm font-sans font-medium tracking-[0.14em] uppercase text-center">
-                    <button
-                      onClick={() => {
-                        setMenuOpen(false);
-                        handlePrimary();
-                      }}
-                      className="py-2"
-                    >
-                      Početna
-                    </button>
-                    <button
-                      onClick={() => {
-                        setMenuOpen(false);
-                        navigate('/pricing');
-                      }}
-                      className="py-2"
-                    >
-                      Planovi
-                    </button>
-                    <button
-                      onClick={() => {
-                        setMenuOpen(false);
-                        navigate('/about');
-                      }}
-                      className="py-2"
-                    >
-                      O nama
-                    </button>
-                    <button
-                      onClick={() => {
-                        setMenuOpen(false);
-                        navigate('/contact');
-                      }}
-                      className="py-2"
-                    >
-                      Kontakt
-                    </button>
-                    {token ? (
-                      <button
-                        onClick={() => {
-                          setMenuOpen(false);
-                          navigate('/dashboard');
-                        }}
-                        className="mt-3 rounded-full bg-emerald-500 py-2 text-sm font-semibold text-black"
-                      >
-                        Dashboard
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => {
-                          setMenuOpen(false);
-                          navigate('/login');
-                        }}
-                        className="mt-3 rounded-full bg-emerald-500 py-2 text-sm font-semibold text-black"
-                      >
-                        Prijava
-                      </button>
-                    )}
-                  </nav>
-                </div>
-              </div>
-            )}
+        <div className="flex-1 bg-black/80 flex flex-col relative overflow-hidden border-b border-emerald-500/10 pt-28">
+          <Header navigate={navigate} token={token} onLogout={() => {}} showBackLink={false} />
 
             {/* HERO TEKST */}
             <main className="px-4 pb-6 pt-10 flex-1 flex">
@@ -143,7 +50,7 @@ const Landing = ({ navigate, token }) => {
                               drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]
                               opacity-0 translate-y-3 animate-[fadeUp_0.6s_ease-out_forwards]"
                 >
-                  Dobij novac od nas da investiraš u kripto.
+                  Dobij kapital od nas da investiraš u kripto.
                   <br />
                   <span className="text-emerald-400">Ostvari velike profite.</span>
                 </h1>
@@ -160,15 +67,20 @@ const Landing = ({ navigate, token }) => {
                   </span>
                   , ti se fokusiraš samo na rezultate.
                 </p>
+<p
+  className="mt-4 inline-flex items-center gap-3 rounded-full bg-black/80
+              px-5 py-2.5 text-[14px] sm:text-[15px] lg:text-[16px] font-display font-semibold tracking-[0.18em]
+              uppercase text-emerald-200 opacity-0 translate-y-3 animate-[fadeUp_0.8s_ease-out_forwards]"
+>
+  <span>U partnerstvu sa</span>
+  <img
+    src="/img/norvestor.png"
+    alt="Norvestor"
+    className="w-32 sm:w-40 h-auto object-contain rounded-sm contrast-125 brightness-110"
+  />
+</p>
 
-                <p
-                  className="mt-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/60 bg-black/80
-                              px-5 py-2.5 text-[17px] sm:text-[18px] lg:text-[19px] font-display font-semibold tracking-[0.18em]
-                              uppercase text-emerald-200 opacity-0 translate-y-3 animate-[fadeUp_0.8s_ease-out_forwards]"
-                >
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                  Podeli profit. Zadrži kontrolu.
-                </p>
+
 
                 <div
                   className="mt-10 space-y-4 w-full max-w-xl mx-auto pb-4 font-sans
@@ -199,7 +111,7 @@ const Landing = ({ navigate, token }) => {
             </main>
           </div>
         </div>
-      </div>
+      
 
       {/* BLOK: Kako funkcioniše + Pravila rizika */}
       <div className="bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
@@ -215,9 +127,14 @@ const Landing = ({ navigate, token }) => {
               Svaki kupac dobija svoj, zaseban nalog – nema deljenja sa drugima.
               <br />
               <br />
-              Tvoj zadatak je jasan: ostvari profit investirajući u neku od kripto-valuta
-              sa našim novcem. Ti se fokusiraš isključivo na investiranje, dok mi brinemo o
-              nalogu, kapitalu i kompletnoj tehničkoj infrastrukturi.
+              <span className="font-semibold text-emerald-300">Tvoj zadatak je jasan:</span>{' '}
+              ostvari profit investirajući u neku od{' '}
+              <span className="font-semibold text-emerald-300">kripto-valuta</span> sa našim novcem.
+              Ti se fokusiraš isključivo na{' '}
+              <span className="font-semibold text-emerald-300">investiranje</span>, dok mi brinemo o{' '}
+              <span className="font-semibold text-emerald-300">nalogu</span>,{' '}
+              <span className="font-semibold text-emerald-300">kapitalu</span> i kompletnoj{' '}
+              <span className="font-semibold text-emerald-300">tehničkoj infrastrukturi</span>.
             </p>
           </section>
 
@@ -296,10 +213,10 @@ const Landing = ({ navigate, token }) => {
                 </div>
               </div>
               <h3 className="font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
-                Kapital za trgovanje
+                Kapital za investiranje
               </h3>
               <p className="font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
-                Dobijaš novac od nas koji možeš da investiraš na kripto tržištu. Ne rizikuješ
+                Dobijaš novac od nas koji možeš da investiraš na kripto valutu po tvom izboru. Ne rizikuješ
                 sopstveni novac, već koristiš naš kapital.
               </p>
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
@@ -350,11 +267,15 @@ const Landing = ({ navigate, token }) => {
               <h3 className="text-center font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
                 Podela profita
               </h3>
-              <p className="text-center font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
-                Kada kripto-valuta u koju si odlučio da investiraš zabeleži rast i ti odlučiš da
-                napraviš "CASH OUT", 80% profita se isplaćuje na tvoju kreditnu karticu ili lični
-                kripto račun, a 20% skupljamo mi.
-              </p>
+             <p className="text-center font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
+  Kada kripto-valuta u koju si odlučio da investiraš zabeleži rast i ti odlučiš da
+  napraviš{' '}
+  <span className="text-emerald-300 font-semibold">
+    CASH OUT
+  </span>
+  , 80% profita se isplaćuje na tvoju kreditnu karticu ili lični
+  kripto račun, a 20% skupljamo mi.
+</p>
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
             </div>
           </div>
@@ -407,47 +328,12 @@ const Landing = ({ navigate, token }) => {
               Izaberi veličinu naloga.
             </h2>
             <p className="mt-3 font-sans text-[15px] sm:text-[17px] text-emerald-100/90 max-w-3xl mx-auto leading-relaxed">
-              10K za 79€ ili 20K za 169€ – jasne cene, bez skrivenih naknada.
+              10K za 99€ ili 20K za 189€ – jasne cene, bez skrivenih naknada.
             </p>
           </div>
 
           <div className="grid gap-7 justify-items-center sm:grid-cols-2">
-            {/* 10K - 79€ */}
-            <div className="w-full max-w-sm">
-              <div className="relative flex h-full flex-col rounded-3xl border p-6 shadow-lg bg-gradient-to-b from-black via-[#02110b] to-black border-emerald-700/40 hover:border-emerald-400/80 hover:-translate-y-1 transition-all duration-200 ease-out">
-                <div className="mb-4 space-y-1">
-                  <div className="font-sans text-[13px] font-medium uppercase tracking-[0.18em] text-emerald-300">
-                    10.000€
-                  </div>
-                  <div className="font-display text-[20px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
-                    10K Kapital
-                  </div>
-                  <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
-                    79€
-                  </div>
-                </div>
-                <div className="mb-3 font-sans text-[12px] text-emerald-200/90">Idealno za početak</div>
-                <p className="mb-5 font-sans text-[14px] sm:text-[15px] text-slate-100/90 leading-relaxed">
-                  Testiraj sistem sa manjim kapitalom.
-                </p>
-                <div className="mt-auto flex flex-col gap-2">
-                  <button
-                    onClick={() => navigate('/pricing')}
-                    className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-4 py-2.5 text-[13px] sm:text-[14px] font-sans font-semibold uppercase tracking-[0.14em] text-black shadow-[0_0_20px_rgba(16,185,129,0.6)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
-                  >
-                    Plati karticom <span className="transition-transform group-hover:translate-x-0.5">→</span>
-                  </button>
-                  <button
-                    onClick={() => navigate('/pricing')}
-                    className="inline-flex items-center justify-center rounded-full border border-emerald-600 px-4 py-2 text-[13px] sm:text-[14px] font-sans uppercase tracking-[0.14em] text-emerald-200 hover:bg-emerald-500/10 transition-all duration-200"
-                  >
-                    Plati kriptom
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* 20K - 169€ */}
+            {/* 10K - 99€ */}
             <div className="w-full max-w-sm">
               <div className="relative flex h-full flex-col rounded-3xl border p-6 shadow-lg
                               bg-gradient-to-b from-black via-[#02110b] to-black
@@ -456,26 +342,82 @@ const Landing = ({ navigate, token }) => {
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-300 px-4 py-0.5 text-[10px] font-display uppercase tracking-[0.2em] text-black shadow-md">
                   Preporučeno
                 </div>
-                <div className="mb-4 space-y-1">
-                  <div className="font-sans text-[13px] font-medium uppercase tracking-[0.18em] text-emerald-300">
-                    20.000€
-                  </div>
+                <div className="mb-4 space-y-1 text-center">
                   <div className="font-display text-[20px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
-                    20K Kapital
+                    Nalog sa 10.000€
+                  </div>
+                  <div className="font-display text-[16px] font-semibold tracking-[0.08em] text-emerald-300">
+                    Cena:
                   </div>
                   <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
-                    169€
+                    99€
                   </div>
                 </div>
-                <div className="mb-3 font-sans text-[12px] text-emerald-200/90">
-                  Najčešći izbor
+                <div className="mb-3 flex items-center justify-center gap-2">
+                  <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
+                    <img src={visaLogo} alt="Visa" className="h-5 w-8 object-contain" />
+                  </div>
+                  <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
+                    <img src={mastercardLogo} alt="Mastercard" className="h-5 w-8 object-contain" />
+                  </div>
+                  <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
+                    <img src={raiffeisenLogo} alt="Raiffeisen Bank" className="h-5 w-10 object-contain" />
+                  </div>
                 </div>
-                <p className="mb-5 font-sans text-[14px] sm:text-[15px] text-slate-100/90 leading-relaxed">
-                  Veći kapital, bolji profit potencijal.
-                </p>
-                <div className="mt-auto flex flex-col gap-2">
+                  <div className="mt-auto flex flex-col gap-2">
+                  <button
+                    onClick={() => {
+                      if (!token) navigate('/login');
+                      else setOnSitePlanId('693db3e0e9cf589519c144fe');
+                    }}
+                    className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-4 py-2.5 text-[13px] sm:text-[14px] font-sans font-semibold uppercase tracking-[0.14em] text-black shadow-[0_0_20px_rgba(16,185,129,0.6)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
+                  >
+                    Plati karticom <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                  </button>
                   <button
                     onClick={() => navigate('/pricing')}
+                    className="inline-flex items-center justify-center rounded-full border border-emerald-600 px-4 py-2 text-[13px] sm:text-[14px] font-sans uppercase tracking-[0.14em] text-emerald-200 hover:bg-emerald-500/10 transition-all duration-200"
+                  >
+                    Plati kriptom (79€)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* 20K - 189€ */}
+            <div className="w-full max-w-sm">
+              <div className="relative flex h-full flex-col rounded-3xl border p-6 shadow-lg
+                              bg-gradient-to-b from-black via-[#02110b] to-black
+                              border-emerald-700/40 hover:border-emerald-400/80 hover:-translate-y-1
+                              transition-all duration-200 ease-out">
+                <div className="mb-4 space-y-1 text-center">
+                  <div className="font-display text-[20px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
+                    Nalog sa 20.000€
+                  </div>
+                  <div className="font-display text-[16px] font-semibold tracking-[0.08em] text-emerald-300">
+                    Cena:
+                  </div>
+                  <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
+                    189€
+                  </div>
+                </div>
+                <div className="mb-3 flex items-center justify-center gap-2">
+                  <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
+                    <img src={visaLogo} alt="Visa" className="h-5 w-8 object-contain" />
+                  </div>
+                  <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
+                    <img src={mastercardLogo} alt="Mastercard" className="h-5 w-8 object-contain" />
+                  </div>
+                  <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
+                    <img src={raiffeisenLogo} alt="Raiffeisen Bank" className="h-5 w-10 object-contain" />
+                  </div>
+                </div>
+                <div className="mt-auto flex flex-col gap-2">
+                  <button
+                    onClick={() => {
+                      if (!token) navigate('/login');
+                      else setOnSitePlanId('693db3ede9cf589519c14500');
+                    }}
                     className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-4 py-2.5 text-[13px] sm:text-[14px] font-sans font-semibold uppercase tracking-[0.14em] text-black shadow-[0_0_20px_rgba(16,185,129,0.6)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
                   >
                     Plati karticom <span className="transition-transform group-hover:translate-x-0.5">→</span>
@@ -483,17 +425,45 @@ const Landing = ({ navigate, token }) => {
                   <button
                     onClick={() => navigate('/pricing')}
                     className="inline-flex items-center justify-center rounded-full border border-emerald-600 px-4 py-2 text-[13px] sm:text-[14px] font-sans uppercase tracking-[0.14em] text-emerald-200 hover:bg-emerald-500/10 transition-all duration-200">
-                    Plati kriptom
+                    Plati kriptom (169€)
                   </button>
                 </div>
               </div>
             </div>
           </div>
 
+          {token && selectedPlan && (
+            <div className="mt-8 flex justify-center">
+              <div className="w-full max-w-lg rounded-3xl border-2 border-emerald-500/80 bg-gradient-to-b from-emerald-500/10 via-black/80 to-emerald-900/10 p-8 shadow-2xl shadow-emerald-500/30 backdrop-blur-sm">
+                <div className="text-center mb-6">
+                  <p className="mt-4 text-2xl font-display font-extrabold tracking-[0.1em] uppercase text-slate-50">
+                    {selectedPlan.name}
+                  </p>
+                  <p className="text-4xl font-display font-extrabold tracking-[0.15em] text-emerald-400 mt-2">
+                    {selectedPlan.price}€
+                  </p>
+                </div>
+
+                <OnSiteStripeCheckout
+                  token={token}
+                  planId={selectedPlan.id}
+                  onSuccess={() => (window.location.href = '/success')}
+                />
+
+                <div className="mt-4 text-center">
+                  <button
+                    onClick={() => setOnSitePlanId(null)}
+                    className="text-sm text-slate-400 hover:underline"
+                  >
+                    Otkaži
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
           <p className="mt-8 font-sans text-[13px] text-slate-400 max-w-3xl mx-auto text-center">
-            Nakon uspešne uplate, tvoj aktivni plan se prikazuje u klijent dashboard‑u zajedno
-            sa pravilima trgovanja. Uvek možeš kasnije da pređeš na veći nalog kada ti rezultati
-            postanu stabilni.
+            Nakon uspešne uplate, na tvoj Gmail stižu podaci za pristup (email i lozinka), a svoj aktivni plan vidiš u dashboard‑u na našem web sajtu.
           </p>
         </div>
       </section>
@@ -518,8 +488,7 @@ const Landing = ({ navigate, token }) => {
                 Da li moj novac ide na trading nalog?
               </h3>
               <p className="mt-1 font-sans text-[14px] sm:text-[15px] text-slate-200/90 leading-relaxed">
-                Ne. Plaćaš samo naknadu za funded nalog i pristup kapitalu naše firme.
-                Tvoj lični novac ostaje odvojen od trading naloga.
+                Ne. Nakon uspešne kupovine dobijaš login podatke od već postojećeg kripto naloga koji je "napunjen" sa našim kapitalom. Koristiš naš kapital a ne svoj.
               </p>
             </div>
 
@@ -528,8 +497,7 @@ const Landing = ({ navigate, token }) => {
                 Kada dobijam pristup dashboard‑u?
               </h3>
               <p className="mt-1 font-sans text-[14px] sm:text-[15px] text-slate-200/90 leading-relaxed">
-                Odmah nakon potvrde uplate dobijaš pristup klijent dashboard‑u, pravilima
-                trgovanja i podacima za logovanje na trading platformu.
+                Odmah nakon potvrde uplate dobijaš pristup klijent dashboard‑u i podacima za login.
               </p>
             </div>
 
@@ -538,8 +506,7 @@ const Landing = ({ navigate, token }) => {
                 Kako funkcioniše podela profita?
               </h3>
               <p className="mt-1 font-sans text-[14px] sm:text-[15px] text-slate-200/90 leading-relaxed">
-                Kada zatvoriš profitabilan period trgovanja, 70% profita ide tebi,
-                30% firmi. Isplate se rade na osnovu dogovorenog rasporeda.
+               Kada kripto-valuta u koju si odlučio da investiraš zabeleži rast i ti odlučiš da napraviš CASH OUT, 80% profita se isplaćuje na tvoju kreditnu karticu ili lični kripto račun, a 20% skupljamo mi.
               </p>
             </div>
           </div>
@@ -554,7 +521,7 @@ const Landing = ({ navigate, token }) => {
               Vault<span className="text-emerald-400">Funding</span>
             </div>
             <p className="mt-1 font-sans text-[13px] text-slate-400">
-              Nije investicioni savet. Trgovanje kriptom nosi visok nivo rizika gubitka kapitala.
+              Profesionalno investiranje za svakoga.
             </p>
           </div>
 

@@ -6,22 +6,18 @@ import Header from '../components/Header';
 const plans = [
   {
     id: '693db3e0e9cf589519c144fe',
-    name: '10K Kapital',
-    price: 79,
+    name: 'Nalog sa 10.000€',
+    price: 99,
     currency: 'usd',
     balance: 10000,
-    description: 'Testiraj sistem sa manjim kapitalom. Savršen za nove tradere.',
-    tag: 'Idealno za početak',
+    highlighted: true,
   },
   {
     id: '693db3ede9cf589519c14500',
-    name: '20K Kapital',
-    price: 169,
+    name: 'Nalog sa 20.000€',
+    price: 189,
     currency: 'usd',
     balance: 20000,
-    description: 'Veći kapital, bolji profit potencijal. Za ozbiljne tradere.',
-    tag: 'Najčešći izbor',
-    highlighted: true,
   },
 ];
 
@@ -125,7 +121,7 @@ const PlanCard = ({
   isOnSiteSelected,
   onCrypto,
 }) => {
-  const { name, balance, price, description, tag, highlighted } = plan;
+  const { name, price, highlighted } = plan;
 
   return (
     <div
@@ -142,23 +138,17 @@ const PlanCard = ({
         </div>
       )}
 
-      <div className="mb-4 space-y-1">
-        <div className="font-sans text-[13px] font-medium uppercase tracking-[0.18em] text-emerald-300">
-          {balance.toLocaleString()}€
-        </div>
+      <div className="mb-4 space-y-1 text-center">
         <div className="font-display text-[20px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
           {name}
+        </div>
+        <div className="font-display text-[16px] font-semibold tracking-[0.08em] text-emerald-300">
+          Cena:
         </div>
         <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
           {price}€
         </div>
       </div>
-
-      <div className="mb-3 font-sans text-[12px] text-emerald-200/90">{tag}</div>
-
-      <p className="mb-6 font-sans text-[14px] sm:text-[15px] text-slate-100/90 leading-relaxed flex-1">
-        {description}
-      </p>
 
       <div className="space-y-2">
         {token ? (
@@ -184,7 +174,7 @@ const PlanCard = ({
       🪙
     </span>
     <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.18em] text-emerald-100 group-hover:text-emerald-50">
-      Plati kriptom
+      Plati kriptom ({price}€)
     </span>
     <span className="text-[11px] sm:text-[12px] text-emerald-300/80 group-hover:text-emerald-200/90">
       BTC • ETH • USDT

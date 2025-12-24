@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getMe } from '../api';
+import Header from '../components/Header';
 
 const Dashboard = ({ navigate, token, onLogout }) => {
   const [user, setUser] = useState(null);
@@ -39,7 +40,8 @@ const Dashboard = ({ navigate, token, onLogout }) => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
-      <div className="mx-auto max-w-6xl px-4 pb-16 pt-8 lg:px-8">
+      <Header navigate={navigate} token={token} onLogout={onLogout} />
+      <div className="mx-auto max-w-6xl px-4 pb-16 pt-6 lg:px-8">
         {/* Header */}
         <header className="mb-10 flex items-center justify-between gap-4">
           <div>
