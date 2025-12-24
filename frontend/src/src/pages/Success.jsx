@@ -9,7 +9,18 @@ const Success = ({ navigate }) => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const paymentId = urlParams.get('payment_id') || urlParams.get('paymentId');
+    const sessionId = urlParams.get('session_id');
+    const paymentIntent = urlParams.get('payment_intent');
 
+    // Ako ima session_id ili payment_intent, to je Stripe plaćanje - uspeh
+    if (sessionId || paymentIntent) {
+      setStatus('success');
+      setMessage('Plan je uspešno aktiviran!');
+      setTimeout(() => navigate('/dashboard'), 3000);
+      return;
+    }
+
+    // Inače, to je NowPayments - proveri status
     if (!paymentId) {
       setStatus('error');
       setMessage('Nema payment ID u URL-u. Kontaktirajte podršku.');

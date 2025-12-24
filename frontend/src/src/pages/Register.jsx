@@ -8,14 +8,18 @@
   const submit = async (e) => {
     e.preventDefault();
     try {
+      console.log('Submitting registration...');
       const res = await register(email, password);
-      console.log('REGISTER RES', res); // <-- dodaj
+      console.log('Registration response:', res);
       if (res.token && res.user) {
+        console.log('Calling onRegister...');
         onRegister(res);
       } else {
+        console.log('Registration failed:', res.message);
         alert(res.message || 'Registracija nije uspela');
       }
     } catch (e) {
+      console.log('Registration error:', e);
       alert('Greška pri registraciji');
     }
   };

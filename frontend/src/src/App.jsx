@@ -32,11 +32,11 @@ const App = () => {
   }, []);
 
   const handleAuthSuccess = (data) => {
+    console.log('handleAuthSuccess called with:', data);
     localStorage.setItem('token', data.token);
     localStorage.setItem('role', data.user.role);
-    setToken(data.token);
-    setRole(data.user.role);
-    navigate('/dashboard'); // posle login + register uvek na dashboard
+    // Redirect to dashboard
+    window.location.href = '/dashboard';
   };
 
   const handleLogout = () => {

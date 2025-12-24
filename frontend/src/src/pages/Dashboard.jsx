@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { getMe } from '../api';
-import Header from '../components/Header';
 
 const Dashboard = ({ navigate, token, onLogout }) => {
   const [user, setUser] = useState(null);
@@ -24,13 +23,23 @@ const Dashboard = ({ navigate, token, onLogout }) => {
   if (!token) return null;
 
   const hasPlan = !!user?.currentPlan;
-  const isAdmin = user?.role === 'admin' || user?.isAdmin;
+  
+  // FIX: formatEuro helper za EUR
+  const formatEuro = (amount) => {
+    if (!amount) return '0 €';
+    return new Intl.NumberFormat('de-DE', {
+      style: 'currency',
+      currency: 'EUR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2
+    }).format(amount);
+  };
+
   const balance = user?.currentPlan?.balance || user?.currentPlan?.price || 0;
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
-      <Header navigate={navigate} token={token} onLogout={onLogout} />
-      <div className="mx-auto max-w-6xl pb-16 pt-8 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 pb-16 pt-8 lg:px-8">
         {/* Header */}
         <header className="mb-10 flex items-center justify-between gap-4">
           <div>
@@ -44,30 +53,21 @@ const Dashboard = ({ navigate, token, onLogout }) => {
               Pregled naloga, plana i balansa.
             </p>
           </div>
-<div className="flex items-center gap-3">
-  {isAdmin && (
-    <button
-      onClick={() => navigate('/admin')}
-      className="rounded-full border border-emerald-500/80 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-emerald-300 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px]"
-    >
-      Admin panel
-    </button>
-  )}
 
-  <button
-    onClick={() => navigate('/pricing')}
-    className="hidden rounded-full border border-emerald-500/70 px-4 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px] sm:inline-flex"
-  >
-    Planovi
-  </button>
-  <button
-    onClick={onLogout}
-    className="rounded-full border border-red-500/80 px-4 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-red-300 transition-all duration-200 hover:bg-red-600/10 hover:-translate-y-[1px]"
-  >
-    Odjava
-  </button>
-</div>
-
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate('/pricing')}
+              className="hidden rounded-full border border-emerald-500/70 px-4 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px] sm:inline-flex"
+            >
+              Planovi
+            </button>
+            <button
+              onClick={onLogout}
+              className="rounded-full border border-red-500/80 px-4 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-red-300 transition-all duration-200 hover:bg-red-600/10 hover:-translate-y-[1px]"
+            >
+              Odjava
+            </button>
+          </div>
         </header>
 
         {/* Main grid */}
@@ -102,17 +102,15 @@ const Dashboard = ({ navigate, token, onLogout }) => {
                         {user.currentPlan.name}{' '}
                         {user.currentPlan.balance && (
                           <span className="text-[11px] text-slate-400">
-                            ({user.currentPlan.balance})
+                            ({user.currentPlan.balance.toLocaleString('de-DE')})
                           </span>
                         )}
                       </p>
+                      {/* FIX: Placeno sa € */}
                       <p className="text-[12px] text-slate-400">
                         Plaćeno:{' '}
                         <span className="font-medium text-emerald-400">
-                          ${user.currentPlan.price}{' '}
-                          <span className="text-[10px] uppercase text-slate-500">
-                            {user.currentPlan.currency}
-                          </span>
+                          {formatEuro(user.currentPlan.price)}
                         </span>
                       </p>
                     </div>
@@ -138,13 +136,13 @@ const Dashboard = ({ navigate, token, onLogout }) => {
               </div>
             </div>
 
-            {/* Balans */}
+            {/* Balans - FIX: € umesto $ */}
             <div className="rounded-3xl border border-emerald-800/60 bg-gradient-to-r from-[#02110b] via-black to-[#02110b] p-6 shadow-lg shadow-emerald-500/20">
               <p className="font-display text-[12px] uppercase tracking-[0.22em] text-emerald-300">
                 Balans
               </p>
               <p className="mt-3 font-display text-[32px] sm:text-[36px] font-extrabold tracking-[0.08em] text-emerald-300">
-                ${balance.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                {balance.toLocaleString('de-DE')} €
               </p>
               <p className="mt-1 font-sans text-[12px] text-emerald-100/90">
                 Vrednost tvog aktivnog plana.
