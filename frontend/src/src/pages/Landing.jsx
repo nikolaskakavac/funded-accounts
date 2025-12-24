@@ -98,7 +98,7 @@ const Landing = ({ navigate, token }) => {
                       }}
                       className="py-2"
                     >
-                      Kako funkcioniše
+                      O nama
                     </button>
                     <button
                       onClick={() => {

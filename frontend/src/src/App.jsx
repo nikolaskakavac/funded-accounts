@@ -10,6 +10,7 @@ import CryptoPaymentPage from './pages/CryptoPaymentPage';
 import Admin from './pages/Admin';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Partnerstvo from './pages/Partnerstvo';
 
 const App = () => {
   const [path, setPath] = useState(window.location.pathname);
@@ -55,6 +56,8 @@ const App = () => {
     page = <Pricing navigate={navigate} token={token} onLogout={handleLogout} />;
   } else if (path === '/about') {
     page = <About navigate={navigate} token={token} onLogout={handleLogout} />;
+  } else if (path === '/partnerstvo') {
+    page = <Partnerstvo navigate={navigate} token={token} onLogout={handleLogout} />;
   } else if (path === '/contact') {
     page = <Contact navigate={navigate} token={token} onLogout={handleLogout} />;
   } else if (path === '/login') {

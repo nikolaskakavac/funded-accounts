@@ -88,7 +88,7 @@ const Header = ({ navigate, token, onLogout }) => {
                 }}
                 className="py-2"
               >
-                Kako funkcioniše
+                O nama
               </button>
               <button
                 onClick={() => {
