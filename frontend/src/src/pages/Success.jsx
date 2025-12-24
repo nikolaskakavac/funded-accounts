@@ -1,4 +1,3 @@
-// Success.jsx
 import { useEffect, useState } from 'react';
 import { checkNowPaymentStatus } from '../api';
 
@@ -8,85 +7,109 @@ const Success = ({ navigate }) => {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const paymentId = urlParams.get('payment_id') || urlParams.get('paymentId');
+    
+    // Stripe parametri (SUCCESS odmah)
     const sessionId = urlParams.get('session_id');
     const paymentIntent = urlParams.get('payment_intent');
+    
+    // NowPayments parametri
+    const paymentId = urlParams.get('payment_id') || 
+                     urlParams.get('invoice_id') || 
+                     urlParams.get('order_id');
+    
+    // Plan info (može biti prazno)
+    const plan = urlParams.get('plan') || 'tvoj plan';
+    const method = urlParams.get('method') || 'karticom';
 
-    // Ako ima session_id ili payment_intent, to je Stripe plaćanje - uspeh
+    console.log('Success URL params:', { 
+      sessionId, 
+      paymentIntent, 
+      paymentId, 
+      plan, 
+      method 
+    });
+
+    // ✅ STRIPE - SUCCESS ODMAH (nema čekanja)
     if (sessionId || paymentIntent) {
       setStatus('success');
-      setMessage('Plan je uspešno aktiviran!');
-      setTimeout(() => navigate('/dashboard'), 3000);
+      setMessage(`Plan uspešno aktiviran preko Stripe ${method}!`);
+      setTimeout(() => navigate('/dashboard'), 2000);
       return;
     }
 
-    // Inače, to je NowPayments - proveri status
-    if (!paymentId) {
-      setStatus('error');
-      setMessage('Nema payment ID u URL-u. Kontaktirajte podršku.');
-      return;
-    }
-
-    const checkStatus = async () => {
-      try {
-        const res = await checkNowPaymentStatus(paymentId);
-        if (res.status === 'paid') {
-          setStatus('success');
-          setMessage('Plan je uspešno aktiviran!');
-          // Redirect to dashboard after 3 seconds
-          setTimeout(() => navigate('/dashboard'), 3000);
-        } else if (res.status === 'failed') {
-          setStatus('error');
-          setMessage('Plaćanje nije uspelo. Pokušajte ponovo.');
-        } else {
-          setMessage(`Status: ${res.status || 'čekamo'}. Proveravamo ponovo za 10 sekundi...`);
+    // ✅ NowPayments - proveri status
+    if (paymentId) {
+      const checkStatus = async () => {
+        try {
+          console.log('Checking NowPayments:', paymentId);
+          const res = await checkNowPaymentStatus(paymentId);
+          
+          console.log('NowPayments response:', res);
+          
+          if (res.status === 'confirmed' || res.status === 'paid' || res.status === 'finished') {
+            setStatus('success');
+            setMessage(`Plan uspešno aktiviran preko NowPayments!`);
+            setTimeout(() => navigate('/dashboard'), 2000);
+          } else if (res.status === 'failed' || res.status === 'expired' || res.status === 'cancelled') {
+            setStatus('error');
+            setMessage('NowPayments plaćanje neuspešno.');
+          } else {
+            setMessage(`NowPayments: ${res.status || 'u obradi'}. Čekamo 10s...`);
+          }
+        } catch (e) {
+          console.error('NowPayments error:', e);
+          setMessage('Greška NowPayments. Proveri dashboard.');
         }
-      } catch (e) {
-        console.error('Status check error:', e);
-        setMessage('Greška pri proveri statusa. Osvežite stranicu.');
-      }
-    };
+      };
 
-    // Proveri odmah
-    checkStatus();
+      checkStatus();
+      const interval = setInterval(checkStatus, 10000);
+      const timeout = setTimeout(() => {
+        clearInterval(interval);
+        setStatus('timeout');
+        setMessage('Čekamo blockchain potvrdu. Proveri dashboard za status.');
+      }, 10 * 60 * 1000);
 
-    // Proveravaj svakih 10 sekundi
-    const interval = setInterval(checkStatus, 10000);
+      return () => {
+        clearInterval(interval);
+        clearTimeout(timeout);
+      };
+    }
 
-    // Zaustavi proveru nakon 10 minuta
-    const timeout = setTimeout(() => {
-      clearInterval(interval);
-      setStatus('timeout');
-      setMessage('Provera statusa je zaustavljena. Proverite dashboard za status plana.');
-    }, 10 * 60 * 1000); // 10 minuta
-
-    return () => {
-      clearInterval(interval);
-      clearTimeout(timeout);
-    };
+    // ❌ Ništa nije prepoznato
+    setStatus('error');
+    setMessage('Nepoznat payment provider. Kontaktiraj podršku.');
   }, [navigate]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50 flex items-center justify-center px-4">
       <div className="max-w-md w-full rounded-3xl border border-emerald-600/60 bg-black/80 p-7 text-center shadow-xl shadow-emerald-500/30">
-        <p className="font-display text-[12px] uppercase tracking-[0.26em] text-emerald-400">
-          {status === 'success' ? 'Uplata uspešna' : status === 'error' ? 'Greška' : 'Uplata poslata'}
+        <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center ${
+          status === 'success' ? 'bg-emerald-500/20 border-2 border-emerald-400' : 
+          status === 'error' ? 'bg-red-500/20 border-2 border-red-400' : 
+          'bg-yellow-500/20 border-2 border-yellow-400'
+        }`}>
+          {status === 'success' ? '✅' : status === 'error' ? '❌' : '⏳'}
+        </div>
+        
+        <p className="font-display text-[12px] uppercase tracking-[0.26em] mb-2 text-emerald-400">
+          {status === 'success' ? 'Uspjeh' : status === 'error' ? 'Greška' : 'U obradi'}
         </p>
-        <h1 className={`mt-2 font-display text-[26px] sm:text-[30px] font-extrabold tracking-[0.12em] uppercase ${
+        <h1 className={`font-display text-[26px] sm:text-[32px] font-extrabold tracking-[0.12em] uppercase mb-4 ${
           status === 'success' ? 'text-emerald-300' : status === 'error' ? 'text-red-300' : 'text-yellow-300'
         }`}>
-          {status === 'success' ? 'Plan aktiviran!' : status === 'error' ? 'Neuspeh' : 'Čekamo potvrdu'}
+          {status === 'success' ? 'Plan aktivan!' : status === 'error' ? 'Neuspeh' : 'Čekamo potvrdu'}
         </h1>
-        <p className="mt-3 font-sans text-[15px] text-emerald-100/90">
+        <p className="mt-3 font-sans text-[15px] text-emerald-100/90 leading-relaxed mb-6">
           {message}
         </p>
         <button
           onClick={() => navigate('/dashboard')}
-          className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-emerald-500 px-4 py-2.5
-                     text-[14px] font-sans font-semibold uppercase tracking-[0.16em] text-black
-                     shadow-[0_0_18px_rgba(16,185,129,0.7)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
+          className="w-full rounded-full bg-emerald-500 px-4 py-3
+                     text-lg font-sans font-semibold uppercase tracking-[0.16em] text-black
+                     shadow-[0_0_20px_rgba(16,185,129,0.7)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
         >
-          Idi na dashboard
+          {status === 'success' ? 'Dashboard →' : 'Proveri Status'}
         </button>
       </div>
     </div>
