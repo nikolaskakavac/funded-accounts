@@ -71,3 +71,10 @@ export const createNowPayment = async (token, planId, payCurrency) => {
   });
   return res.json();
 };
+
+// NOWPayments – status check
+
+export const checkNowPaymentStatus = async (paymentId) => {
+  const res = await fetch(`${API_BASE}/payments/now/status/${paymentId}`);
+  return res.json();
+};

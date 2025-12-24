@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { QRCodeCanvas } from 'qrcode.react';
 import { createNowPayment } from '../api';
 import Header from '../components/Header';
@@ -6,8 +6,12 @@ import Header from '../components/Header';
 export default function CryptoPaymentPage({ token, planId, navigate, onLogout }) {
   const [coin, setCoin] = useState('usdc'); // 'usdc' | 'usdt' | 'eth'
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [err, setErr] = useState('');
+
+  useEffect(() => {
+    revealAddress();
+  }, [coin]); // Run when coin changes
 
   const revealAddress = async () => {
     setErr('');
@@ -15,7 +19,7 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
     setLoading(true);
     try {
       const res = await createNowPayment(token, planId, coin);
-      setData(res); // { payment_id, pay_address, pay_amount, pay_currency }
+      setData(res); // { payment_id, pay_address, pay_amount, pay_currency, invoice_url }
     } catch (e) {
       console.error(e);
       setErr('Greška pri kreiranju kripto uplate.');
@@ -100,15 +104,21 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
             </button>
           </div>
 
-          {/* Dugme za prikaz adrese */}
-          <button
+          {/* Dugme za prikaz adrese - REMOVED since we create automatically */}
+          {/* <button
             type="button"
             onClick={revealAddress}
             disabled={loading}
             className="mb-4 flex w-full items-center justify-center rounded-full bg-emerald-500 px-4 py-2.5 text-[14px] font-sans font-semibold uppercase tracking-[0.16em] text-black shadow-[0_0_18px_rgba(16,185,129,0.7)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {loading ? 'Kreiranje uplate…' : 'Prikaži adresu za uplatu'}
-          </button>
+          </button> */}
+
+          {loading && (
+            <div className="mb-4 flex w-full items-center justify-center rounded-full bg-emerald-500/20 px-4 py-2.5 text-[14px] font-sans font-semibold uppercase tracking-[0.16em] text-emerald-200">
+              Kreiranje uplate…
+            </div>
+          )}
 
           {err && (
             <p className="mb-3 font-sans text-[13px] text-red-400">
@@ -117,7 +127,7 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
           )}
 
           {/* Adresa & QR */}
-          {data && (
+          {data && !loading && (
             <div className="mt-5 space-y-3 font-sans text-[13px] text-slate-200">
               <p>
                 Pošalji tačno{' '}
