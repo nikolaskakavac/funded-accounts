@@ -69,17 +69,16 @@ const Landing = ({ navigate, token }) => {
                 </p>
 <p
   className="mt-4 inline-flex items-center gap-3 rounded-full bg-black/80
-              px-5 py-2.5 text-[14px] sm:text-[15px] lg:text-[16px] font-display font-semibold tracking-[0.18em]
-              uppercase text-emerald-200 opacity-0 translate-y-3 animate-[fadeUp_0.8s_ease-out_forwards]"
+             px-5 py-2.5 text-[14px] sm:text-[15px] lg:text-[16px] font-display font-semibold tracking-[0.18em]
+             uppercase text-emerald-200 opacity-0 translate-y-3 animate-[fadeUp_0.8s_ease-out_forwards]"
 >
   <span>U partnerstvu sa</span>
   <img
     src="/img/norvestor.png"
     alt="Norvestor"
-    className="w-32 sm:w-40 h-auto object-contain rounded-sm contrast-125 brightness-110"
+    className="h-10 sm:h-12 w-32 sm:w-40 object-cover rounded-[999px] contrast-125 brightness-110"
   />
 </p>
-
 
 
                 <div
@@ -322,14 +321,12 @@ const Landing = ({ navigate, token }) => {
         <div className="max-w-5xl mx-auto space-y-8">
           <div className="text-center">
             <p className="font-display text-[11px] uppercase tracking-[0.26em] text-emerald-400">
-              Funding planovi
+              Planovi
             </p>
             <h2 className="mt-2 font-display text-[28px] sm:text-[34px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
               Izaberi veličinu naloga.
             </h2>
-            <p className="mt-3 font-sans text-[15px] sm:text-[17px] text-emerald-100/90 max-w-3xl mx-auto leading-relaxed">
-              10K za 99€ ili 20K za 189€ – jasne cene, bez skrivenih naknada.
-            </p>
+            
           </div>
 
           <div className="grid gap-7 justify-items-center sm:grid-cols-2">
@@ -370,15 +367,15 @@ const Landing = ({ navigate, token }) => {
                       if (!token) navigate('/login');
                       else setOnSitePlanId('693db3e0e9cf589519c144fe');
                     }}
-                    className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-4 py-2.5 text-[13px] sm:text-[14px] font-sans font-semibold uppercase tracking-[0.14em] text-black shadow-[0_0_20px_rgba(16,185,129,0.6)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
+                    className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
-                    Plati karticom <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                    💳 Plati karticom
                   </button>
                   <button
                     onClick={() => navigate('/pricing')}
-                    className="inline-flex items-center justify-center rounded-full border border-emerald-600 px-4 py-2 text-[13px] sm:text-[14px] font-sans uppercase tracking-[0.14em] text-emerald-200 hover:bg-emerald-500/10 transition-all duration-200"
+                    className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
-                    Plati kriptom (79€)
+                    🪙 Plati kriptom (79€)
                   </button>
                 </div>
               </div>
@@ -418,14 +415,15 @@ const Landing = ({ navigate, token }) => {
                       if (!token) navigate('/login');
                       else setOnSitePlanId('693db3ede9cf589519c14500');
                     }}
-                    className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-4 py-2.5 text-[13px] sm:text-[14px] font-sans font-semibold uppercase tracking-[0.14em] text-black shadow-[0_0_20px_rgba(16,185,129,0.6)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
+                    className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
-                    Plati karticom <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                    💳 Plati karticom
                   </button>
                   <button
                     onClick={() => navigate('/pricing')}
-                    className="inline-flex items-center justify-center rounded-full border border-emerald-600 px-4 py-2 text-[13px] sm:text-[14px] font-sans uppercase tracking-[0.14em] text-emerald-200 hover:bg-emerald-500/10 transition-all duration-200">
-                    Plati kriptom (169€)
+                    className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
+                  >
+                    🪙 Plati kriptom (169€)
                   </button>
                 </div>
               </div>
