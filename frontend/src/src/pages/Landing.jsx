@@ -39,7 +39,7 @@ const Landing = ({ navigate, token }) => {
         style={{ backgroundImage: "url('/img/crypto-bg.jpeg')" }}
       >
         {/* tamniji overlay radi čitljivosti teksta */}
-        <div className="flex-1 bg-black/80 flex flex-col relative overflow-hidden border-b border-emerald-500/10 pt-28">
+        <div className="flex-1 bg-black/80 flex flex-col relative overflow-hidden border-b border-emerald-500/10">
           <Header navigate={navigate} token={token} onLogout={() => {}} showBackLink={false} />
 
             {/* HERO TEKST */}
