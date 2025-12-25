@@ -34,14 +34,11 @@ app.use('/webhooks', webhooksStripe); // ovde je /webhooks/stripe iz routera
 app.use(cors());
 app.use(express.json());
 
-// Language cookie based on Accept-Language (first request only)
+// Language cookie based on Accept-Language on every request (keeps in sync when location/browser changes)
 app.use((req, res, next) => {
-  const hasLang = (req.headers.cookie || '').includes('lang=');
-  if (!hasLang) {
-    const al = (req.headers['accept-language'] || '').toLowerCase();
-    const lang = al.includes('sr') ? 'sr' : 'en';
-    res.cookie('lang', lang, { maxAge: 365 * 24 * 60 * 60 * 1000, sameSite: 'lax' });
-  }
+  const al = (req.headers['accept-language'] || '').toLowerCase();
+  const lang = al.includes('sr') ? 'sr' : 'en';
+  res.cookie('lang', lang, { maxAge: 365 * 24 * 60 * 60 * 1000, sameSite: 'lax' });
   next();
 });
 
