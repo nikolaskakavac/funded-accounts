@@ -5,11 +5,13 @@
   const Register = ({ navigate, onRegister, onLogout }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
   const submit = async (e) => {
     e.preventDefault();
     try {
       console.log('Submitting registration...');
-      const res = await register(email, password);
+      const res = await register(email, password, firstName, lastName);
       console.log('Registration response:', res);
       if (res.token && res.user) {
         console.log('Calling onRegister...');
@@ -55,13 +57,35 @@
               </div>
 
               <form onSubmit={submit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="font-sans text-[13px] font-medium text-emerald-100">Ime</label>
+                    <input
+                      className="w-full rounded-2xl border border-emerald-700 bg-black/60 px-3.5 py-2.5 text-[14px] font-sans text-slate-50 outline-none transition placeholder:text-slate-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400"
+                      type="text"
+                      placeholder="Pera"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="font-sans text-[13px] font-medium text-emerald-100">Prezime</label>
+                    <input
+                      className="w-full rounded-2xl border border-emerald-700 bg-black/60 px-3.5 py-2.5 text-[14px] font-sans text-slate-50 outline-none transition placeholder:text-slate-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400"
+                      type="text"
+                      placeholder="Perić"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      required
+                    />
+                  </div>
+                </div>
+
                 <div className="space-y-1.5">
-                  <label className="font-sans text-[13px] font-medium text-emerald-100">
-                    Email
-                  </label>
+                  <label className="font-sans text-[13px] font-medium text-emerald-100">Email</label>
                   <input
-                    className="w-full rounded-2xl border border-emerald-700 bg-black/60 px-3.5 py-2.5 text-[14px] font-sans text-slate-50 outline-none transition
-                              placeholder:text-slate-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400"
+                    className="w-full rounded-2xl border border-emerald-700 bg-black/60 px-3.5 py-2.5 text-[14px] font-sans text-slate-50 outline-none transition placeholder:text-slate-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400"
                     type="email"
                     placeholder="ti@primer.com"
                     value={email}

@@ -112,8 +112,14 @@ const Dashboard = ({ navigate, token, onLogout }) => {
 
               <div className="space-y-4 font-sans text-[15px] text-slate-100/90">
                 <div>
-                  <p className="text-[11px] text-slate-400">Email</p>
-                  <p className="mt-0.5 font-medium text-slate-50">{user?.email}</p>
+                  <p className="text-[11px] text-slate-400">Ime i prezime</p>
+                  <p className="mt-0.5 font-medium text-slate-50">
+                    {user?.firstName && user?.lastName ? (
+                      `${user.firstName} ${user.lastName}`
+                    ) : (
+                      user?.email
+                    )}
+                  </p>
                 </div>
 
                 <div>

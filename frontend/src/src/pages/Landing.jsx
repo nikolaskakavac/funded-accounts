@@ -30,8 +30,8 @@ const Landing = ({ navigate, token }) => {
         className="
           flex flex-col
           bg-no-repeat
-          bg-[center_65%]
-          bg-contain
+          bg-[center_58%]
+          bg-[length:112%]
           sm:bg-center
           sm:bg-contain
           bg-[#111111]
@@ -68,7 +68,7 @@ const Landing = ({ navigate, token }) => {
 
 
                 <div
-                  className="mt-72 space-y-4 w-full max-w-xl mx-auto pb-4 font-sans
+                  className="mt-64 sm:mt-72 space-y-4 w-full max-w-xl mx-auto pb-4 font-sans
                               opacity-0 translate-y-3 animate-[fadeUp_0.9s_ease-out_forwards]"
                 >
                   <button
@@ -96,13 +96,13 @@ const Landing = ({ navigate, token }) => {
                 </div>
               </section>
             </main>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-black" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-b from-transparent to-black" />
           </div>
         </div>
       
 
       {/* BLOK: Kako funkcioniše + Pravila rizika */}
-      <div className="bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
+      <div className="bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-4 sm:pt-6 pb-12">
         <div className="max-w-5xl mx-auto">
           <section className="mt-4 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
             <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">

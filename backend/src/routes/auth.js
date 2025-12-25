@@ -10,7 +10,7 @@ const router = express.Router();
 
 // POST /auth/register
 router.post('/register', async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, firstName = '', lastName = '' } = req.body;
 
   try {
     const existing = await User.findOne({ email });
@@ -19,7 +19,7 @@ router.post('/register', async (req, res) => {
     }
 
     const passwordHash = await bcrypt.hash(password, 10);
-    const user = await User.create({ email, passwordHash });
+    const user = await User.create({ email, passwordHash, firstName, lastName });
 
     const token = jwt.sign(
       { userId: user._id, email: user.email, role: user.role },
@@ -40,6 +40,8 @@ router.post('/register', async (req, res) => {
       user: {
         id: user._id,
         email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
         role: user.role,
         currentPlan: user.currentPlan,
       },
@@ -77,6 +79,8 @@ router.post('/login', async (req, res) => {
       user: {
         id: user._id,
         email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
         role: user.role,
         currentPlan: user.currentPlan,
       },
@@ -103,6 +107,8 @@ router.get('/me', authMiddleware, async (req, res) => {
       user: {
         id: user._id,
         email: user.email,
+        firstName: user.firstName || '',
+        lastName: user.lastName || '',
         role: user.role,
         currentPlan: user.currentPlan || null,
       },
