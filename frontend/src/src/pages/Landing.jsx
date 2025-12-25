@@ -33,7 +33,7 @@ const Landing = ({ navigate, token }) => {
           bg-[center_65%]
           bg-contain
           sm:bg-center
-          sm:bg-cover
+          sm:bg-contain
           bg-[#111111]
           min-h-[720px]
           sm:min-h-[780px]
@@ -47,9 +47,9 @@ const Landing = ({ navigate, token }) => {
 
             {/* HERO TEKST */}
             <main className="px-4 pb-6 -mt-4 flex-1 flex">
-              <section className="w-full max-w-5xl mx-auto self-start text-left sm:text-center ml-4 sm:ml-0">
+              <section className="w-full max-w-5xl mx-auto text-center">
                 <h1
-                  className="font-display text-[38px] sm:text-[44px] lg:text-[56px] leading-[1.03] font-extrabold tracking-[0.12em] uppercase
+                  className="text-left sm:text-center ml-2 sm:ml-0 font-display text-[38px] sm:text-[44px] lg:text-[72px] xl:text-[84px] leading-[1.03] font-extrabold tracking-[0.12em] uppercase
                               drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-emerald-400
                               opacity-0 translate-y-3 animate-[fadeUp_0.6s_ease-out_forwards]"
                   style={{ fontFamily: "'Room Black', sans-serif" }}
@@ -58,7 +58,7 @@ const Landing = ({ navigate, token }) => {
                 </h1>
 
                 <h2
-                  className="mt-4 text-[32px] sm:text-[38px] lg:text-[48px] leading-[1.1] font-extrabold tracking-[0.12em] uppercase
+                  className="mt-4 text-left sm:text-center ml-2 sm:ml-0 text-[32px] sm:text-[38px] lg:text-[48px] leading-[1.1] font-extrabold tracking-[0.12em] uppercase
                               drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-white
                               opacity-0 translate-y-3 animate-[fadeUp_0.65s_ease-out_forwards]"
                   style={{ fontFamily: "'Room Black', sans-serif" }}
@@ -84,17 +84,19 @@ const Landing = ({ navigate, token }) => {
                   </button>
                   <button
                     onClick={() => navigate('/pricing')}
-                    className="w-full rounded-full border border-emerald-500 py-3.5 sm:py-4 text-[16px] sm:text-[18px]
-                               font-semibold tracking-[0.12em] uppercase text-emerald-400 bg-black/40
+                    className="w-full rounded-full border border-emerald-300/90 py-3.5 sm:py-4 text-[16px] sm:text-[18px]
+                               font-semibold tracking-[0.12em] uppercase text-emerald-100
+                               bg-gradient-to-b from-emerald-500/15 to-emerald-500/28
                                transition-all duration-200 ease-out hover:-translate-y-1
-                               hover:bg-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/30 active:translate-y-0"
+                               hover:from-emerald-500/22 hover:to-emerald-500/32
+                               active:translate-y-0"
                   >
                     Pogledaj planove
                   </button>
                 </div>
               </section>
             </main>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent via-[#0c0c0c] to-black" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-black" />
           </div>
         </div>
       
@@ -354,8 +356,8 @@ const Landing = ({ navigate, token }) => {
                   <div className="mt-auto flex flex-col gap-2">
                   <button
                     onClick={() => {
-                      if (!token) navigate('/login');
-                      else navigate('/pricing');
+                      if (!token) navigate('/register');
+                      else navigate('/pay-card/693db3e0e9cf589519c144fe');
                     }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
@@ -405,8 +407,8 @@ const Landing = ({ navigate, token }) => {
                 <div className="mt-auto flex flex-col gap-2">
                   <button
                     onClick={() => {
-                      if (!token) navigate('/login');
-                      else navigate('/pricing');
+                      if (!token) navigate('/register');
+                      else navigate('/pay-card/693db3ede9cf589519c14500');
                     }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >

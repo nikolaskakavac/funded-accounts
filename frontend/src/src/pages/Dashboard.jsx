@@ -36,7 +36,14 @@ const Dashboard = ({ navigate, token, onLogout }) => {
     }).format(amount);
   };
 
-  const balance = user?.currentPlan?.balance || user?.currentPlan?.price || 0;
+  const pricePaid = user?.currentPlan?.price;
+  const balance =
+    user?.currentPlan?.balance ??
+    ((pricePaid === 79 || pricePaid === 99)
+      ? 10000
+      : (pricePaid === 169 || pricePaid === 189)
+        ? 20000
+        : (pricePaid || 0));
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
@@ -74,8 +81,21 @@ const Dashboard = ({ navigate, token, onLogout }) => {
 
         {/* Main grid */}
         <main className="grid gap-7 md:grid-cols-[1.8fr,1.2fr]">
-          {/* Levo: pregled + balans */}
+          {/* Levo: balans + pregled */}
           <section className="space-y-6">
+            {/* Balans - FIX: € umesto $ */}
+            <div className="rounded-3xl border border-emerald-800/60 bg-gradient-to-r from-[#02110b] via-black to-[#02110b] p-6 shadow-lg shadow-emerald-500/20">
+              <p className="font-display text-[12px] uppercase tracking-[0.22em] text-emerald-300">
+                Balans
+              </p>
+              <p className="mt-3 font-display text-[32px] sm:text-[36px] font-extrabold tracking-[0.08em] text-emerald-300">
+                {balance.toLocaleString('de-DE')} €
+              </p>
+              <p className="mt-1 font-sans text-[12px] text-emerald-100/90">
+                Vrednost tvog aktivnog plana.
+              </p>
+            </div>
+
             {/* Pregled naloga */}
             <div className="rounded-3xl border border-emerald-800/60 bg-black/80 p-6 shadow-xl shadow-emerald-500/20">
               <div className="mb-5 flex items-center justify-between gap-3">
@@ -132,23 +152,17 @@ const Dashboard = ({ navigate, token, onLogout }) => {
                   {hasPlan ? 'Nadogradi plan' : 'Kupi plan'}
                   <span>→</span>
                 </button>
+                <button
+                  onClick={() => navigate('/contact?cashout=1')}
+                  className="inline-flex items-center gap-2 rounded-full border border-emerald-500/70 px-5 py-2.5 text-[14px] font-sans font-semibold uppercase tracking-[0.16em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-1"
+                >
+                  Cash Out
+                  <span>↗</span>
+                </button>
                 <p className="text-[11px] font-sans text-slate-400">
                   Login ostaje isti nakon nadogradnje.
                 </p>
               </div>
-            </div>
-
-            {/* Balans - FIX: € umesto $ */}
-            <div className="rounded-3xl border border-emerald-800/60 bg-gradient-to-r from-[#02110b] via-black to-[#02110b] p-6 shadow-lg shadow-emerald-500/20">
-              <p className="font-display text-[12px] uppercase tracking-[0.22em] text-emerald-300">
-                Balans
-              </p>
-              <p className="mt-3 font-display text-[32px] sm:text-[36px] font-extrabold tracking-[0.08em] text-emerald-300">
-                {balance.toLocaleString('de-DE')} €
-              </p>
-              <p className="mt-1 font-sans text-[12px] text-emerald-100/90">
-                Vrednost tvog aktivnog plana.
-              </p>
             </div>
           </section>
 

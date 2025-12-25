@@ -11,6 +11,7 @@ import Admin from './pages/Admin';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Partnerstvo from './pages/Partnerstvo';
+import OnSitePaymentPage from './pages/OnSitePayment';
 
 const App = () => {
   const [path, setPath] = useState(window.location.pathname);
@@ -88,6 +89,17 @@ const App = () => {
     const planId = parts[2];
     page = (
       <CryptoPaymentPage
+        navigate={navigate}
+        token={token}
+        planId={planId}
+        onLogout={handleLogout}
+      />
+    );
+  } else if (path.startsWith('/pay-card/')) {
+    const parts = path.split('/');
+    const planId = parts[2];
+    page = (
+      <OnSitePaymentPage
         navigate={navigate}
         token={token}
         planId={planId}
