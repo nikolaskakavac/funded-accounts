@@ -34,9 +34,9 @@ const Landing = ({ navigate, token }) => {
           bg-contain
           sm:bg-center
           sm:bg-cover
-          min-h-[520px]
-          sm:min-h-[580px]
-          md:min-h-[640px]
+          min-h-[720px]
+          sm:min-h-[780px]
+          md:min-h-[840px]
         "
         style={{ backgroundImage: "url('/img/crypto-bg.jpeg')" }}
       >
@@ -51,44 +51,23 @@ const Landing = ({ navigate, token }) => {
                   className="font-display text-[38px] sm:text-[44px] lg:text-[56px] leading-[1.03] font-extrabold tracking-[0.12em] uppercase
                               drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-emerald-400
                               opacity-0 translate-y-3 animate-[fadeUp_0.6s_ease-out_forwards]"
+                  style={{ fontFamily: "'Room Black', sans-serif" }}
                 >
                   Uloži u kripto sa našim kapitalom.
                 </h1>
 
                 <h2
-                  className="mt-4 font-display text-[32px] sm:text-[38px] lg:text-[48px] leading-[1.1] font-extrabold tracking-[0.12em] uppercase
+                  className="mt-4 text-[32px] sm:text-[38px] lg:text-[48px] leading-[1.1] font-extrabold tracking-[0.12em] uppercase
                               drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-white
                               opacity-0 translate-y-3 animate-[fadeUp_0.65s_ease-out_forwards]"
+                  style={{ fontFamily: "'Room Black', sans-serif" }}
                 >
                   Podeli profit.
                 </h2>
 
-                <p
-                  className="mt-6 font-sans text-[18px] sm:text-[20px] lg:text-[22px] max-w-3xl mx-auto
-                              drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)] font-medium tracking-[0.02em]
-                              text-transparent sm:text-slate-200/90
-                              opacity-0 translate-y-3 animate-[fadeUp_0.7s_ease-out_forwards]"
-                >
-                  Trguj sa velikim računom dok tvoj novac ostaje siguran.{` `}
-                  <span className="font-semibold text-transparent sm:text-emerald-200">
-                    Mi obezbeđujemo kapital i preuzimamo rizik
-                  </span>
-                  , ti se fokusiraš samo na rezultate.
-                </p>
-<p
-  className="mt-4 mb-8 inline-flex items-center gap-3 rounded-full bg-black/80
-             px-5 py-2.5 text-[14px] sm:text-[15px] lg:text-[16px] font-display font-semibold tracking-[0.18em]
-             uppercase text-emerald-200 opacity-0 translate-y-3 animate-[fadeUp_0.8s_ease-out_forwards]"
->
-  <span>U partnerstvu sa</span>
-  <span className="font-display text-[16px] sm:text-[18px] font-bold tracking-[0.15em] uppercase text-emerald-300">
-    Norvestor Equity Ltd.
-  </span>
-</p>
-
 
                 <div
-                  className="mt-10 space-y-4 w-full max-w-xl mx-auto pb-4 font-sans
+                  className="mt-72 space-y-4 w-full max-w-xl mx-auto pb-4 font-sans
                               opacity-0 translate-y-3 animate-[fadeUp_0.9s_ease-out_forwards]"
                 >
                   <button
@@ -128,7 +107,7 @@ const Landing = ({ navigate, token }) => {
 
             <p className="font-sans text-[20px] sm:text-[22px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-4">
               Kada kupiš nalog na našem websajtu, dobijaš log in podatke od već postojećeg,
-              unapred <span className="font-semibold text-white">„napunjenog" kripto naloga</span>.
+              unapred <span className="font-semibold text-emerald-400">„napunjenog" kripto naloga</span>.
               Svaki kupac dobija svoj, zaseban nalog – nema deljenja sa drugima.
               <br />
               <br />
