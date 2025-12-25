@@ -41,9 +41,9 @@ const Leaderboard = () => {
   );
 
   return (
-    <section className="mt-16 px-4 sm:px-0">
-      <div className="relative mx-auto max-w-lg sm:max-w-3xl">
-        <div className="relative rounded-[28px] p-5 sm:p-7 bg-gradient-to-b from-black/95 via-slate-900/80 to-black/95 border border-slate-800/70 shadow-lg overflow-hidden">
+    <section className="mt-16 px-1 sm:px-4 lg:px-0">
+      <div className="relative mx-auto max-w-5xl">
+        <div className="relative rounded-[28px] p-3 sm:p-5 lg:p-7 bg-gradient-to-b from-black/95 via-slate-900/80 to-black/95 shadow-lg overflow-hidden">
           
           {/* Header */}
           <div className="mb-6 text-center">
@@ -61,7 +61,7 @@ const Leaderboard = () => {
               <div
                 key={item.rank}
                 className={
-                  'flex items-center justify-between gap-3 sm:gap-5 rounded-2xl bg-gradient-to-r from-slate-900/60 via-black/90 to-slate-900/60 px-5 sm:px-7 border border-slate-800/80 shadow-sm hover:shadow-green-500/20 transition-shadow ' +
+                  'flex items-center justify-between gap-3 sm:gap-5 rounded-2xl bg-gradient-to-r from-slate-900/60 via-black/90 to-slate-900/60 px-5 sm:px-7 shadow-sm hover:shadow-green-500/20 transition-shadow ' +
                   rowSizeByRank(item.rank)
                 }
               >
