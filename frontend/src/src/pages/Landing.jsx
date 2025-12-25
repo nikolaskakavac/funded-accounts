@@ -34,19 +34,20 @@ const Landing = ({ navigate, token }) => {
           bg-contain
           sm:bg-center
           sm:bg-cover
+          bg-[#111111]
           min-h-[720px]
           sm:min-h-[780px]
           md:min-h-[840px]
         "
-        style={{ backgroundImage: "url('/img/crypto-bg.jpeg')" }}
+        style={{ backgroundImage: "url('/img/crypto-bg.png')" }}
       >
-        {/* lighter overlay for better image visibility */}
-        <div className="flex-1 bg-black/10 flex flex-col relative overflow-hidden border-b border-emerald-500/10">
+        {/* transparent overlay */}
+        <div className="flex-1 bg-transparent flex flex-col relative overflow-hidden border-b border-emerald-500/10">
           <Header navigate={navigate} token={token} onLogout={() => {}} showBackLink={false} />
 
             {/* HERO TEKST */}
             <main className="px-4 pb-6 -mt-4 flex-1 flex">
-              <section className="w-full max-w-5xl mx-auto self-start text-left sm:text-center">
+              <section className="w-full max-w-5xl mx-auto self-start text-left sm:text-center ml-4 sm:ml-0">
                 <h1
                   className="font-display text-[38px] sm:text-[44px] lg:text-[56px] leading-[1.03] font-extrabold tracking-[0.12em] uppercase
                               drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-emerald-400
@@ -93,6 +94,7 @@ const Landing = ({ navigate, token }) => {
                 </div>
               </section>
             </main>
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent via-[#0c0c0c] to-black" />
           </div>
         </div>
       
