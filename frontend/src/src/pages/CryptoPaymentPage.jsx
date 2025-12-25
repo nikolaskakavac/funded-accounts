@@ -4,13 +4,14 @@ import { createNowPayment } from '../api';
 import Header from '../components/Header';
 
 export default function CryptoPaymentPage({ token, planId, navigate, onLogout }) {
-  const [coin, setCoin] = useState('usdc'); // 'usdc' | 'usdt' | 'eth'
+  const [coin, setCoin] = useState('usdc'); // 'usdc' | 'eth' | 'esdt'
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState('');
 
   useEffect(() => {
     revealAddress();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coin]); // Run when coin changes
 
   const revealAddress = async () => {
@@ -18,11 +19,13 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
     setData(null);
     setLoading(true);
     try {
-      const res = await createNowPayment(token, planId, coin);
+      // Map ESDT selection to EGLD which NOWPayments expects
+      const payCoin = coin === 'esdt' ? 'egld' : coin;
+      const res = await createNowPayment(token, planId, payCoin);
       setData(res); // { payment_id, pay_address, pay_amount, pay_currency, invoice_url }
     } catch (e) {
       console.error(e);
-      setErr('Greška pri kreiranju kripto uplate.');
+      setErr(e?.message || 'Greška pri kreiranju kripto uplate.');
     } finally {
       setLoading(false);
     }
@@ -50,7 +53,7 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
 
           {navigate && (
             <button
-              onClick={() => navigate('/pricing')}
+              onClick={() => navigate('/#plans')}
               className="hidden rounded-full border border-emerald-500/70 px-4 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-emerald-200 transition-colors hover:bg-emerald-500/10 sm:inline-flex"
             >
               Nazad na planove
@@ -66,6 +69,19 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
           <div className="mb-6 flex flex-wrap gap-3">
             <button
               type="button"
+              onClick={() => setCoin('esdt')}
+              className={`flex items-center gap-2 rounded-full border px-4 py-2 text-[14px] transition ${
+                coin === 'esdt'
+                  ? 'border-emerald-500 bg-emerald-500/10 text-emerald-200'
+                  : 'border-emerald-700 bg-black/60 text-slate-200 hover:bg-emerald-500/5'
+              }`}
+            >
+              <span className="font-semibold">ESDT</span>
+              <span className="text-[11px] text-slate-400">MultiversX (EGLD)</span>
+            </button>
+
+            <button
+              type="button"
               onClick={() => setCoin('usdc')}
               className={`flex items-center gap-2 rounded-full border px-4 py-2 text-[14px] transition ${
                 coin === 'usdc'
@@ -74,19 +90,6 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
               }`}
             >
               <span className="font-semibold">USDC</span>
-              <span className="text-[11px] text-slate-400">Ethereum mreža</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setCoin('usdt')}
-              className={`flex items-center gap-2 rounded-full border px-4 py-2 text-[14px] transition ${
-                coin === 'usdt'
-                  ? 'border-emerald-500 bg-emerald-500/10 text-emerald-200'
-                  : 'border-emerald-700 bg-black/60 text-slate-200 hover:bg-emerald-500/5'
-              }`}
-            >
-              <span className="font-semibold">USDT</span>
               <span className="text-[11px] text-slate-400">Ethereum mreža</span>
             </button>
 

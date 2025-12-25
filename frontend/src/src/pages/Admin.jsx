@@ -104,6 +104,7 @@ const Admin = ({ navigate, token, onLogout }) => {
                     <th className="hidden py-2 pr-4 md:table-cell">Iznos</th>
                     <th className="hidden py-2 pr-4 md:table-cell">Plaćeno</th>
                     <th className="py-2 pr-4">Aktivno</th>
+                    <th className="py-2 pr-4">Cash Out</th>
                     <th className="py-2 pr-0">Account</th>
                   </tr>
                 </thead>
@@ -192,6 +193,51 @@ const Admin = ({ navigate, token, onLogout }) => {
                           />
                           {tx.active ? 'Aktivno' : 'Neaktivno'}
                         </button>
+                      </td>
+
+                      {/* Cash out status */}
+                      <td className="py-3 pr-4 align-top">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[13px] font-medium text-slate-50">
+                            {tx.cashoutStatus === 'pending'
+                              ? 'Zahtev poslat'
+                              : tx.cashoutStatus === 'done'
+                                ? 'Obrađeno'
+                                : 'Nema zahteva'}
+                          </span>
+                          {tx.cashoutRequestedAt && (
+                            <span className="text-[12px] text-slate-400">
+                              {new Date(tx.cashoutRequestedAt).toLocaleString()}
+                            </span>
+                          )}
+                          <div className="flex flex-wrap gap-2 mt-1">
+                            {tx.cashoutStatus === 'pending' && (
+                              <button
+                                onClick={() =>
+                                  updateTransaction(tx._id, {
+                                    cashoutStatus: 'done',
+                                  })
+                                }
+                                className="rounded-full bg-emerald-500/10 px-3 py-1 text-[12px] text-emerald-200 hover:bg-emerald-500/20"
+                              >
+                                Označi obrađeno
+                              </button>
+                            )}
+                            {tx.cashoutStatus && tx.cashoutStatus !== 'none' && (
+                              <button
+                                onClick={() =>
+                                  updateTransaction(tx._id, {
+                                    cashoutStatus: 'none',
+                                    cashoutRequestedAt: null,
+                                  })
+                                }
+                                className="rounded-full bg-slate-800 px-3 py-1 text-[12px] text-slate-200 hover:bg-slate-700"
+                              >
+                                Resetuj
+                              </button>
+                            )}
+                          </div>
+                        </div>
                       </td>
 
                       {/* Account poslat – poslednja kolona, uvek vidljiva */}

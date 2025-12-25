@@ -17,7 +17,7 @@ const Cancel = ({ navigate, onLogout }) => {
           Uplata nije prošla ili je prekinuta. Možeš pokušati ponovo ili izabrati drugi plan.
         </p>
         <button
-          onClick={() => navigate('/pricing')}
+          onClick={() => navigate('/#plans')}
           className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-emerald-500 px-4 py-2.5
                      text-[14px] font-sans font-semibold uppercase tracking-[0.16em] text-black
                      shadow-[0_0_18px_rgba(16,185,129,0.7)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"

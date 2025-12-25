@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getLang, setLang, onLangChange } from '../utils/lang';
 
 const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [lang, setLangState] = useState(getLang());
+  const role = (typeof window !== 'undefined' && localStorage.getItem('role')) || 'user';
 
-  const handlePrimary = () => {
-    if (token) navigate('/dashboard');
-    else navigate('/pricing');
-  };
+  useEffect(() => {
+    const unsub = onLangChange((l) => setLangState(l));
+    return () => unsub();
+  }, []);
+
+  // Primary action handled directly in menu items
 
   return (
     <>
@@ -38,8 +43,15 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
         </div>
 
         <div className="flex items-center gap-4 sm:gap-5 text-xs sm:text-sm font-sans">
-          <button className="uppercase tracking-[0.18em] text-slate-300">
-            SRB
+          <button
+            className="uppercase tracking-[0.18em] text-slate-300"
+            onClick={() => {
+              const next = lang === 'sr' ? 'en' : 'sr';
+              setLang(next);
+              setLangState(next);
+            }}
+          >
+            {lang === 'sr' ? 'SRB' : 'ENG'}
           </button>
 
           {/* HAMBURGER SA ANIMACIJOM */}
@@ -95,12 +107,23 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
               <button
                 onClick={() => {
                   setMenuOpen(false);
-                  handlePrimary();
+                  navigate('/#plans');
                 }}
                 className="py-2"
               >
-                {token ? 'Dashboard' : 'Planovi'}
+                Planovi
               </button>
+              {token && (
+                <button
+                  onClick={() => {
+                    setMenuOpen(false);
+                    navigate('/dashboard');
+                  }}
+                  className="py-2"
+                >
+                  Dashboard
+                </button>
+              )}
               <button
                 onClick={() => {
                   setMenuOpen(false);
@@ -121,15 +144,17 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
               </button>
               {token ? (
                 <>
-                  <button
-                    onClick={() => {
-                      setMenuOpen(false);
-                      navigate('/admin');
-                    }}
-                    className="mt-3 rounded-full border border-emerald-500/80 py-2 text-sm font-semibold text-emerald-300"
-                  >
-                    Admin panel
-                  </button>
+                  {role === 'admin' && (
+                    <button
+                      onClick={() => {
+                        setMenuOpen(false);
+                        navigate('/admin');
+                      }}
+                      className="mt-3 rounded-full border border-emerald-500/80 py-2 text-sm font-semibold text-emerald-300"
+                    >
+                      Admin panel
+                    </button>
+                  )}
                   <button
                     onClick={() => {
                       setMenuOpen(false);

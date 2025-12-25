@@ -40,7 +40,7 @@ const CryptoPaymentPage = ({ navigate, token, planId }) => {
         <div className="max-w-md w-full rounded-3xl border border-emerald-800/60 bg-black/80 p-6 text-center shadow-xl shadow-emerald-500/20">
           <p className="mb-3 font-sans text-[15px] text-red-400">{err}</p>
           <button
-            onClick={() => navigate('/pricing')}
+            onClick={() => navigate('/#plans')}
             className="mt-1 inline-flex items-center justify-center rounded-full border border-emerald-600 px-4 py-2 text-[13px] font-sans uppercase tracking-[0.14em] text-emerald-200 hover:bg-emerald-500/10 transition-colors"
           >
             Nazad na planove
@@ -64,7 +64,7 @@ const CryptoPaymentPage = ({ navigate, token, planId }) => {
     <div className="min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
       <div className="mx-auto max-w-lg px-4 pb-16 pt-10">
         <button
-          onClick={() => navigate('/pricing')}
+          onClick={() => navigate('/#plans')}
           className="mb-6 inline-flex items-center gap-2 text-[12px] font-sans uppercase tracking-[0.16em] text-emerald-300 hover:text-emerald-100"
         >
           <span className="text-emerald-400 text-sm">←</span>

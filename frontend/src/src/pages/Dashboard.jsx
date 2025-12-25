@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { getMe } from '../api';
+import { getMe, getCashoutStatus, requestCashout } from '../api';
 import Header from '../components/Header';
 
 const Dashboard = ({ navigate, token, onLogout }) => {
   const [user, setUser] = useState(null);
+  const [cashout, setCashout] = useState({ status: 'none', requestedAt: null, loading: false, error: '' });
 
   useEffect(() => {
     if (!token) {
@@ -14,12 +15,29 @@ const Dashboard = ({ navigate, token, onLogout }) => {
       try {
         const res = await getMe(token);
         setUser(res.user);
+        try {
+          const co = await getCashoutStatus(token);
+          setCashout((prev) => ({ ...prev, status: co.status || 'none', requestedAt: co.requestedAt || null }));
+        } catch (coErr) {
+          console.error(coErr);
+        }
       } catch (e) {
         console.error(e);
         onLogout();
       }
     })();
   }, [token, navigate, onLogout]);
+
+  const handleCashout = async () => {
+    if (!hasPlan) return;
+    setCashout((prev) => ({ ...prev, loading: true, error: '' }));
+    try {
+      const res = await requestCashout(token);
+      setCashout({ status: res.status || 'pending', requestedAt: res.requestedAt || new Date().toISOString(), loading: false, error: '' });
+    } catch (err) {
+      setCashout((prev) => ({ ...prev, loading: false, error: err.message || 'Cashout request error' }));
+    }
+  };
 
   if (!token) return null;
 
@@ -65,7 +83,7 @@ const Dashboard = ({ navigate, token, onLogout }) => {
 
           <div className="flex items-center gap-3">
             <button
-              onClick={() => navigate('/pricing')}
+              onClick={() => navigate('/#plans')}
               className="hidden rounded-full border border-emerald-500/70 px-4 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px] sm:inline-flex"
             >
               Planovi
@@ -152,22 +170,33 @@ const Dashboard = ({ navigate, token, onLogout }) => {
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <button
-                  onClick={() => navigate('/pricing')}
+                  onClick={() => navigate('/#plans')}
                   className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-2.5 text-[14px] font-sans font-semibold uppercase tracking-[0.16em] text-black shadow-[0_0_18px_rgba(16,185,129,0.7)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
                 >
                   {hasPlan ? 'Nadogradi plan' : 'Kupi plan'}
                   <span>→</span>
                 </button>
                 <button
-                  onClick={() => navigate('/contact?cashout=1')}
-                  className="inline-flex items-center gap-2 rounded-full border border-emerald-500/70 px-5 py-2.5 text-[14px] font-sans font-semibold uppercase tracking-[0.16em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-1"
+                  onClick={handleCashout}
+                  disabled={!hasPlan || cashout.loading || cashout.status === 'pending'}
+                  className="inline-flex items-center gap-2 rounded-full border border-emerald-500/70 px-5 py-2.5 text-[14px] font-sans font-semibold uppercase tracking-[0.16em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-1 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Cash Out
+                  {cashout.status === 'pending' ? 'Zahtev poslat' : 'Cash Out zahtev'}
                   <span>↗</span>
                 </button>
-                <p className="text-[11px] font-sans text-slate-400">
-                  Login ostaje isti nakon nadogradnje.
-                </p>
+                <div className="flex flex-col gap-1">
+                  <p className="text-[11px] font-sans text-slate-400">
+                    Login ostaje isti nakon nadogradnje.
+                  </p>
+                  {cashout.status === 'pending' && cashout.requestedAt && (
+                    <p className="text-[11px] font-sans text-emerald-300">
+                      Poslato: {new Date(cashout.requestedAt).toLocaleString()}
+                    </p>
+                  )}
+                  {cashout.error && (
+                    <p className="text-[11px] font-sans text-red-400">{cashout.error}</p>
+                  )}
+                </div>
               </div>
             </div>
           </section>
@@ -179,7 +208,7 @@ const Dashboard = ({ navigate, token, onLogout }) => {
                 Plaćanja
               </h3>
               <ul className="space-y-1.5 font-sans text-[13px] text-slate-300">
-                <li>• Kartice idu preko Stripe‑a, kripto preko NOWPayments.</li>
+               
                 <li>• Ne čuvamo brojeve kartica.</li>
                 <li>• Aktivacija plana obično traje nekoliko minuta.</li>
               </ul>

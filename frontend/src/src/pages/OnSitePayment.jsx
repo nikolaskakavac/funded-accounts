@@ -39,12 +39,15 @@ const OnSitePaymentPage = ({ navigate, token, onLogout, planId }) => {
           <OnSiteStripeCheckout
             token={token}
             planId={planId}
-            onSuccess={() => (window.location.href = '/success')}
+            onSuccess={(pi) => {
+              const id = pi?.id || '';
+              window.location.href = `/success?payment_intent=${encodeURIComponent(id)}&method=karticom`;
+            }}
           />
         </section>
 
         <div className="mt-4 text-center">
-          <button onClick={() => navigate('/pricing')} className="text-sm text-slate-400 hover:underline">
+          <button onClick={() => navigate('/#plans')} className="text-sm text-slate-400 hover:underline">
             Povratak na planove
           </button>
         </div>

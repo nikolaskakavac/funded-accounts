@@ -87,7 +87,13 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
       if (result.error) {
         setErr(result.error.message || 'Greška pri plaćanju.');
       } else if (result.paymentIntent?.status === 'succeeded') {
-        onSuccess?.();
+        if (onSuccess) {
+          onSuccess(result.paymentIntent);
+        } else {
+          const piId = result.paymentIntent.id;
+          const url = `/success?payment_intent=${encodeURIComponent(piId)}&method=karticom`;
+          window.location.href = url;
+        }
       }
     } catch (e) {
       console.error(e);

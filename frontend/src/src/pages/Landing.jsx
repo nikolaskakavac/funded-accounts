@@ -9,11 +9,6 @@ import mastercardLogo from '/img/mastercard-logo.svg';
 import raiffeisenLogo from '/img/raiffeisen.png';
 
 const Landing = ({ navigate, token }) => {
-  const handlePrimary = () => {
-    if (token) navigate('/dashboard');
-    else navigate('/pricing');
-  };
-
   const [onSitePlanId, setOnSitePlanId] = useState(null);
 
   const landingPlans = [
@@ -32,8 +27,8 @@ const Landing = ({ navigate, token }) => {
           bg-no-repeat
           bg-[center_58%]
           bg-[length:112%]
-          sm:bg-[center_62%]
-          sm:bg-[length:90%]
+          sm:bg-[center_52%]
+          sm:bg-[length:88%]
           bg-[#111111]
           min-h-[720px]
           sm:min-h-[780px]
@@ -46,7 +41,7 @@ const Landing = ({ navigate, token }) => {
           <Header navigate={navigate} token={token} onLogout={() => {}} showBackLink={false} />
 
             {/* HERO TEKST */}
-            <main className="px-4 pb-6 -mt-4 flex-1 flex">
+            <main className="px-4 pb-3 -mt-4 flex-1 flex">
               <section className="w-full max-w-5xl mx-auto text-center">
                 <h1
                   className="text-left sm:text-center ml-2 sm:ml-0 font-display text-[38px] sm:text-[44px] lg:text-[72px] xl:text-[84px] leading-[1.03] font-extrabold tracking-[0.12em] uppercase
@@ -68,11 +63,11 @@ const Landing = ({ navigate, token }) => {
 
 
                 <div
-                  className="mt-64 sm:mt-32 space-y-4 w-full max-w-xl mx-auto pb-4 font-sans
+                  className="mt-80 sm:mt-24 space-y-4 w-full max-w-xl mx-auto pb-4 font-sans
                               opacity-0 translate-y-3 animate-[fadeUp_0.9s_ease-out_forwards]"
                 >
                   <button
-                    onClick={handlePrimary}
+                    onClick={() => navigate('/#how-it-works')}
                     className="relative w-full rounded-full bg-emerald-500 py-3.5 sm:py-4 text-[16px] sm:text-[18px]
                                font-semibold tracking-[0.12em] uppercase text-black
                                transition-all duration-200 ease-out hover:-translate-y-1
@@ -83,7 +78,7 @@ const Landing = ({ navigate, token }) => {
                     Saznaj više
                   </button>
                   <button
-                    onClick={() => navigate('/pricing')}
+                    onClick={() => navigate('/#plans')}
                     className="w-full rounded-full border border-emerald-300/90 py-3.5 sm:py-4 text-[16px] sm:text-[18px]
                                font-semibold tracking-[0.12em] uppercase text-emerald-100
                                bg-gradient-to-b from-emerald-500/15 to-emerald-500/28
@@ -96,15 +91,15 @@ const Landing = ({ navigate, token }) => {
                 </div>
               </section>
             </main>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-b from-transparent to-black" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-6 bg-gradient-to-b from-transparent to-black" />
           </div>
         </div>
       
 
       {/* BLOK: Kako funkcioniše + Pravila rizika */}
-      <div className="bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-4 sm:pt-6 pb-12">
+      <div className="bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-1 sm:pt-2 pb-12">
         <div className="max-w-5xl mx-auto">
-          <section className="mt-4 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
+          <section id="how-it-works" className="mt-0.5 sm:mt-1 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
             <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
               Kako funkcioniše
             </h2>
@@ -306,7 +301,7 @@ const Landing = ({ navigate, token }) => {
 </section>
 
       {/* PLANOVI */}
-      <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-14">
+      <section id="plans" className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-14">
         <div className="max-w-5xl mx-auto space-y-8">
           <div className="text-center">
             <p className="font-display text-[11px] uppercase tracking-[0.26em] text-emerald-400">
@@ -364,7 +359,10 @@ const Landing = ({ navigate, token }) => {
                     💳 Plati karticom
                   </button>
                   <button
-                    onClick={() => navigate('/pricing')}
+                    onClick={() => {
+                      if (!token) navigate('/register');
+                      else navigate('/pay-crypto/693db3e0e9cf589519c144fe');
+                    }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
                     🪙 Plati kriptom (79€)
@@ -415,7 +413,10 @@ const Landing = ({ navigate, token }) => {
                     💳 Plati karticom
                   </button>
                   <button
-                    onClick={() => navigate('/pricing')}
+                    onClick={() => {
+                      if (!token) navigate('/register');
+                      else navigate('/pay-crypto/693db3ede9cf589519c14500');
+                    }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
                     🪙 Plati kriptom (169€)
@@ -520,7 +521,7 @@ const Landing = ({ navigate, token }) => {
 
           <div className="flex flex-col items-start gap-1 font-sans text-[13px] text-slate-400 sm:items-end">
             <button
-              onClick={() => navigate('/pricing')}
+              onClick={() => navigate('/#plans')}
               className="text-emerald-300 hover:text-emerald-100 transition-colors"
             >
               Planovi i cene

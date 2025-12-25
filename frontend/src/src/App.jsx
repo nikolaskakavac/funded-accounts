@@ -12,6 +12,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Partnerstvo from './pages/Partnerstvo';
 import OnSitePaymentPage from './pages/OnSitePayment';
+import { getLang } from './utils/lang';
 
 const App = () => {
   const [path, setPath] = useState(window.location.pathname);
@@ -19,9 +20,23 @@ const App = () => {
   const [role, setRole] = useState(localStorage.getItem('role') || 'user');
 
   const navigate = (to) => {
-    if (to !== window.location.pathname) {
+    const current = window.location.pathname + window.location.hash;
+    if (to !== current) {
       window.history.pushState({}, '', to);
-      setPath(to);
+      // Path should be based on pathname to keep routing simple
+      setPath(window.location.pathname);
+      const hash = to.split('#')[1];
+      if (hash) {
+        // Scroll after render
+        setTimeout(() => {
+          const el = document.getElementById(hash);
+          if (el) {
+            const headerOffset = 80; // keep target visible below fixed header
+            const y = el.getBoundingClientRect().top + window.scrollY - headerOffset;
+            window.scrollTo({ top: y > 0 ? y : 0, behavior: 'smooth' });
+          }
+        }, 0);
+      }
     }
   };
 
@@ -30,6 +45,12 @@ const App = () => {
       setPath(window.location.pathname);
     };
     window.addEventListener('popstate', onPopState);
+    // Set html data-lang for CSS/clients
+    try {
+      document.documentElement.setAttribute('data-lang', getLang());
+    } catch (err) {
+      console.error('Failed to set data-lang', err);
+    }
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
 

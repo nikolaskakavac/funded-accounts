@@ -69,7 +69,14 @@ export const createNowPayment = async (token, planId, payCurrency) => {
     },
     body: JSON.stringify({ planId, pay_currency: payCurrency }),
   });
-  return res.json();
+
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const msg = body?.message || 'NOWPayments error';
+    const detail = body?.detail ? `: ${JSON.stringify(body.detail)}` : '';
+    throw new Error(msg + detail);
+  }
+  return body;
 };
 
 // NOWPayments – status check
@@ -87,4 +94,34 @@ export const checkNowPaymentStatus = async (paymentId, token) => {
   }
 
   return res.json();
+};
+
+// Cash out
+export const getCashoutStatus = async (token) => {
+  const res = await fetch(`${API_BASE}/cashout/me`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body.message || 'Cashout status error');
+  }
+  return res.json();
+};
+
+export const requestCashout = async (token) => {
+  const res = await fetch(`${API_BASE}/cashout/request`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(body.message || 'Cashout request error');
+  }
+  return body;
 };
