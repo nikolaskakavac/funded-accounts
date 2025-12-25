@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import Leaderboard from '../components/Leaderboard';
 import OnSiteStripeCheckout from '../components/OnSiteStripeCheckout';
+import { t } from '../utils/translations';
+import { getLang } from '../utils/lang';
 
 // payment badge images
 import visaLogo from '/img/visa.png';
@@ -10,6 +12,7 @@ import raiffeisenLogo from '/img/raiffeisen.png';
 
 const Landing = ({ navigate, token }) => {
   const [onSitePlanId, setOnSitePlanId] = useState(null);
+  const lang = getLang();
 
   const landingPlans = [
     { id: '693db3e0e9cf589519c144fe', name: 'Nalog sa 10.000€', price: 99 },
@@ -49,7 +52,7 @@ const Landing = ({ navigate, token }) => {
                               opacity-0 translate-y-3 animate-[fadeUp_0.6s_ease-out_forwards]"
                   style={{ fontFamily: "'Room Black', sans-serif" }}
                 >
-                  Uloži u kripto sa našim kapitalom.
+                  {t('hero.title')}
                 </h1>
 
                 <h2
@@ -58,7 +61,7 @@ const Landing = ({ navigate, token }) => {
                               opacity-0 translate-y-3 animate-[fadeUp_0.65s_ease-out_forwards]"
                   style={{ fontFamily: "'Room Black', sans-serif" }}
                 >
-                  Podeli profit.
+                  {t('hero.subtitle')}
                 </h2>
 
 
@@ -75,7 +78,7 @@ const Landing = ({ navigate, token }) => {
                                before:absolute before:inset-0 before:rounded-full before:border
                                before:border-emerald-500/40 before:animate-[pulseBorder_1.8s_ease-out_infinite]"
                   >
-                    Saznaj više
+                    {t('hero.learnMore')}
                   </button>
                   <button
                     onClick={() => navigate('/#plans')}
@@ -86,7 +89,7 @@ const Landing = ({ navigate, token }) => {
                                hover:from-emerald-500/22 hover:to-emerald-500/32
                                active:translate-y-0"
                   >
-                    Pogledaj planove
+                    {t('hero.viewPlans')}
                   </button>
                 </div>
               </section>
@@ -101,34 +104,50 @@ const Landing = ({ navigate, token }) => {
         <div className="max-w-5xl mx-auto">
           <section id="how-it-works" className="mt-0.5 sm:mt-1 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
             <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
-              Kako funkcioniše
+              {t('howItWorks.title')}
             </h2>
 
             <p className="font-sans text-[20px] sm:text-[22px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-4">
-              Kada kupiš nalog na našem websajtu, dobijaš log in podatke od već postojećeg,
-              unapred <span className="font-semibold text-emerald-400">„napunjenog" kripto naloga</span>.
-              Svaki kupac dobija svoj, zaseban nalog – nema deljenja sa drugima.
-              <br />
-              <br />
-              <span className="font-semibold text-white">Tvoj zadatak je jasan:</span>{' '}
-              ostvari profit investirajući u neku od{' '}
-              <span className="font-semibold text-white">kripto-valuta</span> sa našim novcem.
-              Ti se fokusiraš isključivo na{' '}
-              <span className="font-semibold text-white">investiranje</span>, dok mi brinemo o{' '}
-              <span className="font-semibold text-white">nalogu</span>,{' '}
-              <span className="font-semibold text-white">kapitalu</span> i kompletnoj{' '}
-              <span className="font-semibold text-white">tehničkoj infrastrukturi</span>.
+              {lang === 'sr' ? (
+                <>
+                  Kada kupiš nalog na našem websajtu, dobijaš log in podatke od već postojećeg,
+                  unapred <span className="font-semibold text-emerald-400">„napunjenog" kripto naloga</span>.
+                  Svaki kupac dobija svoj, zaseban nalog – nema deljenja sa drugima.
+                  <br />
+                  <br />
+                  <span className="font-semibold text-white">Tvoj zadatak je jasan:</span>{' '}
+                  ostvari profit investirajući u neku od{' '}
+                  <span className="font-semibold text-white">kripto-valuta</span> sa našim novcem.
+                  Ti se fokusiraš isključivo na{' '}
+                  <span className="font-semibold text-white">investiranje</span>, dok mi brinemo o{' '}
+                  <span className="font-semibold text-white">nalogu</span>,{' '}
+                  <span className="font-semibold text-white">kapitalu</span> i kompletnoj{' '}
+                  <span className="font-semibold text-white">tehničkoj infrastrukturi</span>.
+                </>
+              ) : (
+                <>
+                  {t('howItWorks.description')}
+                  <br />
+                  <br />
+                  <span className="font-semibold text-white">{t('howItWorks.task')}</span>{' '}
+                  {t('howItWorks.profit')}{' '}
+                  <span className="font-semibold text-white">{t('howItWorks.crypto')}</span> {t('howItWorks.withOurMoney')}.
+                  {t('howItWorks.focus')}{' '}
+                  <span className="font-semibold text-white">{t('howItWorks.investing')}</span>, {t('howItWorks.weTakeCare')}{' '}
+                  <span className="font-semibold text-white">{t('howItWorks.account')}</span>,{' '}
+                  <span className="font-semibold text-white">{t('howItWorks.capital')}</span> {t('howItWorks.infrastructure')}.
+                </>
+              )}
             </p>
           </section>
 
           <section className="mt-10 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10">
             <h2 className="text-center font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
-              Pravila rizika
+              {t('risk.title')}
             </h2>
 
             <p className="font-sans text-[18px] sm:text-[20px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto text-center mb-6">
-              Da bi nalog ostao aktivan, dovoljno je da poštuješ dva jednostavna pravila rizika.
-              Kršenje bilo kog od njih automatski deaktivira nalog.
+              {t('risk.description')}
             </p>
 
             <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
@@ -138,12 +157,16 @@ const Landing = ({ navigate, token }) => {
                   1
                 </div>
                 <h3 className="mb-1 font-sans text-[17px] sm:text-[18px] font-semibold text-emerald-200">
-                  Maksimalni ukupni gubitak
+                  {t('risk.rule1.title')}
                 </h3>
                 <p className="font-sans text-[16px] sm:text-[18px] text-emerald-50/90 leading-relaxed">
-                  Ako izgubiš više od{' '}
-                  <span className="font-semibold text-emerald-300">20% ukupnog kapitala</span> koji
-                  ti je dodeljen, nalog se deaktivira.
+                  {lang === 'sr' ? (
+                    <>
+                      Ako izgubiš više od{' '}
+                      <span className="font-semibold text-emerald-300">20% ukupnog kapitala</span> koji
+                      ti je dodeljen, nalog se deaktivira.
+                    </>
+                  ) : t('risk.rule1.description')}
                 </p>
               </div>
 
@@ -153,12 +176,16 @@ const Landing = ({ navigate, token }) => {
                   2
                 </div>
                 <h3 className="mb-1 font-sans text-[17px] sm:text-[18px] font-semibold text-emerald-200">
-                  Maksimalni dnevni gubitak
+                  {t('risk.rule2.title')}
                 </h3>
                 <p className="font-sans text-[16px] sm:text-[18px] text-emerald-50/90 leading-relaxed">
-                  Ako u jednom danu izgubiš više od{' '}
-                  <span className="font-semibold text-emerald-300">1.000 €</span>, nalog se
-                  deaktivira.
+                  {lang === 'sr' ? (
+                    <>
+                      Ako u jednom danu izgubiš više od{' '}
+                      <span className="font-semibold text-emerald-300">1.000 €</span>, nalog se
+                      deaktivira.
+                    </>
+                  ) : t('risk.rule2.description')}
                 </p>
               </div>
             </div>
@@ -173,7 +200,7 @@ const Landing = ({ navigate, token }) => {
         <div className="max-w-5xl mx-auto space-y-8">
           <div className="text-center">
             <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-3">
-              Šta tačno dobijaš kupovinom naloga?
+              {t('whatYouGet.title')}
             </h2>
           </div>
 
@@ -196,11 +223,10 @@ const Landing = ({ navigate, token }) => {
                 </div>
               </div>
               <h3 className="font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
-                Kapital za investiranje
+                {t('whatYouGet.capital.title')}
               </h3>
               <p className="font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
-                Dobijaš novac od nas koji možeš da investiraš na kripto valutu po tvom izboru. Ne rizikuješ
-                sopstveni novac, već koristiš naš kapital.
+                {t('whatYouGet.capital.description')}
               </p>
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
             </div>
@@ -222,11 +248,10 @@ const Landing = ({ navigate, token }) => {
                 </div>
               </div>
               <h3 className="font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
-                LOG IN + OBUKA
+                {t('whatYouGet.platform.title')}
               </h3>
               <p className="font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
-                Dobijaš log in podatke od svog "napunjenog" kripto naloga, uz besplatnu obuku o
-                investiranju da bi brže ušao u ritam.
+                {t('whatYouGet.platform.description')}
               </p>
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
             </div>
@@ -248,16 +273,10 @@ const Landing = ({ navigate, token }) => {
                 </div>
               </div>
               <h3 className="text-center font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
-                Podela profita
+                {t('whatYouGet.profit.title')}
               </h3>
              <p className="text-center font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
-  Kada kripto-valuta u koju si odlučio da investiraš zabeleži rast i ti odlučiš da
-  napraviš{' '}
-  <span className="text-emerald-300 font-semibold">
-    CASH OUT
-  </span>
-  , 80% profita se isplaćuje na tvoju kreditnu karticu ili lični
-  kripto račun, a 20% skupljamo mi.
+  {t('whatYouGet.profit.description')}
 </p>
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
             </div>
@@ -268,7 +287,8 @@ const Landing = ({ navigate, token }) => {
 
         </div>
       </section>
-<section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
+
+      <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
   {/* gornja linija */}
   <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
   {/* donja linija */}
@@ -276,27 +296,21 @@ const Landing = ({ navigate, token }) => {
 
   <div className="max-w-5xl mx-auto text-center">
    <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.2em] text-emerald-400 mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-  Naš cilj
+  {t('goal.title')}
 </h2>
 <p className="font-sans text-[18px] sm:text-[20px] leading-[1.5] sm:leading-relaxed max-w-3xl mx-auto text-emerald-50/95 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
-  Naš model je zasnovan na jednostavnom principu —{' '}
-  <span className="font-semibold text-emerald-200 drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
-    mi zarađujemo samo kada zarađuju naši klijenti.
-  </span>
+  {t('goal.description')}
   
   <br className="sm:hidden" />
   <br />
   
-  Kroz prirodan proces selekcije, naš kapital se vremenom usmerava ka onima koji ostvaruju najbolje rezultate, 
-  čime se rizik za nas smanjuje, a dobit raste.
+  {t('goal.selection')}
   
   <br className="sm:hidden" />
   <br />
   
-  Na taj način stvaramo sistem u kome i početnici mogu da ostvare značajne profite, 
-  dok se uspešnima otvara prostor za veće investicije i zajednički rast.
+  {t('goal.beginners')}
 </p>
-
   </div>
 </section>
 
@@ -305,10 +319,10 @@ const Landing = ({ navigate, token }) => {
         <div className="max-w-5xl mx-auto space-y-8">
           <div className="text-center">
             <p className="font-display text-[11px] uppercase tracking-[0.26em] text-emerald-400">
-              Planovi
+              {t('plans.section')}
             </p>
             <h2 className="mt-2 font-display text-[28px] sm:text-[34px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
-              Izaberi veličinu naloga.
+              {t('plans.title')}
             </h2>
             
           </div>
@@ -321,17 +335,17 @@ const Landing = ({ navigate, token }) => {
                               border-emerald-400 shadow-emerald-500/30 hover:-translate-y-2 ring-2 ring-emerald-500/20
                               transition-all duration-200 ease-out">
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-300 px-4 py-0.5 text-[10px] font-display uppercase tracking-[0.2em] text-black shadow-md">
-                  Preporučeno
+                  {t('plans.recommended')}
                 </div>
                 <div className="mb-4 space-y-1 text-center">
                   <div className="font-display text-[24px] sm:text-[28px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
-                    Investicioni nalog sa 10.000€
+                    {lang === 'sr' ? 'Investicioni nalog sa 10.000€' : 'Investment Account with €10,000'}
                   </div>
                   <div className="font-sans text-[14px] text-emerald-400/80 mt-1">
-                    Ograničeni gubitak: 20%
+                    {t('plans.loss')}: 20%
                   </div>
                   <div className="font-display text-[16px] font-semibold tracking-[0.08em] text-emerald-300">
-                    Cena:
+                    {t('plans.price')}:
                   </div>
                   <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
                     99€
@@ -356,7 +370,7 @@ const Landing = ({ navigate, token }) => {
                     }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
-                    💳 Plati karticom
+                    💳 {t('plans.payCard')}
                   </button>
                   <button
                     onClick={() => {
@@ -365,7 +379,7 @@ const Landing = ({ navigate, token }) => {
                     }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
-                    🪙 Plati kriptom (79€)
+                    🪙 {t('plans.payCrypto')} (79€)
                   </button>
                 </div>
               </div>
@@ -379,13 +393,13 @@ const Landing = ({ navigate, token }) => {
                               transition-all duration-200 ease-out">
                 <div className="mb-4 space-y-1 text-center">
                   <div className="font-display text-[24px] sm:text-[28px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
-                    Investicioni nalog sa 20.000€
+                    {lang === 'sr' ? 'Investicioni nalog sa 20.000€' : 'Investment Account with €20,000'}
                   </div>
                   <div className="font-sans text-[14px] text-emerald-400/80 mt-1">
-                    Ograničeni gubitak: 15%
+                    {t('plans.loss')}: 15%
                   </div>
                   <div className="font-display text-[16px] font-semibold tracking-[0.08em] text-emerald-300">
-                    Cena:
+                    {t('plans.price')}:
                   </div>
                   <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
                     189€
@@ -410,7 +424,7 @@ const Landing = ({ navigate, token }) => {
                     }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
-                    💳 Plati karticom
+                    💳 {t('plans.payCard')}
                   </button>
                   <button
                     onClick={() => {
@@ -419,7 +433,7 @@ const Landing = ({ navigate, token }) => {
                     }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
-                    🪙 Plati kriptom (169€)
+                    🪙 {t('plans.payCrypto')} (169€)
                   </button>
                 </div>
               </div>
@@ -431,7 +445,7 @@ const Landing = ({ navigate, token }) => {
               <div className="w-full max-w-lg rounded-3xl border-2 border-emerald-500/80 bg-gradient-to-b from-emerald-500/10 via-black/80 to-emerald-900/10 p-8 shadow-2xl shadow-emerald-500/30 backdrop-blur-sm">
                 <div className="text-center mb-6">
                   <p className="mt-4 text-2xl font-display font-extrabold tracking-[0.1em] uppercase text-slate-50">
-                    Investicioni {selectedPlan.name}
+                    {lang === 'sr' ? `Investicioni ${selectedPlan.name}` : `Investment ${selectedPlan.name}`}
                   </p>
                   <p className="text-4xl font-display font-extrabold tracking-[0.15em] text-emerald-400 mt-2">
                     {selectedPlan.price}€
@@ -449,7 +463,7 @@ const Landing = ({ navigate, token }) => {
                     onClick={() => setOnSitePlanId(null)}
                     className="text-sm text-slate-400 hover:underline"
                   >
-                    Otkaži
+                    {lang === 'sr' ? 'Otkaži' : 'Cancel'}
                   </button>
                 </div>
               </div>
@@ -457,7 +471,7 @@ const Landing = ({ navigate, token }) => {
           )}
 
           <p className="mt-8 font-sans text-[13px] text-slate-400 max-w-3xl mx-auto text-center">
-            Nakon uspešne uplate, na tvoj Gmail stižu podaci za pristup (email i lozinka), a svoj aktivni plan vidiš u dashboard‑u na našem web sajtu.
+            {t('plans.afterPayment')}
           </p>
         </div>
       </section>
@@ -469,38 +483,38 @@ const Landing = ({ navigate, token }) => {
         <div className="max-w-5xl mx-auto space-y-6">
           <div className="text-center">
             <p className="font-display text-[11px] uppercase tracking-[0.24em] text-emerald-400">
-              Česta pitanja
+              {t('faq.section')}
             </p>
             <h2 className="mt-2 font-display text-[26px] sm:text-[30px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
-              Šta treba da znaš pre kupovine?
+              {t('faq.title')}
             </h2>
           </div>
 
           <div className="space-y-4">
             <div className="rounded-2xl border border-emerald-700/50 bg-black/60 px-5 py-4">
               <h3 className="font-display text-[15px] sm:text-[16px] font-semibold tracking-[0.08em] uppercase text-emerald-300">
-                Da li moj novac ide na trading nalog?
+                {t('faq.q1')}
               </h3>
               <p className="mt-1 font-sans text-[14px] sm:text-[15px] text-slate-200/90 leading-relaxed">
-                Ne. Nakon uspešne kupovine dobijaš login podatke od već postojećeg kripto naloga koji je "napunjen" sa našim kapitalom. Koristiš naš kapital a ne svoj.
+                {t('faq.a1')}
               </p>
             </div>
 
             <div className="rounded-2xl border border-emerald-700/50 bg-black/60 px-5 py-4">
               <h3 className="font-display text-[15px] sm:text-[16px] font-semibold tracking-[0.08em] uppercase text-emerald-300">
-                Kada dobijam pristup dashboard‑u?
+                {t('faq.q2')}
               </h3>
               <p className="mt-1 font-sans text-[14px] sm:text-[15px] text-slate-200/90 leading-relaxed">
-                Odmah nakon potvrde uplate dobijaš pristup klijent dashboard‑u i podacima za login.
+                {t('faq.a2')}
               </p>
             </div>
 
             <div className="rounded-2xl border border-emerald-700/50 bg-black/60 px-5 py-4">
               <h3 className="font-display text-[15px] sm:text-[16px] font-semibold tracking-[0.08em] uppercase text-emerald-300">
-                Kako funkcioniše podela profita?
+                {t('faq.q3')}
               </h3>
               <p className="mt-1 font-sans text-[14px] sm:text-[15px] text-slate-200/90 leading-relaxed">
-               Kada kripto-valuta u koju si odlučio da investiraš zabeleži rast i ti odlučiš da napraviš CASH OUT, 80% profita se isplaćuje na tvoju kreditnu karticu ili lični kripto račun, a 20% skupljamo mi.
+               {t('faq.a3')}
               </p>
             </div>
           </div>
@@ -515,7 +529,7 @@ const Landing = ({ navigate, token }) => {
               Vault<span className="text-emerald-400">Funding</span>
             </div>
             <p className="mt-1 font-sans text-[13px] text-slate-400">
-              Profesionalno investiranje za svakoga.
+              {t('footer.professional')}
             </p>
           </div>
 
@@ -524,16 +538,16 @@ const Landing = ({ navigate, token }) => {
               onClick={() => navigate('/#plans')}
               className="text-emerald-300 hover:text-emerald-100 transition-colors"
             >
-              Planovi i cene
+              {t('footer.pricing')}
             </button>
             <button
               onClick={() => navigate('/contact')}
               className="text-emerald-300 hover:text-emerald-100 transition-colors"
             >
-              Kontakt podrška
+              {t('footer.contact')}
             </button>
             <p className="mt-1 text-[12px] text-slate-500">
-              © {new Date().getFullYear()} VaultFunding. Sva prava zadržana.
+              © {new Date().getFullYear()} VaultFunding. {t('footer.rights')}
             </p>
           </div>
         </div>

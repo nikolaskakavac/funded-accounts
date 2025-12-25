@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { getMe, getCashoutStatus, requestCashout } from '../api';
 import Header from '../components/Header';
+import { t } from '../utils/translations';
+import { getLang } from '../utils/lang';
 
 const Dashboard = ({ navigate, token, onLogout }) => {
   const [user, setUser] = useState(null);
   const [cashout, setCashout] = useState({ status: 'none', requestedAt: null, loading: false, error: '' });
+  const lang = getLang();
 
   useEffect(() => {
     if (!token) {
@@ -71,13 +74,13 @@ const Dashboard = ({ navigate, token, onLogout }) => {
         <header className="mb-10 flex items-center justify-between gap-4">
           <div>
             <p className="font-display text-[12px] uppercase tracking-[0.26em] text-emerald-400">
-              Klijent zona
+              {t('dashboard.clientZone', lang)}
             </p>
             <h1 className="mt-1 font-display text-[30px] sm:text-[34px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
-              Dashboard
+              {t('dashboard.title', lang)}
             </h1>
             <p className="mt-2 font-sans text-[15px] text-emerald-100/90">
-              Pregled naloga, plana i balansa.
+              {t('dashboard.description', lang)}
             </p>
           </div>
 
@@ -86,13 +89,13 @@ const Dashboard = ({ navigate, token, onLogout }) => {
               onClick={() => navigate('/#plans')}
               className="hidden rounded-full border border-emerald-500/70 px-4 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px] sm:inline-flex"
             >
-              Planovi
+              {t('nav.plans', lang)}
             </button>
             <button
               onClick={onLogout}
               className="rounded-full border border-red-500/80 px-4 py-1.5 text-[12px] font-sans uppercase tracking-[0.14em] text-red-300 transition-all duration-200 hover:bg-red-600/10 hover:-translate-y-[1px]"
             >
-              Odjava
+              {t('nav.logout', lang)}
             </button>
           </div>
         </header>
@@ -104,13 +107,13 @@ const Dashboard = ({ navigate, token, onLogout }) => {
             {/* Balans - FIX: € umesto $ */}
             <div className="rounded-3xl border border-emerald-800/60 bg-gradient-to-r from-[#02110b] via-black to-[#02110b] p-6 shadow-lg shadow-emerald-500/20">
               <p className="font-display text-[12px] uppercase tracking-[0.22em] text-emerald-300">
-                Balans
+                {t('dashboard.balance', lang)}
               </p>
               <p className="mt-3 font-display text-[32px] sm:text-[36px] font-extrabold tracking-[0.08em] text-emerald-300">
                 {balance.toLocaleString('de-DE')} €
               </p>
               <p className="mt-1 font-sans text-[12px] text-emerald-100/90">
-                Vrednost tvog aktivnog plana.
+                {t('dashboard.balanceDescription', lang)}
               </p>
             </div>
 
@@ -119,10 +122,10 @@ const Dashboard = ({ navigate, token, onLogout }) => {
               <div className="mb-5 flex items-center justify-between gap-3">
                 <div>
                   <h2 className="font-display text-[20px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
-                    Nalog
+                    {t('dashboard.account', lang)}
                   </h2>
                   <p className="mt-1 font-sans text-[14px] text-emerald-100/90">
-                    Tvoj email i funded status.
+                    {t('dashboard.accountDescription', lang)}
                   </p>
                 </div>
                 <StatusBadge hasPlan={hasPlan} />
@@ -130,7 +133,7 @@ const Dashboard = ({ navigate, token, onLogout }) => {
 
               <div className="space-y-4 font-sans text-[15px] text-slate-100/90">
                 <div>
-                  <p className="text-[11px] text-slate-400">Ime i prezime</p>
+                  <p className="text-[11px] text-slate-400">{t('dashboard.name', lang)}</p>
                   <p className="mt-0.5 font-medium text-slate-50">
                     {user?.firstName && user?.lastName ? (
                       `${user.firstName} ${user.lastName}`
@@ -141,7 +144,7 @@ const Dashboard = ({ navigate, token, onLogout }) => {
                 </div>
 
                 <div>
-                  <p className="text-[11px] text-slate-400">Plan</p>
+                  <p className="text-[11px] text-slate-400">{t('dashboard.plan', lang)}</p>
                   {hasPlan ? (
                     <div className="mt-1 space-y-1">
                       <p className="font-medium text-slate-50">
@@ -154,7 +157,7 @@ const Dashboard = ({ navigate, token, onLogout }) => {
                       </p>
                       {/* FIX: Placeno sa € */}
                       <p className="text-[12px] text-slate-400">
-                        Plaćeno:{' '}
+                        {t('dashboard.paid', lang)}{' '}
                         <span className="font-medium text-emerald-400">
                           {formatEuro(user.currentPlan.price)}
                         </span>
@@ -162,7 +165,7 @@ const Dashboard = ({ navigate, token, onLogout }) => {
                     </div>
                   ) : (
                     <p className="mt-0.5 text-[14px] text-slate-400">
-                      Trenutno nemaš aktivan plan.
+                      {t('dashboard.noActivePlan', lang)}
                     </p>
                   )}
                 </div>
@@ -173,7 +176,7 @@ const Dashboard = ({ navigate, token, onLogout }) => {
                   onClick={() => navigate('/#plans')}
                   className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-2.5 text-[14px] font-sans font-semibold uppercase tracking-[0.16em] text-black shadow-[0_0_18px_rgba(16,185,129,0.7)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
                 >
-                  {hasPlan ? 'Nadogradi plan' : 'Kupi plan'}
+                  {hasPlan ? t('dashboard.upgradePlan', lang) : t('dashboard.buyPlan', lang)}
                   <span>→</span>
                 </button>
                 <button
@@ -181,16 +184,16 @@ const Dashboard = ({ navigate, token, onLogout }) => {
                   disabled={!hasPlan || cashout.loading || cashout.status === 'pending'}
                   className="inline-flex items-center gap-2 rounded-full border border-emerald-500/70 px-5 py-2.5 text-[14px] font-sans font-semibold uppercase tracking-[0.16em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-1 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {cashout.status === 'pending' ? 'Zahtev poslat' : 'Cash Out zahtev'}
+                  {cashout.status === 'pending' ? t('dashboard.cashOutPending', lang) : t('dashboard.cashOut', lang)}
                   <span>↗</span>
                 </button>
                 <div className="flex flex-col gap-1">
                   <p className="text-[11px] font-sans text-slate-400">
-                    Login ostaje isti nakon nadogradnje.
+                    {t('dashboard.loginStays', lang)}
                   </p>
                   {cashout.status === 'pending' && cashout.requestedAt && (
                     <p className="text-[11px] font-sans text-emerald-300">
-                      Poslato: {new Date(cashout.requestedAt).toLocaleString()}
+                      {t('dashboard.requestSent', lang)} {new Date(cashout.requestedAt).toLocaleString()}
                     </p>
                   )}
                   {cashout.error && (
@@ -205,23 +208,22 @@ const Dashboard = ({ navigate, token, onLogout }) => {
           <aside className="space-y-5">
             <div className="rounded-3xl border border-emerald-800/60 bg-black/80 p-6 text-slate-100 shadow-lg shadow-emerald-500/20">
               <h3 className="mb-2 font-display text-[15px] font-semibold tracking-[0.08em] uppercase text-emerald-300">
-                Plaćanja
+                {t('dashboardInfo.payments', lang)}
               </h3>
               <ul className="space-y-1.5 font-sans text-[13px] text-slate-300">
-               
-                <li>• Ne čuvamo brojeve kartica.</li>
-                <li>• Aktivacija plana obično traje nekoliko minuta.</li>
+                <li>• {t('dashboardInfo.noCardsSaved', lang)}</li>
+                <li>• {t('dashboardInfo.activationTime', lang)}</li>
               </ul>
             </div>
 
             <div className="rounded-3xl border border-emerald-800/60 bg-black/80 p-6 text-slate-100 shadow-lg shadow-emerald-500/20">
               <h3 className="mb-2 font-display text-[15px] font-semibold tracking-[0.08em] uppercase text-emerald-300">
-                Sledeći koraci
+                {t('dashboardInfo.nextSteps', lang)}
               </h3>
               <ul className="space-y-1.5 font-sans text-[13px] text-slate-300">
-                <li>• Ako plan ne vidiš odmah, osveži stranicu posle par minuta.</li>
-                <li>• Drži email ažuriranim zbog obaveštenja i isplata.</li>
-                <li>• Podršku i izmene plana tražiš iz dashboard‑a.</li>
+                <li>• {t('dashboardInfo.refreshPage', lang)}</li>
+                <li>• {t('dashboardInfo.keepEmailUpdated', lang)}</li>
+                <li>• {t('dashboardInfo.supportFromDashboard', lang)}</li>
               </ul>
             </div>
           </aside>
@@ -232,11 +234,12 @@ const Dashboard = ({ navigate, token, onLogout }) => {
 };
 
 const StatusBadge = ({ hasPlan }) => {
+  const lang = getLang();
   if (hasPlan) {
     return (
       <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3 py-1 text-[12px] font-sans font-medium text-emerald-300">
         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-        Funded: aktivan
+        {t('dashboard.funded.active', lang)}
       </div>
     );
   }
@@ -244,7 +247,7 @@ const StatusBadge = ({ hasPlan }) => {
   return (
     <div className="inline-flex items-center gap-2 rounded-full bg-slate-800/60 px-3 py-1 text-[12px] font-sans font-medium text-slate-300">
       <span className="h-1.5 w-1.5 rounded-full bg-slate-500" />
-      Funded: nema plana
+      {t('dashboard.funded.noPlan', lang)}
     </div>
   );
 };

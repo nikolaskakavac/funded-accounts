@@ -1,5 +1,7 @@
 // Avatars removed per request (bez slike)
 
+import { t } from '../utils/translations';
+
 const mockLeaders = [
   { rank: 1, firstName: 'Damjan', lastName: 'Gotal', email: 'damjan_gotal87@gmail.com', countryFlag: '/img/croatia.png', countryName: 'Croatia', profit: 65_012 },
   { rank: 2, firstName: 'Marko', lastName: 'Stojanović', email: 'stojanovic_m303@gmail.com', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 33_950 },
@@ -48,10 +50,10 @@ const Leaderboard = () => {
           {/* Header */}
           <div className="mb-6 text-center">
             <p className="font-display text-[12px] sm:text-[14px] uppercase tracking-[0.26em] text-green-400/90">
-              LEADERBOARD
+              {t('leaderboard.section')}
             </p>
             <h2 className="mt-2 font-display text-[24px] sm:text-[32px] lg:text-[36px] font-extrabold tracking-[0.18em] uppercase text-slate-100">
-              TOP 10 KLIJENATA
+              {t('leaderboard.title')}
             </h2>
           </div>
 

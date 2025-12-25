@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getLang, setLang, onLangChange } from '../utils/lang';
+import { t } from '../utils/translations';
 
 const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,8 +26,8 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
               className="inline-flex items-center gap-2 rounded-full border border-emerald-600 px-3 sm:px-4 py-1.5 sm:py-2 text-[12px] sm:text-[13px] font-sans uppercase tracking-[0.14em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px]"
             >
               <span className="text-emerald-400">←</span>
-              <span className="hidden sm:inline">Nazad na početnu</span>
-              <span className="sm:hidden">Nazad</span>
+              <span className="hidden sm:inline">{lang === 'sr' ? 'Nazad na početnu' : 'Back to Home'}</span>
+              <span className="sm:hidden">{lang === 'sr' ? 'Nazad' : 'Back'}</span>
             </button>
           )}
           <div
@@ -102,7 +103,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 }}
                 className="py-2"
               >
-                Početna
+                {lang === 'sr' ? 'Početna' : 'Home'}
               </button>
               <button
                 onClick={() => {
@@ -111,7 +112,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 }}
                 className="py-2"
               >
-                Planovi
+                {t('nav.plans')}
               </button>
               {token && (
                 <button
@@ -121,7 +122,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                   }}
                   className="py-2"
                 >
-                  Dashboard
+                  {t('nav.dashboard')}
                 </button>
               )}
               <button
@@ -131,7 +132,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 }}
                 className="py-2"
               >
-                O nama
+                {lang === 'sr' ? 'O nama' : 'About'}
               </button>
               <button
                 onClick={() => {
@@ -140,7 +141,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 }}
                 className="py-2"
               >
-                Kontakt
+                {lang === 'sr' ? 'Kontakt' : 'Contact'}
               </button>
               {token ? (
                 <>
@@ -152,7 +153,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                       }}
                       className="mt-3 rounded-full border border-emerald-500/80 py-2 text-sm font-semibold text-emerald-300"
                     >
-                      Admin panel
+                      {t('nav.admin')}
                     </button>
                   )}
                   <button
@@ -162,7 +163,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                     }}
                     className="mt-1 rounded-full border border-red-500/80 py-2 text-sm font-semibold text-red-300"
                   >
-                    Odjava
+                    {t('nav.logout')}
                   </button>
                 </>
               ) : (
@@ -173,7 +174,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                   }}
                   className="mt-3 rounded-full bg-emerald-500 py-2 text-sm font-semibold text-black"
                 >
-                  Prijava
+                  {t('nav.login')}
                 </button>
               )}
             </nav>

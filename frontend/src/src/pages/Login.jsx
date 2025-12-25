@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { login } from '../api';
 import Header from '../components/Header';
+import { t } from '../utils/translations';
+import { getLang } from '../utils/lang';
 
 const Login = ({ navigate, onLogin, onLogout }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const lang = getLang();
 
   const submit = async (e) => {
     e.preventDefault();
@@ -30,7 +33,7 @@ const Login = ({ navigate, onLogin, onLogout }) => {
           className="mb-8 inline-flex items-center gap-2 text-xs font-sans uppercase tracking-[0.18em] text-emerald-300 transition hover:text-emerald-100"
         >
           <span className="text-emerald-400 text-sm">←</span>
-          Nazad na sajt
+          {t('login.back', lang)}
         </button>
 
         <div className="grid w-full max-w-3xl gap-8 md:grid-cols-[1.1fr,0.9fr]">
@@ -38,27 +41,24 @@ const Login = ({ navigate, onLogin, onLogout }) => {
           <div className="rounded-3xl border border-emerald-700/60 bg-black/80 p-7 shadow-xl shadow-emerald-500/20">
             <div className="mb-6 space-y-2">
               <p className="font-display text-[11px] uppercase tracking-[0.26em] text-emerald-400">
-                Klijent pristup
+                {t('login.clientAccess', lang)}
               </p>
               <h1 className="font-display text-[26px] sm:text-[30px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
-                Prijava na dashboard
+                {t('login.title', lang)}
               </h1>
               <p className="font-sans text-[14px] sm:text-[15px] text-emerald-100/90 leading-relaxed">
-                Unesi email i lozinku da vidiš svoj funded nalog, aktivan plan i istoriju
-                isplata na jednom mestu.
+                {t('login.subtitle', lang)}
               </p>
             </div>
 
             <form onSubmit={submit} className="space-y-4">
               <div className="space-y-1.5">
-                <label className="font-sans text-[13px] font-medium text-emerald-100">
-                  Email
-                </label>
+                <label className="font-sans text-[13px] font-medium text-emerald-100">{t('login.email', lang)}</label>
                 <input
                   className="w-full rounded-2xl border border-emerald-700 bg-black/60 px-3.5 py-2.5 text-[14px] font-sans text-slate-50 outline-none transition
                              placeholder:text-slate-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400"
                   type="email"
-                  placeholder="ti@primer.com"
+                  placeholder={t('register.emailPlaceholder', lang)}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -66,14 +66,12 @@ const Login = ({ navigate, onLogin, onLogout }) => {
               </div>
 
               <div className="space-y-1.5">
-                <label className="font-sans text-[13px] font-medium text-emerald-100">
-                  Lozinka
-                </label>
+                <label className="font-sans text-[13px] font-medium text-emerald-100">{t('login.password', lang)}</label>
                 <input
                   className="w-full rounded-2xl border border-emerald-700 bg-black/60 px-3.5 py-2.5 text-[14px] font-sans text-slate-50 outline-none transition
                              placeholder:text-slate-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400"
                   type="password"
-                  placeholder="Vaša lozinka"
+                  placeholder={t('login.passwordPlaceholder', lang)}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -87,17 +85,17 @@ const Login = ({ navigate, onLogin, onLogout }) => {
                            shadow-[0_0_20px_rgba(16,185,129,0.7)]
                            transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
               >
-                Prijava
+                {t('login.submit', lang)}
               </button>
             </form>
 
             <p className="mt-5 font-sans text-[13px] text-slate-400">
-              Nemate nalog?{' '}
+              {t('login.noAccount', lang)}{' '}
               <button
                 className="font-semibold text-emerald-300 hover:text-emerald-100 transition-colors"
                 onClick={() => navigate('/register')}
               >
-                Registrujte se
+                {t('login.registerCta', lang)}
               </button>
             </p>
           </div>
@@ -106,22 +104,21 @@ const Login = ({ navigate, onLogin, onLogout }) => {
           <div className="hidden flex-col justify-between rounded-3xl border border-emerald-800/60 bg-gradient-to-b from-black via-[#02110b] to-black p-6 text-xs text-slate-200 shadow-lg shadow-emerald-500/10 md:flex">
             <div className="space-y-3">
               <p className="font-display text-[11px] uppercase tracking-[0.2em] text-emerald-300">
-                Šta vidiš u dashboard‑u
+                  {t('login.dashboard.see', lang)}
               </p>
               <p className="font-sans text-[13px] text-emerald-100/90 leading-relaxed">
-                Pregled aktivnih planova, limite rizika i istoriju isplata – sve na jednom
-                mestu, uz jasne metrike napretka.
+                  {t('login.dashboard.desc', lang)}
               </p>
             </div>
 
             <div className="mt-4 space-y-2">
               <p className="font-display text-[12px] uppercase tracking-[0.16em] text-emerald-300">
-                Kratki saveti
+                  {t('login.tips.title', lang)}
               </p>
               <ul className="space-y-1 font-sans text-[12px] text-slate-300">
-                <li>• Koristi isti email koji si upotrebio pri kupovini naloga.</li>
-                <li>• Ako promeniš lozinku, sve aktivne sesije će biti odjavljene.</li>
-                <li>• Ako ne vidiš aktivan plan, javi se podršci iz dashboard‑a.</li>
+                  <li>{t('login.tips.item1', lang)}</li>
+                  <li>{t('login.tips.item2', lang)}</li>
+                  <li>{t('login.tips.item3', lang)}</li>
               </ul>
             </div>
           </div>

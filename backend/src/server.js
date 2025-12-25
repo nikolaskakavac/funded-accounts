@@ -45,6 +45,19 @@ app.use((req, res, next) => {
   next();
 });
 
+// Slow IP logger: note requests that take longer than 2s for visibility
+app.use((req, res, next) => {
+  const started = Date.now();
+  res.on('finish', () => {
+    const ms = Date.now() - started;
+    if (ms > 2000) {
+      const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket?.remoteAddress || req.ip;
+      console.warn('Slow IP request', { ip, path: req.originalUrl, ms });
+    }
+  });
+  next();
+});
+
 // 5) NOWPayments IPN webhook (raw body needed for signature)
 app.post('/webhooks/now/ipn', express.raw({ type: '*/*' }), async (req, res) => {
   const sig = req.headers['x-nowpayments-sig'];

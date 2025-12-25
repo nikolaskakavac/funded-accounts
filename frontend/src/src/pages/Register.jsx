@@ -1,12 +1,15 @@
   import { useState } from 'react';
   import { register } from '../api';
   import Header from '../components/Header';
+  import { t } from '../utils/translations';
+  import { getLang } from '../utils/lang';
 
   const Register = ({ navigate, onRegister, onLogout }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const lang = getLang();
   const submit = async (e) => {
     e.preventDefault();
     try {
@@ -37,7 +40,7 @@
             className="mb-8 inline-flex items-center gap-2 text-xs font-sans uppercase tracking-[0.18em] text-emerald-300 transition hover:text-emerald-100"
           >
             <span className="text-emerald-400 text-sm">←</span>
-            Nazad na sajt
+            {t('register.back', lang)}
           </button>
 
           <div className="grid w-full max-w-3xl gap-8 md:grid-cols-[1.1fr,0.9fr]">
@@ -45,36 +48,35 @@
             <div className="rounded-3xl border border-emerald-700/60 bg-black/80 p-7 shadow-xl shadow-emerald-500/20">
               <div className="mb-6 space-y-2">
                 <p className="font-display text-[11px] uppercase tracking-[0.26em] text-emerald-400">
-                  Kreiranje naloga
+                  {t('register.create', lang)}
                 </p>
                 <h1 className="font-display text-[26px] sm:text-[30px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
-                  Napravi pristup funded nalogu
+                  {t('register.title', lang)}
                 </h1>
                 <p className="font-sans text-[14px] sm:text-[15px] text-emerald-100/90 leading-relaxed">
-                  Unesi email koji redovno proveravaš. Ovaj login koristiš za pristup
-                  dashboard‑u, praćenje plana i isplata.
+                  {t('register.subtitle', lang)}
                 </p>
               </div>
 
               <form onSubmit={submit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="font-sans text-[13px] font-medium text-emerald-100">Ime</label>
+                    <label className="font-sans text-[13px] font-medium text-emerald-100">{t('register.firstName', lang)}</label>
                     <input
                       className="w-full rounded-2xl border border-emerald-700 bg-black/60 px-3.5 py-2.5 text-[14px] font-sans text-slate-50 outline-none transition placeholder:text-slate-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400"
                       type="text"
-                      placeholder="Pera"
+                      placeholder={t('register.firstNamePlaceholder', lang)}
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       required
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="font-sans text-[13px] font-medium text-emerald-100">Prezime</label>
+                    <label className="font-sans text-[13px] font-medium text-emerald-100">{t('register.lastName', lang)}</label>
                     <input
                       className="w-full rounded-2xl border border-emerald-700 bg-black/60 px-3.5 py-2.5 text-[14px] font-sans text-slate-50 outline-none transition placeholder:text-slate-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400"
                       type="text"
-                      placeholder="Perić"
+                      placeholder={t('register.lastNamePlaceholder', lang)}
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       required
@@ -83,11 +85,11 @@
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="font-sans text-[13px] font-medium text-emerald-100">Email</label>
+                  <label className="font-sans text-[13px] font-medium text-emerald-100">{t('register.email', lang)}</label>
                   <input
                     className="w-full rounded-2xl border border-emerald-700 bg-black/60 px-3.5 py-2.5 text-[14px] font-sans text-slate-50 outline-none transition placeholder:text-slate-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400"
                     type="email"
-                    placeholder="ti@primer.com"
+                    placeholder={t('register.emailPlaceholder', lang)}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -95,14 +97,12 @@
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="font-sans text-[13px] font-medium text-emerald-100">
-                    Lozinka
-                  </label>
+                  <label className="font-sans text-[13px] font-medium text-emerald-100">{t('register.password', lang)}</label>
                   <input
                     className="w-full rounded-2xl border border-emerald-700 bg-black/60 px-3.5 py-2.5 text-[14px] font-sans text-slate-50 outline-none transition
                               placeholder:text-slate-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400"
                     type="password"
-                    placeholder="Min. 8 karaktera"
+                    placeholder={t('register.passwordPlaceholder', lang)}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -116,22 +116,21 @@
                             shadow-[0_0_20px_rgba(16,185,129,0.7)]
                             transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
                 >
-                  Napravi nalog
+                  {t('register.submit', lang)}
                 </button>
               </form>
 
               <p className="mt-5 font-sans text-[13px] text-slate-400">
-                Kreiranjem naloga prihvataš osnovna pravila rizika i isplata koja će biti
-                prikazana u tvom dashboard‑u.
+                {t('register.terms', lang)}
               </p>
 
               <p className="mt-3 font-sans text-[13px] text-slate-400">
-                Već imaš nalog?{' '}
+                {t('register.haveAccount', lang)}{' '}
                 <button
                   className="font-semibold text-emerald-300 hover:text-emerald-100 transition-colors"
                   onClick={() => navigate('/login')}
                 >
-                  Prijava
+                  {t('register.loginCta', lang)}
                 </button>
               </p>
             </div>
@@ -140,23 +139,21 @@
             <div className="hidden flex-col justify-between rounded-3xl border border-emerald-800/60 bg-gradient-to-b from-black via-[#02110b] to-black p-6 text-xs text-slate-200 shadow-lg shadow-emerald-500/10 md:flex">
               <div className="space-y-3">
                 <p className="font-display text-[11px] uppercase tracking-[0.2em] text-emerald-300">
-                  Posle registracije
+                  {t('register.after.title', lang)}
                 </p>
                 <p className="font-sans text-[13px] text-emerald-100/90 leading-relaxed">
-                  Nakon registracije možeš odmah da se prijaviš, izabereš plan i završiš
-                  jednokratnu uplatu karticom ili kriptom. Status naloga pratiš kroz
-                  klijent dashboard.
+                  {t('register.after.desc', lang)}
                 </p>
               </div>
 
               <div className="mt-4 space-y-2">
                 <p className="font-display text-[12px] uppercase tracking-[0.16em] text-emerald-300">
-                  Brze napomene
+                  {t('register.notes.title', lang)}
                 </p>
                 <ul className="space-y-1 font-sans text-[12px] text-slate-300">
-                  <li>• Kasnije uvek možeš da pređeš na veći plan.</li>
-                  <li>• Isti login koristiš za praćenje naloga i isplata.</li>
-                  <li>• Gašenje naloga tražiš direktno iz dashboard‑a.</li>
+                  <li>{t('register.notes.item1', lang)}</li>
+                  <li>{t('register.notes.item2', lang)}</li>
+                  <li>{t('register.notes.item3', lang)}</li>
                 </ul>
               </div>
             </div>

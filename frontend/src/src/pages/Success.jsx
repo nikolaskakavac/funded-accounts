@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { checkNowPaymentStatus } from '../api';
+import { t } from '../utils/translations';
+import { getLang } from '../utils/lang';
 
 const Success = ({ navigate }) => {
   const [status, setStatus] = useState('checking');
-  const [message, setMessage] = useState('Čekamo potvrdu plaćanja...');
+  const [message, setMessage] = useState('');
+  const lang = getLang();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -32,7 +35,7 @@ const Success = ({ navigate }) => {
     // ✅ STRIPE - SUCCESS ODMAH (nema čekanja)
     if (sessionId || paymentIntent) {
       setStatus('success');
-      setMessage(`Plan uspešno aktiviran preko Stripe ${method}!`);
+      setMessage(t('success.msg.stripe', lang).replace('{method}', method));
       setTimeout(() => navigate('/dashboard'), 2000);
       return;
     }
@@ -48,17 +51,17 @@ const Success = ({ navigate }) => {
           
           if (res.status === 'confirmed' || res.status === 'paid' || res.status === 'finished') {
             setStatus('success');
-            setMessage(`Plan uspešno aktiviran preko NowPayments!`);
+            setMessage(t('success.msg.now', lang));
             setTimeout(() => navigate('/dashboard'), 2000);
           } else if (res.status === 'failed' || res.status === 'expired' || res.status === 'cancelled') {
             setStatus('error');
-            setMessage('NowPayments plaćanje neuspešno.');
+            setMessage(t('success.msg.failed', lang));
           } else {
-            setMessage(`NowPayments: ${res.status || 'u obradi'}. Čekamo 10s...`);
+            setMessage(t('success.msg.pending', lang).replace('{status}', res.status || 'u obradi'));
           }
         } catch (e) {
           console.error('NowPayments error:', e);
-          setMessage('Greška NowPayments. Proveri dashboard.');
+          setMessage(t('success.msg.error', lang));
         }
       };
 
@@ -67,7 +70,7 @@ const Success = ({ navigate }) => {
       const timeout = setTimeout(() => {
         clearInterval(interval);
         setStatus('timeout');
-        setMessage('Čekamo blockchain potvrdu. Proveri dashboard za status.');
+        setMessage(t('success.msg.timeout', lang));
       }, 10 * 60 * 1000);
 
       return () => {
@@ -78,7 +81,7 @@ const Success = ({ navigate }) => {
 
     // ❌ Ništa nije prepoznato
     setStatus('error');
-    setMessage('Nepoznat payment provider. Kontaktiraj podršku.');
+    setMessage(t('success.msg.unknown', lang));
   }, [navigate]);
 
   return (
@@ -93,15 +96,15 @@ const Success = ({ navigate }) => {
         </div>
         
         <p className="font-display text-[12px] uppercase tracking-[0.26em] mb-2 text-emerald-400">
-          {status === 'success' ? 'Uspjeh' : status === 'error' ? 'Greška' : 'U obradi'}
+          {status === 'success' ? t('success.status.success', lang) : status === 'error' ? t('success.status.error', lang) : t('success.status.pending', lang)}
         </p>
         <h1 className={`font-display text-[26px] sm:text-[32px] font-extrabold tracking-[0.12em] uppercase mb-4 ${
           status === 'success' ? 'text-emerald-300' : status === 'error' ? 'text-red-300' : 'text-yellow-300'
         }`}>
-          {status === 'success' ? 'Plan aktivan!' : status === 'error' ? 'Neuspeh' : 'Čekamo potvrdu'}
+          {status === 'success' ? t('success.title.success', lang) : status === 'error' ? t('success.title.error', lang) : t('success.title.pending', lang)}
         </h1>
         <p className="mt-3 font-sans text-[15px] text-emerald-100/90 leading-relaxed mb-6">
-          {message}
+          {message || t('success.msg.checking', lang)}
         </p>
         <button
           onClick={() => navigate('/dashboard')}
@@ -109,7 +112,7 @@ const Success = ({ navigate }) => {
                      text-lg font-sans font-semibold uppercase tracking-[0.16em] text-black
                      shadow-[0_0_20px_rgba(16,185,129,0.7)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
         >
-          {status === 'success' ? 'Dashboard →' : 'Proveri Status'}
+          {status === 'success' ? t('success.button.success', lang) : t('success.button.check', lang)}
         </button>
       </div>
     </div>

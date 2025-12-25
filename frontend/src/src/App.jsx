@@ -12,7 +12,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Partnerstvo from './pages/Partnerstvo';
 import OnSitePaymentPage from './pages/OnSitePayment';
-import { getLang } from './utils/lang';
+import { detectLang, setLang } from './utils/lang';
 
 const App = () => {
   const [path, setPath] = useState(window.location.pathname);
@@ -47,7 +47,8 @@ const App = () => {
     window.addEventListener('popstate', onPopState);
     // Set html data-lang for CSS/clients
     try {
-      document.documentElement.setAttribute('data-lang', getLang());
+      const initialLang = detectLang();
+      setLang(initialLang);
     } catch (err) {
       console.error('Failed to set data-lang', err);
     }

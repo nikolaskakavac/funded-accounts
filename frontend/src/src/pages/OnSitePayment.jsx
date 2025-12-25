@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import Header from '../components/Header';
 import OnSiteStripeCheckout from '../components/OnSiteStripeCheckout';
+import { t } from '../utils/translations';
+import { getLang } from '../utils/lang';
 import visaLogo from '/img/visa.png';
 import mastercardLogo from '/img/mastercard-logo.svg';
 import raiffeisenLogo from '/img/raiffeisen.png';
@@ -10,6 +12,8 @@ const OnSitePaymentPage = ({ navigate, token, onLogout, planId }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
+
+  const lang = getLang();
 
   // If not logged in, redirect to register
   if (!token) {
@@ -23,9 +27,9 @@ const OnSitePaymentPage = ({ navigate, token, onLogout, planId }) => {
 
       <div className="mx-auto max-w-5xl px-4 pb-16 pt-6 sm:pt-8">
         <header className="mb-8 text-center">
-          <p className="font-display text-[12px] uppercase tracking-[0.26em] text-emerald-400">Plaćanje karticom</p>
+          <p className="font-display text-[12px] uppercase tracking-[0.26em] text-emerald-400">{t('onsite.page.section', lang)}</p>
           <h1 className="mt-2 font-display text-[26px] sm:text-[30px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
-            Završite kupovinu
+            {t('onsite.page.title', lang)}
           </h1>
         
           <div className="mt-2 flex items-center justify-center gap-3">
@@ -48,7 +52,7 @@ const OnSitePaymentPage = ({ navigate, token, onLogout, planId }) => {
 
         <div className="mt-4 text-center">
           <button onClick={() => navigate('/#plans')} className="text-sm text-slate-400 hover:underline">
-            Povratak na planove
+            {t('onsite.page.back', lang)}
           </button>
         </div>
       </div>

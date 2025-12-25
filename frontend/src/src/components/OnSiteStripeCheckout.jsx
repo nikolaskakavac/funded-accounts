@@ -7,6 +7,8 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 import { createStripeCheckout } from '../api';
+import { t } from '../utils/translations';
+import { getLang } from '../utils/lang';
 
 const cardStyle = {
   style: {
@@ -36,13 +38,14 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
   const [lastName, setLastName] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
+  const lang = getLang();
 
   console.log('STRIPE DEBUG → stripe =', stripe, 'elements =', elements);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) {
-      setErr('Plaćanje trenutno nije dostupno. Pokušaj ponovo kasnije.');
+      setErr(t('onsite.error.unavailable', lang));
       return;
     }
 
@@ -60,14 +63,14 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
       const { clientSecret } = res;
 
       if (!clientSecret) {
-        setErr('Nije moguće kreirati Stripe uplatu.');
+        setErr(t('onsite.error.create', lang));
         setLoading(false);
         return;
       }
 
       const cardNumber = elements.getElement(CardNumberElement);
       if (!cardNumber) {
-        setErr('Polje za broj kartice nije učitano. Osveži stranicu.');
+        setErr(t('onsite.error.cardField', lang));
         setLoading(false);
         return;
       }
@@ -97,7 +100,7 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
       }
     } catch (e) {
       console.error(e);
-      setErr('Stripe greška. Pokušaj ponovo.');
+      setErr(t('onsite.error.stripe', lang));
     } finally {
       setLoading(false);
     }
@@ -122,50 +125,50 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
     <form onSubmit={handleSubmit} className="space-y-4 text-left">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <label className="block text-xs font-sans uppercase tracking-[0.12em] text-slate-400">
-          Ime
+          {t('onsite.firstName', lang)}
           <input
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             className="mt-1 w-full rounded-xl border border-emerald-700/60 bg-black/40 px-3 py-2 text-sm text-slate-100 outline-none focus:border-emerald-400"
-            placeholder="Ime"
+            placeholder={t('onsite.firstName', lang)}
             required
           />
         </label>
 
         <label className="block text-xs font-sans uppercase tracking-[0.12em] text-slate-400">
-          Prezime
+          {t('onsite.lastName', lang)}
           <input
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             className="mt-1 w-full rounded-xl border border-emerald-700/60 bg-black/40 px-3 py-2 text-sm text-slate-100 outline-none focus:border-emerald-400"
-            placeholder="Prezime"
+            placeholder={t('onsite.lastName', lang)}
             required
           />
         </label>
       </div>
 
       <label className="block text-xs font-sans uppercase tracking-[0.12em] text-slate-400">
-        Adresa (ulica, broj, grad)
+        {t('onsite.address', lang)}
         <input
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           className="mt-1 w-full rounded-xl border border-emerald-700/60 bg-black/40 px-3 py-2 text-sm text-slate-100 outline-none focus:border-emerald-400"
-          placeholder="Ulica 123, Grad"
+          placeholder={t('onsite.addressPlaceholder', lang)}
           required
         />
       </label>
 
       <label className="block text-xs font-sans uppercase tracking-[0.18em] text-slate-400">
-        Broj telefona (opciono)
+        {t('onsite.phone', lang)}
         <input
           type="tel"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           className="mt-1 w-full rounded-xl border border-emerald-700/60 bg-black/40 px-3 py-2 text-sm text-slate-100 outline-none focus:border-emerald-400"
-          placeholder="+381 6x xxx xxxx"
+          placeholder={t('onsite.phonePlaceholder', lang)}
         />
       </label>
 
@@ -175,7 +178,7 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
           className="rounded-2xl border-2 border-emerald-500/80 bg-black/70 px-3 py-2 shadow-[0_0_25px_rgba(16,185,129,0.25)] cursor-text"
           onClick={focusCardNumber}
         >
-          <label className="text-xs text-slate-400 uppercase">Card Number</label>
+          <label className="text-xs text-slate-400 uppercase">{t('onsite.cardNumber', lang)}</label>
           <div className="mt-1">
             <CardNumberElement options={cardStyle} />
           </div>
@@ -186,7 +189,7 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
             className="rounded-2xl border-2 border-emerald-500/80 bg-black/70 px-3 py-2 shadow-[0_0_25px_rgba(16,185,129,0.25)] cursor-text"
             onClick={focusCardExpiry}
           >
-            <label className="text-xs text-slate-400 uppercase">Expiration Date</label>
+            <label className="text-xs text-slate-400 uppercase">{t('onsite.expiry', lang)}</label>
             <div className="mt-1">
               <CardExpiryElement options={cardStyle} />
             </div>
@@ -196,7 +199,7 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
             className="rounded-2xl border-2 border-emerald-500/80 bg-black/70 px-3 py-2 shadow-[0_0_25px_rgba(16,185,129,0.25)] cursor-text"
             onClick={focusCardCvc}
           >
-            <label className="text-xs text-slate-400 uppercase">CVV</label>
+            <label className="text-xs text-slate-400 uppercase">{t('onsite.cvc', lang)}</label>
             <div className="mt-1">
               <CardCvcElement options={cardStyle} />
             </div>
@@ -211,7 +214,7 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
         disabled={!stripe || loading}
         className="mt-4 w-full rounded-2xl bg-emerald-500 py-3 text-sm font-sans font-semibold uppercase tracking-[0.18em] text-black shadow-[0_0_20px_rgba(16,185,129,0.7)] transition-all duration-200 disabled:opacity-60 hover:-translate-y-[1px] hover:bg-emerald-400"
       >
-        {loading ? 'Obrada uplate...' : 'Plati karticom'}
+        {loading ? t('onsite.submit.processing', lang) : t('onsite.submit.pay', lang)}
       </button>
     </form>
   );
