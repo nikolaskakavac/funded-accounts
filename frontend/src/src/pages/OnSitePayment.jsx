@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Header from '../components/Header';
 import OnSiteStripeCheckout from '../components/OnSiteStripeCheckout';
 import visaLogo from '/img/visa.png';
@@ -5,6 +6,11 @@ import mastercardLogo from '/img/mastercard-logo.svg';
 import raiffeisenLogo from '/img/raiffeisen.png';
 
 const OnSitePaymentPage = ({ navigate, token, onLogout, planId }) => {
+  // Ensure page starts at the top on navigation
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
+
   // If not logged in, redirect to register
   if (!token) {
     navigate('/register');

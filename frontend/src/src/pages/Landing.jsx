@@ -32,8 +32,8 @@ const Landing = ({ navigate, token }) => {
           bg-no-repeat
           bg-[center_58%]
           bg-[length:112%]
-          sm:bg-center
-          sm:bg-contain
+          sm:bg-[center_62%]
+          sm:bg-[length:90%]
           bg-[#111111]
           min-h-[720px]
           sm:min-h-[780px]
@@ -68,7 +68,7 @@ const Landing = ({ navigate, token }) => {
 
 
                 <div
-                  className="mt-64 sm:mt-72 space-y-4 w-full max-w-xl mx-auto pb-4 font-sans
+                  className="mt-64 sm:mt-32 space-y-4 w-full max-w-xl mx-auto pb-4 font-sans
                               opacity-0 translate-y-3 animate-[fadeUp_0.9s_ease-out_forwards]"
                 >
                   <button

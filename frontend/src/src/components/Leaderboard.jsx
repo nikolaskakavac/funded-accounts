@@ -3,14 +3,14 @@
 const mockLeaders = [
   { rank: 1, firstName: 'Damjan', lastName: 'Gotal', email: 'damjan_gotal87@gmail.com', countryFlag: '/img/croatia.png', countryName: 'Croatia', profit: 65_012 },
   { rank: 2, firstName: 'Marko', lastName: 'Stojanović', email: 'stojanovic_m303@gmail.com', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 33_950 },
-  { rank: 3, firstName: 'Ivan', lastName: 'Kućina', email: 'kucina.ivan977@gmail.com', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 31_400 },
-  { rank: 4, firstName: 'Olga', lastName: 'Panova', email: 'olga.panova.office@gmail.com', countryFlag: '/img/russia.jpg', countryName: 'Russia', profit: 27_632 },
-  { rank: 5, firstName: 'Sergey', lastName: 'Dorofeev', email: 'sergey.dorofeev1985@yandex.ru', countryFlag: '/img/russia.jpg', countryName: 'Russia', profit: 27_470 },
+  { rank: 3, firstName: 'Ivan', lastName: 'Kučina', email: 'kucina.ivan977@gmail.com', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 31_400 },
+  { rank: 4, firstName: 'Евгений ', lastName: 'Панчук', email: 'olga.panova.office@gmail.com', countryFlag: '/img/russia.jpg', countryName: 'Russia', profit: 27_632 },
+  { rank: 5, firstName: 'Сергей', lastName: 'Дорофеёв', email: 'sergey.dorofeev1985@yandex.ru', countryFlag: '/img/russia.jpg', countryName: 'Russia', profit: 27_470 },
   { rank: 6, firstName: 'Bojan', lastName: 'Lukić', email: 'bojan_lukic5@gmail.com', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 27_113 },
   { rank: 7, firstName: 'Andrej', lastName: 'Grbović', email: 'grbovic_andrej55@gmail.com', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 22_000 },
   { rank: 8, firstName: 'Nikola', lastName: 'Milić', email: 'nikola.milicnm@gmail.com', countryFlag: '/img/montenegro.png', countryName: 'Montenegro', profit: 18_371 },
-  { rank: 9, firstName: 'Ana', lastName: 'Jojić', email: 'anna.ryabova1979@yandex.ru', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 15_114 },
-  { rank: 10, firstName: 'Miroslav', lastName: 'Kosta', email: 'miroslav.kosta.investor@gmail.com', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 12_806 },
+  { rank: 9, firstName: 'Viktor', lastName: 'Jović', email: 'anna.ryabova1979@yandex.ru', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 15_114 },
+  { rank: 10, firstName: 'Miroslav', lastName: 'Cvijetan', email: 'miroslav.kosta.investor@gmail.com', countryFlag: '/img/serbia.svg', countryName: 'Serbia', profit: 12_806 },
 ];
 
 const Leaderboard = () => {
