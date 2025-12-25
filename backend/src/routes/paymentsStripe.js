@@ -12,6 +12,17 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const FRONTEND_URL =
   process.env.FRONTEND_URL || 'https://fundedaccounts.netlify.app';
 
+// Plan pricing overrides by payment method (EUR)
+const planPricing = {
+  '693db3e0e9cf589519c144fe': { stripe: 99, crypto: 79 }, // 10k
+  '693db3ede9cf589519c14500': { stripe: 189, crypto: 169 }, // 20k
+};
+
+const getStripeAmount = (planId, fallbackPrice) => {
+  const p = planPricing[planId]?.stripe;
+  return p ? Math.round(p * 100) : Math.round(fallbackPrice * 100);
+};
+
 // POST /payments/stripe/checkout-session (redirect Stripe Checkout)
 router.post('/checkout-session', authMiddleware, async (req, res) => {
   const { planId } = req.body;
@@ -30,12 +41,18 @@ router.post('/checkout-session', authMiddleware, async (req, res) => {
       return res.status(404).json({ message: 'Plan not found' });
     }
 
+    const amountInCents = getStripeAmount(plan._id.toString(), plan.price);
+
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card'],
       line_items: [
         {
-          price: plan.stripePriceId,
+          price_data: {
+            currency: plan.currency || 'eur',
+            product_data: { name: plan.name },
+            unit_amount: amountInCents,
+          },
           quantity: 1,
         },
       ],
@@ -80,14 +97,17 @@ router.post('/create-intent', authMiddleware, async (req, res) => {
 
     console.log('Plan found:', plan.name, plan.price, plan.currency);
 
+    const amountInCents = getStripeAmount(plan._id.toString(), plan.price);
+
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round(plan.price * 100),
-      currency: plan.currency || 'usd',
+      amount: amountInCents,
+      currency: plan.currency || 'eur',
       payment_method_types: ['card'],
       metadata: {
         userId: req.user.id.toString(),
         planId: plan._id.toString(),
         phone: phone || '',
+        price: (amountInCents / 100).toString(),
       },
     });
 
@@ -96,8 +116,8 @@ router.post('/create-intent', authMiddleware, async (req, res) => {
   plan: plan._id,
   provider: 'stripe',
   providerPaymentId: paymentIntent.id,
-  amount: plan.price,
-  currency: plan.currency || 'usd',
+  amount: amountInCents / 100,
+  currency: plan.currency || 'eur',
   status: 'pending',
   phone: phone || '',
   balance: plan.balance

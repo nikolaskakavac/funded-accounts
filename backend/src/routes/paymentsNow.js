@@ -14,8 +14,81 @@ const NOW_API_BASE =
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:4000';
 
+// Simple retry helper to absorb transient 429s from NOWPayments
+async function npRequestWithRetry(makeRequest, retries = 1, backoffMs = 1200) {
+  try {
+    return await makeRequest();
+  } catch (err) {
+    const status = err?.response?.status;
+    if (status === 429 && retries > 0) {
+      await new Promise((resolve) => setTimeout(resolve, backoffMs));
+      return npRequestWithRetry(makeRequest, retries - 1, backoffMs);
+    }
+    throw err;
+  }
+}
+
+async function estimatePayAmount(payCurrency, priceAmount) {
+  try {
+    const res = await npRequestWithRetry(() =>
+      axios.post(
+        `${NOW_API_BASE}/estimate`,
+        {
+          amount: priceAmount,
+          currency_from: 'eur',
+          currency_to: payCurrency,
+        },
+        {
+          headers: {
+            'x-api-key': process.env.NOWPAYMENTS_API_KEY,
+            'Content-Type': 'application/json',
+          },
+        },
+      ),
+    );
+    return res.data?.estimated_amount || null;
+  } catch (e) {
+    console.error('NOWPayments estimate failed:', e.response?.data || e.message);
+    return null;
+  }
+}
+
+// Plan pricing overrides by payment method (EUR)
+const planPricing = {
+  '693db3e0e9cf589519c144fe': { stripe: 99, crypto: 79 }, // 10k
+  '693db3ede9cf589519c14500': { stripe: 189, crypto: 169 }, // 20k
+};
+
+// Allowed crypto coins and mapping to NOWPayments codes
+const ALLOWED_PAY_CURRENCIES = ['egld', 'usdc', 'eth'];
+const PAY_CURRENCY_MAP = {
+  esdt: 'egld', // MultiversX (EGLD)
+  egld: 'egld',
+  usdc: 'usdc',
+  eth: 'eth',
+};
+
+function normalizePayCurrency(cur) {
+  if (!cur) return null;
+  const key = String(cur).toLowerCase();
+  const mapped = PAY_CURRENCY_MAP[key];
+  if (!mapped) return null;
+  return ALLOWED_PAY_CURRENCIES.includes(mapped) ? mapped : null;
+}
+
+const getCryptoAmount = (planId, fallbackPrice) => {
+  const p = planPricing[planId]?.crypto;
+  return p ? p : fallbackPrice;
+};
+
 router.post('/create', authMiddleware, async (req, res) => {
   const { planId, pay_currency } = req.body;
+  const normalizedPayCurrency = normalizePayCurrency(pay_currency);
+  if (!normalizedPayCurrency) {
+    return res.status(400).json({
+      message: 'Unsupported crypto coin. Allowed: esdt (EGLD), usdc, eth.',
+    });
+  }
 
   try {
     console.log('NOW create user:', req.user);
@@ -28,11 +101,13 @@ router.post('/create', authMiddleware, async (req, res) => {
 
     const userId = req.user?.id; // ako auth radi, ovo je setovano
 
+    const price = getCryptoAmount(plan._id.toString(), plan.price);
+
     const payload = {
-      price_amount: plan.price,
-      price_currency: plan.currency || 'usd',
-      pay_currency: (pay_currency || 'btc').toLowerCase(),
-      // Uklanjamo ipn_callback_url jer besplatni plan nema webhook
+      price_amount: price,
+      price_currency: 'eur',
+      pay_currency: normalizedPayCurrency,
+      ipn_callback_url: `${BACKEND_URL}/webhooks/now/ipn`,
       order_id: `${userId || 'unknown'}-${plan._id}-${Date.now()}`,
       success_url: `${FRONTEND_URL}/success`,
       cancel_url: `${FRONTEND_URL}/cancel`,
@@ -40,16 +115,26 @@ router.post('/create', authMiddleware, async (req, res) => {
 
     console.log('NOWPayments payload:', payload);
 
-    const response = await axios.post(`${NOW_API_BASE}/payment`, payload, {
-      headers: {
-        'x-api-key': process.env.NOWPAYMENTS_API_KEY,
-        'Content-Type': 'application/json',
-      },
-    });
+    const response = await npRequestWithRetry(() =>
+      axios.post(`${NOW_API_BASE}/payment`, payload, {
+        headers: {
+          'x-api-key': process.env.NOWPAYMENTS_API_KEY,
+          'Content-Type': 'application/json',
+        },
+      }),
+    );
 
     const payment = response.data;
     console.log('NOWPayments response:', payment);
     console.log('Invoice URL:', payment.invoice_url);
+
+    let payAmount = payment.pay_amount;
+    if (!payAmount) {
+      payAmount = await estimatePayAmount(payload.pay_currency, price);
+      console.log('Estimated amount for', payload.pay_currency, '=>', payAmount);
+    }
+
+    const payCurrency = payment.pay_currency || payload.pay_currency;
 
     if (!userId) {
       console.error('NOWPayments: userId missing, cannot create Transaction');
@@ -63,28 +148,27 @@ router.post('/create', authMiddleware, async (req, res) => {
       plan: plan._id,
       provider: 'nowpayments',
       providerPaymentId: String(payment.payment_id),
-      amount: plan.price,
-      currency: plan.currency || 'usd',
+      amount: price,
+      currency: 'eur',
       status: 'pending',
     });
 
     res.json({
       payment_id: payment.payment_id,
       pay_address: payment.pay_address,
-      pay_amount: payment.pay_amount,
-      pay_currency: payment.pay_currency,
+      pay_amount: payAmount,
+      pay_currency: payCurrency,
       invoice_url: payment.invoice_url || `https://nowpayments.io/payment/?iid=${payment.payment_id}`,
     });
   } catch (err) {
-    console.error(
-      'NOWPayments create error:',
-      err.response?.status,
-      err.response?.data || err.message,
-    );
+    const status = err.response?.status || 500;
+    const detail = err.response?.data || err.message;
+    console.error('NOWPayments create error:', status, detail);
 
-    return res
-      .status(500)
-      .json({ message: 'NOWPayments error', detail: err.response?.data || err.message });
+    return res.status(status).json({
+      message: err.response?.data?.message || 'NOWPayments error',
+      detail,
+    });
   }
 });
 
@@ -93,11 +177,13 @@ router.get('/status/:paymentId', authMiddleware, async (req, res) => {
   const { paymentId } = req.params;
 
   try {
-    const response = await axios.get(`${NOW_API_BASE}/payment/${paymentId}`, {
-      headers: {
-        'x-api-key': process.env.NOWPAYMENTS_API_KEY,
-      },
-    });
+    const response = await npRequestWithRetry(() =>
+      axios.get(`${NOW_API_BASE}/payment/${paymentId}`, {
+        headers: {
+          'x-api-key': process.env.NOWPAYMENTS_API_KEY,
+        },
+      }),
+    );
 
     const payment = response.data;
 

@@ -1,5 +1,6 @@
 require('dotenv').config();
 const { sendWelcomeEmail } = require('./utils/mailer');
+const crypto = require('crypto');
 
 const express = require('express');
 const cors = require('cors');
@@ -10,6 +11,7 @@ const authRoutes = require('./routes/auth');
 const stripeRoutes = require('./routes/paymentsStripe');
 const nowRoutes = require('./routes/paymentsNow');
 const adminRoutes = require('./routes/admin');
+const cashoutRoutes = require('./routes/cashout');
 const webhooksStripe = require('./routes/webhooksStripe');
 
 const User = require('./models/User');
@@ -32,12 +34,42 @@ app.use('/webhooks', webhooksStripe); // ovde je /webhooks/stripe iz routera
 app.use(cors());
 app.use(express.json());
 
-// 5) NOWPayments IPN webhook
-app.post('/webhooks/now/ipn', async (req, res) => {
-  console.log('NOWPayments IPN HIT');
-  console.log('NOWPayments body:', JSON.stringify(req.body, null, 2));
+// Language cookie based on Accept-Language (first request only)
+app.use((req, res, next) => {
+  const hasLang = (req.headers.cookie || '').includes('lang=');
+  if (!hasLang) {
+    const al = (req.headers['accept-language'] || '').toLowerCase();
+    const lang = al.includes('sr') ? 'sr' : 'en';
+    res.cookie('lang', lang, { maxAge: 365 * 24 * 60 * 60 * 1000, sameSite: 'lax' });
+  }
+  next();
+});
 
-  const body = req.body;
+// 5) NOWPayments IPN webhook (raw body needed for signature)
+app.post('/webhooks/now/ipn', express.raw({ type: '*/*' }), async (req, res) => {
+  const sig = req.headers['x-nowpayments-sig'];
+  const secret = process.env.NOWPAYMENTS_IPN_SECRET || '';
+  const rawBody = req.body?.toString('utf-8') || '';
+
+  // Validate signature if provided
+  if (sig && secret) {
+    const expected = crypto.createHmac('sha512', secret).update(rawBody).digest('hex');
+    if (expected !== sig) {
+      console.warn('NOWPayments IPN: invalid signature');
+      return res.json({ received: true });
+    }
+  }
+
+  let body;
+  try {
+    body = JSON.parse(rawBody || '{}');
+  } catch (e) {
+    console.error('NOWPayments IPN: JSON parse failed');
+    return res.json({ received: true });
+  }
+
+  console.log('NOWPayments IPN payload:', body);
+
   const paymentId = body.payment_id;
   const status = body.payment_status; // 'waiting', 'confirming', 'finished', 'failed', ...
 
@@ -70,7 +102,7 @@ app.post('/webhooks/now/ipn', async (req, res) => {
       console.log('NOWPayments IPN: transaction not found for payment_id', paymentId);
     }
 
-    // IPN endpoint ne sme da vraća 5xx, uvek šaljemo ok
+    // IPN endpoint must always acknowledge
     res.json({ received: true });
   } catch (err) {
     console.error('NOWPayments IPN error:', err);
@@ -83,6 +115,7 @@ app.use('/auth', authRoutes);
 app.use('/payments/stripe', stripeRoutes);
 app.use('/payments/now', nowRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/cashout', cashoutRoutes);
 
 // 7) Health check
 app.get('/', (req, res) => {

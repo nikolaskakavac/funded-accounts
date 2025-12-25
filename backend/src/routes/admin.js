@@ -30,15 +30,17 @@ router.get('/transactions', async (req, res) => {
   }
 });
 
-// PATCH /api/admin/transactions/:id - update active / accountSent / expiresAt
+// PATCH /api/admin/transactions/:id - update active / accountSent / expiresAt / cashout
 router.patch('/transactions/:id', async (req, res) => {
   try {
-    const { active, accountSent, expiresAt } = req.body;
+    const { active, accountSent, expiresAt, cashoutStatus, cashoutRequestedAt } = req.body;
 
     const update = {};
     if (typeof active === 'boolean') update.active = active;
     if (typeof accountSent === 'boolean') update.accountSent = accountSent;
     if (expiresAt) update.expiresAt = expiresAt;
+    if (cashoutStatus) update.cashoutStatus = cashoutStatus;
+    if (cashoutRequestedAt !== undefined) update.cashoutRequestedAt = cashoutRequestedAt;
 
     // apdejtuj transakciju i odma povuci user + plan
     const tx = await Transaction.findByIdAndUpdate(

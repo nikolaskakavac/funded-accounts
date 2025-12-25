@@ -13,6 +13,8 @@ const transactionSchema = new mongoose.Schema(
     accountSent: { type: Boolean, default: false },
     expiresAt: { type: Date },
     phone: { type: String },
+    cashoutStatus: { type: String, enum: ['none', 'pending', 'done'], default: 'none' },
+    cashoutRequestedAt: { type: Date },
   },
   { timestamps: true }
 );
