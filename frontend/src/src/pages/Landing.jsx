@@ -45,7 +45,7 @@ const Landing = ({ navigate, token }) => {
           <Header navigate={navigate} token={token} onLogout={() => {}} showBackLink={false} />
 
             {/* HERO TEKST */}
-            <main className="px-4 pb-6 pt-10 flex-1 flex">
+            <main className="px-4 pb-6 -mt-4 flex-1 flex">
               <section className="w-full max-w-5xl mx-auto self-start text-left sm:text-center">
                 <h1
                   className="font-display text-[38px] sm:text-[44px] lg:text-[56px] leading-[1.03] font-extrabold tracking-[0.12em] uppercase
@@ -76,7 +76,7 @@ const Landing = ({ navigate, token }) => {
                   , ti se fokusiraš samo na rezultate.
                 </p>
 <p
-  className="mt-4 inline-flex items-center gap-3 rounded-full bg-black/80
+  className="mt-4 mb-8 inline-flex items-center gap-3 rounded-full bg-black/80
              px-5 py-2.5 text-[14px] sm:text-[15px] lg:text-[16px] font-display font-semibold tracking-[0.18em]
              uppercase text-emerald-200 opacity-0 translate-y-3 animate-[fadeUp_0.8s_ease-out_forwards]"
 >
