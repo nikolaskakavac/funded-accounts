@@ -15,10 +15,10 @@ router.use((req, res, next) => {
   next();
 });
 
-// GET /api/admin/transactions - lista svih transakcija
+// GET /api/admin/transactions - lista plaćenih transakcija
 router.get('/transactions', async (req, res) => {
   try {
-    const txs = await Transaction.find()
+    const txs = await Transaction.find({ status: 'paid' })
       .populate('user', 'email name phone')
       .populate('plan', 'name price balance')
       .sort({ createdAt: -1 });
