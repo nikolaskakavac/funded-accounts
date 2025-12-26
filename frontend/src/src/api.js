@@ -1,4 +1,13 @@
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+// Prefer VITE_API_BASE_URL; fallback to VITE_API_URL; final fallback based on domain
+let API_BASE = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL;
+if (!API_BASE) {
+  const host = typeof window !== 'undefined' ? window.location.hostname : '';
+  if (host === 'arbexfund.com' || host === 'www.arbexfund.com') {
+    API_BASE = 'https://api.arbexfund.com';
+  } else {
+    API_BASE = 'http://localhost:4000';
+  }
+}
 
 // AUTH
 
