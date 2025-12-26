@@ -80,4 +80,49 @@ router.patch('/transactions/:id', async (req, res) => {
   }
 });
 
+// TEST ENDPOINT - kreiraj test transakciju
+router.post('/test-transaction', async (req, res) => {
+  try {
+    // Nađi ili kreiraj test usera
+    let user = await User.findOne({ email: 'test@test.com' });
+    if (!user) {
+      user = await User.create({
+        email: 'test@test.com',
+        password: 'hashedpassword',
+        name: 'Test User',
+        phone: '+381640000000',
+      });
+    }
+
+    // Nađi plan
+    const plan = await Plan.findOne({ name: 'Nalog sa 10.000€' });
+    if (!plan) {
+      return res.status(404).json({ message: 'Plan not found' });
+    }
+
+    // Kreiraj test transakciju
+    const tx = await Transaction.create({
+      user: user._id,
+      plan: plan._id,
+      provider: 'stripe',
+      providerPaymentId: 'pi_test_' + Date.now(),
+      amount: 300,
+      currency: 'eur',
+      status: 'paid',
+      active: true,
+      phone: user.phone,
+    });
+
+    // Postavi plan na usera
+    user.currentPlan = plan._id;
+    await user.save();
+
+    console.log('✅ Test transaction created');
+    res.json({ message: 'Test transaction created', tx });
+  } catch (err) {
+    console.error('Test transaction error:', err.message);
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
 module.exports = router;
