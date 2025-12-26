@@ -14,8 +14,8 @@ const FRONTEND_URL =
 
 // Plan pricing overrides by payment method (EUR)
 const planPricing = {
-  '693db3e0e9cf589519c144fe': { stripe: 99, crypto: 79 }, // 10k
-  '693db3ede9cf589519c14500': { stripe: 189, crypto: 169 }, // 20k
+  '693db3e0e9cf589519c144fe': { stripe: 300, crypto: 300 }, // 10k
+  '693db3ede9cf589519c14500': { stripe: 600, crypto: 600 }, // 20k
 };
 
 const getStripeAmount = (planId, fallbackPrice) => {

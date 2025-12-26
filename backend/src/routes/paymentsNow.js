@@ -55,17 +55,16 @@ async function estimatePayAmount(payCurrency, priceAmount) {
 
 // Plan pricing overrides by payment method (EUR)
 const planPricing = {
-  '693db3e0e9cf589519c144fe': { stripe: 99, crypto: 79 }, // 10k
-  '693db3ede9cf589519c14500': { stripe: 189, crypto: 169 }, // 20k
+  '693db3e0e9cf589519c144fe': { stripe: 300, crypto: 300 }, // 10k
+  '693db3ede9cf589519c14500': { stripe: 600, crypto: 600 }, // 20k
 };
 
 // Allowed crypto coins and mapping to NOWPayments codes
-const ALLOWED_PAY_CURRENCIES = ['egld', 'usdc', 'eth'];
+const ALLOWED_PAY_CURRENCIES = ['usdt', 'usdc', 'eth'];
 const PAY_CURRENCY_MAP = {
-  esdt: 'egld', // MultiversX (EGLD)
-  egld: 'egld',
-  usdc: 'usdc',
-  eth: 'eth',
+  usdt: 'usdt', // Tether USDT
+  usdc: 'usdc',  // USD Coin
+  eth: 'eth',    // Ethereum
 };
 
 function normalizePayCurrency(cur) {
@@ -86,7 +85,7 @@ router.post('/create', authMiddleware, async (req, res) => {
   const normalizedPayCurrency = normalizePayCurrency(pay_currency);
   if (!normalizedPayCurrency) {
     return res.status(400).json({
-      message: 'Unsupported crypto coin. Allowed: esdt (EGLD), usdc, eth.',
+      message: 'Unsupported crypto coin. Allowed: usdt, usdc, eth.',
     });
   }
 

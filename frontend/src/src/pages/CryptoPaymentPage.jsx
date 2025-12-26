@@ -6,7 +6,7 @@ import { t } from '../utils/translations';
 import { getLang } from '../utils/lang';
 
 export default function CryptoPaymentPage({ token, planId, navigate, onLogout }) {
-  const [coin, setCoin] = useState('usdc'); // 'usdc' | 'eth' | 'esdt'
+  const [coin, setCoin] = useState('usdt'); // 'usdt' | 'usdc' | 'eth'
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState('');
@@ -22,9 +22,7 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
     setData(null);
     setLoading(true);
     try {
-      // Map ESDT selection to EGLD which NOWPayments expects
-      const payCoin = coin === 'esdt' ? 'egld' : coin;
-      const res = await createNowPayment(token, planId, payCoin);
+      const res = await createNowPayment(token, planId, coin);
       setData(res); // { payment_id, pay_address, pay_amount, pay_currency, invoice_url }
     } catch (e) {
       console.error(e);
@@ -72,15 +70,15 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
           <div className="mb-6 flex flex-wrap gap-3">
             <button
               type="button"
-              onClick={() => setCoin('esdt')}
+              onClick={() => setCoin('usdt')}
               className={`flex items-center gap-2 rounded-full border px-4 py-2 text-[14px] transition ${
-                coin === 'esdt'
+                coin === 'usdt'
                   ? 'border-emerald-500 bg-emerald-500/10 text-emerald-200'
                   : 'border-emerald-700 bg-black/60 text-slate-200 hover:bg-emerald-500/5'
               }`}
             >
-              <span className="font-semibold">{t('crypto.coin.esdt', lang)}</span>
-              <span className="text-[11px] text-slate-400">{t('crypto.coin.esdt.note', lang)}</span>
+              <span className="font-semibold">{t('crypto.coin.usdt', lang)}</span>
+              <span className="text-[11px] text-slate-400">{t('crypto.coin.usdt.note', lang)}</span>
             </button>
 
             <button
