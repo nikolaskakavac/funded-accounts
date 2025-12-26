@@ -22,7 +22,7 @@ const Success = ({ navigate }) => {
     
     // Plan info (može biti prazno)
     const plan = urlParams.get('plan') || 'tvoj plan';
-    const method = urlParams.get('method') || 'karticom';
+    const method = urlParams.get('method') || '';
 
     console.log('Success URL params:', { 
       sessionId, 
@@ -35,7 +35,7 @@ const Success = ({ navigate }) => {
     // ✅ STRIPE - SUCCESS ODMAH (nema čekanja)
     if (sessionId || paymentIntent) {
       setStatus('success');
-      setMessage(t('success.msg.stripe', lang).replace('{method}', method));
+      setMessage(t('success.msg.generic', lang));
       setTimeout(() => navigate('/dashboard'), 2000);
       return;
     }

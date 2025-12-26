@@ -15,7 +15,7 @@ router.post('/register', async (req, res) => {
   try {
     const existing = await User.findOne({ email });
     if (existing) {
-      return res.status(400).json({ message: 'Email already registered' });
+      return res.status(400).json({ message: 'Email adresa već postoji' });
     }
 
     const passwordHash = await bcrypt.hash(password, 10);
@@ -60,12 +60,12 @@ router.post('/login', async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+      return res.status(400).json({ message: 'Neispravan email ili lozinka' });
     }
 
     const ok = await bcrypt.compare(password, user.passwordHash);
     if (!ok) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+      return res.status(400).json({ message: 'Neispravan email ili lozinka' });
     }
 
     const token = jwt.sign(

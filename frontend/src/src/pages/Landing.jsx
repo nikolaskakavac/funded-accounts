@@ -10,7 +10,7 @@ import visaLogo from '/img/visa.png';
 import mastercardLogo from '/img/mastercard-logo.svg';
 import raiffeisenLogo from '/img/raiffeisen.png';
 
-const Landing = ({ navigate, token }) => {
+const Landing = ({ navigate, token, onLogout = () => {} }) => {
   const [onSitePlanId, setOnSitePlanId] = useState(null);
   const lang = getLang();
 
@@ -41,7 +41,7 @@ const Landing = ({ navigate, token }) => {
       >
         {/* transparent overlay */}
         <div className="flex-1 bg-transparent flex flex-col relative overflow-hidden border-b border-emerald-500/10">
-          <Header navigate={navigate} token={token} onLogout={() => {}} showBackLink={false} />
+          <Header navigate={navigate} token={token} onLogout={onLogout} showBackLink={false} />
 
             {/* HERO TEKST */}
             <main className="px-4 pb-3 -mt-4 flex-1 flex">
@@ -342,10 +342,10 @@ const Landing = ({ navigate, token }) => {
                     {lang === 'sr' ? 'Investicioni nalog sa 10.000€' : 'Investment Account with €10,000'}
                   </div>
                   <div className="font-sans text-[14px] text-emerald-400/80 mt-1">
-                    {t('plans.loss')}: 20%
+                    {t('plans.loss')} 20%
                   </div>
                   <div className="font-display text-[16px] font-semibold tracking-[0.08em] text-emerald-300">
-                    {t('plans.price')}:
+                    {t('plans.price')}
                   </div>
                   <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
                     99€
@@ -370,7 +370,7 @@ const Landing = ({ navigate, token }) => {
                     }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
-                    💳 {t('plans.payCard')}
+                    {t('plans.payCard')}
                   </button>
                   <button
                     onClick={() => {
@@ -379,7 +379,7 @@ const Landing = ({ navigate, token }) => {
                     }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
-                    🪙 {t('plans.payCrypto')} (79€)
+                    {t('plans.payCrypto')} (79€)
                   </button>
                 </div>
               </div>
@@ -396,10 +396,10 @@ const Landing = ({ navigate, token }) => {
                     {lang === 'sr' ? 'Investicioni nalog sa 20.000€' : 'Investment Account with €20,000'}
                   </div>
                   <div className="font-sans text-[14px] text-emerald-400/80 mt-1">
-                    {t('plans.loss')}: 15%
+                    {t('plans.loss')} 15%
                   </div>
                   <div className="font-display text-[16px] font-semibold tracking-[0.08em] text-emerald-300">
-                    {t('plans.price')}:
+                    {t('plans.price')}
                   </div>
                   <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
                     189€
@@ -424,7 +424,7 @@ const Landing = ({ navigate, token }) => {
                     }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
-                    💳 {t('plans.payCard')}
+                    {t('plans.payCard')}
                   </button>
                   <button
                     onClick={() => {
@@ -433,7 +433,7 @@ const Landing = ({ navigate, token }) => {
                     }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
-                    🪙 {t('plans.payCrypto')} (169€)
+                    {t('plans.payCrypto')} (169€)
                   </button>
                 </div>
               </div>

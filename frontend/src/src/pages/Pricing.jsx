@@ -163,16 +163,14 @@ const PlanCard = ({
                   : 'bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5')
               }
             >
-              {isOnSiteSelected ? '✅ IZABRAN - PLAĆAJ ISPOD' : '💳 Plati karticom'}
+              {isOnSiteSelected ? 'IZABRAN - PLAĆAJ ISPOD' : '💳 Plati karticom'}
             </button>
             <button
   onClick={onCrypto}
   className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/10 via-emerald-400/15 to-cyan-400/15 p-[1px] shadow-[0_0_25px_rgba(34,197,94,0.45)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(34,197,94,0.75)]"
 >
   <div className="flex w-full items-center justify-center gap-2 rounded-2xl bg-black/90 px-4 py-3 sm:py-3.5">
-    <span className="text-lg sm:text-xl">
-      🪙
-    </span>
+    <span className="text-lg sm:text-xl">🪙</span>
     <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.18em] text-emerald-100 group-hover:text-emerald-50">
       Plati kriptom ({price}€)
     </span>

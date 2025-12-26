@@ -482,6 +482,7 @@ const translations = {
   'success.title.success': { sr: 'Plan aktivan!', en: 'Plan active!' },
   'success.title.error': { sr: 'Neuspeh', en: 'Failed' },
   'success.title.pending': { sr: 'Čekamo potvrdu', en: 'Awaiting confirmation' },
+  'success.msg.generic': { sr: 'Kupovina je uspešno izvršena.', en: 'Purchase completed successfully.' },
   'success.msg.stripe': { sr: 'Plan uspešno aktiviran preko Stripe {method}!', en: 'Plan successfully activated via Stripe {method}!' },
   'success.msg.now': { sr: 'Plan uspešno aktiviran preko NowPayments!', en: 'Plan successfully activated via NowPayments!' },
   'success.msg.pending': { sr: 'NowPayments: {status}. Čekamo 10s...', en: 'NowPayments: {status}. Waiting 10s...' },

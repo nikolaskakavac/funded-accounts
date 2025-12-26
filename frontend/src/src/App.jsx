@@ -59,8 +59,9 @@ const App = () => {
     console.log('handleAuthSuccess called with:', data);
     localStorage.setItem('token', data.token);
     localStorage.setItem('role', data.user.role);
-    // Redirect to dashboard
-    window.location.href = '/dashboard';
+    setToken(data.token);
+    setRole(data.user.role);
+    navigate('/dashboard');
   };
 
   const handleLogout = () => {
