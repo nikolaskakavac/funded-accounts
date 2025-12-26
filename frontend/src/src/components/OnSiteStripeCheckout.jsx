@@ -175,7 +175,7 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
       {/* Split card fields: number (full width) / expiry + cvc (second row) */}
       <div className="space-y-3 mt-2">
         <div
-          className="rounded-2xl border-2 border-emerald-500/80 bg-black/70 px-3 py-2 shadow-[0_0_25px_rgba(16,185,129,0.25)] cursor-text"
+          className="relative z-50 rounded-2xl border-2 border-emerald-500/80 bg-black/70 px-3 py-2 shadow-[0_0_25px_rgba(16,185,129,0.25)] cursor-text"
           onClick={focusCardNumber}
         >
           <label className="text-xs text-slate-400 uppercase">{t('onsite.cardNumber', lang)}</label>
@@ -186,7 +186,7 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div
-            className="rounded-2xl border-2 border-emerald-500/80 bg-black/70 px-3 py-2 shadow-[0_0_25px_rgba(16,185,129,0.25)] cursor-text"
+            className="relative z-50 rounded-2xl border-2 border-emerald-500/80 bg-black/70 px-3 py-2 shadow-[0_0_25px_rgba(16,185,129,0.25)] cursor-text"
             onClick={focusCardExpiry}
           >
             <label className="text-xs text-slate-400 uppercase">{t('onsite.expiry', lang)}</label>
@@ -196,7 +196,7 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
           </div>
 
           <div
-            className="rounded-2xl border-2 border-emerald-500/80 bg-black/70 px-3 py-2 shadow-[0_0_25px_rgba(16,185,129,0.25)] cursor-text"
+            className="relative z-50 rounded-2xl border-2 border-emerald-500/80 bg-black/70 px-3 py-2 shadow-[0_0_25px_rgba(16,185,129,0.25)] cursor-text"
             onClick={focusCardCvc}
           >
             <label className="text-xs text-slate-400 uppercase">{t('onsite.cvc', lang)}</label>

@@ -28,22 +28,19 @@ async function npRequestWithRetry(makeRequest, retries = 1, backoffMs = 1200) {
   }
 }
 
-async function estimatePayAmount(payCurrency, priceAmount) {
+async function estimatePayAmount(payCurrency, priceAmount, currencyFrom = 'eur') {
   try {
     const res = await npRequestWithRetry(() =>
-      axios.get(
-        `${NOW_API_BASE}/estimate`,
-        {
-          params: {
-            amount: priceAmount,
-            currency_from: 'usd',
-            currency_to: payCurrency,
-          },
-          headers: {
-            'x-api-key': process.env.NOWPAYMENTS_API_KEY,
-          },
+      axios.get(`${NOW_API_BASE}/estimate`, {
+        params: {
+          amount: priceAmount,
+          currency_from: currencyFrom,
+          currency_to: payCurrency,
         },
-      ),
+        headers: {
+          'x-api-key': process.env.NOWPAYMENTS_API_KEY,
+        },
+      }),
     );
     return res.data?.estimated_amount || null;
   } catch (e) {
@@ -100,10 +97,12 @@ router.post('/create', authMiddleware, async (req, res) => {
     const userId = req.user?.id; // ako auth radi, ovo je setovano
 
     const price = getCryptoAmount(plan._id.toString(), plan.price);
+    // Some NOWPayments setups cannot estimate EUR -> USDT directly. Use USD as fiat for USDT.
+    const priceCurrency = normalizedPayCurrency === 'usdt' ? 'usd' : 'eur';
 
     const payload = {
       price_amount: price,
-      price_currency: 'eur',
+      price_currency: priceCurrency,
       pay_currency: normalizedPayCurrency,
       ipn_callback_url: `${BACKEND_URL}/webhooks/now/ipn`,
       order_id: `${userId || 'unknown'}-${plan._id}-${Date.now()}`,
@@ -128,8 +127,8 @@ router.post('/create', authMiddleware, async (req, res) => {
 
     let payAmount = payment.pay_amount;
     if (!payAmount) {
-      payAmount = await estimatePayAmount(payload.pay_currency, price);
-      console.log('Estimated amount for', payload.pay_currency, '=>', payAmount);
+      payAmount = await estimatePayAmount(payload.pay_currency, price, priceCurrency);
+      console.log('Estimated amount for', payload.pay_currency, 'from', priceCurrency, '=>', payAmount);
     }
 
     const payCurrency = payment.pay_currency || payload.pay_currency;

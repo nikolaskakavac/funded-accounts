@@ -32,7 +32,7 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
     }
   };
 
-  const { payment_id, pay_address, pay_amount, pay_currency } = data || {};
+  const { payment_id, pay_address, pay_amount, pay_currency, invoice_url } = data || {};
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
@@ -130,8 +130,8 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
             </p>
           )}
 
-          {/* Adresa & QR */}
-          {data && !loading && (
+          {/* Adresa & QR or invoice fallback */}
+          {data && !loading && pay_amount && (
             <div className="mt-5 space-y-3 font-sans text-[13px] text-slate-200">
               <p>
                 {t('crypto.sendExactly', lang)}{' '}
@@ -163,6 +163,23 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
               <p className="mt-1 text-[12px] text-slate-400">
                 {t('crypto.afterConfirmation', lang)}
               </p>
+            </div>
+          )}
+
+          {data && !loading && !pay_amount && invoice_url && (
+            <div className="mt-5 space-y-3 font-sans text-[13px] text-slate-200">
+              <p className="text-slate-300">
+                {t('crypto.invoiceFallback', lang) || 'Otvorite fakturu da vidite tačan iznos i adresu.'}
+              </p>
+              <a
+                href={invoice_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-2 text-[14px] font-sans font-semibold uppercase tracking-[0.16em] text-black shadow-[0_0_18px_rgba(16,185,129,0.7)] hover:bg-emerald-400"
+              >
+                {t('crypto.openInvoice', lang) || 'Otvori fakturu'}
+                <span>↗</span>
+              </a>
             </div>
           )}
         </div>
