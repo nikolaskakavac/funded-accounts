@@ -22,21 +22,22 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
   const selectedPlan = landingPlans.find((p) => p.id === onSitePlanId);
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans">
+    <div className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
       {/* HERO sa BTC pozadinom */}
       <div
         className="
           flex flex-col
           bg-no-repeat
-          bg-[center_58%]
-          bg-[length:112%]
+          bg-[center_65%]
+          bg-[length:120%]
           sm:bg-[32%_40%]
           sm:bg-[length:88%]
           bg-[#111111]
-          min-h-[680px]
-          sm:min-h-[760px]
-          md:min-h-[820px]
-          lg:min-h-[880px]
+          w-screen
+          min-h-[640px]
+          sm:min-h-[680px]
+          md:min-h-[720px]
+          overflow-hidden
         "
         style={{ backgroundImage: "url('/img/crypto-bg.png')" }}
       >
@@ -45,10 +46,10 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
           <Header navigate={navigate} token={token} onLogout={onLogout} showBackLink={false} />
 
             {/* HERO TEKST */}
-            <main className="px-4 pb-6 -mt-6 flex-1 flex">
+            <main className="px-4 pb-3 -mt-4 flex-1 flex">
               <section className="w-full max-w-5xl mx-auto text-center">
                 <h1
-                  className="text-left sm:text-center ml-2 sm:ml-0 font-display text-[42px] sm:text-[56px] lg:text-[80px] xl:text-[96px] leading-[1.03] font-extrabold tracking-[0.12em] uppercase
+                  className="text-left sm:text-center ml-2 sm:ml-0 font-display text-[38px] sm:text-[44px] lg:text-[72px] xl:text-[84px] leading-[1.03] font-extrabold tracking-[0.12em] uppercase
                               drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-emerald-400
                               opacity-0 translate-y-3 animate-[fadeUp_0.6s_ease-out_forwards]"
                   style={{ fontFamily: "'Room Black', sans-serif" }}
@@ -57,7 +58,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                 </h1>
 
                 <h2
-                  className="mt-6 text-left sm:text-center ml-2 sm:ml-0 text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.1] font-extrabold tracking-[0.12em] uppercase
+                  className="mt-4 text-left sm:text-center ml-2 sm:ml-0 text-[32px] sm:text-[38px] lg:text-[48px] leading-[1.1] font-extrabold tracking-[0.12em] uppercase
                               drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-white
                               opacity-0 translate-y-3 animate-[fadeUp_0.65s_ease-out_forwards]"
                   style={{ fontFamily: "'Room Black', sans-serif" }}
@@ -67,12 +68,12 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
 
 
                 <div
-                  className="mt-56 sm:mt-32 space-y-5 w-full max-w-xl mx-auto pb-6 font-sans
+                  className="mt-80 sm:mt-24 space-y-4 w-full max-w-xl mx-auto pb-4 font-sans
                               opacity-0 translate-y-3 animate-[fadeUp_0.9s_ease-out_forwards]"
                 >
                   <button
                     onClick={() => navigate('/#how-it-works')}
-                    className="relative w-full rounded-full bg-emerald-500 py-4 sm:py-5 text-[17px] sm:text-[19px]
+                    className="relative w-full rounded-full bg-emerald-500 py-3.5 sm:py-4 text-[16px] sm:text-[18px]
                                font-semibold tracking-[0.12em] uppercase text-black
                                transition-all duration-200 ease-out hover:-translate-y-1
                                hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:bg-emerald-400 active:translate-y-0
@@ -83,7 +84,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   </button>
                   <button
                     onClick={() => navigate('/#plans')}
-                    className="w-full rounded-full border border-emerald-300/90 py-4 sm:py-5 text-[17px] sm:text-[19px]
+                    className="w-full rounded-full border border-emerald-300/90 py-3.5 sm:py-4 text-[16px] sm:text-[18px]
                                font-semibold tracking-[0.12em] uppercase text-emerald-100
                                bg-[#111111]
                                transition-all duration-200 ease-out hover:-translate-y-1
@@ -101,7 +102,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
       
 
       {/* BLOK: Kako funkcioniše + Pravila rizika */}
-      <div className="bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-8 sm:pt-2 pb-12">
+      <div className="bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-16 sm:pt-2 pb-12">
         <div className="max-w-5xl mx-auto">
           <section id="how-it-works" className="mt-0.5 sm:mt-1 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
             <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
