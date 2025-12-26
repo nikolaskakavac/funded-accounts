@@ -100,6 +100,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 onClick={() => {
                   setMenuOpen(false);
                   navigate('/');
+                  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                 }}
                 className="py-2"
               >
@@ -109,6 +110,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 onClick={() => {
                   setMenuOpen(false);
                   navigate('/#plans');
+                  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                 }}
                 className="py-2"
               >
@@ -119,6 +121,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                   onClick={() => {
                     setMenuOpen(false);
                     navigate('/dashboard');
+                    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                   }}
                   className="py-2"
                 >
@@ -129,6 +132,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 onClick={() => {
                   setMenuOpen(false);
                   navigate('/about');
+                  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                 }}
                 className="py-2"
               >
@@ -138,6 +142,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 onClick={() => {
                   setMenuOpen(false);
                   navigate('/contact');
+                  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                 }}
                 className="py-2"
               >
@@ -150,6 +155,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                       onClick={() => {
                         setMenuOpen(false);
                         navigate('/admin');
+                        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                       }}
                       className="mt-3 rounded-full border border-emerald-500/80 py-2 text-sm font-semibold text-emerald-300"
                     >
@@ -160,6 +166,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                     onClick={() => {
                       setMenuOpen(false);
                       onLogout();
+                      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                     }}
                     className="mt-1 rounded-full border border-red-500/80 py-2 text-sm font-semibold text-red-300"
                   >
@@ -171,6 +178,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                   onClick={() => {
                     setMenuOpen(false);
                     navigate('/login');
+                    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                   }}
                   className="mt-3 rounded-full bg-emerald-500 py-2 text-sm font-semibold text-black"
                 >

@@ -8,18 +8,19 @@ const Dashboard = ({ navigate, token, onLogout }) => {
   const [user, setUser] = useState(null);
   const [cashout, setCashout] = useState({ status: 'none', requestedAt: null, loading: false, error: '' });
   const lang = getLang();
+  const effectiveToken = token || (typeof localStorage !== 'undefined' ? localStorage.getItem('token') : '');
 
   useEffect(() => {
-    if (!token) {
+    if (!effectiveToken) {
       navigate('/login');
       return;
     }
     (async () => {
       try {
-        const res = await getMe(token);
+        const res = await getMe(effectiveToken);
         setUser(res.user);
         try {
-          const co = await getCashoutStatus(token);
+          const co = await getCashoutStatus(effectiveToken);
           setCashout((prev) => ({ ...prev, status: co.status || 'none', requestedAt: co.requestedAt || null }));
         } catch (coErr) {
           console.error(coErr);
@@ -29,7 +30,7 @@ const Dashboard = ({ navigate, token, onLogout }) => {
         onLogout();
       }
     })();
-  }, [token, navigate, onLogout]);
+  }, [effectiveToken, navigate, onLogout]);
 
   const handleCashout = async () => {
     if (!hasPlan) return;
@@ -42,7 +43,7 @@ const Dashboard = ({ navigate, token, onLogout }) => {
     }
   };
 
-  if (!token) return null;
+  if (!effectiveToken) return null;
 
   const hasPlan = !!user?.currentPlan;
   
@@ -68,7 +69,7 @@ const Dashboard = ({ navigate, token, onLogout }) => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
-      <Header navigate={navigate} token={token} onLogout={onLogout} />
+      <Header navigate={navigate} token={effectiveToken} onLogout={onLogout} />
       <div className="mx-auto max-w-6xl px-4 pb-16 pt-6 sm:pt-8 lg:px-8">
         {/* Header */}
         <header className="mb-10 flex items-center justify-between gap-4">
@@ -133,14 +134,8 @@ const Dashboard = ({ navigate, token, onLogout }) => {
 
               <div className="space-y-4 font-sans text-[15px] text-slate-100/90">
                 <div>
-                  <p className="text-[11px] text-slate-400">{t('dashboard.name', lang)}</p>
-                  <p className="mt-0.5 font-medium text-slate-50">
-                    {user?.firstName && user?.lastName ? (
-                      `${user.firstName} ${user.lastName}`
-                    ) : (
-                      user?.email
-                    )}
-                  </p>
+                  <p className="text-[11px] text-slate-400">{t('dashboard.email', lang)}</p>
+                  <p className="mt-0.5 font-medium text-slate-50">{user?.email}</p>
                 </div>
 
                 <div>

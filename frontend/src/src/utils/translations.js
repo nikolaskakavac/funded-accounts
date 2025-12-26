@@ -219,6 +219,7 @@ const translations = {
   'dashboard.balanceDescription': { sr: 'Vrednost tvog aktivnog plana.', en: 'Value of your active plan.' },
   'dashboard.account': { sr: 'Nalog', en: 'Account' },
   'dashboard.accountDescription': { sr: 'Tvoj email i funded status.', en: 'Your email and funded status.' },
+  'dashboard.email': { sr: 'Email adresa', en: 'Email address' },
   'dashboard.name': { sr: 'Ime i prezime', en: 'Name' },
   'dashboard.plan': { sr: 'Plan', en: 'Plan' },
   'dashboard.paid': { sr: 'Plaćeno:', en: 'Paid:' },

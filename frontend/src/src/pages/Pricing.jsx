@@ -186,7 +186,10 @@ const PlanCard = ({
           </>
         ) : (
           <button
-            onClick={() => navigate('/register')}
+            onClick={() => {
+              navigate('/register');
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+            }}
             className="w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 py-3.5 font-sans font-semibold uppercase tracking-[0.16em] text-black shadow-[0_0_25px_rgba(16,185,129,0.6)] hover:shadow-[0_0_35px_rgba(16,185,129,0.9)] hover:-translate-y-0.5 transition-all duration-200"
           >
             KREIRAJ NALOG DA ZAVRŠIŠ PLAĆANJE
