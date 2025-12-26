@@ -46,17 +46,6 @@ const Dashboard = ({ navigate, token, onLogout }) => {
   if (!effectiveToken) return null;
 
   const hasPlan = !!user?.currentPlan;
-  
-  // FIX: formatEuro helper za EUR
-  const formatEuro = (amount) => {
-    if (!amount) return '0 €';
-    return new Intl.NumberFormat('de-DE', {
-      style: 'currency',
-      currency: 'EUR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 2
-    }).format(amount);
-  };
 
   const pricePaid = user?.currentPlan?.price;
   const balance =
@@ -154,7 +143,7 @@ const Dashboard = ({ navigate, token, onLogout }) => {
                       <p className="text-[12px] text-slate-400">
                         {t('dashboard.paid', lang)}{' '}
                         <span className="font-medium text-emerald-400">
-                          {formatEuro(user.currentPlan.price)}
+                          {user.currentPlan.price}€
                         </span>
                       </p>
                     </div>

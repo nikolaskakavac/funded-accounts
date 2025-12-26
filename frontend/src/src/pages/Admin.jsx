@@ -1,7 +1,22 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+// Determine API base URL (same logic as api.js)
+const getApiBase = () => {
+  if (import.meta.env.VITE_API_BASE_URL) {
+    return import.meta.env.VITE_API_BASE_URL;
+  }
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  // Auto-detect: if on arbexfund.com, use api.arbexfund.com
+  if (typeof window !== 'undefined' && window.location.hostname === 'arbexfund.com') {
+    return 'https://api.arbexfund.com';
+  }
+  return 'http://localhost:4000';
+};
+
+const API_BASE = getApiBase();
 
 const Admin = ({ navigate, token, onLogout }) => {
   const [transactions, setTransactions] = useState([]);
