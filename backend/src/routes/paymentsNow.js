@@ -31,17 +31,16 @@ async function npRequestWithRetry(makeRequest, retries = 1, backoffMs = 1200) {
 async function estimatePayAmount(payCurrency, priceAmount) {
   try {
     const res = await npRequestWithRetry(() =>
-      axios.post(
+      axios.get(
         `${NOW_API_BASE}/estimate`,
         {
-          amount: priceAmount,
-          currency_from: 'eur',
-          currency_to: payCurrency,
-        },
-        {
+          params: {
+            amount: priceAmount,
+            currency_from: 'usd',
+            currency_to: payCurrency,
+          },
           headers: {
             'x-api-key': process.env.NOWPAYMENTS_API_KEY,
-            'Content-Type': 'application/json',
           },
         },
       ),
