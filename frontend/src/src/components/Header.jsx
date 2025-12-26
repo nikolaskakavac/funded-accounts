@@ -39,7 +39,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
               if (e.key === 'Enter') navigate('/');
             }}
           >
-            Vault<span className="text-emerald-400">Funding</span>
+            Arbex
           </div>
         </div>
 

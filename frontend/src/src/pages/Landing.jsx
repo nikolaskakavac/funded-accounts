@@ -15,8 +15,8 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
   const lang = getLang();
 
   const landingPlans = [
-    { id: '693db3e0e9cf589519c144fe', name: 'Nalog sa 10.000€', price: 99 },
-    { id: '693db3ede9cf589519c14500', name: 'Nalog sa 20.000€', price: 189 },
+    { id: '693db3e0e9cf589519c144fe', name: 'Nalog sa 10.000€', price: 300 },
+    { id: '693db3ede9cf589519c14500', name: 'Nalog sa 20.000€', price: 600 },
   ];
 
   const selectedPlan = landingPlans.find((p) => p.id === onSitePlanId);
@@ -28,14 +28,14 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
         className="
           flex flex-col
           bg-no-repeat
-          bg-[center_58%]
+          bg-[center_48%]
           bg-[length:112%]
-          sm:bg-[center_52%]
+          sm:bg-[32%_40%]
           sm:bg-[length:88%]
           bg-[#111111]
-          min-h-[720px]
-          sm:min-h-[780px]
-          md:min-h-[840px]
+          min-h-[640px]
+          sm:min-h-[680px]
+          md:min-h-[720px]
         "
         style={{ backgroundImage: "url('/img/crypto-bg.png')" }}
       >
@@ -84,9 +84,9 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     onClick={() => navigate('/#plans')}
                     className="w-full rounded-full border border-emerald-300/90 py-3.5 sm:py-4 text-[16px] sm:text-[18px]
                                font-semibold tracking-[0.12em] uppercase text-emerald-100
-                               bg-gradient-to-b from-emerald-500/15 to-emerald-500/28
+                               bg-[#111111]
                                transition-all duration-200 ease-out hover:-translate-y-1
-                               hover:from-emerald-500/22 hover:to-emerald-500/32
+                               hover:bg-emerald-900/60
                                active:translate-y-0"
                   >
                     {t('hero.viewPlans')}
@@ -328,7 +328,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
           </div>
 
           <div className="grid gap-7 justify-items-center sm:grid-cols-2">
-            {/* 10K - 99€ */}
+            {/* 10K - 300€ */}
             <div className="w-full max-w-sm">
               <div className="relative flex h-full flex-col rounded-3xl border p-6 shadow-lg
                               bg-gradient-to-b from-black via-[#02110b] to-black
@@ -348,7 +348,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     {t('plans.price')}
                   </div>
                   <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
-                    99€
+                    300€
                   </div>
                 </div>
                 <div className="mb-3 flex items-center justify-center gap-2 sm:gap-3">
@@ -379,13 +379,13 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
-                    {t('plans.payCrypto')} (79€)
+                    {t('plans.payCrypto')}
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* 20K - 189€ */}
+            {/* 20K - 600€ */}
             <div className="w-full max-w-sm">
               <div className="relative flex h-full flex-col rounded-3xl border p-6 shadow-lg
                               bg-gradient-to-b from-black via-[#02110b] to-black
@@ -402,7 +402,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     {t('plans.price')}
                   </div>
                   <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
-                    189€
+                    600€
                   </div>
                 </div>
                 <div className="mb-3 flex items-center justify-center gap-2 sm:gap-3">
@@ -433,7 +433,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
-                    {t('plans.payCrypto')} (169€)
+                    {t('plans.payCrypto')}
                   </button>
                 </div>
               </div>
@@ -526,7 +526,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
         <div className="max-w-5xl mx-auto flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div className="font-display text-[18px] font-semibold tracking-[0.16em] uppercase text-slate-50">
-              Vault<span className="text-emerald-400">Funding</span>
+              Arbex
             </div>
             <p className="mt-1 font-sans text-[13px] text-slate-400">
               {t('footer.professional')}
@@ -547,7 +547,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
               {t('footer.contact')}
             </button>
             <p className="mt-1 text-[12px] text-slate-500">
-              © {new Date().getFullYear()} VaultFunding. {t('footer.rights')}
+              © {new Date().getFullYear()} Arbex. {t('footer.rights')}
             </p>
           </div>
         </div>

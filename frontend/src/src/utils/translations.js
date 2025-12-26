@@ -365,11 +365,11 @@ const translations = {
   'contact.msg.biz': { sr: '• Saradnja: par rečenica o projektu i publici (YouTube, Discord, Telegram...).', en: '• Collaboration: a few sentences about your project and audience (YouTube, Discord, Telegram...).' },
 
   // Partnerstvo Page
-  'partner.title': { sr: 'Naše partnerstvo sa Equiti Seychelles Ltd.', en: 'Our partnership with Equiti Seychelles Ltd.' },
+  'partner.title': { sr: 'Naše partnerstvo sa Norvestor Equiti Ltd.', en: 'Our partnership with Norvestor Equiti Ltd.' },
   'partner.subtitle': { sr: 'Globalni fond, lokalne prilike.', en: 'Global fund, local opportunities.' },
   'partner.intro1': {
-    sr: 'Naša kompanija posluje u partnerstvu sa Equiti Seychelles Ltd., jednim od vodećih međunarodnih kapitalnih fondova za investicije u kriptovalute i obveznice.',
-    en: 'Our company operates in partnership with Equiti Seychelles Ltd., one of the leading international capital funds for investments in cryptocurrencies and bonds.'
+    sr: 'Naša kompanija posluje u partnerstvu sa Norvestor Equiti Ltd., jednim od vodećih međunarodnih kapitalnih fondova za investicije u kriptovalute i obveznice.',
+    en: 'Our company operates in partnership with Norvestor Equiti Ltd., one of the leading international capital funds for investments in cryptocurrencies and bonds.'
   },
   'partner.intro2': {
     sr: 'Ovo partnerstvo nam omogućava da investitorima u regionu Balkana pružimo pristup profesionalnom kapitalu, savremenim alatima i stručnoj podršci koja je inače dostupna samo globalnim tržištima.',
@@ -388,8 +388,8 @@ const translations = {
   },
   'partner.bullet.transparency.title': { sr: 'Transparentnost i poverenje', en: 'Transparency and trust' },
   'partner.bullet.transparency.desc': {
-    sr: 'Partnerstvo sa Equiti Seychelles garantuje visoke standarde poslovanja i profesionalni nadzor.',
-    en: 'The partnership with Equiti Seychelles ensures high business standards and professional oversight.'
+    sr: 'Partnerstvo sa Norvestor Equiti garantuje visoke standarde poslovanja i profesionalni nadzor.',
+    en: 'The partnership with Norvestor Equiti ensures high business standards and professional oversight.'
   },
   'partner.bullet.regional.title': { sr: 'Regionalni fokus', en: 'Regional focus' },
   'partner.bullet.regional.desc': {
@@ -412,13 +412,13 @@ const translations = {
   'about.subtitle': { sr: 'Povezujemo globalni kapital sa lokalnim potencijalom', en: 'Connecting global capital with local potential' },
   'about.origin.title': { sr: '🏢 Naše poreklo', en: '🏢 Our Origin' },
   'about.origin.description': {
-    sr: 'Naša kompanija deo je međunarodne korporacije Equiti Seychelles Ltd., jednog od vodećih kapitalnih fondova specijalizovanih za investicije u kriptovalute i obveznice.',
-    en: 'Our company is part of the international corporation Equiti Seychelles Ltd., one of the leading capital funds specialized in cryptocurrency and bond investments.'
+    sr: 'Naša kompanija deo je međunarodne korporacije Norvestor Equiti Ltd., jednog od vodećih kapitalnih fondova specijalizovanih za investicije u kriptovalute i obveznice.',
+    en: 'Our company is part of the international corporation Norvestor Equiti Ltd., one of the leading capital funds specialized in cryptocurrency and bond investments.'
   },
   'about.regional.title': { sr: '🌍 Regionalni pristup', en: '🌍 Regional Approach' },
   'about.regional.description': {
-    sr: 'Kao regionalni partner Equiti grupe, pokrećemo poslovanje na balkanskom tržištu kako bismo približili savremene investicione mogućnosti i profesionalne alate pojedincima i timovima širom regiona.',
-    en: 'As a regional partner of the Equiti group, we are launching operations in the Balkan market to bring modern investment opportunities and professional tools to individuals and teams across the region.'
+    sr: 'Kao regionalni partner Norvestor Equiti grupe, pokrećemo poslovanje na balkanskom tržištu kako bismo približili savremene investicione mogućnosti i profesionalne alate pojedincima i timovima širom regiona.',
+    en: 'As a regional partner of the Norvestor Equiti group, we are launching operations in the Balkan market to bring modern investment opportunities and professional tools to individuals and teams across the region.'
   },
   'about.model.title': { sr: '💼 Naš model', en: '💼 Our Model' },
   'about.model.description': {
@@ -427,8 +427,8 @@ const translations = {
   },
   'about.network.title': { sr: '🤝 Izgradnja mreže', en: '🤝 Building the Network' },
   'about.network.description': {
-    sr: 'Zajedno sa Equiti Seychelles fondom, gradimo mrežu investitora koji ostvaruju stabilne i dugoročne rezultate, dok region Balkana pozicioniramo kao novo središte pametnog investiranja.',
-    en: 'Together with the Equiti Seychelles fund, we are building a network of investors achieving stable and long-term results, while positioning the Balkan region as a new hub for smart investing.'
+    sr: 'Zajedno sa Norvestor Equiti fondom, gradimo mrežu investitora koji ostvaruju stabilne i dugoročne rezultate, dok region Balkana pozicioniramo kao novo središte pametnog investiranja.',
+    en: 'Together with the Norvestor Equiti fund, we are building a network of investors achieving stable and long-term results, while positioning the Balkan region as a new hub for smart investing.'
   },
   'about.mission.title': { sr: '🎯 Naša misija', en: '🎯 Our Mission' },
   'about.mission.description': {

@@ -61,9 +61,9 @@ const Dashboard = ({ navigate, token, onLogout }) => {
   const pricePaid = user?.currentPlan?.price;
   const balance =
     user?.currentPlan?.balance ??
-    ((pricePaid === 79 || pricePaid === 99)
+    (pricePaid === 300
       ? 10000
-      : (pricePaid === 169 || pricePaid === 189)
+      : pricePaid === 600
         ? 20000
         : (pricePaid || 0));
 

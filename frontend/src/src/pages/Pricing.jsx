@@ -7,7 +7,7 @@ const plans = [
   {
     id: '693db3e0e9cf589519c144fe',
     name: 'Nalog sa 10.000€',
-    price: 99,
+    price: 300,
     currency: 'usd',
     balance: 10000,
     highlighted: true,
@@ -15,7 +15,7 @@ const plans = [
   {
     id: '693db3ede9cf589519c14500',
     name: 'Nalog sa 20.000€',
-    price: 189,
+    price: 600,
     currency: 'usd',
     balance: 20000,
   },
