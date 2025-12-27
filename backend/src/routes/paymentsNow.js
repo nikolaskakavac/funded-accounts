@@ -97,9 +97,9 @@ router.post('/create', authMiddleware, async (req, res) => {
     const userId = req.user?.id; // ako auth radi, ovo je setovano
 
     const price = getCryptoAmount(plan._id.toString(), plan.price);
-    // Always use USD as price_currency since NOWPayments works better with USD
-    // Plans are priced in EUR but we convert them to USD for NOWPayments
-    const priceCurrency = 'usd';
+    // Always use EUR as price_currency since all plans are priced in EUR
+    // NOWPayments will convert EUR to crypto automatically
+    const priceCurrency = 'eur';
 
     const payload = {
       price_amount: price,
@@ -126,11 +126,8 @@ router.post('/create', authMiddleware, async (req, res) => {
     console.log('NOWPayments response:', payment);
     console.log('Invoice URL:', payment.invoice_url);
 
-    let payAmount = payment.pay_amount;
-    if (!payAmount) {
-      payAmount = await estimatePayAmount(payload.pay_currency, price, 'usd');
-      console.log('Estimated amount for', payload.pay_currency, 'from usd =>', payAmount);
-    }
+    // NOWPayments automatically provides pay_amount for crypto conversion
+    const payAmount = payment.pay_amount;
 
     const payCurrency = payment.pay_currency || payload.pay_currency;
 
