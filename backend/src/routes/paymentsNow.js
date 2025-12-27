@@ -37,9 +37,10 @@ const planPricing = {
 };
 
 // Allowed crypto coins and mapping to NOWPayments codes
-const ALLOWED_PAY_CURRENCIES = ['usdt', 'usdc', 'eth'];
+const ALLOWED_PAY_CURRENCIES = ['usdttrc20', 'usdc', 'eth'];
 const PAY_CURRENCY_MAP = {
-  usdt: 'usdt', // Tether USDT
+  usdt: 'usdttrc20', // Tether USDT on TRON (TRC20) - lowest fees
+  usdttrc20: 'usdttrc20', // Explicit USDT TRC20
   usdc: 'usdc',  // USD Coin
   eth: 'eth',    // Ethereum
 };
@@ -62,7 +63,7 @@ router.post('/create', authMiddleware, async (req, res) => {
   const normalizedPayCurrency = normalizePayCurrency(pay_currency);
   if (!normalizedPayCurrency) {
     return res.status(400).json({
-      message: 'Unsupported crypto coin. Allowed: usdt, usdc, eth.',
+      message: 'Unsupported crypto coin. Allowed: usdt (TRC20), usdc, eth.',
     });
   }
 
