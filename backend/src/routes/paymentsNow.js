@@ -97,9 +97,8 @@ router.post('/create', authMiddleware, async (req, res) => {
     const userId = req.user?.id; // ako auth radi, ovo je setovano
 
     const price = getCryptoAmount(plan._id.toString(), plan.price);
-    // Always use EUR as price_currency since all plans are priced in EUR
-    // NOWPayments will convert EUR to crypto automatically
-    const priceCurrency = 'eur';
+    // Try with USD for payment creation - NOWPayments prefers USD for estimates
+    const priceCurrency = 'usd';
 
     const payload = {
       price_amount: price,
