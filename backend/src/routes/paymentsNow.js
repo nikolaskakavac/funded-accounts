@@ -28,26 +28,7 @@ async function npRequestWithRetry(makeRequest, retries = 1, backoffMs = 1200) {
   }
 }
 
-async function estimatePayAmount(payCurrency, priceAmount, currencyFrom = 'eur') {
-  try {
-    const res = await npRequestWithRetry(() =>
-      axios.get(`${NOW_API_BASE}/estimate`, {
-        params: {
-          amount: priceAmount,
-          currency_from: currencyFrom,
-          currency_to: payCurrency,
-        },
-        headers: {
-          'x-api-key': process.env.NOWPAYMENTS_API_KEY,
-        },
-      }),
-    );
-    return res.data?.estimated_amount || null;
-  } catch (e) {
-    console.error('NOWPayments estimate failed:', e.response?.data || e.message);
-    return null;
-  }
-}
+// Removed estimatePayAmount - NOWPayments API returns pay_amount directly
 
 // Plan pricing overrides by payment method (EUR)
 const planPricing = {
