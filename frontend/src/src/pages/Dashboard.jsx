@@ -96,27 +96,13 @@ const Dashboard = ({ navigate, token, onLogout }) => {
           <section className="space-y-6">
             {/* Balans - FIX: € umesto $ */}
             <div className="rounded-3xl border border-emerald-800/60 bg-gradient-to-r from-[#02110b] via-black to-[#02110b] p-6 shadow-lg shadow-emerald-500/20">
-              <div className="flex items-baseline justify-between gap-4">
-                <div>
-                  <p className="font-display text-[12px] uppercase tracking-[0.22em] text-emerald-300">
-                    {t('dashboard.balance', lang)}
-                  </p>
-                  <p className="mt-3 font-display text-[32px] sm:text-[36px] font-extrabold tracking-[0.08em] text-emerald-300">
-                    {balance.toLocaleString('de-DE')} €
-                  </p>
-                </div>
-                {hasPlan && pricePaid && (
-                  <div className="text-right">
-                    <p className="font-display text-[11px] uppercase tracking-[0.16em] text-slate-400">
-                      Plaćeno:
-                    </p>
-                    <p className="mt-1 font-display text-[24px] font-extrabold tracking-[0.08em] text-emerald-400">
-                      {pricePaid}€
-                    </p>
-                  </div>
-                )}
-              </div>
-              <p className="mt-3 font-sans text-[12px] text-emerald-100/90">
+              <p className="font-display text-[12px] uppercase tracking-[0.22em] text-emerald-300">
+                {t('dashboard.balance', lang)}
+              </p>
+              <p className="mt-3 font-display text-[32px] sm:text-[36px] font-extrabold tracking-[0.08em] text-emerald-300">
+                {balance.toLocaleString('de-DE')} €
+              </p>
+              <p className="mt-1 font-sans text-[12px] text-emerald-100/90">
                 {t('dashboard.balanceDescription', lang)}
               </p>
             </div>
