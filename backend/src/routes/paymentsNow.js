@@ -28,7 +28,7 @@ async function npRequestWithRetry(makeRequest, retries = 1, backoffMs = 1200) {
   }
 }
 
-async function estimatePayAmount(payCurrency, priceAmount, currencyFrom = 'usd') {
+async function estimatePayAmount(payCurrency, priceAmount, currencyFrom = 'eur') {
   try {
     const res = await npRequestWithRetry(() =>
       axios.get(`${NOW_API_BASE}/estimate`, {
