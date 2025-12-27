@@ -205,6 +205,26 @@ const translations = {
   'contact.msg.rules': { sr: '• Pitanje o pravilima: koji paket koristiš (10K ili 25K) i na kojoj platformi trguješ.', en: '• Rules question: which package you use (10K or 25K) and which platform you trade on.' },
   'contact.msg.biz': { sr: '• Saradnja: par rečenica o projektu i publici (YouTube, Discord, Telegram...).', en: '• Collaboration: a few sentences about your project and audience (YouTube, Discord, Telegram...).' },
 
+  // Contact Form
+  'contactForm.title': { sr: 'Pošalji nam poruku', en: 'Send us a message' },
+  'contactForm.subtitle': { sr: 'Popuni formu ispod i odgovorićemo u roku od 24 sata.', en: 'Fill out the form below and we\'ll respond within 24 hours.' },
+  'contactForm.name': { sr: 'Ime i prezime', en: 'Full name' },
+  'contactForm.email': { sr: 'Email adresa', en: 'Email address' },
+  'contactForm.subject': { sr: 'Naslov poruke', en: 'Message subject' },
+  'contactForm.subjectPlaceholder': { sr: 'Npr. Pitanje o uslovima...', en: 'E.g., Question about terms...' },
+  'contactForm.message': { sr: 'Poruka', en: 'Message' },
+  'contactForm.messagePlaceholder': { sr: 'Detaljno napiši tvoje pitanje ili problem...', en: 'Describe your question or issue in detail...' },
+  'contactForm.submit': { sr: 'Pošalji poruku', en: 'Send message' },
+  'contactForm.sending': { sr: 'Slanje...', en: 'Sending...' },
+  'contactForm.successTitle': { sr: 'Poruka poslana!', en: 'Message sent!' },
+  'contactForm.successMessage': { sr: 'Hvala na poruci. Odgovorićemo u roku od 24 sata.', en: 'Thank you for your message. We\'ll respond within 24 hours.' },
+  'contactForm.errorTitle': { sr: 'Greška', en: 'Error' },
+  'contactForm.errorMessage': { sr: 'Nije moguće poslati poruku. Pokušaj ponovo.', en: 'Unable to send message. Please try again.' },
+  'contactForm.validationName': { sr: 'Ime je obavezno', en: 'Name is required' },
+  'contactForm.validationEmail': { sr: 'Email je obavezan i mora biti validan', en: 'Email is required and must be valid' },
+  'contactForm.validationSubject': { sr: 'Naslov je obavezan', en: 'Subject is required' },
+  'contactForm.validationMessage': { sr: 'Poruka je obavezna', en: 'Message is required' },
+
   // Footer
   'footer.professional': { sr: 'Profesionalno investiranje za svakoga.', en: 'Professional investing for everyone.' },
   'footer.pricing': { sr: 'Planovi i cene', en: 'Plans & Pricing' },

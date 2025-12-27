@@ -26,4 +26,35 @@ async function sendWelcomeEmail(toEmail) {
   await transporter.sendMail(mailOptions);
 }
 
-module.exports = { sendWelcomeEmail };
+async function sendContactEmail({ name, email, subject, message }) {
+  const mailOptions = {
+    from: `"${process.env.MAIL_FROM_NAME || 'Funded Accounts'}" <${process.env.SMTP_USER}>`,
+    to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
+    replyTo: email,
+    subject: `[Contact Form] ${subject}`,
+    html: `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+      <p><strong>Subject:</strong> ${escapeHtml(subject)}</p>
+      <hr />
+      <p><strong>Message:</strong></p>
+      <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
+    `
+  };
+
+  await transporter.sendMail(mailOptions);
+}
+
+function escapeHtml(text) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, m => map[m]);
+}
+
+module.exports = { sendWelcomeEmail, sendContactEmail };

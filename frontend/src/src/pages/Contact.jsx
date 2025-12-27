@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
+import ContactForm from '../components/ContactForm';
 import { t } from '../utils/translations';
 import { getLang } from '../utils/lang';
 
@@ -9,7 +10,7 @@ const Contact = ({ navigate, token, onLogout }) => {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
       <Header navigate={navigate} token={token} onLogout={onLogout} />
-      <main className="relative mx-auto max-w-4xl px-4 py-14 space-y-10">
+      <main className="relative mx-auto max-w-6xl px-4 py-14 space-y-14">
         {/* Header */}
         <section className="flex items-start justify-between gap-4">
           <div>
@@ -32,7 +33,12 @@ const Contact = ({ navigate, token, onLogout }) => {
           </button>
         </section>
 
-        {/* Kartice sa kontakt podacima */}
+        {/* Contact Form Section */}
+        <section className="rounded-3xl border border-emerald-800/60 bg-black/80 p-8 shadow-lg shadow-emerald-500/20">
+          <ContactForm />
+        </section>
+
+        {/* Info Cards */}
         <section className="grid gap-5 md:grid-cols-2">
           <div className="rounded-3xl border border-emerald-800/60 bg-black/80 p-6 shadow-lg shadow-emerald-500/20">
             <p className="mb-2 font-display text-[11px] uppercase tracking-[0.2em] text-emerald-300">
@@ -67,7 +73,7 @@ const Contact = ({ navigate, token, onLogout }) => {
           </div>
         </section>
 
-        {/* Adresa / radno vreme */}
+        {/* Company Details */}
         <section className="space-y-3 rounded-3xl border border-emerald-800/60 bg-black/80 p-6 shadow-lg shadow-emerald-500/20">
           <p className="font-display text-[11px] uppercase tracking-[0.2em] text-emerald-300">
             {t('contact.companyDetails', lang)}
@@ -80,7 +86,7 @@ const Contact = ({ navigate, token, onLogout }) => {
           </p>
         </section>
 
-        {/* Kratak FAQ uz kontakt */}
+        {/* FAQ */}
         <section className="space-y-3 rounded-3xl border border-emerald-800/60 bg-black/80 p-6 shadow-lg shadow-emerald-500/20">
           <p className="font-display text-[11px] uppercase tracking-[0.2em] text-emerald-300">
             {t('contact.whatToSend', lang)}

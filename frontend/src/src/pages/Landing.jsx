@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Leaderboard from '../components/Leaderboard';
+import ContactForm from '../components/ContactForm';
 import { t } from '../utils/translations';
 import { getLang } from '../utils/lang';
 
@@ -521,6 +522,27 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                {t('faq.a3')}
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT SECTION */}
+      <section className="bg-gradient-to-b from-black via-emerald-950 to-black px-4 py-14">
+        <div className="max-w-5xl mx-auto space-y-8">
+          <div className="text-center">
+            <p className="font-display text-[11px] uppercase tracking-[0.26em] text-emerald-400">
+              {t('contact.section')}
+            </p>
+            <h2 className="mt-2 font-display text-[28px] sm:text-[34px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
+              {t('contact.title')}
+            </h2>
+            <p className="mt-3 font-sans text-[15px] text-emerald-100/90 max-w-2xl mx-auto">
+              {t('contact.subtitle')}
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-emerald-800/60 bg-black/80 p-8 shadow-lg shadow-emerald-500/20">
+            <ContactForm />
           </div>
         </div>
       </section>
