@@ -28,7 +28,7 @@ async function npRequestWithRetry(makeRequest, retries = 1, backoffMs = 1200) {
   }
 }
 
-async function estimatePayAmount(payCurrency, priceAmount, currencyFrom = 'eur') {
+async function estimatePayAmount(payCurrency, priceAmount, currencyFrom = 'usd') {
   try {
     const res = await npRequestWithRetry(() =>
       axios.get(`${NOW_API_BASE}/estimate`, {
@@ -97,9 +97,9 @@ router.post('/create', authMiddleware, async (req, res) => {
     const userId = req.user?.id; // ako auth radi, ovo je setovano
 
     const price = getCryptoAmount(plan._id.toString(), plan.price);
-    // Always use EUR as price_currency since all plans are priced in EUR
-    // NOWPayments will convert EUR to crypto automatically
-    const priceCurrency = 'eur';
+    // Always use USD as price_currency since NOWPayments works better with USD
+    // Plans are priced in EUR but we convert them to USD for NOWPayments
+    const priceCurrency = 'usd';
 
     const payload = {
       price_amount: price,
@@ -128,8 +128,8 @@ router.post('/create', authMiddleware, async (req, res) => {
 
     let payAmount = payment.pay_amount;
     if (!payAmount) {
-      payAmount = await estimatePayAmount(payload.pay_currency, price, 'eur');
-      console.log('Estimated amount for', payload.pay_currency, 'from eur =>', payAmount);
+      payAmount = await estimatePayAmount(payload.pay_currency, price, 'usd');
+      console.log('Estimated amount for', payload.pay_currency, 'from usd =>', payAmount);
     }
 
     const payCurrency = payment.pay_currency || payload.pay_currency;
