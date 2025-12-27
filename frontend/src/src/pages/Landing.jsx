@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Leaderboard from '../components/Leaderboard';
-import OnSiteStripeCheckout from '../components/OnSiteStripeCheckout';
 import { t } from '../utils/translations';
 import { getLang } from '../utils/lang';
 
@@ -454,11 +453,14 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   </p>
                 </div>
 
-                <OnSiteStripeCheckout
-                  token={token}
-                  planId={selectedPlan.id}
-                  onSuccess={() => (window.location.href = '/success')}
-                />
+                <div className="space-y-3">
+                  <button
+                    onClick={() => navigate(`/pay-card/${selectedPlan.id}`)}
+                    className="w-full rounded-2xl bg-emerald-500 py-3 text-sm font-sans font-semibold uppercase tracking-[0.18em] text-black shadow-[0_0_20px_rgba(16,185,129,0.7)] transition-all duration-200 disabled:opacity-60 hover:-translate-y-[1px] hover:bg-emerald-400"
+                  >
+                    {lang === 'sr' ? 'Plati karticom' : 'Pay by card'}
+                  </button>
+                </div>
 
                 <div className="mt-4 text-center">
                   <button
