@@ -102,6 +102,9 @@ const Pricing = ({ navigate, token, onLogout }) => {
                   <p className="text-lg font-semibold text-emerald-200 mt-1">
                     {selectedPlan.balance.toLocaleString()}€ kapitala
                   </p>
+                  <p className="text-sm font-sans text-emerald-300/90 mt-3 flex items-center justify-center gap-2">
+                    <span>🎓</span> Video obuka dolazi uz nalog
+                  </p>
                 </div>
 
                 <OnSiteStripeCheckout
@@ -156,7 +159,13 @@ const PlanCard = ({
         </div>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-3">
+        <div className="rounded-xl border border-emerald-600/50 bg-emerald-500/10 p-3 text-center">
+          <p className="text-xs font-sans font-semibold text-emerald-200 flex items-center justify-center gap-1.5">
+            <span>🎓</span>
+            <span>Video obuka dolazi uz nalog</span>
+          </p>
+        </div>
         {token ? (
           <>
             <button
@@ -176,14 +185,21 @@ const PlanCard = ({
   disabled={isPayingCrypto}
   className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/10 via-emerald-400/15 to-cyan-400/15 p-[1px] shadow-[0_0_25px_rgba(34,197,94,0.45)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(34,197,94,0.75)] disabled:opacity-60 disabled:cursor-not-allowed"
 >
-  <div className="flex w-full items-center justify-center gap-2 rounded-2xl bg-black/90 px-4 py-3 sm:py-3.5">
-    <span className="text-lg sm:text-xl">🪙</span>
-    <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.18em] text-emerald-100 group-hover:text-emerald-50">
-      {isPayingCrypto ? 'Kreiram adresu...' : `Plati kriptom (${price}€)`}
-    </span>
-    <span className="text-[11px] sm:text-[12px] text-emerald-300/80 group-hover:text-emerald-200/90">
-      BTC • ETH • USDT
-    </span>
+  <div className="flex w-full flex-col items-center justify-center gap-1.5 rounded-2xl bg-black/90 px-4 py-3 sm:py-3.5">
+    <div className="flex items-center gap-2">
+      <span className="text-lg sm:text-xl">🪙</span>
+      <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.18em] text-emerald-100 group-hover:text-emerald-50">
+        {isPayingCrypto ? 'Kreiram adresu...' : `Plati kriptom (${price}€)`}
+      </span>
+    </div>
+    <div className="flex items-center gap-2 text-[10px] sm:text-[11px]">
+      <span className="text-emerald-300/80 group-hover:text-emerald-200/90">
+        BTC • ETH • USDT
+      </span>
+      <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 font-semibold text-emerald-200">
+        ✨ 20% OFF TAX FREE
+      </span>
+    </div>
   </div>
 
   {/* subtle shine animacija preko dugmeta */}

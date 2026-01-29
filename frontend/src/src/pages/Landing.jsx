@@ -352,6 +352,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
                     {landingPlans[0].price}€
                   </div>
+                  <p className="text-xs font-sans text-emerald-300/80 mt-2">🎓 Video obuka dolazi uz nalog</p>
                 </div>
                 <div className="mb-3 flex items-center justify-center gap-2 sm:gap-3">
                   <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
@@ -379,9 +380,17 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                       if (!token) navigate('/register');
                       else navigate('/pay-crypto/693db3e0e9cf589519c144fe');
                     }}
-                    className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
+                    className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/10 via-emerald-400/15 to-cyan-400/15 p-[1px] shadow-[0_0_25px_rgba(34,197,94,0.45)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(34,197,94,0.75)]"
                   >
-                    {t('plans.payCrypto')}
+                    <div className="flex w-full flex-col items-center justify-center gap-1 rounded-2xl bg-black/90 px-4 py-2.5 sm:py-3">
+                      <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.16em] text-emerald-100 group-hover:text-emerald-50">
+                        {t('plans.payCrypto')}
+                      </span>
+                      <span className="rounded-full bg-emerald-500/30 px-2 py-0.5 text-[10px] font-semibold text-emerald-200">
+                        ✨ 20% OFF TAX FREE
+                      </span>
+                    </div>
+                    <span className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-[100%] transition-all duration-700" />
                   </button>
                 </div>
               </div>
@@ -433,9 +442,17 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                       if (!token) navigate('/register');
                       else navigate('/pay-crypto/693db3ede9cf589519c14500');
                     }}
-                    className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
+                    className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/10 via-emerald-400/15 to-cyan-400/15 p-[1px] shadow-[0_0_25px_rgba(34,197,94,0.45)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(34,197,94,0.75)]"
                   >
-                    {t('plans.payCrypto')}
+                    <div className="flex w-full flex-col items-center justify-center gap-1 rounded-2xl bg-black/90 px-4 py-2.5 sm:py-3">
+                      <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.16em] text-emerald-100 group-hover:text-emerald-50">
+                        {t('plans.payCrypto')}
+                      </span>
+                      <span className="rounded-full bg-emerald-500/30 px-2 py-0.5 text-[10px] font-semibold text-emerald-200">
+                        ✨ 20% OFF TAX FREE
+                      </span>
+                    </div>
+                    <span className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-[100%] transition-all duration-700" />
                   </button>
                 </div>
               </div>
