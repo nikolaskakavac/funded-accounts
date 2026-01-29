@@ -7,12 +7,29 @@ const { sendWelcomeEmail } = require('../utils/mailer');
 const router = express.Router();
 
 // NOWPayments IPN
-router.post('/ipn', async (req, res) => {
-  try {
-    const ipn = req.body;
-    console.log('NOW IPN received:', ipn);
 
-    const { payment_id, order_id, payment_status } = ipn;
+const crypto = require('crypto');
+
+router.post('/ipn', express.raw({ type: '*/*' }), async (req, res) => {
+  try {
+    const sig = req.headers['x-nowpayments-sig'];
+    const secret = process.env.NOWPAYMENTS_IPN_SECRET || '';
+    const rawBody = req.body?.toString('utf-8') || '';
+
+    // ✅ HMAC validacija
+    if (sig && secret) {
+      const expected = crypto.createHmac('sha512', secret).update(rawBody).digest('hex');
+      console.log('🔐 IPN sig OK:', sig === expected);
+      if (sig !== expected) {
+        console.warn('❌ IPN signature mismatch');
+        return res.status(200).json({ received: true });
+      }
+    }
+
+    const body = JSON.parse(rawBody);
+    console.log('💰 NOW IPN:', body.payment_id, body.payment_status);
+
+    const { payment_id, order_id, payment_status } = body;
 
     const tx = await Transaction.findOne({
       provider: 'nowpayments',
@@ -49,7 +66,7 @@ router.post('/ipn', async (req, res) => {
 
     res.status(200).send('OK');
   } catch (err) {
-    console.error('NOW IPN error:', err.message);
+    console.error('IPN error:', err);
     res.status(200).send('OK');
   }
 });

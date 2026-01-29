@@ -14,13 +14,19 @@ const FRONTEND_URL =
 
 // Plan pricing overrides by payment method (EUR)
 const planPricing = {
-  '693db3e0e9cf589519c144fe': { stripe: 300, crypto: 300 }, // 10k
+  '693db3e0e9cf589519c144fe': { stripe: 300, crypto: 5 }, // 10k (uvek 300 EUR)
   '693db3ede9cf589519c14500': { stripe: 600, crypto: 600 }, // 20k
 };
 
 const getStripeAmount = (planId, fallbackPrice) => {
+  // TEST MODE: Svi planovi = 1€ (100 centimes)
+  if (process.env.STRIPE_SECRET_KEY?.startsWith('sk_test')) {
+    return 100; // 1€ za test
+  }
+  
   const p = planPricing[planId]?.stripe;
-  return p ? Math.round(p * 100) : Math.round(fallbackPrice * 100);
+  if (planId === '693db3e0e9cf589519c144fe') return 30000;
+  return p ? Math.round(p * 100) : 30000;
 };
 
 // POST /payments/stripe/checkout-session (redirect Stripe Checkout)

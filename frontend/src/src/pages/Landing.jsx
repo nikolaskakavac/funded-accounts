@@ -350,7 +350,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     {t('plans.price')}
                   </div>
                   <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
-                    300€
+                    {landingPlans[0].price}€
                   </div>
                 </div>
                 <div className="mb-3 flex items-center justify-center gap-2 sm:gap-3">

@@ -8,7 +8,7 @@ const plans = [
     id: '693db3e0e9cf589519c144fe',
     name: 'Nalog sa 10.000€',
     price: 300,
-    currency: 'usd',
+    currency: 'eur',
     balance: 10000,
     highlighted: true,
   },
@@ -24,11 +24,14 @@ const plans = [
 const Pricing = ({ navigate, token, onLogout }) => {
   const [onSitePlanId, setOnSitePlanId] = useState(null);
 
+  const [isPayingCrypto, setIsPayingCrypto] = useState(false);
   const handleCrypto = async (planId) => {
+    if (isPayingCrypto) return; // Sprečava dupli klik
     if (!token) {
       navigate('/login');
       return;
     }
+    setIsPayingCrypto(true);
     try {
       const res = await createNowPayment(token, planId, 'BTC'); // ili 'USDT'
       if (res.invoice_url) {
@@ -39,6 +42,8 @@ const Pricing = ({ navigate, token, onLogout }) => {
     } catch (e) {
       console.error(e);
       alert('Crypto greška.');
+    } finally {
+      setIsPayingCrypto(false);
     }
   };
 
@@ -120,6 +125,7 @@ const PlanCard = ({
   onChooseOnSite,
   isOnSiteSelected,
   onCrypto,
+  isPayingCrypto,
 }) => {
   const { name, price, highlighted } = plan;
 
@@ -167,12 +173,13 @@ const PlanCard = ({
             </button>
             <button
   onClick={onCrypto}
-  className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/10 via-emerald-400/15 to-cyan-400/15 p-[1px] shadow-[0_0_25px_rgba(34,197,94,0.45)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(34,197,94,0.75)]"
+  disabled={isPayingCrypto}
+  className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/10 via-emerald-400/15 to-cyan-400/15 p-[1px] shadow-[0_0_25px_rgba(34,197,94,0.45)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(34,197,94,0.75)] disabled:opacity-60 disabled:cursor-not-allowed"
 >
   <div className="flex w-full items-center justify-center gap-2 rounded-2xl bg-black/90 px-4 py-3 sm:py-3.5">
     <span className="text-lg sm:text-xl">🪙</span>
     <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.18em] text-emerald-100 group-hover:text-emerald-50">
-      Plati kriptom ({price}€)
+      {isPayingCrypto ? 'Kreiram adresu...' : `Plati kriptom (${price}€)`}
     </span>
     <span className="text-[11px] sm:text-[12px] text-emerald-300/80 group-hover:text-emerald-200/90">
       BTC • ETH • USDT

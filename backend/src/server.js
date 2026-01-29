@@ -1,10 +1,11 @@
 require('dotenv').config();
-const { sendWelcomeEmail } = require('./utils/mailer');
-const crypto = require('crypto');
 
 const express = require('express');
 const cors = require('cors');
 const Stripe = require('stripe');
+const crypto = require('crypto');
+
+const { sendWelcomeEmail } = require('./utils/mailer');
 
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
@@ -30,6 +31,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // 3) Webhook ZAHTEVA raw body, zato ide PRE express.json()
 app.use('/webhooks', webhooksStripe); // ovde je /webhooks/stripe iz routera
+app.use('/webhooks/now', require('./routes/webhooksNow')); // NOWPayments IPN rute
 
 // 4) Global middleware (posle webhooka)
 app.use(cors());
@@ -56,70 +58,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// 5) NOWPayments IPN webhook (raw body needed for signature)
-app.post('/webhooks/now/ipn', express.raw({ type: '*/*' }), async (req, res) => {
-  const sig = req.headers['x-nowpayments-sig'];
-  const secret = process.env.NOWPAYMENTS_IPN_SECRET || '';
-  const rawBody = req.body?.toString('utf-8') || '';
-
-  // Validate signature if provided
-  if (sig && secret) {
-    const expected = crypto.createHmac('sha512', secret).update(rawBody).digest('hex');
-    if (expected !== sig) {
-      console.warn('NOWPayments IPN: invalid signature');
-      return res.json({ received: true });
-    }
-  }
-
-  let body;
-  try {
-    body = JSON.parse(rawBody || '{}');
-  } catch (e) {
-    console.error('NOWPayments IPN: JSON parse failed');
-    return res.json({ received: true });
-  }
-
-  console.log('NOWPayments IPN payload:', body);
-
-  const paymentId = body.payment_id;
-  const status = body.payment_status; // 'waiting', 'confirming', 'finished', 'failed', ...
-
-  try {
-    const tx = await Transaction.findOne({
-      provider: 'nowpayments',
-      providerPaymentId: String(paymentId),
-    });
-
-    if (tx) {
-      if (status === 'finished') {
-        tx.status = 'paid';
-        await tx.save();
-
-        const user = await User.findById(tx.user);
-        if (user) {
-          user.currentPlan = tx.plan;
-          await user.save();
-        }
-
-        console.log('NOWPayments: plan activated for user');
-      } else if (status === 'failed' || status === 'expired') {
-        tx.status = 'failed';
-        await tx.save();
-        console.log('NOWPayments: payment failed/expired');
-      } else {
-        console.log('NOWPayments: status update', status);
-      }
-    } else {
-      console.log('NOWPayments IPN: transaction not found for payment_id', paymentId);
-    }
-
-    // IPN endpoint must always acknowledge
-    res.json({ received: true });
-  } catch (err) {
-    console.error('NOWPayments IPN error:', err);
-    res.json({ received: true });
-  }
-});
 
 // 6) API rute
 app.use('/auth', authRoutes);

@@ -32,7 +32,7 @@ async function npRequestWithRetry(makeRequest, retries = 1, backoffMs = 1200) {
 
 // Plan pricing overrides by payment method (EUR)
 const planPricing = {
-  '693db3e0e9cf589519c144fe': { stripe: 300, crypto: 300 }, // 10k
+  '693db3e0e9cf589519c144fe': { stripe: 300, crypto: 11 }, // 10k
   '693db3ede9cf589519c14500': { stripe: 600, crypto: 600 }, // 20k
 };
 
@@ -53,9 +53,8 @@ function normalizePayCurrency(cur) {
   return ALLOWED_PAY_CURRENCIES.includes(mapped) ? mapped : null;
 }
 
-const getCryptoAmount = (planId, fallbackPrice) => {
-  const p = planPricing[planId]?.crypto;
-  return p ? p : fallbackPrice;
+const getCryptoAmount = (planId) => {
+  return planPricing[planId]?.crypto;
 };
 
 router.post('/create', authMiddleware, async (req, res) => {
@@ -78,7 +77,9 @@ router.post('/create', authMiddleware, async (req, res) => {
 
     const userId = req.user?.id; // ako auth radi, ovo je setovano
 
-    const price = getCryptoAmount(plan._id.toString(), plan.price);
+    const price = getCryptoAmount(plan._id.toString());
+    console.log('[DEBUG] planId:', planId, 'override price:', price);
+    console.log('[DEBUG] Final price for NOWPayments:', price);
     // Try with USD for payment creation - NOWPayments prefers USD for estimates
     const priceCurrency = 'usd';
 
