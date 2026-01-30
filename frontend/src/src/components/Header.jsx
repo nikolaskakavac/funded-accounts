@@ -58,20 +58,20 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
               <span className="text-emerald-300">☰</span>
             </button>
             {langMenuOpen && (
-              <div className="absolute right-0 mt-2 w-44 rounded-2xl border border-emerald-500/40 bg-black/90 p-2 shadow-xl">
+              <div className="absolute right-0 mt-2 w-44 rounded-2xl border border-emerald-500/40 bg-black/90 p-2 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
                 <button
                   onClick={() => {
                     setLang('sr');
                     setLangState('sr');
                     setLangMenuOpen(false);
                   }}
-                  className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all ${
+                  className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all duration-200 ${
                     lang === 'sr'
                       ? 'bg-emerald-500/20 text-emerald-200'
-                      : 'text-slate-200 hover:bg-emerald-500/10'
+                      : 'text-slate-200 hover:bg-emerald-500/10 hover:scale-105'
                   }`}
                 >
-                  {lang === 'sr' && <span className="text-emerald-300">➤</span>}
+                  {lang === 'sr' && <span className="text-emerald-300 animate-pulse">➤</span>}
                   <span>🇷🇸</span>
                   <span>Srpski</span>
                 </button>
@@ -81,13 +81,13 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                     setLangState('en');
                     setLangMenuOpen(false);
                   }}
-                  className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all ${
+                  className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all duration-200 ${
                     lang === 'en'
                       ? 'bg-emerald-500/20 text-emerald-200'
-                      : 'text-slate-200 hover:bg-emerald-500/10'
+                      : 'text-slate-200 hover:bg-emerald-500/10 hover:scale-105'
                   }`}
                 >
-                  {lang === 'en' && <span className="text-emerald-300">➤</span>}
+                  {lang === 'en' && <span className="text-emerald-300 animate-pulse">➤</span>}
                   <span>🇬🇧</span>
                   <span>English</span>
                 </button>
@@ -97,13 +97,13 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                     setLangState('nl');
                     setLangMenuOpen(false);
                   }}
-                  className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all ${
+                  className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all duration-200 ${
                     lang === 'nl'
                       ? 'bg-emerald-500/20 text-emerald-200'
-                      : 'text-slate-200 hover:bg-emerald-500/10'
+                      : 'text-slate-200 hover:bg-emerald-500/10 hover:scale-105'
                   }`}
                 >
-                  {lang === 'nl' && <span className="text-emerald-300">➤</span>}
+                  {lang === 'nl' && <span className="text-emerald-300 animate-pulse">➤</span>}
                   <span>🇳🇱</span>
                   <span>Nederlands</span>
                 </button>
