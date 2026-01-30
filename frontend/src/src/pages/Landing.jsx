@@ -341,7 +341,11 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                 </div>
                 <div className="mb-4 space-y-1 text-center">
                   <div className="font-display text-[24px] sm:text-[28px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
-                    {lang === 'sr' ? 'Investicioni nalog sa 10.000€' : 'Investment Account with €10,000'}
+                    {lang === 'sr'
+                      ? 'Investicioni nalog sa 10.000€'
+                      : lang === 'nl'
+                        ? 'Investeringsaccount met €10.000'
+                        : 'Investment Account with €10,000'}
                   </div>
                   <div className="font-sans text-[14px] text-emerald-400/80 mt-1">
                     {t('plans.loss')} 10%
@@ -404,7 +408,11 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                               transition-all duration-200 ease-out">
                 <div className="mb-4 space-y-1 text-center">
                   <div className="font-display text-[24px] sm:text-[28px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
-                    {lang === 'sr' ? 'Investicioni nalog sa 20.000€' : 'Investment Account with €20,000'}
+                    {lang === 'sr'
+                      ? 'Investicioni nalog sa 20.000€'
+                      : lang === 'nl'
+                        ? 'Investeringsaccount met €20.000'
+                        : 'Investment Account with €20,000'}
                   </div>
                   <div className="font-sans text-[14px] text-emerald-400/80 mt-1">
                     {t('plans.loss')} 10%
@@ -465,7 +473,11 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
               <div className="w-full max-w-lg rounded-3xl border-2 border-emerald-500/80 bg-gradient-to-b from-emerald-500/10 via-black/80 to-emerald-900/10 p-8 shadow-2xl shadow-emerald-500/30 backdrop-blur-sm">
                 <div className="text-center mb-6">
                   <p className="mt-4 text-2xl font-display font-extrabold tracking-[0.1em] uppercase text-slate-50">
-                    {lang === 'sr' ? `Investicioni ${selectedPlan.name}` : `Investment ${selectedPlan.name}`}
+                    {lang === 'sr'
+                      ? `Investicioni ${selectedPlan.name}`
+                      : lang === 'nl'
+                        ? `Investeringsaccount ${selectedPlan.name}`
+                        : `Investment ${selectedPlan.name}`}
                   </p>
                   <p className="text-4xl font-display font-extrabold tracking-[0.15em] text-emerald-400 mt-2">
                     {selectedPlan.price}€
@@ -477,7 +489,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     onClick={() => navigate(`/pay-card/${selectedPlan.id}`)}
                     className="w-full rounded-2xl bg-emerald-500 py-3 text-sm font-sans font-semibold uppercase tracking-[0.18em] text-black shadow-[0_0_20px_rgba(16,185,129,0.7)] transition-all duration-200 disabled:opacity-60 hover:-translate-y-[1px] hover:bg-emerald-400"
                   >
-                    {lang === 'sr' ? 'Plati karticom' : 'Pay by card'}
+                    {lang === 'sr' ? 'Plati karticom' : lang === 'nl' ? 'Betaal met kaart' : 'Pay by card'}
                   </button>
                 </div>
 
@@ -486,7 +498,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     onClick={() => setOnSitePlanId(null)}
                     className="text-sm text-slate-400 hover:underline"
                   >
-                    {lang === 'sr' ? 'Otkaži' : 'Cancel'}
+                    {lang === 'sr' ? 'Otkaži' : lang === 'nl' ? 'Annuleren' : 'Cancel'}
                   </button>
                 </div>
               </div>

@@ -3,6 +3,7 @@ import { getLang, setLang } from '../utils/lang';
 
 const LanguageModal = ({ onLanguageSelected }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentLang, setCurrentLang] = useState(getLang());
 
   useEffect(() => {
     // Check if user has already chosen language
@@ -14,6 +15,7 @@ const LanguageModal = ({ onLanguageSelected }) => {
 
   const handleLanguageSelect = (lang) => {
     setLang(lang);
+    setCurrentLang(lang);
     localStorage.setItem('languageChosen', 'true');
     setIsVisible(false);
     if (onLanguageSelected) onLanguageSelected(lang);
@@ -41,7 +43,7 @@ const LanguageModal = ({ onLanguageSelected }) => {
             </p>
           </div>
 
-          <div className="flex gap-4 justify-center">
+          <div className="flex flex-wrap gap-4 justify-center">
             {/* Serbian */}
             <button
               onClick={() => handleLanguageSelect('sr')}
@@ -49,6 +51,9 @@ const LanguageModal = ({ onLanguageSelected }) => {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/30 to-emerald-400/30" />
               <div className="relative flex flex-col items-center gap-3 rounded-2xl bg-black/80 px-4 py-6 transition-colors duration-200 group-hover:bg-black/60">
+                {currentLang === 'sr' && (
+                  <span className="absolute -left-4 top-1/2 -translate-y-1/2 text-emerald-300">➤</span>
+                )}
                 <span className="text-5xl">🇷🇸</span>
                 <div className="text-center">
                   <p className="font-display text-[14px] font-semibold uppercase tracking-[0.14em] text-emerald-200 group-hover:text-emerald-100">
@@ -68,6 +73,9 @@ const LanguageModal = ({ onLanguageSelected }) => {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/30 to-emerald-400/30" />
               <div className="relative flex flex-col items-center gap-3 rounded-2xl bg-black/80 px-4 py-6 transition-colors duration-200 group-hover:bg-black/60">
+                {currentLang === 'en' && (
+                  <span className="absolute -left-4 top-1/2 -translate-y-1/2 text-emerald-300">➤</span>
+                )}
                 <span className="text-5xl">🇬🇧</span>
                 <div className="text-center">
                   <p className="font-display text-[14px] font-semibold uppercase tracking-[0.14em] text-emerald-200 group-hover:text-emerald-100">
@@ -75,6 +83,28 @@ const LanguageModal = ({ onLanguageSelected }) => {
                   </p>
                   <p className="font-sans text-[12px] text-slate-400 group-hover:text-slate-300">
                     English
+                  </p>
+                </div>
+              </div>
+            </button>
+
+            {/* Dutch */}
+            <button
+              onClick={() => handleLanguageSelect('nl')}
+              className="group relative w-full max-w-[140px] overflow-hidden rounded-2xl p-[2px] transition-transform duration-200 hover:-translate-y-1"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/30 to-emerald-400/30" />
+              <div className="relative flex flex-col items-center gap-3 rounded-2xl bg-black/80 px-4 py-6 transition-colors duration-200 group-hover:bg-black/60">
+                {currentLang === 'nl' && (
+                  <span className="absolute -left-4 top-1/2 -translate-y-1/2 text-emerald-300">➤</span>
+                )}
+                <span className="text-5xl">🇳🇱</span>
+                <div className="text-center">
+                  <p className="font-display text-[14px] font-semibold uppercase tracking-[0.14em] text-emerald-200 group-hover:text-emerald-100">
+                    Nederlands
+                  </p>
+                  <p className="font-sans text-[12px] text-slate-400 group-hover:text-slate-300">
+                    Dutch
                   </p>
                 </div>
               </div>

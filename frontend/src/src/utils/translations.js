@@ -1,4 +1,5 @@
 import { getLang } from './lang';
+import nlTranslations from './translations.nl';
 
 const translations = {
   // Navigation & Header
@@ -52,8 +53,8 @@ const translations = {
   },
   'risk.rule1.title': { sr: 'Maksimalni ukupni gubitak', en: 'Maximum Total Loss' },
   'risk.rule1.description': {
-    sr: 'Ako izgubiš više od 20% ukupnog kapitala koji ti je dodeljen, nalog se deaktivira.',
-    en: 'If you lose more than 20% of the total capital assigned to you, your account will be deactivated.'
+    sr: 'Ako izgubiš više od 10% ukupnog kapitala koji ti je dodeljen, nalog se deaktivira.',
+    en: 'If you lose more than 10% of the total capital assigned to you, your account will be deactivated.'
   },
   'risk.rule2.title': { sr: 'Maksimalni dnevni gubitak', en: 'Maximum Daily Loss' },
   'risk.rule2.description': {
@@ -543,5 +544,8 @@ export function t(key) {
   const lang = getLang();
   const entry = translations[key];
   if (!entry) return key;
+  if (lang === 'nl') {
+    return nlTranslations[key] || entry.en || key;
+  }
   return entry[lang] || entry.en || key;
 }

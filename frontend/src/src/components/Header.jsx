@@ -6,6 +6,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lang, setLangState] = useState(getLang());
   const role = (typeof window !== 'undefined' && localStorage.getItem('role')) || 'user';
+  const langFlag = lang === 'sr' ? '🇷🇸' : lang === 'nl' ? '🇳🇱' : '🇬🇧';
 
   useEffect(() => {
     const unsub = onLangChange((l) => setLangState(l));
@@ -26,8 +27,10 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
               className="inline-flex items-center gap-2 rounded-full border border-emerald-600 px-3 sm:px-4 py-1.5 sm:py-2 text-[12px] sm:text-[13px] font-sans uppercase tracking-[0.14em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px]"
             >
               <span className="text-emerald-400">←</span>
-              <span className="hidden sm:inline">{lang === 'sr' ? 'Nazad na početnu' : 'Back to Home'}</span>
-              <span className="sm:hidden">{lang === 'sr' ? 'Nazad' : 'Back'}</span>
+              <span className="hidden sm:inline">
+                {lang === 'sr' ? 'Nazad na početnu' : lang === 'nl' ? 'Terug naar start' : 'Back to Home'}
+              </span>
+              <span className="sm:hidden">{lang === 'sr' ? 'Nazad' : lang === 'nl' ? 'Terug' : 'Back'}</span>
             </button>
           )}
           <div
@@ -45,14 +48,11 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
 
         <div className="flex items-center gap-4 sm:gap-5 text-xs sm:text-sm font-sans">
           <button
-            className="uppercase tracking-[0.18em] text-slate-300"
-            onClick={() => {
-              const next = lang === 'sr' ? 'en' : 'sr';
-              setLang(next);
-              setLangState(next);
-            }}
+            className="inline-flex items-center gap-2 rounded-full border border-emerald-600/60 px-3 py-1.5 uppercase tracking-[0.18em] text-slate-300 hover:bg-emerald-500/10"
+            onClick={() => setMenuOpen(true)}
           >
-            {lang === 'sr' ? 'SRB' : 'ENG'}
+            <span className="text-lg">{langFlag}</span>
+            <span>{lang === 'sr' ? 'SR' : lang === 'nl' ? 'NL' : 'EN'}</span>
           </button>
 
           {/* HAMBURGER SA ANIMACIJOM */}
@@ -104,7 +104,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 }}
                 className="py-2"
               >
-                {lang === 'sr' ? 'Početna' : 'Home'}
+                {lang === 'sr' ? 'Početna' : lang === 'nl' ? 'Start' : 'Home'}
               </button>
               <button
                 onClick={() => {
@@ -136,7 +136,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 }}
                 className="py-2"
               >
-                {lang === 'sr' ? 'O nama' : 'About'}
+                {lang === 'sr' ? 'O nama' : lang === 'nl' ? 'Over ons' : 'About'}
               </button>
               <button
                 onClick={() => {
@@ -146,13 +146,17 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 }}
                 className="py-2"
               >
-                {lang === 'sr' ? 'Kontakt' : 'Contact'}
+                {lang === 'sr' ? 'Kontakt' : lang === 'nl' ? 'Contact' : 'Contact'}
               </button>
 
               {/* Language Selector */}
               <div className="border-t border-emerald-500/30 py-3 mt-3">
                 <p className="text-xs font-semibold text-emerald-400 mb-2">
-                  {lang === 'sr' ? 'Izaberite jezik' : 'Choose Language'}
+                  {lang === 'sr'
+                    ? 'Izaberite jezik'
+                    : lang === 'nl'
+                      ? 'Kies je taal'
+                      : 'Choose Language'}
                 </p>
                 <div className="flex gap-3">
                   <button
@@ -166,9 +170,9 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                         : 'border border-emerald-500/30 hover:border-emerald-500'
                     }`}
                   >
+                    {lang === 'sr' && <span className="text-emerald-300">➤</span>}
                     <span className="text-lg">🇷🇸</span>
                     <span className="text-sm">Srpski</span>
-                    {lang === 'sr' && <span className="ml-auto">→</span>}
                   </button>
                   <button
                     onClick={() => {
@@ -181,9 +185,24 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                         : 'border border-emerald-500/30 hover:border-emerald-500'
                     }`}
                   >
+                    {lang === 'en' && <span className="text-emerald-300">➤</span>}
                     <span className="text-lg">🇬🇧</span>
                     <span className="text-sm">English</span>
-                    {lang === 'en' && <span className="ml-auto">→</span>}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setLang('nl');
+                      setMenuOpen(false);
+                    }}
+                    className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all ${
+                      lang === 'nl'
+                        ? 'bg-emerald-500/20 border border-emerald-500'
+                        : 'border border-emerald-500/30 hover:border-emerald-500'
+                    }`}
+                  >
+                    {lang === 'nl' && <span className="text-emerald-300">➤</span>}
+                    <span className="text-lg">🇳🇱</span>
+                    <span className="text-sm">Nederlands</span>
                   </button>
                 </div>
               </div>

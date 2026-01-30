@@ -10,22 +10,27 @@ function readCookie(name) {
 
 export function detectLang() {
   const cookieLang = readCookie(COOKIE_NAME);
-  if (cookieLang === 'sr' || cookieLang === 'en') return cookieLang;
+  if (cookieLang === 'sr' || cookieLang === 'en' || cookieLang === 'nl') return cookieLang;
 
   const ls = typeof localStorage !== 'undefined' ? localStorage.getItem('lang') : null;
-  if (ls === 'sr' || ls === 'en') return ls;
+  if (ls === 'sr' || ls === 'en' || ls === 'nl') return ls;
 
   const nav = typeof navigator !== 'undefined' ? (navigator.language || navigator.userLanguage || '') : '';
-  return nav.toLowerCase().includes('sr') ? 'sr' : 'en';
+  const navLower = nav.toLowerCase();
+  if (navLower.includes('sr')) return 'sr';
+  if (navLower.includes('nl')) return 'nl';
+  return 'en';
 }
 
 export function getLang() {
   const val = detectLang();
-  return val === 'sr' ? 'sr' : 'en';
+  if (val === 'sr') return 'sr';
+  if (val === 'nl') return 'nl';
+  return 'en';
 }
 
 export function setLang(lang) {
-  const v = lang === 'sr' ? 'sr' : 'en';
+  const v = lang === 'sr' ? 'sr' : lang === 'nl' ? 'nl' : 'en';
   if (typeof document !== 'undefined') {
     const oneYear = 365 * 24 * 60 * 60;
     document.cookie = `${COOKIE_NAME}=${encodeURIComponent(v)}; Max-Age=${oneYear}; Path=/; SameSite=Lax`;

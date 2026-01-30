@@ -13,12 +13,13 @@ import Contact from './pages/Contact';
 import Partnerstvo from './pages/Partnerstvo';
 import OnSitePaymentPage from './pages/OnSitePayment';
 import LanguageModal from './components/LanguageModal';
-import { detectLang, setLang } from './utils/lang';
+import { detectLang, setLang, onLangChange } from './utils/lang';
 
 const App = () => {
   const [path, setPath] = useState(window.location.pathname);
   const [token, setToken] = useState(localStorage.getItem('token') || '');
   const [role, setRole] = useState(localStorage.getItem('role') || 'user');
+  const [, setLangTick] = useState(0);
 
   const navigate = (to) => {
     const current = window.location.pathname + window.location.hash;
@@ -53,7 +54,13 @@ const App = () => {
     } catch (err) {
       console.error('Failed to set data-lang', err);
     }
-    return () => window.removeEventListener('popstate', onPopState);
+    const unsub = onLangChange(() => {
+      setLangTick((n) => n + 1);
+    });
+    return () => {
+      window.removeEventListener('popstate', onPopState);
+      unsub();
+    };
   }, []);
 
   const handleAuthSuccess = (data) => {
