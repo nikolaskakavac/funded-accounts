@@ -165,7 +165,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   {lang === 'sr' ? (
                     <>
                       Ako izgubiš više od{' '}
-                      <span className="font-semibold text-emerald-300">20% ukupnog kapitala</span> koji
+                      <span className="font-semibold text-emerald-300">10% ukupnog kapitala</span> koji
                       ti je dodeljen, nalog se deaktivira.
                     </>
                   ) : t('risk.rule1.description')}
@@ -344,7 +344,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     {lang === 'sr' ? 'Investicioni nalog sa 10.000€' : 'Investment Account with €10,000'}
                   </div>
                   <div className="font-sans text-[14px] text-emerald-400/80 mt-1">
-                    {t('plans.loss')} 20%
+                    {t('plans.loss')} 10%
                   </div>
                   <div className="font-display text-[16px] font-semibold tracking-[0.08em] text-emerald-300">
                     {t('plans.price')}
@@ -407,7 +407,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     {lang === 'sr' ? 'Investicioni nalog sa 20.000€' : 'Investment Account with €20,000'}
                   </div>
                   <div className="font-sans text-[14px] text-emerald-400/80 mt-1">
-                    {t('plans.loss')} 15%
+                    {t('plans.loss')} 10%
                   </div>
                   <div className="font-display text-[16px] font-semibold tracking-[0.08em] text-emerald-300">
                     {t('plans.price')}
@@ -415,6 +415,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
                     600€
                   </div>
+                  <p className="text-xs font-sans text-emerald-300/80 mt-2">🎓 Video obuka dolazi uz nalog</p>
                 </div>
                 <div className="mb-3 flex items-center justify-center gap-2 sm:gap-3">
                   <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
