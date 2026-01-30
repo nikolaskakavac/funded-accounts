@@ -4,6 +4,7 @@ import { t } from '../utils/translations';
 
 const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [lang, setLangState] = useState(getLang());
   const role = (typeof window !== 'undefined' && localStorage.getItem('role')) || 'user';
   const langFlag = lang === 'sr' ? '🇷🇸' : lang === 'nl' ? '🇳🇱' : '🇬🇧';
@@ -47,13 +48,68 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
         </div>
 
         <div className="flex items-center gap-4 sm:gap-5 text-xs sm:text-sm font-sans">
-          <button
-            className="inline-flex items-center gap-2 rounded-full border border-emerald-600/60 px-3 py-1.5 uppercase tracking-[0.18em] text-slate-300 hover:bg-emerald-500/10"
-            onClick={() => setMenuOpen(true)}
-          >
-            <span className="text-lg">{langFlag}</span>
-            <span>{lang === 'sr' ? 'SR' : lang === 'nl' ? 'NL' : 'EN'}</span>
-          </button>
+          <div className="relative">
+            <button
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-600/60 px-3 py-1.5 uppercase tracking-[0.18em] text-slate-300 hover:bg-emerald-500/10"
+              onClick={() => setLangMenuOpen((o) => !o)}
+            >
+              <span className="text-lg">{langFlag}</span>
+              <span>{lang === 'sr' ? 'SR' : lang === 'nl' ? 'NL' : 'EN'}</span>
+              <span className="text-emerald-300">☰</span>
+            </button>
+            {langMenuOpen && (
+              <div className="absolute right-0 mt-2 w-44 rounded-2xl border border-emerald-500/40 bg-black/90 p-2 shadow-xl">
+                <button
+                  onClick={() => {
+                    setLang('sr');
+                    setLangState('sr');
+                    setLangMenuOpen(false);
+                  }}
+                  className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all ${
+                    lang === 'sr'
+                      ? 'bg-emerald-500/20 text-emerald-200'
+                      : 'text-slate-200 hover:bg-emerald-500/10'
+                  }`}
+                >
+                  {lang === 'sr' && <span className="text-emerald-300">➤</span>}
+                  <span>🇷🇸</span>
+                  <span>Srpski</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setLang('en');
+                    setLangState('en');
+                    setLangMenuOpen(false);
+                  }}
+                  className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all ${
+                    lang === 'en'
+                      ? 'bg-emerald-500/20 text-emerald-200'
+                      : 'text-slate-200 hover:bg-emerald-500/10'
+                  }`}
+                >
+                  {lang === 'en' && <span className="text-emerald-300">➤</span>}
+                  <span>🇬🇧</span>
+                  <span>English</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setLang('nl');
+                    setLangState('nl');
+                    setLangMenuOpen(false);
+                  }}
+                  className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all ${
+                    lang === 'nl'
+                      ? 'bg-emerald-500/20 text-emerald-200'
+                      : 'text-slate-200 hover:bg-emerald-500/10'
+                  }`}
+                >
+                  {lang === 'nl' && <span className="text-emerald-300">➤</span>}
+                  <span>🇳🇱</span>
+                  <span>Nederlands</span>
+                </button>
+              </div>
+            )}
+          </div>
 
           {/* HAMBURGER SA ANIMACIJOM */}
           <button
@@ -149,63 +205,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 {lang === 'sr' ? 'Kontakt' : lang === 'nl' ? 'Contact' : 'Contact'}
               </button>
 
-              {/* Language Selector */}
-              <div className="border-t border-emerald-500/30 py-3 mt-3">
-                <p className="text-xs font-semibold text-emerald-400 mb-2">
-                  {lang === 'sr'
-                    ? 'Izaberite jezik'
-                    : lang === 'nl'
-                      ? 'Kies je taal'
-                      : 'Choose Language'}
-                </p>
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => {
-                      setLang('sr');
-                      setMenuOpen(false);
-                    }}
-                    className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all ${
-                      lang === 'sr'
-                        ? 'bg-emerald-500/20 border border-emerald-500'
-                        : 'border border-emerald-500/30 hover:border-emerald-500'
-                    }`}
-                  >
-                    {lang === 'sr' && <span className="text-emerald-300">➤</span>}
-                    <span className="text-lg">🇷🇸</span>
-                    <span className="text-sm">Srpski</span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      setLang('en');
-                      setMenuOpen(false);
-                    }}
-                    className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all ${
-                      lang === 'en'
-                        ? 'bg-emerald-500/20 border border-emerald-500'
-                        : 'border border-emerald-500/30 hover:border-emerald-500'
-                    }`}
-                  >
-                    {lang === 'en' && <span className="text-emerald-300">➤</span>}
-                    <span className="text-lg">🇬🇧</span>
-                    <span className="text-sm">English</span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      setLang('nl');
-                      setMenuOpen(false);
-                    }}
-                    className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all ${
-                      lang === 'nl'
-                        ? 'bg-emerald-500/20 border border-emerald-500'
-                        : 'border border-emerald-500/30 hover:border-emerald-500'
-                    }`}
-                  >
-                    {lang === 'nl' && <span className="text-emerald-300">➤</span>}
-                    <span className="text-lg">🇳🇱</span>
-                    <span className="text-sm">Nederlands</span>
-                  </button>
-                </div>
-              </div>
+
               {token ? (
                 <>
                   {role === 'admin' && (
