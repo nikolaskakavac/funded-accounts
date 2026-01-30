@@ -148,6 +148,45 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
               >
                 {lang === 'sr' ? 'Kontakt' : 'Contact'}
               </button>
+
+              {/* Language Selector */}
+              <div className="border-t border-emerald-500/30 py-3 mt-3">
+                <p className="text-xs font-semibold text-emerald-400 mb-2">
+                  {lang === 'sr' ? 'Izaberite jezik' : 'Choose Language'}
+                </p>
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => {
+                      setLang('sr');
+                      setMenuOpen(false);
+                    }}
+                    className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all ${
+                      lang === 'sr'
+                        ? 'bg-emerald-500/20 border border-emerald-500'
+                        : 'border border-emerald-500/30 hover:border-emerald-500'
+                    }`}
+                  >
+                    <span className="text-lg">🇷🇸</span>
+                    <span className="text-sm">Srpski</span>
+                    {lang === 'sr' && <span className="ml-auto">→</span>}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setLang('en');
+                      setMenuOpen(false);
+                    }}
+                    className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all ${
+                      lang === 'en'
+                        ? 'bg-emerald-500/20 border border-emerald-500'
+                        : 'border border-emerald-500/30 hover:border-emerald-500'
+                    }`}
+                  >
+                    <span className="text-lg">🇬🇧</span>
+                    <span className="text-sm">English</span>
+                    {lang === 'en' && <span className="ml-auto">→</span>}
+                  </button>
+                </div>
+              </div>
               {token ? (
                 <>
                   {role === 'admin' && (

@@ -12,6 +12,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Partnerstvo from './pages/Partnerstvo';
 import OnSitePaymentPage from './pages/OnSitePayment';
+import LanguageModal from './components/LanguageModal';
 import { detectLang, setLang } from './utils/lang';
 
 const App = () => {
@@ -135,6 +136,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen">
+      <LanguageModal onLanguageSelected={() => {}} />
       {page}
     </div>
   );
