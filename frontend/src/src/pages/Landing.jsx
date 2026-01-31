@@ -344,7 +344,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     {lang === 'sr'
                       ? 'Investicioni nalog sa 10.000€'
                       : lang === 'nl'
-                        ? 'Investeringsaccount met €10.000'
+                        ? 'Account met €10.000'
                         : 'Investment Account with €10,000'}
                   </div>
                   <div className="font-sans text-[14px] text-emerald-400/80 mt-1">
@@ -413,7 +413,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     {lang === 'sr'
                       ? 'Investicioni nalog sa 20.000€'
                       : lang === 'nl'
-                        ? 'Investeringsaccount met €20.000'
+                        ? 'Account met €20.000'
                         : 'Investment Account with €20,000'}
                   </div>
                   <div className="font-sans text-[14px] text-emerald-400/80 mt-1">
