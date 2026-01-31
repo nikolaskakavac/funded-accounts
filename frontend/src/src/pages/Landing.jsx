@@ -356,7 +356,9 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
                     {landingPlans[0].price}€
                   </div>
-                  <p className="text-xs font-sans text-emerald-300/80 mt-2">🎓 Video obuka dolazi uz nalog</p>
+                  <p className="text-xs font-sans text-emerald-300/80 mt-2">
+                    🎓 {lang === 'sr' ? 'Video obuka dolazi uz nalog' : lang === 'nl' ? 'Video training inbegrepen' : 'Video training included'}
+                  </p>
                 </div>
                 <div className="mb-3 flex items-center justify-center gap-2 sm:gap-3">
                   <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
@@ -423,7 +425,9 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
                     600€
                   </div>
-                  <p className="text-xs font-sans text-emerald-300/80 mt-2">🎓 Video obuka dolazi uz nalog</p>
+                  <p className="text-xs font-sans text-emerald-300/80 mt-2">
+                    🎓 {lang === 'sr' ? 'Video obuka dolazi uz nalog' : lang === 'nl' ? 'Video training inbegrepen' : 'Video training included'}
+                  </p>
                 </div>
                 <div className="mb-3 flex items-center justify-center gap-2 sm:gap-3">
                   <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
