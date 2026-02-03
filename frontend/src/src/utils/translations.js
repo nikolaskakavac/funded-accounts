@@ -393,8 +393,8 @@ const translations = {
     en: 'Our company operates in partnership with Norvestor Equiti Ltd., one of the leading international capital funds for investments in cryptocurrencies and bonds.'
   },
   'partner.intro2': {
-    sr: 'Ovo partnerstvo nam omogućava da investitorima u regionu Balkana pružimo pristup profesionalnom kapitalu, savremenim alatima i stručnoj podršci koja je inače dostupna samo globalnim tržištima.',
-    en: 'This partnership allows us to give investors in the Balkans access to professional capital, modern tools, and expert support typically available only in global markets.'
+    sr: 'Ovo partnerstvo nam omogućava da investitorima širom sveta pružimo pristup profesionalnom kapitalu, savremenim alatima i stručnoj podršci bez granica.',
+    en: 'This partnership allows us to give investors worldwide access to professional capital, modern tools, and expert support without borders.'
   },
   'partner.section.what': { sr: 'Šta partnerstvo znači za vas', en: 'What this partnership means for you' },
   'partner.bullet.security.title': { sr: 'Sigurnost ulaganja', en: 'Investment security' },
@@ -412,10 +412,10 @@ const translations = {
     sr: 'Partnerstvo sa Norvestor Equiti garantuje visoke standarde poslovanja i profesionalni nadzor.',
     en: 'The partnership with Norvestor Equiti ensures high business standards and professional oversight.'
   },
-  'partner.bullet.regional.title': { sr: 'Regionalni fokus', en: 'Regional focus' },
+  'partner.bullet.regional.title': { sr: 'Globalni pristup', en: 'Global approach' },
   'partner.bullet.regional.desc': {
-    sr: 'Kao lokalni partner, posvećeni smo razvoju Balkana kao rastućeg tržišta za profesionalno investiranje.',
-    en: 'As a local partner, we are committed to developing the Balkans as a growing market for professional investing.'
+    sr: 'Dostupni smo investitorima sa celog sveta, bez geografskih ograničenja, sa istim visokim standardima.',
+    en: 'Available to investors from around the world, without geographical limitations, with the same high standards.'
   },
   'partner.conclusion1': {
     sr: 'Ovo partnerstvo omogućava svakom investitoru da učestvuje u ozbiljnim globalnim investicijama, bez rizika po sopstveni kapital, uz potencijal za dugoročne i stabilne profite.',
