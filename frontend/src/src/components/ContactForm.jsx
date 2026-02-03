@@ -4,6 +4,7 @@ import { getLang } from '../utils/lang';
 
 const ContactForm = () => {
   const lang = getLang();
+  const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://api.arbexfund.com';
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -65,7 +66,7 @@ const ContactForm = () => {
     setResult(null);
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(`${apiUrl}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
