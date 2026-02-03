@@ -58,6 +58,9 @@ const nlTranslations = {
     'Via een natuurlijk selectieproces wordt ons kapitaal in de loop van de tijd gericht op degenen die de beste resultaten behalen, waardoor ons risico daalt en de winst toeneemt.',
   'goal.beginners':
     'Zo creëren we een systeem waarin ook beginners aanzienlijke winst kunnen behalen, terwijl succesvolle traders toegang krijgen tot grotere investeringen en gezamenlijke groei.',
+  'copyTrade.title': 'Copy Trade Optie',
+  'copyTrade.description':
+    'Via de copy trade-optie in de app kunnen gebruikers het automatisch kopiëren van één van onze 5 professionele traders activeren. Zo hebben ook mensen zonder eerdere ervaring een betere kans om resultaten te behalen.',
 
   // Plans
   'plans.section': 'Plannen',

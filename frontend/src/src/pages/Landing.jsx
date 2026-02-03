@@ -314,6 +314,17 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
   </div>
 </section>
 
+      <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-8 pb-10">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="font-display text-[20px] sm:text-[24px] font-semibold uppercase tracking-[0.18em] text-emerald-400 mb-4">
+            {t('copyTrade.title')}
+          </h2>
+          <p className="font-sans text-[18px] sm:text-[20px] leading-relaxed max-w-3xl mx-auto text-emerald-50/95">
+            {t('copyTrade.description')}
+          </p>
+        </div>
+      </section>
+
       {/* PLANOVI */}
       <section id="plans" className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-14">
         <div className="max-w-5xl mx-auto space-y-8">

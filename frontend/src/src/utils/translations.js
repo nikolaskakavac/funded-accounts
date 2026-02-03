@@ -100,6 +100,11 @@ const translations = {
     sr: 'Na taj način stvaramo sistem u kome i početnici mogu da ostvare značajne profite, dok se uspešnima otvara prostor za veće investicije i zajednički rast.',
     en: 'In this way, we create a system where even beginners can achieve significant profits, while successful traders gain access to larger investments and mutual growth.'
   },
+  'copyTrade.title': { sr: 'Copy Trade Opcija', en: 'Copy Trade Option' },
+  'copyTrade.description': {
+    sr: 'Kroz copy trade opciju dostupnu unutar aplikacije, korisnici mogu da aktiviraju automatsko kopiranje jednog od naših 5 profesionalnih trejdera. Tako oni bez prethodnog iskustva imaju bolju šansu da ostvare rezultate.',
+    en: 'Through the copy trade option available inside the app, users can activate automatic copying of one of our 5 professional traders. This gives those without prior experience a better chance to achieve results.'
+  },
 
   // Plans
   'plans.section': { sr: 'Planovi', en: 'Plans' },
