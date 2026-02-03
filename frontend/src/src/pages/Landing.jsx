@@ -180,14 +180,12 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     {t('risk.bodyPlan2')}
                   </p>
                 </div>
-                <div className="sm:col-span-2 rounded-2xl bg-black/60 px-5 py-4 text-center shadow-lg shadow-emerald-900/30">
-                  <p className="font-sans text-[18px] sm:text-[20px] leading-relaxed text-emerald-50/95">
-                    {t('risk.bodyLimit')}
-                  </p>
-                </div>
+                <p className="sm:col-span-2 font-sans text-[18px] sm:text-[20px] leading-relaxed text-emerald-50/95">
+                  {t('risk.bodyLimit')}
+                </p>
               </div>
 
-              <p className="font-sans text-[18px] sm:text-[20px] leading-relaxed">
+              <p className="font-sans text-[18px] sm:text-[20px] leading-relaxed text-emerald-50/95">
                 {t('risk.bodyConclusion')}
               </p>
             </div>
