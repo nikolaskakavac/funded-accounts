@@ -8,6 +8,7 @@ const plans = [
     id: '693db3e0e9cf589519c144fe',
     name: 'Nalog sa 10.000€',
     price: 300,
+    cryptoPrice: 255,
     currency: 'eur',
     balance: 10000,
     highlighted: true,
@@ -16,6 +17,7 @@ const plans = [
     id: '693db3ede9cf589519c14500',
     name: 'Nalog sa 20.000€',
     price: 600,
+    cryptoPrice: 510,
     currency: 'usd',
     balance: 20000,
   },
@@ -130,7 +132,7 @@ const PlanCard = ({
   onCrypto,
   isPayingCrypto,
 }) => {
-  const { name, price, highlighted } = plan;
+  const { name, price, cryptoPrice, highlighted } = plan;
 
   return (
     <div
@@ -183,21 +185,21 @@ const PlanCard = ({
             <button
   onClick={onCrypto}
   disabled={isPayingCrypto}
-  className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/10 via-emerald-400/15 to-cyan-400/15 p-[1px] shadow-[0_0_25px_rgba(34,197,94,0.45)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(34,197,94,0.75)] disabled:opacity-60 disabled:cursor-not-allowed"
+        className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/20 via-emerald-400/30 to-cyan-400/30 p-[1px] shadow-[0_0_35px_rgba(34,197,94,0.55)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_50px_rgba(34,197,94,0.85)] disabled:opacity-60 disabled:cursor-not-allowed"
 >
   <div className="flex w-full flex-col items-center justify-center gap-1.5 rounded-2xl bg-black/90 px-4 py-3 sm:py-3.5">
     <div className="flex items-center gap-2">
       <span className="text-lg sm:text-xl">🪙</span>
       <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.18em] text-emerald-100 group-hover:text-emerald-50">
-        {isPayingCrypto ? 'Kreiram adresu...' : `Plati kriptom (${price}€)`}
+              {isPayingCrypto ? 'Kreiram adresu...' : `Plati kriptom (${cryptoPrice}€)`}
       </span>
     </div>
     <div className="flex items-center gap-2 text-[10px] sm:text-[11px]">
       <span className="text-emerald-300/80 group-hover:text-emerald-200/90">
         BTC • ETH • USDT
       </span>
-      <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 font-semibold text-emerald-200">
-        ✨ 20% OFF TAX FREE
+            <span className="rounded-full bg-gradient-to-r from-emerald-400 to-cyan-300 px-2.5 py-0.5 font-bold tracking-[0.08em] text-black shadow-md shadow-emerald-500/40">
+              ✨ 15% OFF TAX FREE
       </span>
     </div>
   </div>

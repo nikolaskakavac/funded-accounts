@@ -15,8 +15,8 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
   const lang = getLang();
 
   const landingPlans = [
-    { id: '693db3e0e9cf589519c144fe', name: 'Nalog sa 10.000€', price: 300 },
-    { id: '693db3ede9cf589519c14500', name: 'Nalog sa 20.000€', price: 600 },
+    { id: '693db3e0e9cf589519c144fe', name: 'Nalog sa 10.000€', price: 300, cryptoPrice: 255 },
+    { id: '693db3ede9cf589519c14500', name: 'Nalog sa 20.000€', price: 600, cryptoPrice: 510 },
   ];
 
   const selectedPlan = landingPlans.find((p) => p.id === onSitePlanId);
@@ -386,14 +386,14 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                       if (!token) navigate('/register');
                       else navigate('/pay-crypto/693db3e0e9cf589519c144fe');
                     }}
-                    className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/10 via-emerald-400/15 to-cyan-400/15 p-[1px] shadow-[0_0_25px_rgba(34,197,94,0.45)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(34,197,94,0.75)]"
+                    className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/20 via-emerald-400/30 to-cyan-400/30 p-[1px] shadow-[0_0_35px_rgba(34,197,94,0.55)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_50px_rgba(34,197,94,0.85)]"
                   >
                     <div className="flex w-full flex-col items-center justify-center gap-1 rounded-2xl bg-black/90 px-4 py-2.5 sm:py-3">
                       <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.16em] text-emerald-100 group-hover:text-emerald-50">
-                        {t('plans.payCrypto')}
+                        {t('plans.payCrypto')} ({landingPlans[0].cryptoPrice}€)
                       </span>
-                      <span className="rounded-full bg-emerald-500/30 px-2 py-0.5 text-[10px] font-semibold text-emerald-200">
-                        ✨ 20% OFF TAX FREE
+                      <span className="rounded-full bg-gradient-to-r from-emerald-400 to-cyan-300 px-2.5 py-0.5 text-[10px] font-bold tracking-[0.08em] text-black shadow-md shadow-emerald-500/40">
+                        ✨ 15% OFF TAX FREE
                       </span>
                     </div>
                     <span className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-[100%] transition-all duration-700" />
@@ -455,14 +455,14 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                       if (!token) navigate('/register');
                       else navigate('/pay-crypto/693db3ede9cf589519c14500');
                     }}
-                    className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/10 via-emerald-400/15 to-cyan-400/15 p-[1px] shadow-[0_0_25px_rgba(34,197,94,0.45)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(34,197,94,0.75)]"
+                    className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/20 via-emerald-400/30 to-cyan-400/30 p-[1px] shadow-[0_0_35px_rgba(34,197,94,0.55)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_50px_rgba(34,197,94,0.85)]"
                   >
                     <div className="flex w-full flex-col items-center justify-center gap-1 rounded-2xl bg-black/90 px-4 py-2.5 sm:py-3">
                       <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.16em] text-emerald-100 group-hover:text-emerald-50">
-                        {t('plans.payCrypto')}
+                        {t('plans.payCrypto')} ({landingPlans[1].cryptoPrice}€)
                       </span>
-                      <span className="rounded-full bg-emerald-500/30 px-2 py-0.5 text-[10px] font-semibold text-emerald-200">
-                        ✨ 20% OFF TAX FREE
+                      <span className="rounded-full bg-gradient-to-r from-emerald-400 to-cyan-300 px-2.5 py-0.5 text-[10px] font-bold tracking-[0.08em] text-black shadow-md shadow-emerald-500/40">
+                        ✨ 15% OFF TAX FREE
                       </span>
                     </div>
                     <span className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-[100%] transition-all duration-700" />
