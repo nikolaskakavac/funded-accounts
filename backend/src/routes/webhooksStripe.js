@@ -2,7 +2,7 @@ const express = require('express');
 const Stripe = require('stripe');
 const Transaction = require('../models/Transaction');
 const User = require('../models/User');
-const { sendWelcomeEmail } = require('../utils/mailer');
+const { sendPurchaseConfirmation, sendCredentialsNotification } = require('../utils/mailer');
 
 const router = express.Router();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -44,10 +44,18 @@ router.post('/stripe', express.raw({ type: 'application/json' }), (req, res) => 
 
         console.log(`🎉 Plan ${tx.plan.name} activated for ${tx.user.email}`);
         
-        // Pošalji email
+        // Pošalji email-ove
         try {
-          await sendWelcomeEmail(tx.user.email);
-          console.log('✅ Welcome email sent');
+          await sendPurchaseConfirmation(tx.user.email, {
+            planName: tx.plan.name,
+            amount: paymentIntent.amount / 100, // konvertuj iz centi
+            currency: paymentIntent.currency.toUpperCase(),
+            paymentMethod: 'Credit/Debit Card'
+          });
+          console.log('✅ Purchase confirmation email sent');
+          
+          await sendCredentialsNotification(tx.user.email);
+          console.log('✅ Credentials notification email sent');
         } catch (e) {
           console.error('❌ Email failed:', e.message);
         }

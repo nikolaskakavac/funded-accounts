@@ -2,7 +2,7 @@ const express = require('express');
 const Transaction = require('../models/Transaction');
 const User = require('../models/User');
 const Plan = require('../models/Plan');
-const { sendWelcomeEmail } = require('../utils/mailer');
+const { sendPurchaseConfirmation, sendCredentialsNotification } = require('../utils/mailer');
 
 const router = express.Router();
 
@@ -53,8 +53,17 @@ router.post('/ipn', express.raw({ type: '*/*' }), async (req, res) => {
         await user.save();
 
         try {
-          console.log('Sending payment email (NOW) to', user.email);
-          await sendWelcomeEmail(user.email);
+          console.log('Sending payment emails (NOW) to', user.email);
+          await sendPurchaseConfirmation(user.email, {
+            planName: plan.name,
+            amount: tx.amount,
+            currency: tx.currency || 'USD',
+            paymentMethod: 'Cryptocurrency'
+          });
+          console.log('✅ Purchase confirmation email sent (NOW)');
+          
+          await sendCredentialsNotification(user.email);
+          console.log('✅ Credentials notification email sent (NOW)');
         } catch (e) {
           console.error('Payment email failed (NOW):', e.message);
         }

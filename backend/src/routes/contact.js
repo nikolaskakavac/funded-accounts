@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { sendContactEmail } = require('../utils/mailer');
+const { sendContactEmail, sendContactAutoReply } = require('../utils/mailer');
 
 /**
  * POST /api/contact
@@ -34,6 +34,9 @@ router.post('/', async (req, res) => {
       subject,
       message
     });
+    
+    // Send auto-reply to customer
+    await sendContactAutoReply(email, name);
 
     res.json({
       success: true,
