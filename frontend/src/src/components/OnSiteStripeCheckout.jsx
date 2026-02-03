@@ -88,6 +88,7 @@ const OnSiteStripeCheckout = ({ token, planId, onSuccess }) => {
       });
 
       if (result.error) {
+        console.error('Stripe confirmCardPayment error:', result.error);
         // Ako je PaymentIntent expired ili ne postoji, pokušaj da kreiraš novi
         if (result.error.code === 'resource_missing' || result.error.message?.includes('No such payment_intent')) {
           setErr('PaymentIntent je istekao. Osvježite stranicu i pokušajte ponovo.');

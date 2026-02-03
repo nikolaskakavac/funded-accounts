@@ -110,6 +110,7 @@ const Pricing = ({ navigate, token, onLogout }) => {
                 </div>
 
                 <OnSiteStripeCheckout
+                  key={selectedPlan.id}
                   token={token}
                   planId={selectedPlan.id}
                   onSuccess={() => (window.location.href = '/success')}
