@@ -35,8 +35,8 @@ const LanguageModal = ({ onLanguageSelected }) => {
             <p className="font-display text-[12px] uppercase tracking-[0.26em] text-emerald-400">
               Welcome • Dobrodošli
             </p>
-            <h2 className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
-              Choose Language
+            <h2 className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.12em] uppercase text-white">
+              Choose Your Language
             </h2>
             <p className="font-sans text-[15px] text-emerald-100/90">
               Izaberite jezik / Select your language
