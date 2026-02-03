@@ -153,11 +153,27 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                 {t('risk.bodyIntro')}
               </p>
 
-              <ul className="mx-auto mt-5 mb-5 w-fit text-left font-sans text-[18px] sm:text-[20px] leading-relaxed">
-                <li>{t('risk.bodyPlan1')}</li>
-                <li>{t('risk.bodyPlan2')}</li>
-                <li className="mt-4">{t('risk.bodyLimit')}</li>
-              </ul>
+              <div className="mx-auto mt-5 mb-5 grid w-full max-w-2xl gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl border border-emerald-700/70 bg-black/70 px-5 py-5 text-left shadow-lg shadow-emerald-900/40">
+                  <div className="mb-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/15 text-[13px] font-semibold text-emerald-300">
+                    10K
+                  </div>
+                  <p className="font-sans text-[17px] sm:text-[18px] text-emerald-50/95 leading-relaxed">
+                    {t('risk.bodyPlan1')}
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-emerald-700/70 bg-black/70 px-5 py-5 text-left shadow-lg shadow-emerald-900/40">
+                  <div className="mb-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/15 text-[13px] font-semibold text-emerald-300">
+                    20K
+                  </div>
+                  <p className="font-sans text-[17px] sm:text-[18px] text-emerald-50/95 leading-relaxed">
+                    {t('risk.bodyPlan2')}
+                  </p>
+                </div>
+                <p className="sm:col-span-2 font-sans text-[18px] sm:text-[20px] leading-relaxed">
+                  {t('risk.bodyLimit')}
+                </p>
+              </div>
 
               <p className="font-sans text-[18px] sm:text-[20px] leading-relaxed">
                 {t('risk.bodyConclusion')}
