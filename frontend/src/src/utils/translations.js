@@ -45,21 +45,27 @@ const translations = {
   'howItWorks.capital': { sr: 'kapitalu', en: 'capital' },
   'howItWorks.infrastructure': { sr: 'tehničkoj infrastrukturi', en: 'technical infrastructure' },
 
-  // Risk Rules
-  'risk.title': { sr: 'Pravila rizika', en: 'Risk Rules' },
-  'risk.description': {
-    sr: 'Da bi nalog ostao aktivan, dovoljno je da poštuješ dva jednostavna pravila rizika. Kršenje bilo kog od njih automatski deaktivira nalog.',
-    en: 'To keep your account active, you just need to follow two simple risk rules. Violating either one will automatically deactivate the account.'
+  // Trading Rule
+  'risk.title': { sr: 'Pravilo Trgovanja', en: 'Trading Rule' },
+  'risk.bodyIntro': {
+    sr: 'Svaki nalog ima unapred određen dozvoljeni gubitak - iznos koji ujedno predstavlja i njegovu cenu:',
+    en: 'Each account has a predefined maximum loss amount, which also represents its price:'
   },
-  'risk.rule1.title': { sr: 'Maksimalni ukupni gubitak', en: 'Maximum Total Loss' },
-  'risk.rule1.description': {
-    sr: 'Ako izgubiš više od 10% ukupnog kapitala koji ti je dodeljen, nalog se deaktivira.',
-    en: 'If you lose more than 10% of the total capital assigned to you, your account will be deactivated.'
+  'risk.bodyPlan1': {
+    sr: '10.000€ nalog → 300€ dozvoljeni gubitak',
+    en: '€10,000 account → €300 allowed loss'
   },
-  'risk.rule2.title': { sr: 'Maksimalni dnevni gubitak', en: 'Maximum Daily Loss' },
-  'risk.rule2.description': {
-    sr: 'Ako u jednom danu izgubiš više od 1.000 €, nalog se deaktivira.',
-    en: 'If you lose more than €1,000 in a single day, your account will be deactivated.'
+  'risk.bodyPlan2': {
+    sr: '20.000€ nalog → 600€ dozvoljeni gubitak',
+    en: '€20,000 account → €600 allowed loss'
+  },
+  'risk.bodyLimit': {
+    sr: 'Ako se taj iznos prekorači, pristup nalogu se automatski ukida.',
+    en: 'If that amount is exceeded, account access is automatically revoked.'
+  },
+  'risk.bodyConclusion': {
+    sr: 'Ovim pristupom, maksimalni rizik gubitka ograničen je samo na cenu naloga, bez dodatnih troškova.',
+    en: 'With this approach, your maximum loss risk is limited only to the account price, with no additional costs.'
   },
 
   // What You Get

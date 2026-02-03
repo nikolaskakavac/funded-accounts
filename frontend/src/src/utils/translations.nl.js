@@ -28,16 +28,16 @@ const nlTranslations = {
   'howItWorks.capital': 'kapitaal',
   'howItWorks.infrastructure': 'technische infrastructuur',
 
-  // Risk Rules
-  'risk.title': 'Risicoregels',
-  'risk.description':
-    'Om je account actief te houden hoef je slechts twee eenvoudige risicoregels te volgen. Overtreding van één ervan deactiveert het account automatisch.',
-  'risk.rule1.title': 'Maximaal totaal verlies',
-  'risk.rule1.description':
-    'Als je meer dan 10% van het totale toegewezen kapitaal verliest, wordt je account gedeactiveerd.',
-  'risk.rule2.title': 'Maximaal dagelijks verlies',
-  'risk.rule2.description':
-    'Als je in één dag meer dan €1.000 verliest, wordt je account gedeactiveerd.',
+  // Trading Rule
+  'risk.title': 'Handelsregel',
+  'risk.bodyIntro':
+    'Elke account heeft een vooraf bepaald maximaal verliesbedrag, dat tegelijk de prijs van de account is:',
+  'risk.bodyPlan1': '€10.000 account → €300 toegestaan verlies',
+  'risk.bodyPlan2': '€20.000 account → €600 toegestaan verlies',
+  'risk.bodyLimit':
+    'Als dit bedrag wordt overschreden, wordt de toegang tot de account automatisch beëindigd.',
+  'risk.bodyConclusion':
+    'Met deze aanpak is je maximale verliesrisico beperkt tot alleen de prijs van de account, zonder extra kosten.',
 
   // What You Get
   'whatYouGet.title': 'Wat krijg je precies bij het kopen van een account?',

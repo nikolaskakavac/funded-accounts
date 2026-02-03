@@ -148,48 +148,20 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
               {t('risk.title')}
             </h2>
 
-            <p className="font-sans text-[18px] sm:text-[20px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto text-center mb-6">
-              {t('risk.description')}
-            </p>
+            <div className="mx-auto max-w-3xl text-center text-emerald-50/95">
+              <p className="font-sans text-[18px] sm:text-[20px] leading-relaxed">
+                {t('risk.bodyIntro')}
+              </p>
 
-            <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
-              {/* Pravilo 1 */}
-              <div className="rounded-2xl border border-emerald-700 bg-black/70 px-4 py-5 shadow-lg shadow-emerald-900/40">
-                <div className="mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500/15 text-[13px] font-semibold text-emerald-300">
-                  1
-                </div>
-                <h3 className="mb-1 font-sans text-[17px] sm:text-[18px] font-semibold text-emerald-200">
-                  {t('risk.rule1.title')}
-                </h3>
-                <p className="font-sans text-[16px] sm:text-[18px] text-emerald-50/90 leading-relaxed">
-                  {lang === 'sr' ? (
-                    <>
-                      Ako izgubiš više od{' '}
-                      <span className="font-semibold text-emerald-300">10% ukupnog kapitala</span> koji
-                      ti je dodeljen, nalog se deaktivira.
-                    </>
-                  ) : t('risk.rule1.description')}
-                </p>
-              </div>
+              <ul className="mx-auto mt-5 mb-5 w-fit text-left font-sans text-[18px] sm:text-[20px] leading-relaxed">
+                <li>{t('risk.bodyPlan1')}</li>
+                <li>{t('risk.bodyPlan2')}</li>
+                <li className="mt-4">{t('risk.bodyLimit')}</li>
+              </ul>
 
-              {/* Pravilo 2 */}
-              <div className="rounded-2xl border border-emerald-700 bg-black/70 px-4 py-5 shadow-lg shadow-emerald-900/40">
-                <div className="mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500/15 text-[13px] font-semibold text-emerald-300">
-                  2
-                </div>
-                <h3 className="mb-1 font-sans text-[17px] sm:text-[18px] font-semibold text-emerald-200">
-                  {t('risk.rule2.title')}
-                </h3>
-                <p className="font-sans text-[16px] sm:text-[18px] text-emerald-50/90 leading-relaxed">
-                  {lang === 'sr' ? (
-                    <>
-                      Ako u jednom danu izgubiš više od{' '}
-                      <span className="font-semibold text-emerald-300">1.000 €</span>, nalog se
-                      deaktivira.
-                    </>
-                  ) : t('risk.rule2.description')}
-                </p>
-              </div>
+              <p className="font-sans text-[18px] sm:text-[20px] leading-relaxed">
+                {t('risk.bodyConclusion')}
+              </p>
             </div>
           </section>
         </div>
