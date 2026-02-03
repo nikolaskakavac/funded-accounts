@@ -153,26 +153,50 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                 {t('risk.bodyIntro')}
               </p>
 
-              <div className="mx-auto mt-5 mb-5 grid w-full max-w-2xl gap-4 sm:grid-cols-2">
-                <div className="rounded-2xl border border-emerald-700/70 bg-black/70 px-5 py-5 text-left shadow-lg shadow-emerald-900/40">
-                  <div className="mb-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/15 text-[13px] font-semibold text-emerald-300">
-                    10K
+              <div className="mx-auto mt-5 mb-5 grid w-full max-w-3xl gap-4 sm:grid-cols-2">
+                <div className="group relative overflow-hidden rounded-3xl border border-emerald-500/40 bg-gradient-to-br from-emerald-500/10 via-black/80 to-emerald-900/20 px-6 py-6 text-left shadow-2xl shadow-emerald-500/20 backdrop-blur-sm">
+                  <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-emerald-400/10 blur-3xl" />
                   </div>
-                  <p className="font-sans text-[17px] sm:text-[18px] text-emerald-50/95 leading-relaxed">
+                  <div className="relative z-10 flex items-start justify-between">
+                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/15 text-[12px] font-semibold tracking-[0.2em] text-emerald-200">
+                      10K
+                    </div>
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M7 17L17 7" />
+                        <path d="M9 7h8v8" />
+                      </svg>
+                    </div>
+                  </div>
+                  <p className="relative z-10 mt-4 font-sans text-[17px] sm:text-[18px] text-emerald-50/95 leading-relaxed">
                     {t('risk.bodyPlan1')}
                   </p>
                 </div>
-                <div className="rounded-2xl border border-emerald-700/70 bg-black/70 px-5 py-5 text-left shadow-lg shadow-emerald-900/40">
-                  <div className="mb-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/15 text-[13px] font-semibold text-emerald-300">
-                    20K
+                <div className="group relative overflow-hidden rounded-3xl border border-emerald-500/40 bg-gradient-to-br from-emerald-500/10 via-black/80 to-emerald-900/20 px-6 py-6 text-left shadow-2xl shadow-emerald-500/20 backdrop-blur-sm">
+                  <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-emerald-400/10 blur-3xl" />
                   </div>
-                  <p className="font-sans text-[17px] sm:text-[18px] text-emerald-50/95 leading-relaxed">
+                  <div className="relative z-10 flex items-start justify-between">
+                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/15 text-[12px] font-semibold tracking-[0.2em] text-emerald-200">
+                      20K
+                    </div>
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-200">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M7 17L17 7" />
+                        <path d="M9 7h8v8" />
+                      </svg>
+                    </div>
+                  </div>
+                  <p className="relative z-10 mt-4 font-sans text-[17px] sm:text-[18px] text-emerald-50/95 leading-relaxed">
                     {t('risk.bodyPlan2')}
                   </p>
                 </div>
-                <p className="sm:col-span-2 font-sans text-[18px] sm:text-[20px] leading-relaxed">
-                  {t('risk.bodyLimit')}
-                </p>
+                <div className="sm:col-span-2 rounded-2xl border border-emerald-700/40 bg-black/60 px-5 py-4 text-center shadow-lg shadow-emerald-900/30">
+                  <p className="font-sans text-[18px] sm:text-[20px] leading-relaxed text-emerald-50/95">
+                    {t('risk.bodyLimit')}
+                  </p>
+                </div>
               </div>
 
               <p className="font-sans text-[18px] sm:text-[20px] leading-relaxed">
