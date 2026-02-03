@@ -162,12 +162,6 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/15 text-[12px] font-semibold tracking-[0.2em] text-emerald-200">
                       10K
                     </div>
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-200">
-                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M7 17L17 7" />
-                        <path d="M9 7h8v8" />
-                      </svg>
-                    </div>
                   </div>
                   <p className="relative z-10 mt-4 font-sans text-[17px] sm:text-[18px] text-emerald-50/95 leading-relaxed">
                     {t('risk.bodyPlan1')}
@@ -181,18 +175,12 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/15 text-[12px] font-semibold tracking-[0.2em] text-emerald-200">
                       20K
                     </div>
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-200">
-                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M7 17L17 7" />
-                        <path d="M9 7h8v8" />
-                      </svg>
-                    </div>
                   </div>
                   <p className="relative z-10 mt-4 font-sans text-[17px] sm:text-[18px] text-emerald-50/95 leading-relaxed">
                     {t('risk.bodyPlan2')}
                   </p>
                 </div>
-                <div className="sm:col-span-2 rounded-2xl border border-emerald-700/40 bg-black/60 px-5 py-4 text-center shadow-lg shadow-emerald-900/30">
+                <div className="sm:col-span-2 rounded-2xl bg-black/60 px-5 py-4 text-center shadow-lg shadow-emerald-900/30">
                   <p className="font-sans text-[18px] sm:text-[20px] leading-relaxed text-emerald-50/95">
                     {t('risk.bodyLimit')}
                   </p>
