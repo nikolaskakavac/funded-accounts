@@ -199,8 +199,8 @@ const PlanCard = ({
       <span className="text-emerald-300/80 group-hover:text-emerald-200/90">
         BTC • ETH • USDT
       </span>
-            <span className="rounded-full bg-gradient-to-r from-emerald-400 to-cyan-300 px-2.5 py-0.5 font-bold tracking-[0.08em] text-black shadow-md shadow-emerald-500/40">
-              ✨ 15% OFF TAX FREE
+            <span className="font-bold tracking-[0.08em] text-white">
+              15% OFF TAX FREE
       </span>
     </div>
   </div>

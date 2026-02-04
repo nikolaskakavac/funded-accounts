@@ -401,8 +401,8 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                       <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.16em] text-emerald-100 group-hover:text-emerald-50">
                         {t('plans.payCrypto')} ({landingPlans[0].cryptoPrice}€)
                       </span>
-                      <span className="rounded-full bg-gradient-to-r from-emerald-400 to-cyan-300 px-2.5 py-0.5 text-[10px] font-bold tracking-[0.08em] text-black shadow-md shadow-emerald-500/40">
-                        ✨ 15% OFF TAX FREE
+                      <span className="text-[10px] font-bold tracking-[0.08em] text-white">
+                        15% OFF TAX FREE
                       </span>
                     </div>
                     <span className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-[100%] transition-all duration-700" />
@@ -470,8 +470,8 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                       <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.16em] text-emerald-100 group-hover:text-emerald-50">
                         {t('plans.payCrypto')} ({landingPlans[1].cryptoPrice}€)
                       </span>
-                      <span className="rounded-full bg-gradient-to-r from-emerald-400 to-cyan-300 px-2.5 py-0.5 text-[10px] font-bold tracking-[0.08em] text-black shadow-md shadow-emerald-500/40">
-                        ✨ 15% OFF TAX FREE
+                      <span className="text-[10px] font-bold tracking-[0.08em] text-white">
+                        15% OFF TAX FREE
                       </span>
                     </div>
                     <span className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-[100%] transition-all duration-700" />
