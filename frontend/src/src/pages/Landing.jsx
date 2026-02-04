@@ -15,7 +15,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
   const lang = getLang();
 
   const landingPlans = [
-    { id: '693db3e0e9cf589519c144fe', name: 'Nalog sa 10.000€', price: 1, cryptoPrice: 255 },
+    { id: '693db3e0e9cf589519c144fe', name: 'Nalog sa 10.000€', price: 300, cryptoPrice: 255 },
     { id: '693db3ede9cf589519c14500', name: 'Nalog sa 20.000€', price: 600, cryptoPrice: 510 },
   ];
 
