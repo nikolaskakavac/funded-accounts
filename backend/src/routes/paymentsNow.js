@@ -130,11 +130,16 @@ router.post('/create', authMiddleware, async (req, res) => {
       status: 'pending',
     });
 
+    // Round crypto amount to nearest integer, include EUR amount
+    const roundedPayAmount = Math.round(payAmount);
+    const eurAmount = price; // EUR amount (from planPricing)
+
     res.json({
       payment_id: payment.payment_id,
       pay_address: payment.pay_address,
-      pay_amount: payAmount,
+      pay_amount: roundedPayAmount,
       pay_currency: payCurrency,
+      eur_amount: eurAmount,
       invoice_url: payment.invoice_url || `https://nowpayments.io/payment/?iid=${payment.payment_id}`,
     });
   } catch (err) {

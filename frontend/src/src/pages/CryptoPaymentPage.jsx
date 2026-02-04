@@ -32,7 +32,7 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
     }
   };
 
-  const { payment_id, pay_address, pay_amount, pay_currency, invoice_url } = data || {};
+  const { payment_id, pay_address, pay_amount, pay_currency, eur_amount, invoice_url } = data || {};
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
@@ -139,6 +139,11 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
                   {pay_amount} {pay_currency?.toUpperCase()}
                 </span>{' '}
                 {t('crypto.toAddress', lang)}
+                {eur_amount && (
+                  <span className="block text-[12px] text-slate-400 mt-1">
+                    (≈ {eur_amount}€)
+                  </span>
+                )}
               </p>
 
               <p className="break-all font-mono text-[12px] text-emerald-100">
