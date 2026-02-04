@@ -15,8 +15,8 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
   const lang = getLang();
 
   const landingPlans = [
-    { id: '693db3e0e9cf589519c144fe', name: 'Nalog sa 10.000€', price: 300, cryptoPrice: 255 },
-    { id: '693db3ede9cf589519c14500', name: 'Nalog sa 20.000€', price: 600, cryptoPrice: 510 },
+    { id: '693db3e0e9cf589519c144fe', name: 'Nalog sa 10.000€', price: 300, cryptoPrice: 255, limitedLoss: 300 },
+    { id: '693db3ede9cf589519c14500', name: 'Nalog sa 20.000€', price: 600, cryptoPrice: 510, limitedLoss: 600 },
   ];
 
   const selectedPlan = landingPlans.find((p) => p.id === onSitePlanId);
@@ -357,7 +357,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                         : 'Investment Account with €10,000'}
                   </div>
                   <div className="font-sans text-[14px] text-emerald-400/80 mt-1">
-                    {t('plans.loss')} 10%
+                    {t('plans.loss')} {landingPlans[0].limitedLoss}€
                   </div>
                   <div className="font-display text-[16px] font-semibold tracking-[0.08em] text-emerald-300">
                     {t('plans.price')}
@@ -426,7 +426,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                         : 'Investment Account with €20,000'}
                   </div>
                   <div className="font-sans text-[14px] text-emerald-400/80 mt-1">
-                    {t('plans.loss')} 10%
+                    {t('plans.loss')} {landingPlans[1].limitedLoss}€
                   </div>
                   <div className="font-display text-[16px] font-semibold tracking-[0.08em] text-emerald-300">
                     {t('plans.price')}
