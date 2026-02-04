@@ -176,6 +176,11 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
               <p className="text-slate-300">
                 {t('crypto.invoiceFallback', lang) || 'Otvorite fakturu da vidite tačan iznos i adresu.'}
               </p>
+              {eur_amount && (
+                <p className="text-[15px] font-semibold text-emerald-300">
+                  Iznos: {eur_amount}€
+                </p>
+              )}
               <a
                 href={invoice_url}
                 target="_blank"

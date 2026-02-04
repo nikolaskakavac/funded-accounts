@@ -130,8 +130,8 @@ router.post('/create', authMiddleware, async (req, res) => {
       status: 'pending',
     });
 
-    // Round crypto amount to nearest integer, include EUR amount
-    const roundedPayAmount = Math.round(payAmount);
+    // Round crypto amount to nearest integer if available, include EUR amount
+    const roundedPayAmount = payAmount ? Math.round(payAmount) : null;
     const eurAmount = price; // EUR amount (from planPricing)
 
     res.json({
