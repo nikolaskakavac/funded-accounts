@@ -24,8 +24,10 @@ const getStripeAmount = (planId, fallbackPrice) => {
     return 100; // 1€ za test
   }
   
+  // LIVE MODE: Prvi plan = 1€ za testiranje
+  if (planId === '693db3e0e9cf589519c144fe') return 100; // 1€
+  
   const p = planPricing[planId]?.stripe;
-  if (planId === '693db3e0e9cf589519c144fe') return 30000;
   return p ? Math.round(p * 100) : 30000;
 };
 

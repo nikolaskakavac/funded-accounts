@@ -94,7 +94,7 @@ const translations = {
   },
   'goal.selection': {
     sr: 'Kroz prirodan proces selekcije, naš kapital se vremenom usmerava ka onima koji ostvaruju najbolje rezultate, čime se rizik za nas smanjuje, a dobit raste.',
-    en: 'Through a natural selection process, our capital is directed over time toward those who achieve the best results, reducing our risk and increasing profit.'
+    en: 'Through a natural selection process, our capital is directed over time toward those who achieve the best results.'
   },
   'goal.beginners': {
     sr: 'Na taj način stvaramo sistem u kome i početnici mogu da ostvare značajne profite, dok se uspešnima otvara prostor za veće investicije i zajednički rast.',
