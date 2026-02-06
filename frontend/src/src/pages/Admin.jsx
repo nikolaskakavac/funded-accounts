@@ -305,6 +305,87 @@ const Admin = ({ navigate, token, onLogout }) => {
             </div>
           )}
         </section>
+
+        {/* WhatsApp Requests */}
+        <section className="mt-8 rounded-3xl border border-emerald-800/60 bg-black/80 p-5 shadow-xl shadow-emerald-500/20">
+          <h2 className="mb-4 font-display text-[18px] font-semibold uppercase tracking-[0.14em] text-emerald-400">
+            📞 WhatsApp Call Requests
+            {whatsappCount > 0 && (
+              <span className="ml-2 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[12px] text-emerald-300">
+                {whatsappCount} new
+              </span>
+            )}
+          </h2>
+          
+          {whatsappRequests.length === 0 ? (
+            <p className="font-sans text-[15px] text-emerald-100/90">
+              Nema WhatsApp zahteva.
+            </p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="min-w-full font-sans text-[14px] text-slate-100">
+                <thead className="border-b border-emerald-900 text-[12px] uppercase tracking-[0.16em] text-emerald-300">
+                  <tr className="text-left">
+                    <th className="py-2 pr-4">Phone Number</th>
+                    <th className="py-2 pr-4">Date</th>
+                    <th className="py-2 pr-0">Contacted</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {whatsappRequests.map((req) => (
+                    <tr
+                      key={req._id}
+                      className="border-b border-emerald-900/40 last:border-0"
+                    >
+                      <td className="py-3 pr-4 align-top">
+                        <span className="text-[14px] font-medium text-slate-50">
+                          {req.phoneNumber}
+                        </span>
+                      </td>
+                      <td className="py-3 pr-4 align-top">
+                        <span className="text-[13px] text-slate-400">
+                          {new Date(req.createdAt).toLocaleDateString('sr-RS', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                          })}
+                        </span>
+                      </td>
+                      <td className="py-3 pr-0 align-top">
+                        <label className="inline-flex cursor-pointer items-center gap-2 text-[13px] text-slate-300">
+                          <input
+                            type="checkbox"
+                            checked={!!req.contacted}
+                            onChange={async () => {
+                              try {
+                                await fetch(`${API_BASE}/api/whatsapp/${req._id}/contacted`, {
+                                  method: 'PATCH',
+                                  headers: { Authorization: `Bearer ${token}` },
+                                });
+                                setWhatsappRequests((prev) =>
+                                  prev.map((r) =>
+                                    r._id === req._id ? { ...r, contacted: true } : r
+                                  )
+                                );
+                                setWhatsappCount((prev) => Math.max(0, prev - 1));
+                              } catch (err) {
+                                console.error(err);
+                              }
+                            }}
+                            className="h-4 w-4 rounded border-emerald-700 bg-black text-emerald-500 focus:ring-emerald-500"
+                          />
+                          <span>{req.contacted ? 'Kontaktiran' : 'Nije kontaktiran'}</span>
+                        </label>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
       </div>
     </div>
   );
