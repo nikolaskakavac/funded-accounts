@@ -19,31 +19,19 @@ const translations = {
   // How it works
   'howItWorks.title': { sr: 'Kako funkcioniše', en: 'How It Works' },
   'howItWorks.description': {
-    sr: 'Kada kupiš nalog na našem websajtu, dobijaš log in podatke od već postojećeg, unapred „napunjenog" kripto naloga. Svaki kupac dobija svoj, zaseban nalog – nema deljenja sa drugima.',
-    en: 'When you purchase an account on our website, you receive login credentials for an already existing, pre-funded crypto account. Each customer gets their own separate account – no sharing with others.'
+    sr: 'Kada kupiš nalog na našem websajtu, dobijaš log in podatke od novog trading naloga koji će biti popunjen pravim kapitalom. Svaki kupac dobija svoj, zaseban nalog.',
+    en: 'When you purchase an account on our website, you receive login information of a new trading account that will be filled with real capital. Each customer gets their own separate account.'
   },
   'howItWorks.task': {
     sr: 'Tvoj zadatak je jasan:',
     en: 'Your task is clear:'
   },
   'howItWorks.profit': {
-    sr: 'ostvari profit investirajući u neku od',
-    en: 'make profit by investing in one of the'
+    sr: 'ostvari profit investirajući u zlato ili neku od',
+    en: 'Achieve a profit by investing in gold, crypto or another financial instrument available on our trading platform. All the capital comes from us, while you focus exclusively on'
   },
-  'howItWorks.crypto': { sr: 'kripto-valuta', en: 'crypto currencies' },
-  'howItWorks.withOurMoney': { sr: 'sa našim novcem.', en: 'with our capital.' },
-  'howItWorks.focus': {
-    sr: 'Ti se fokusiraš isključivo na',
-    en: 'You focus exclusively on'
-  },
-  'howItWorks.investing': { sr: 'investiranje', en: 'investing' },
-  'howItWorks.weTakeCare': {
-    sr: 'dok mi brinemo o',
-    en: 'while we take care of the'
-  },
-  'howItWorks.account': { sr: 'nalogu', en: 'account' },
-  'howItWorks.capital': { sr: 'kapitalu', en: 'capital' },
-  'howItWorks.infrastructure': { sr: 'tehničkoj infrastrukturi', en: 'technical infrastructure' },
+  'howItWorks.crypto': { sr: 'kripto-valuta', en: 'your investing decisions.' },
+  'howItWorks.instruments': { sr: 'Saznaj više o dostupnim finansijskim instrumentima', en: 'Find out all available financial instruments' },
 
   // Trading Rule
   'risk.title': { sr: 'Pravilo Trgovanja', en: 'Trading Rule' },

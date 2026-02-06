@@ -109,38 +109,36 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
               {t('howItWorks.title')}
             </h2>
 
-            <p className="font-sans text-[20px] sm:text-[22px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-4">
+            <p className="font-sans text-[20px] sm:text-[22px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-6">
               {lang === 'sr' ? (
                 <>
-                  Kada kupiš nalog na našem websajtu, dobijaš log in podatke od već postojećeg,
-                  unapred <span className="font-semibold text-emerald-400">„napunjenog" kripto naloga</span>.
-                  Svaki kupac dobija svoj, zaseban nalog – nema deljenja sa drugima.
+                  Kada kupiš nalog na našem websajtu, dobijaš log in podatke od novog trading naloga koji će biti popunjen pravim kapitalom. Svaki kupac dobija svoj, zaseban nalog.
                   <br />
                   <br />
                   <span className="font-semibold text-white">Tvoj zadatak je jasan:</span>{' '}
-                  ostvari profit investirajući u neku od{' '}
+                  ostvari profit investirajući u zlato ili neku od{' '}
                   <span className="font-semibold text-white">kripto-valuta</span> sa našim novcem.
-                  Ti se fokusiraš isključivo na{' '}
-                  <span className="font-semibold text-white">investiranje</span>, dok mi brinemo o{' '}
-                  <span className="font-semibold text-white">nalogu</span>,{' '}
-                  <span className="font-semibold text-white">kapitalu</span> i kompletnoj{' '}
-                  <span className="font-semibold text-white">tehničkoj infrastrukturi</span>.
+                  Ti se fokusiraš isključivo na investiranje.
                 </>
               ) : (
                 <>
-                  {t('howItWorks.description')}
+                  When you purchase an account on our website, you receive login information of a new trading account that will be filled with real capital. Each customer gets their own separate account.
                   <br />
                   <br />
-                  <span className="font-semibold text-white">{t('howItWorks.task')}</span>{' '}
-                  {t('howItWorks.profit')}{' '}
-                  <span className="font-semibold text-white">{t('howItWorks.crypto')}</span> {t('howItWorks.withOurMoney')}.
-                  {t('howItWorks.focus')}{' '}
-                  <span className="font-semibold text-white">{t('howItWorks.investing')}</span>, {t('howItWorks.weTakeCare')}{' '}
-                  <span className="font-semibold text-white">{t('howItWorks.account')}</span>,{' '}
-                  <span className="font-semibold text-white">{t('howItWorks.capital')}</span> {t('howItWorks.infrastructure')}.
+                  <span className="font-semibold text-white">Your task is clear:</span>{' '}
+                  Achieve a profit by investing in gold, crypto or another financial instrument available on our trading platform. All the capital comes from us, while you focus exclusively on your investing decisions.
                 </>
               )}
             </p>
+            <div className="mt-4">
+              <a
+                href="#"
+                className="inline-flex items-center gap-2 rounded-full bg-emerald-500/20 border border-emerald-400 px-4 py-2 text-[14px] font-sans font-semibold tracking-[0.08em] text-emerald-300 hover:bg-emerald-500/30 transition-colors"
+              >
+                {t('howItWorks.instruments')}
+                <span>→</span>
+              </a>
+            </div>
           </section>
 
           <section className="mt-10 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10">
