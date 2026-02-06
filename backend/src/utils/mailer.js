@@ -91,71 +91,25 @@ async function sendCredentialsNotification(toEmail) {
   const mailOptions = {
     from: `"Arbex Fund" <${process.env.SMTP_USER}>`,
     to: toEmail,
-    subject: '🔑 Your Trading Account Credentials - Ready to Trade!',
+    subject: 'Your Arbex Fund Trading Account Is Being Prepared',
     html: `${emailHeader}
-      <h2>🚀 Your Trading Account is Ready!</h2>
-      <p>Dear trader,</p>
-      <p>Great news! Your Arbex Fund trading account has been successfully set up and is ready for action. Your login credentials are now active and you can begin trading immediately.</p>
+      <p>Hello,</p>
       
-      <div class="highlight-box">
-        <strong style="font-size: 16px; color: #10b981;">🔓 Account Access Activated</strong><br><br>
-        <p><strong>Status:</strong> <span style="color: #10b981; font-weight: 700;">✅ Active & Ready</span></p>
-        <p>Your funded trading account is fully operational and waiting for your first trade.</p>
-      </div>
+      <p>Your Arbex Fund trading account is now being created by our setup team. You will receive your MetaTrader 5 login credentials (username and password) within the next 48 hours.</p>
 
-      <h3>📱 How to Access Your Account</h3>
-      <p>Your login credentials have been sent to you in a separate secure email. To access your trading platform:</p>
-      <ul style="line-height: 1.8;">
-        <li>Go to your <strong>email inbox</strong> and look for the message titled <strong>"Trading Platform Access"</strong></li>
-        <li>You'll find your <strong>username</strong> and <strong>temporary password</strong></li>
-        <li>Visit the <strong>trading platform link</strong> provided in that email</li>
-        <li>Log in and change your password to something secure</li>
-      </ul>
-
-      <h3>⚡ Getting Started</h3>
-      <p>Once logged in, you'll have access to:</p>
-      <ul style="line-height: 1.8;">
-        <li>✅ Live trading platform with real-time market data</li>
-        <li>✅ Advanced charting tools and technical analysis</li>
-        <li>✅ Comprehensive trading education & video tutorials</li>
-        <li>✅ Risk management dashboard (10% loss limit protection)</li>
-        <li>✅ 24/7 support team for assistance</li>
-      </ul>
-
-      <h3>⏰ Important: 48-Hour Timeline</h3>
-      <div class="highlight-box">
-        <strong>Your account setup will be fully completed within the next 48 hours.</strong><br><br>
-        <p>This includes:</p>
-        <ul style="margin: 10px 0; padding-left: 20px;">
-          <li>Final platform verification and testing</li>
-          <li>Account funding confirmation</li>
-          <li>Support team introduction call (optional)</li>
-        </ul>
-      </div>
-
-      <h3>🎓 Before You Start Trading</h3>
-      <p>Please review the following important information:</p>
-      <ul style="line-height: 1.8;">
-        <li><strong>Risk Management Rules:</strong> Maximum 10% loss per trade is enforced</li>
-        <li><strong>Trading Hours:</strong> Trade during market hours for best liquidity</li>
-        <li><strong>Position Sizing:</strong> Always use proper position management</li>
-      </ul>
+      <p>While we complete the setup, please take a moment to install the MetaTrader 5 application from the App Store (iOS) or Google Play Store (Android) so that you'll be ready to log in as soon as your credentials arrive.</p>
 
       <div class="highlight-box">
-        <strong>💡 Pro Tip:</strong> Start small, learn the platform, and gradually increase your trading activity as you gain confidence.
+        <strong>📱 Download MetaTrader 5:</strong><br><br>
+        <strong>iOS:</strong> <a href="https://apps.apple.com/app/metatrader-5/id413251709" style="color: #10b981;">App Store</a><br>
+        <strong>Android:</strong> <a href="https://play.google.com/store/apps/details?id=net.metaquotes.metatrader5" style="color: #10b981;">Google Play Store</a>
       </div>
 
-      <h3>📞 Need Help?</h3>
-      <p>Our dedicated support team is standing by 24/7 to assist you with:</p>
-      <ul style="line-height: 1.8;">
-        <li>Platform navigation questions</li>
-        <li>Trading strategy advice</li>
-        <li>Technical support issues</li>
-      </ul>
-      <p>Contact us at <a href="mailto:support@arbexfund.com" style="color: #10b981;">support@arbexfund.com</a> or use the live chat on your dashboard.</p>
+      <p>Once your account details are issued, you'll receive another email from Arbex Fund Support with your secure login information.</p>
 
-      <p style="margin-top: 30px;">We're thrilled to have you on board. Happy trading!</p>
-      <p>Best regards,<br><strong>Arbex Fund Trading Team</strong></p>
+      <p>If you do not see that message after 48 hours, check your spam or junk folder, or contact <a href="mailto:support@arbexfund.com" style="color: #10b981;">support@arbexfund.com</a> so we can help.</p>
+
+      <p>Thank you for your patience and for choosing Arbex Fund. We're excited to have you trading with us soon.</p>
     ${emailFooter}`
   };
 
