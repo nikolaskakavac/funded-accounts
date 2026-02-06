@@ -93,7 +93,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
           <Header navigate={navigate} token={token} onLogout={onLogout} showBackLink={false} />
 
             {/* HERO TEKST */}
-            <main className="px-4 pb-3 -mt-4 flex-1 flex">
+            <main className="px-4 pb-3 mt-12 flex-1 flex">
               <section className="w-full max-w-5xl mx-auto text-center">
                 <h1
                   className="text-left sm:text-center ml-2 sm:ml-0 font-display text-[38px] sm:text-[44px] lg:text-[72px] xl:text-[84px] leading-[1.03] font-extrabold tracking-[0.12em] uppercase
@@ -426,8 +426,8 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
       <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
         <div className="max-w-3xl mx-auto">
           <div className="rounded-3xl border-2 border-emerald-500/40 bg-gradient-to-b from-emerald-950/40 via-black/60 to-black/80 p-8 shadow-2xl shadow-emerald-500/20">
-            <h2 className="font-display text-[24px] sm:text-[28px] font-bold uppercase tracking-[0.18em] text-emerald-400 mb-3 text-center">
-              📞 {t('whatsapp.title')}
+            <h2 className="font-display text-[24px] sm:text-[28px] font-black uppercase tracking-[0.18em] text-emerald-400 mb-3 text-center">
+              {t('whatsapp.title')}
             </h2>
             <p className="font-sans text-[16px] leading-relaxed text-emerald-100/90 mb-8 text-center max-w-xl mx-auto">
               {t('whatsapp.description')}
