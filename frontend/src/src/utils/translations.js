@@ -101,6 +101,14 @@ const translations = {
     en: 'Through the copy trade option available inside the app, users can activate automatic copying of one of our 5 professional traders. This gives those without prior experience a better chance to achieve results.'
   },
 
+  // WhatsApp Call Request
+  'whatsapp.title': { sr: 'Zatraži besplatan WhatsApp poziv', en: 'Request free WhatsApp call' },
+  'whatsapp.description': { sr: 'Unesite broj telefona i mi ćemo vas kontaktirati putem WhatsApp-a', en: 'Enter your phone number and we will contact you via WhatsApp' },
+  'whatsapp.placeholder': { sr: 'Unesite broj telefona', en: 'Type number' },
+  'whatsapp.submit': { sr: 'Pošalji', en: 'Submit' },
+  'whatsapp.success': { sr: 'Hvala! Kontaktiraćemo vas uskoro.', en: 'Thank you! We will contact you soon.' },
+  'whatsapp.error': { sr: 'Greška pri slanju zahteva', en: 'Error sending request' },
+
   // Plans
   'plans.section': { sr: 'Planovi', en: 'Plans' },
   'plans.title': { sr: 'Izaberi veličinu naloga.', en: 'Choose your account size.' },

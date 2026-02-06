@@ -62,6 +62,14 @@ const nlTranslations = {
   'copyTrade.description':
     'Via de copy trade-optie in de app kunnen gebruikers het automatisch kopiëren van één van onze 5 professionele traders activeren. Zo hebben ook mensen zonder eerdere ervaring een betere kans om resultaten te behalen.',
 
+  // WhatsApp Call Request
+  'whatsapp.title': 'Vraag een gratis WhatsApp-gesprek aan',
+  'whatsapp.description': 'Voer je telefoonnummer in en we nemen via WhatsApp contact met je op',
+  'whatsapp.placeholder': 'Voer nummer in',
+  'whatsapp.submit': 'Verzenden',
+  'whatsapp.success': 'Bedankt! We nemen binnenkort contact met je op.',
+  'whatsapp.error': 'Fout bij het verzenden van verzoek',
+
   // Plans
   'plans.section': 'Plannen',
   'plans.title': 'Kies je accountgrootte.',

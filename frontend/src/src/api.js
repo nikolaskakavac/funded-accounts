@@ -134,3 +134,31 @@ export const requestCashout = async (token) => {
   }
   return body;
 };
+
+// WhatsApp call request
+export const submitWhatsAppRequest = async (phoneNumber) => {
+  const res = await fetch(`${API_BASE}/api/whatsapp/request`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ phoneNumber }),
+  });
+
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(body.message || 'WhatsApp request failed');
+  }
+  return body;
+};
+
+export const getWhatsAppRequests = async (token) => {
+  const res = await fetch(`${API_BASE}/api/whatsapp/all`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body.message || 'Failed to fetch WhatsApp requests');
+  }
+  return res.json();
+};
+

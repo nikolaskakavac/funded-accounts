@@ -20,6 +20,8 @@ const API_BASE = getApiBase();
 
 const Admin = ({ navigate, token, onLogout }) => {
   const [transactions, setTransactions] = useState([]);
+  const [whatsappRequests, setWhatsappRequests] = useState([]);
+  const [whatsappCount, setWhatsappCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -46,7 +48,25 @@ const Admin = ({ navigate, token, onLogout }) => {
       }
     };
 
+    const fetchWhatsApp = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/whatsapp/all`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!res.ok) throw new Error('Failed to load WhatsApp requests');
+        const data = await res.json();
+        setWhatsappRequests(data.requests || []);
+        setWhatsappCount(data.uncontactedCount || 0);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
     fetchTx();
+    fetchWhatsApp();
   }, [token, navigate]);
 
   const updateTransaction = async (id, changes) => {
@@ -90,6 +110,13 @@ const Admin = ({ navigate, token, onLogout }) => {
             <p className="mt-2 font-sans text-[15px] text-emerald-100/90">
               Transakcije, aktivacija naloga i slanje account podataka.
             </p>
+            {whatsappCount > 0 && (
+              <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-emerald-500/20 px-3 py-1 border border-emerald-500/50">
+                <span className="text-[12px] font-sans text-emerald-300">
+                  📞 {whatsappCount} novi WhatsApp {whatsappCount === 1 ? 'zahtev' : 'zahteva'}
+                </span>
+              </div>
+            )}
           </div>
           <button
             onClick={() => navigate('/dashboard')}

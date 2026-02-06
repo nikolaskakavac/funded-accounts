@@ -14,6 +14,7 @@ const nowRoutes = require('./routes/paymentsNow');
 const adminRoutes = require('./routes/admin');
 const cashoutRoutes = require('./routes/cashout');
 const contactRoutes = require('./routes/contact');
+const whatsappRoutes = require('./routes/whatsapp');
 const webhooksStripe = require('./routes/webhooksStripe');
 
 const User = require('./models/User');
@@ -65,6 +66,7 @@ app.use('/payments/stripe', stripeRoutes);
 app.use('/payments/now', nowRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/whatsapp', whatsappRoutes);
 app.use('/cashout', cashoutRoutes);
 
 // 7) Health check

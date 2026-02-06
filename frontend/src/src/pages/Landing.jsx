@@ -4,6 +4,7 @@ import Leaderboard from '../components/Leaderboard';
 import ContactForm from '../components/ContactForm';
 import { t } from '../utils/translations';
 import { getLang } from '../utils/lang';
+import { submitWhatsAppRequest } from '../api';
 
 // payment badge images
 import visaLogo from '/img/visa.png';
@@ -12,6 +13,9 @@ import raiffeisenLogo from '/img/raiffeisen.png';
 
 const Landing = ({ navigate, token, onLogout = () => {} }) => {
   const [onSitePlanId, setOnSitePlanId] = useState(null);
+  const [whatsappPhone, setWhatsappPhone] = useState('');
+  const [whatsappSubmitting, setWhatsappSubmitting] = useState(false);
+  const [whatsappMessage, setWhatsappMessage] = useState('');
   const lang = getLang();
 
   const landingPlans = [
@@ -20,6 +24,27 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
   ];
 
   const selectedPlan = landingPlans.find((p) => p.id === onSitePlanId);
+
+  const handleWhatsAppSubmit = async (e) => {
+    e.preventDefault();
+    if (!whatsappPhone || whatsappPhone.trim().length < 5) {
+      setWhatsappMessage(t('whatsapp.error', lang));
+      return;
+    }
+
+    setWhatsappSubmitting(true);
+    setWhatsappMessage('');
+
+    try {
+      await submitWhatsAppRequest(whatsappPhone);
+      setWhatsappMessage(t('whatsapp.success', lang));
+      setWhatsappPhone('');
+    } catch (err) {
+      setWhatsappMessage(t('whatsapp.error', lang));
+    } finally {
+      setWhatsappSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
@@ -372,6 +397,43 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
           <p className="font-sans text-[18px] sm:text-[20px] leading-relaxed max-w-3xl mx-auto text-emerald-50/95">
             {t('copyTrade.description')}
           </p>
+        </div>
+      </section>
+
+      {/* WhatsApp Call Request */}
+      <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-8 pb-10">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="font-display text-[20px] sm:text-[24px] font-semibold uppercase tracking-[0.18em] text-emerald-400 mb-4">
+            {t('whatsapp.title')}
+          </h2>
+          <p className="font-sans text-[15px] leading-relaxed text-emerald-50/90 mb-6">
+            {t('whatsapp.description')}
+          </p>
+          
+          <form onSubmit={handleWhatsAppSubmit} className="max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="tel"
+                value={whatsappPhone}
+                onChange={(e) => setWhatsappPhone(e.target.value)}
+                placeholder={t('whatsapp.placeholder', lang)}
+                className="flex-1 rounded-full border border-emerald-600 bg-black/60 px-4 py-3 text-[15px] text-slate-200 placeholder:text-slate-500 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+                disabled={whatsappSubmitting}
+              />
+              <button
+                type="submit"
+                disabled={whatsappSubmitting}
+                className="rounded-full bg-emerald-500 px-6 py-3 text-[14px] font-sans font-semibold uppercase tracking-[0.16em] text-black shadow-[0_0_18px_rgba(16,185,129,0.7)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+              >
+                {whatsappSubmitting ? '...' : t('whatsapp.submit', lang)}
+              </button>
+            </div>
+            {whatsappMessage && (
+              <p className={`mt-3 text-[14px] ${whatsappMessage.includes('Hvala') || whatsappMessage.includes('Thank') || whatsappMessage.includes('Bedankt') ? 'text-emerald-300' : 'text-red-400'}`}>
+                {whatsappMessage}
+              </p>
+            )}
+          </form>
         </div>
       </section>
 
