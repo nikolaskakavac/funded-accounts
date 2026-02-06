@@ -32,17 +32,17 @@ async function npRequestWithRetry(makeRequest, retries = 1, backoffMs = 1200) {
 
 // Plan pricing overrides by payment method (EUR)
 const planPricing = {
-  '693db3e0e9cf589519c144fe': { stripe: 300, crypto: 255 }, // 10k
+  '693db3e0e9cf589519c144fe': { stripe: 300, crypto: 10 }, // 10k (crypto testing price)
   '693db3ede9cf589519c14500': { stripe: 600, crypto: 510 }, // 20k
 };
 
-// Allowed crypto coins and mapping to NOWPayments codes
-const ALLOWED_PAY_CURRENCIES = ['usdttrc20', 'usdc', 'eth'];
+// Allowed crypto coins and mapping to NOWPayments codes (all ERC20)
+const ALLOWED_PAY_CURRENCIES = ['usdterc20', 'usdc', 'eth'];
 const PAY_CURRENCY_MAP = {
-  usdt: 'usdttrc20', // Tether USDT on TRON (TRC20) - lowest fees
-  usdttrc20: 'usdttrc20', // Explicit USDT TRC20
-  usdc: 'usdc',  // USD Coin
-  eth: 'eth',    // Ethereum
+  usdt: 'usdterc20', // Tether USDT on Ethereum (ERC20)
+  usdterc20: 'usdterc20', // Explicit USDT ERC20
+  usdc: 'usdc',  // USD Coin (ERC20)
+  eth: 'eth',    // Ethereum (native)
 };
 
 function normalizePayCurrency(cur) {
@@ -62,7 +62,7 @@ router.post('/create', authMiddleware, async (req, res) => {
   const normalizedPayCurrency = normalizePayCurrency(pay_currency);
   if (!normalizedPayCurrency) {
     return res.status(400).json({
-      message: 'Unsupported crypto coin. Allowed: usdt (TRC20), usdc, eth.',
+      message: 'Unsupported crypto coin. Allowed: usdt (ERC20), usdc, eth.',
     });
   }
 

@@ -534,8 +534,8 @@ const translations = {
   'cancel.back': { sr: 'Nazad na planove', en: 'Back to plans' },
 
   // Crypto Payment (extended)
-  'crypto.coin.usdt': { sr: 'USDT TRC-20', en: 'USDT TRC-20' },
-  'crypto.coin.usdt.note': { sr: 'Tether TRON (najniži fee)', en: 'Tether on TRON (lowest fees)' },
+  'crypto.coin.usdt': { sr: 'USDT ERC-20', en: 'USDT ERC-20' },
+  'crypto.coin.usdt.note': { sr: 'Tether Ethereum', en: 'Tether on Ethereum' },
   'crypto.coin.esdt': { sr: 'ESDT', en: 'ESDT' },
   'crypto.coin.esdt.note': { sr: 'MultiversX (EGLD)', en: 'MultiversX (EGLD)' },
   'crypto.coin.usdc': { sr: 'USDC', en: 'USDC' },

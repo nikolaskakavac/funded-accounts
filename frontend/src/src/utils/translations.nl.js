@@ -243,8 +243,8 @@ const nlTranslations = {
   'cancel.back': 'Terug naar plannen',
 
   // Crypto Payment (extended)
-  'crypto.coin.usdt': 'USDT TRC-20',
-  'crypto.coin.usdt.note': 'Tether op TRON (laagste kosten)',
+  'crypto.coin.usdt': 'USDT ERC-20',
+  'crypto.coin.usdt.note': 'Tether op Ethereum',
   'crypto.coin.esdt': 'ESDT',
   'crypto.coin.esdt.note': 'MultiversX (EGLD)',
   'crypto.coin.usdc': 'USDC',
