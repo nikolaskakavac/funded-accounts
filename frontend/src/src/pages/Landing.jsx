@@ -49,9 +49,20 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
   const handlePhoneChange = (e) => {
     let value = e.target.value;
     
-    // Ensure + is always at the start
-    if (!value.startsWith('+')) {
-      value = '+' + value.replace(/\+/g, '');
+    // Allow only numbers and + at the beginning
+    // Remove all non-numeric characters except +
+    value = value.replace(/[^\d+]/g, '');
+    
+    // Ensure + is only at the start
+    if (value.includes('+')) {
+      const plusCount = (value.match(/\+/g) || []).length;
+      if (plusCount > 1 || value.indexOf('+') !== 0) {
+        // Remove all + and add one at the start
+        value = '+' + value.replace(/\+/g, '');
+      }
+    } else if (!value.startsWith('+') && value.length > 0) {
+      // Add + at the beginning if not present
+      value = '+' + value;
     }
     
     setWhatsappPhone(value);
@@ -429,6 +440,8 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   value={whatsappPhone}
                   onChange={handlePhoneChange}
                   placeholder={t('whatsapp.placeholder', lang)}
+                  pattern="\+[0-9]+"
+                  title="Phone number must start with + followed by digits only"
                   className="w-full rounded-2xl border-2 border-emerald-500/60 bg-black/80 px-6 py-4 text-[17px] font-medium text-center text-slate-100 placeholder:text-slate-500 focus:border-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/40 shadow-lg shadow-emerald-500/10 transition-all"
                   disabled={whatsappSubmitting}
                 />
