@@ -14,7 +14,7 @@ const nlTranslations = {
   'hero.viewPlans': 'Bekijk plannen',
 
   // How it works
-  'howItWorks.title': 'Hoe het werkt',
+  'howItWorks.title': 'Ons product',
   'howItWorks.description':
     'Wanneer je een account op onze website koopt, ontvang je inloggegevens voor een al bestaand, vooraf gefinancierd crypto‑account. Elke klant krijgt zijn eigen, aparte account — geen delen met anderen.',
   'howItWorks.task': 'Jouw taak is duidelijk:',

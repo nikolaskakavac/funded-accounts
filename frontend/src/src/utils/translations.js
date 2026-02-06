@@ -17,7 +17,7 @@ const translations = {
   'hero.viewPlans': { sr: 'Pogledaj planove', en: 'View Plans' },
 
   // How it works
-  'howItWorks.title': { sr: 'Kako funkcioniše', en: 'How It Works' },
+  'howItWorks.title': { sr: 'Naš proizvod', en: 'Our Product' },
   'howItWorks.description': {
     sr: 'Kada kupiš nalog na našem websajtu, dobijaš log in podatke od novog trading naloga koji će biti popunjen pravim kapitalom. Svaki kupac dobija svoj, zaseban nalog.',
     en: 'When you purchase an account on our website, you receive login information of a new trading account that will be filled with real capital. Each customer gets their own separate account.'

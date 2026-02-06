@@ -32,7 +32,7 @@ async function npRequestWithRetry(makeRequest, retries = 1, backoffMs = 1200) {
 
 // Plan pricing overrides by payment method (EUR)
 const planPricing = {
-  '693db3e0e9cf589519c144fe': { stripe: 300, crypto: 10 }, // 10k (crypto testing price)
+  '693db3e0e9cf589519c144fe': { stripe: 300, crypto: 11 }, // 10k (crypto testing price)
   '693db3ede9cf589519c14500': { stripe: 600, crypto: 510 }, // 20k
 };
 
