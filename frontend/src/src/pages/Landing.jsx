@@ -214,7 +214,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-                  💰
+                  �
                 </div>
                 <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
                   1
@@ -239,7 +239,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-                  📚
+                  �
                 </div>
                 <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
                   2
@@ -270,12 +270,12 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   3
                 </div>
               </div>
-              <h3 className="text-center font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
+              <h3 className="font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
                 {t('whatYouGet.profit.title')}
               </h3>
-             <p className="text-center font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
-  {t('whatYouGet.profit.description')}
-</p>
+              <p className="font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
+                {t('whatYouGet.profit.description')}
+              </p>
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
             </div>
           </div>

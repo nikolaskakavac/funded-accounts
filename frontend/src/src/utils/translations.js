@@ -58,20 +58,20 @@ const translations = {
 
   // What You Get
   'whatYouGet.title': { sr: 'Šta tačno dobijaš kupovinom naloga?', en: 'What exactly do you get by purchasing an account?' },
-  'whatYouGet.capital.title': { sr: 'Kapital za investiranje', en: 'Trading Capital' },
+  'whatYouGet.capital.title': { sr: 'KORISNIČKO IME I LOZINKA', en: 'USERNAME AND PASSWORD' },
   'whatYouGet.capital.description': {
-    sr: 'Dobijaš novac od nas koji možeš da investiraš na kripto valutu po tvom izboru. Ne rizikuješ sopstveni novac, već koristiš naš kapital.',
-    en: 'You get our money to invest in the cryptocurrency of your choice. You don\'t risk your own money – you use our capital.'
+    sr: 'Dobijas email sa log in podacima (korisničko ime, lozinka) za svoj novi trading nalog na online trading platformi MetaTrader5.com',
+    en: 'You get an email with log in info (username, password) to your new trading account on an online trading platform called MetaTrader5.com'
   },
-  'whatYouGet.platform.title': { sr: 'LOG IN + OBUKA', en: 'LOGIN + TRAINING' },
+  'whatYouGet.platform.title': { sr: 'TRADING KAPITAL', en: 'TRADING CAPITAL' },
   'whatYouGet.platform.description': {
-    sr: 'Dobijaš log in podatke od svog "napunjenog" kripto naloga, uz besplatnu obuku o investiranju da bi brže ušao u ritam.',
-    en: 'You receive login credentials for your funded crypto account, plus free training on investing to get you up to speed faster.'
+    sr: 'Tvoj nalog dobija kapital od nas. Ne rizikuješ vlastiti novac - korisiš naš kapital.',
+    en: 'Your account receives capital from us. You don\'t risk your own money - you use our capital.'
   },
   'whatYouGet.profit.title': { sr: 'Podela profita', en: 'Profit Split' },
   'whatYouGet.profit.description': {
-    sr: 'Kada kripto-valuta u koju si odlučio da investiraš zabeleži rast i ti odlučiš da napraviš CASH OUT, 80% profita se isplaćuje na tvoju kreditnu karticu ili lični kripto račun, a 20% skupljamo mi.',
-    en: 'When the cryptocurrency you\'ve invested in increases in value and you decide to CASH OUT, 80% of the profit is paid to your credit card or personal crypto account, and we collect 20%.'
+    sr: 'Ostvariš investiciju sa našim kapitalom. Ako finansijski instrument u koji si investirao poraste u vrijednosti i ti odlučiš da CASH OUT, 80% profita se isplaćuje na tvoju kreditnu karticu ili lični kripto račun. Mi skupljamo 20%',
+    en: 'You make an investment with our capital. If the financial instrument you invested in increases in value and you decide to CASH OUT, 80% of the profit is paid to your credit card or personal crypto account. We collect 20%'
   },
 
   // Our Goal
