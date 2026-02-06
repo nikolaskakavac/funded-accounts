@@ -12,6 +12,13 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Partnerstvo from './pages/Partnerstvo';
 import OnSitePaymentPage from './pages/OnSitePayment';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
+import AML from './pages/AML';
+import Cookies from './pages/Cookies';
+import Risk from './pages/Risk';
+import Refund from './pages/Refund';
+import Regulatory from './pages/Regulatory';
 import LanguageModal from './components/LanguageModal';
 import { detectLang, setLang, onLangChange } from './utils/lang';
 
@@ -137,6 +144,20 @@ const App = () => {
         onLogout={handleLogout}
       />
     );
+  } else if (path === '/terms') {
+    page = <Terms navigate={navigate} token={token} onLogout={handleLogout} />;
+  } else if (path === '/privacy') {
+    page = <Privacy navigate={navigate} token={token} onLogout={handleLogout} />;
+  } else if (path === '/aml') {
+    page = <AML navigate={navigate} token={token} onLogout={handleLogout} />;
+  } else if (path === '/cookies') {
+    page = <Cookies navigate={navigate} token={token} onLogout={handleLogout} />;
+  } else if (path === '/risk') {
+    page = <Risk navigate={navigate} token={token} onLogout={handleLogout} />;
+  } else if (path === '/refund') {
+    page = <Refund navigate={navigate} token={token} onLogout={handleLogout} />;
+  } else if (path === '/regulatory') {
+    page = <Regulatory navigate={navigate} token={token} onLogout={handleLogout} />;
   } else {
     page = <Landing navigate={navigate} token={token} onLogout={handleLogout} />;
   }

@@ -674,6 +674,18 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             >
               {t('footer.contact')}
             </button>
+            
+            {/* Legal links */}
+            <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-[11px] text-slate-500">
+              <button onClick={() => navigate('/terms')} className="hover:text-emerald-300 transition-colors">Terms</button>
+              <button onClick={() => navigate('/privacy')} className="hover:text-emerald-300 transition-colors">Privacy</button>
+              <button onClick={() => navigate('/aml')} className="hover:text-emerald-300 transition-colors">AML</button>
+              <button onClick={() => navigate('/cookies')} className="hover:text-emerald-300 transition-colors">Cookies</button>
+              <button onClick={() => navigate('/risk')} className="hover:text-emerald-300 transition-colors">Risk</button>
+              <button onClick={() => navigate('/refund')} className="hover:text-emerald-300 transition-colors">Refund</button>
+              <button onClick={() => navigate('/regulatory')} className="hover:text-emerald-300 transition-colors">Regulatory</button>
+            </div>
+            
             <p className="mt-1 text-[12px] text-slate-500">
               © {new Date().getFullYear()} Arbex. {t('footer.rights')}
             </p>
