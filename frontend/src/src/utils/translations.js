@@ -11,7 +11,7 @@ const translations = {
   'nav.register': { sr: 'Registracija', en: 'Register' },
 
   // Landing Hero
-  'hero.title': { sr: 'Uloži u kripto sa našim kapitalom.', en: 'Invest in crypto with our capital.' },
+  'hero.title': { sr: 'Uloži sa našim kapitalom.', en: 'Invest with our capital.' },
   'hero.subtitle': { sr: 'Podeli profit.', en: 'Share the profit.' },
   'hero.learnMore': { sr: 'Saznaj više', en: 'Learn More' },
   'hero.viewPlans': { sr: 'Pogledaj planove', en: 'View Plans' },
