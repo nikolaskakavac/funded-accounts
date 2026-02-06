@@ -50,7 +50,8 @@ router.post('/stripe', express.raw({ type: 'application/json' }), (req, res) => 
             planName: tx.plan.name,
             amount: paymentIntent.amount / 100, // konvertuj iz centi
             currency: paymentIntent.currency.toUpperCase(),
-            paymentMethod: 'Credit/Debit Card'
+            paymentMethod: 'Credit/Debit Card',
+            orderId: tx._id.toString()
           });
           console.log('✅ Purchase confirmation email sent');
           

@@ -56,46 +56,30 @@ const emailFooter = `
 `;
 
 // 1. Purchase Confirmation Email
-async function sendPurchaseConfirmation(toEmail, { planName, amount, currency, paymentMethod }) {
+async function sendPurchaseConfirmation(toEmail, { planName, amount, currency, paymentMethod, orderId }) {
   const mailOptions = {
     from: `"Arbex Fund" <${process.env.SMTP_USER}>`,
     to: toEmail,
-    subject: '✅ Payment Confirmed - Your Funded Trading Account',
+    subject: 'Arbex Fund Purchase Confirmation',
     html: `${emailHeader}
-      <h2>🎉 Payment Received Successfully!</h2>
-      <p>Dear valued customer,</p>
-      <p>We're thrilled to confirm that we've received your payment. You've taken the first step toward achieving your trading goals with Arbex Fund!</p>
+      <p>Thank you for your purchase.</p>
+      
+      <p>We're pleased to confirm that we've received your payment for your Arbex Fund instant-funded trading account. Our team is now reviewing your order and preparing your account setup.</p>
       
       <div class="highlight-box">
-        <strong style="font-size: 16px; color: #10b981;">✅ Purchase Confirmation</strong><br><br>
-        <strong>Selected Plan:</strong> ${escapeHtml(planName)}<br>
-        <strong>Investment Amount:</strong> ${amount} ${currency.toUpperCase()}<br>
-        <strong>Payment Method:</strong> ${escapeHtml(paymentMethod)}<br>
-        <strong>Status:</strong> <span style="color: #10b981; font-weight: 700;">Confirmed & Processing</span>
+        <strong>Order ID:</strong> ${escapeHtml(orderId || 'Pending')}<br>
+        <strong>Plan:</strong> ${escapeHtml(planName)}<br>
+        <strong>Payment method:</strong> ${escapeHtml(paymentMethod)}<br>
+        <strong>Amount:</strong> ${amount} ${currency.toUpperCase()}
       </div>
 
-      <h3>📊 About Your ${escapeHtml(planName)}</h3>
-      <p>You've selected a premium trading account with a substantial trading capital. This account comes with:</p>
-      <ul style="line-height: 1.8;">
-        <li><strong>Live Trading Capital:</strong> ${amount} ${currency.toUpperCase()}</li>
-        <li><strong>Professional Trading Platform:</strong> Advanced charting and analysis tools</li>
-        <li><strong>Risk Management:</strong> 10% maximum loss limit for account protection</li>
-        <li><strong>24/7 Support:</strong> Dedicated support team available</li>
-        <li><strong>Video Training:</strong> Comprehensive trading education included</li>
-      </ul>
+      <p>You'll receive another email soon to let you know that your trading account is being created.</p>
 
-      <h3>⏳ Next Steps</h3>
-      <p>Our team is now processing your account setup. This typically takes <strong>24-48 hours</strong>. You will receive a separate email with your complete login credentials and platform access information.</p>
-
-      <div class="highlight-box">
-        <strong>🔔 Important:</strong> Keep this email safe as it contains your order confirmation details. A new email with your trading platform credentials will arrive shortly.
-      </div>
-
-      <h3>❓ Questions?</h3>
-      <p>If you have any questions about your purchase or account setup, our support team is here to help. Contact us at <a href="mailto:support@arbexfund.com" style="color: #10b981;">support@arbexfund.com</a></p>
-
-      <p style="margin-top: 30px;">We're excited to have you as part of the Arbex Fund community!</p>
-      <p>Best regards,<br><strong>Arbex Fund Team</strong></p>
+      <p>If you have any questions about your purchase or need assistance, please contact <a href="mailto:support@arbexfund.com" style="color: #10b981;">support@arbexfund.com</a>.</p>
+      
+      <p>We're glad to have you on board and look forward to getting you started.</p>
+      
+      <p>Thank you for choosing Arbex Fund.</p>
     ${emailFooter}`
   };
 

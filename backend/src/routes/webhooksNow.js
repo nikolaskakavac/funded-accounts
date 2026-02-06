@@ -58,7 +58,8 @@ router.post('/ipn', express.raw({ type: '*/*' }), async (req, res) => {
             planName: plan.name,
             amount: tx.amount,
             currency: tx.currency || 'USD',
-            paymentMethod: 'Cryptocurrency'
+            paymentMethod: 'Cryptocurrency',
+            orderId: tx._id.toString()
           });
           console.log('✅ Purchase confirmation email sent (NOW)');
           
