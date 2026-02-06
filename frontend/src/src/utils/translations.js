@@ -104,7 +104,7 @@ const translations = {
   // WhatsApp Call Request
   'whatsapp.title': { sr: 'Zatraži besplatan WhatsApp poziv', en: 'Request free WhatsApp call' },
   'whatsapp.description': { sr: 'Unesite broj telefona i mi ćemo vas kontaktirati putem WhatsApp-a', en: 'Enter your phone number and we will contact you via WhatsApp' },
-  'whatsapp.placeholder': { sr: 'Unesite broj telefona', en: 'Type number' },
+  'whatsapp.placeholder': { sr: '+381...', en: '+...type your number' },
   'whatsapp.submit': { sr: 'Pošalji', en: 'Submit' },
   'whatsapp.success': { sr: 'Hvala! Kontaktiraćemo vas uskoro.', en: 'Thank you! We will contact you soon.' },
   'whatsapp.error': { sr: 'Greška pri slanju zahteva', en: 'Error sending request' },

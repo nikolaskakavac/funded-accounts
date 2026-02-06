@@ -65,7 +65,7 @@ const nlTranslations = {
   // WhatsApp Call Request
   'whatsapp.title': 'Vraag een gratis WhatsApp-gesprek aan',
   'whatsapp.description': 'Voer je telefoonnummer in en we nemen via WhatsApp contact met je op',
-  'whatsapp.placeholder': 'Voer nummer in',
+  'whatsapp.placeholder': '+31...',
   'whatsapp.submit': 'Verzenden',
   'whatsapp.success': 'Bedankt! We nemen binnenkort contact met je op.',
   'whatsapp.error': 'Fout bij het verzenden van verzoek',

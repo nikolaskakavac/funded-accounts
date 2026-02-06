@@ -13,7 +13,7 @@ import raiffeisenLogo from '/img/raiffeisen.png';
 
 const Landing = ({ navigate, token, onLogout = () => {} }) => {
   const [onSitePlanId, setOnSitePlanId] = useState(null);
-  const [whatsappPhone, setWhatsappPhone] = useState('');
+  const [whatsappPhone, setWhatsappPhone] = useState('+');
   const [whatsappSubmitting, setWhatsappSubmitting] = useState(false);
   const [whatsappMessage, setWhatsappMessage] = useState('');
   const lang = getLang();
@@ -38,12 +38,23 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
     try {
       await submitWhatsAppRequest(whatsappPhone);
       setWhatsappMessage(t('whatsapp.success', lang));
-      setWhatsappPhone('');
+      setWhatsappPhone('+');
     } catch (err) {
       setWhatsappMessage(t('whatsapp.error', lang));
     } finally {
       setWhatsappSubmitting(false);
     }
+  };
+
+  const handlePhoneChange = (e) => {
+    let value = e.target.value;
+    
+    // Ensure + is always at the start
+    if (!value.startsWith('+')) {
+      value = '+' + value.replace(/\+/g, '');
+    }
+    
+    setWhatsappPhone(value);
   };
 
   return (
@@ -416,7 +427,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                 <input
                   type="tel"
                   value={whatsappPhone}
-                  onChange={(e) => setWhatsappPhone(e.target.value)}
+                  onChange={handlePhoneChange}
                   placeholder={t('whatsapp.placeholder', lang)}
                   className="w-full rounded-2xl border-2 border-emerald-500/60 bg-black/80 px-6 py-4 text-[17px] font-medium text-center text-slate-100 placeholder:text-slate-500 focus:border-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/40 shadow-lg shadow-emerald-500/10 transition-all"
                   disabled={whatsappSubmitting}
