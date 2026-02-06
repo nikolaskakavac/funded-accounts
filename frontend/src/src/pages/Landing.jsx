@@ -401,39 +401,41 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
       </section>
 
       {/* WhatsApp Call Request */}
-      <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-8 pb-10">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="font-display text-[20px] sm:text-[24px] font-semibold uppercase tracking-[0.18em] text-emerald-400 mb-4">
-            {t('whatsapp.title')}
-          </h2>
-          <p className="font-sans text-[15px] leading-relaxed text-emerald-50/90 mb-6">
-            {t('whatsapp.description')}
-          </p>
-          
-          <form onSubmit={handleWhatsAppSubmit} className="max-w-md mx-auto">
-            <div className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="tel"
-                value={whatsappPhone}
-                onChange={(e) => setWhatsappPhone(e.target.value)}
-                placeholder={t('whatsapp.placeholder', lang)}
-                className="flex-1 rounded-full border border-emerald-600 bg-black/60 px-4 py-3 text-[15px] text-slate-200 placeholder:text-slate-500 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
-                disabled={whatsappSubmitting}
-              />
-              <button
-                type="submit"
-                disabled={whatsappSubmitting}
-                className="rounded-full bg-emerald-500 px-6 py-3 text-[14px] font-sans font-semibold uppercase tracking-[0.16em] text-black shadow-[0_0_18px_rgba(16,185,129,0.7)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
-              >
-                {whatsappSubmitting ? '...' : t('whatsapp.submit', lang)}
-              </button>
-            </div>
-            {whatsappMessage && (
-              <p className={`mt-3 text-[14px] ${whatsappMessage.includes('Hvala') || whatsappMessage.includes('Thank') || whatsappMessage.includes('Bedankt') ? 'text-emerald-300' : 'text-red-400'}`}>
-                {whatsappMessage}
-              </p>
-            )}
-          </form>
+      <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
+        <div className="max-w-3xl mx-auto">
+          <div className="rounded-3xl border-2 border-emerald-500/40 bg-gradient-to-b from-emerald-950/40 via-black/60 to-black/80 p-8 shadow-2xl shadow-emerald-500/20">
+            <h2 className="font-display text-[24px] sm:text-[28px] font-bold uppercase tracking-[0.18em] text-emerald-400 mb-3 text-center">
+              📞 {t('whatsapp.title')}
+            </h2>
+            <p className="font-sans text-[16px] leading-relaxed text-emerald-100/90 mb-8 text-center max-w-xl mx-auto">
+              {t('whatsapp.description')}
+            </p>
+            
+            <form onSubmit={handleWhatsAppSubmit} className="max-w-sm mx-auto">
+              <div className="space-y-4">
+                <input
+                  type="tel"
+                  value={whatsappPhone}
+                  onChange={(e) => setWhatsappPhone(e.target.value)}
+                  placeholder={t('whatsapp.placeholder', lang)}
+                  className="w-full rounded-2xl border-2 border-emerald-500/60 bg-black/80 px-6 py-4 text-[17px] font-medium text-center text-slate-100 placeholder:text-slate-500 focus:border-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/40 shadow-lg shadow-emerald-500/10 transition-all"
+                  disabled={whatsappSubmitting}
+                />
+                <button
+                  type="submit"
+                  disabled={whatsappSubmitting}
+                  className="w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 px-8 py-4 text-[15px] font-sans font-bold uppercase tracking-[0.18em] text-black shadow-[0_0_24px_rgba(16,185,129,0.8)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_0_32px_rgba(16,185,129,1)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+                >
+                  {whatsappSubmitting ? '...' : t('whatsapp.submit', lang)}
+                </button>
+              </div>
+              {whatsappMessage && (
+                <p className={`mt-4 text-center text-[15px] font-medium ${whatsappMessage.includes('Hvala') || whatsappMessage.includes('Thank') || whatsappMessage.includes('Bedankt') ? 'text-emerald-300' : 'text-red-400'}`}>
+                  {whatsappMessage}
+                </p>
+              )}
+            </form>
+          </div>
         </div>
       </section>
 
