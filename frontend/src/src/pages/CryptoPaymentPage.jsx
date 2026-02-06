@@ -131,7 +131,7 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
           )}
 
           {/* Adresa & QR or invoice fallback */}
-          {data && !loading && pay_amount && (
+          {data && !loading && pay_amount !== null && pay_amount !== undefined && (
             <div className="mt-5 space-y-3 font-sans text-[13px] text-slate-200">
               <p>
                 {t('crypto.sendExactly', lang)}{' '}
@@ -171,7 +171,7 @@ export default function CryptoPaymentPage({ token, planId, navigate, onLogout })
             </div>
           )}
 
-          {data && !loading && !pay_amount && invoice_url && (
+          {data && !loading && (pay_amount === null || pay_amount === undefined) && invoice_url && (
             <div className="mt-5 space-y-3 font-sans text-[13px] text-slate-200">
               <p className="text-slate-300">
                 {t('crypto.invoiceFallback', lang) || 'Otvorite fakturu da vidite tačan iznos i adresu.'}
