@@ -117,20 +117,25 @@ const translations = {
   // FAQ
   'faq.section': { sr: 'Česta pitanja', en: 'FAQ' },
   'faq.title': { sr: 'Šta treba da znaš pre kupovine?', en: 'What should you know before purchasing?' },
-  'faq.q1': { sr: 'Da li moj novac ide na trading nalog?', en: 'Does my money go to the trading account?' },
+  'faq.q1': { sr: 'Ko stoji iza Arbexfund.com?', en: 'Who is behind Arbexfund.com?' },
   'faq.a1': {
-    sr: 'Ne. Nakon uspešne kupovine dobijaš login podatke od već postojećeg kripto naloga koji je "napunjen" sa našim kapitalom. Koristiš naš kapital a ne svoj.',
-    en: 'No. After successful purchase, you receive login credentials for an existing crypto account that is funded with our capital. You use our capital, not yours.'
+    sr: 'Arbex Fund B.V. je holandska kompanija osnovana 2025. godine od strane Pedja atgjsarmig, izvršnog direktora Norvestor Equiti B.V., jednog od vodećih holandskih fondova privatnog kapitala koji se specijalizuje za modernu trading tehnologiju i investicije u obveznice.',
+    en: 'Arbex Fund B.V. Is a Dutch Company founded in 2025 by Pedja atgjsarmig, the managing director of Norvestor Equiti B.V., one of the leading Dutch private equity funds that specializes in modern trading technology and bond investments.'
   },
-  'faq.q2': { sr: 'Kada dobijam pristup dashboard‑u?', en: 'When do I get dashboard access?' },
+  'faq.q2': { sr: 'Kakav je naš poslovni model?', en: 'What\'s our business model?' },
   'faq.a2': {
-    sr: 'Odmah nakon potvrde uplate dobijaš pristup klijent dashboard‑u i podacima za login.',
-    en: 'Immediately after payment confirmation, you get access to the client dashboard and login credentials.'
+    sr: 'Naš poslovni model zasnovan je na investicionoj moći. Omogućavamo trgovcima pristup pravom kapitalu, profesionalnoj podršci i sigurnom investicionom okruženju bez rizikovanja ličnih sredstava.',
+    en: 'Our business model is based on investment power. We allow traders to access real capital, professional support and a secure investment environment without risking personal funds.'
   },
-  'faq.q3': { sr: 'Kako funkcioniše podela profita?', en: 'How does the profit split work?' },
+  'faq.q3': { sr: 'Kako tačno klijenti dobijaju kapital nakon kupovine naloga?', en: 'How exactly do clients receive the capital after account purchase?' },
   'faq.a3': {
-    sr: 'Kada kripto-valuta u koju si odlučio da investiraš zabeleži rast i ti odlučiš da napraviš CASH OUT, 80% profita se isplaćuje na tvoju kreditnu karticu ili lični kripto račun, a 20% skupljamo mi.',
-    en: 'When the cryptocurrency you\'ve invested in increases in value and you decide to CASH OUT, 80% of the profit is paid to your credit card or personal crypto account, and we collect 20%.'
+    sr: 'Deponujemo željeni iznos kapitala bankovnim transferom na nalog. Svaki nalog koji kreiramo finansira se sa našeg centralnog bankovnog računa.',
+    en: 'We deposit the intended capital amount by making a bank transfer to the account. Every account we create is financed by our central bank account.'
+  },
+  'faq.q4': { sr: 'Da li je naše poslovanje licencirano?', en: 'Is our business licensed?' },
+  'faq.a4': {
+    sr: 'Da, naše poslovanje je licencirano od strane AFM (Autoriteit Financiele Markten). AFM broj licence: 14000716',
+    en: 'Yes, our business is licensed by the AFM (Autoriteit Financiele Markten). AFM License Number: 14000716'
   },
 
   // Auth - Login

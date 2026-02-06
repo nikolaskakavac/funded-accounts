@@ -615,6 +615,15 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                {t('faq.a3')}
               </p>
             </div>
+
+            <div className="rounded-2xl border border-emerald-700/50 bg-black/60 px-5 py-4">
+              <h3 className="font-display text-[15px] sm:text-[16px] font-semibold tracking-[0.08em] uppercase text-emerald-300">
+                {t('faq.q4')}
+              </h3>
+              <p className="mt-1 font-sans text-[14px] sm:text-[15px] text-slate-200/90 leading-relaxed">
+                {t('faq.a4')}
+              </p>
+            </div>
           </div>
         </div>
       </section>
