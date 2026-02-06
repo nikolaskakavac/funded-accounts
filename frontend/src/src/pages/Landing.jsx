@@ -96,7 +96,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             <main className="px-4 pb-3 mt-4 flex-1 flex">
               <section className="w-full max-w-5xl mx-auto text-center">
                 <h1
-                  className="text-right mr-2 sm:mr-0 font-display text-[38px] sm:text-[44px] lg:text-[72px] xl:text-[84px] leading-[1.03] font-extrabold tracking-[0.12em] uppercase
+                  className="text-center font-display text-[38px] sm:text-[44px] lg:text-[72px] xl:text-[84px] leading-[1.03] font-extrabold tracking-[0.12em] uppercase
                               drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-emerald-400
                               opacity-0 translate-y-3 animate-[fadeUp_0.6s_ease-out_forwards]"
                   style={{ fontFamily: "'Room Black', sans-serif" }}

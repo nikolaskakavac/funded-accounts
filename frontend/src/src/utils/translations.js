@@ -127,8 +127,8 @@ const translations = {
   'faq.title': { sr: 'Šta treba da znaš pre kupovine?', en: 'What should you know before purchasing?' },
   'faq.q1': { sr: 'Ko stoji iza Arbexfund.com?', en: 'Who is behind Arbexfund.com?' },
   'faq.a1': {
-    sr: 'Arbex Fund B.V. je holandska kompanija osnovana 2025. godine od strane Pedja atgjsarmig, izvršnog direktora Norvestor Equiti B.V., jednog od vodećih holandskih fondova privatnog kapitala koji se specijalizuje za modernu trading tehnologiju i investicije u obveznice.',
-    en: 'Arbex Fund B.V. Is a Dutch Company founded in 2025 by Pedja atgjsarmig, the managing director of Norvestor Equiti B.V., one of the leading Dutch private equity funds that specializes in modern trading technology and bond investments.'
+    sr: 'Arbex Fund B.V. je holandska kompanija osnovana 2025. godine od strane Pedje Stojanovića, izvršnog direktora Norvestor Equiti B.V., jednog od vodećih holandskih fondova privatnog kapitala koji se specijalizuje za modernu trading tehnologiju i investicije u obveznice.',
+    en: 'Arbex Fund B.V. Is a Dutch Company founded in 2025 by Pedja Stojanović, the managing director of Norvestor Equiti B.V., one of the leading Dutch private equity funds that specializes in modern trading technology and bond investments.'
   },
   'faq.q2': { sr: 'Kakav je naš poslovni model?', en: 'What\'s our business model?' },
   'faq.a2': {
