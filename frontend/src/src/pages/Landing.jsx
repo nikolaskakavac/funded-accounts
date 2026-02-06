@@ -214,7 +214,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-                  �
+                  🔑
                 </div>
                 <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
                   1
@@ -239,7 +239,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-                  �
+                  💸
                 </div>
                 <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
                   2
@@ -264,7 +264,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-                  💰
+                  🤝
                 </div>
                 <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
                   3
