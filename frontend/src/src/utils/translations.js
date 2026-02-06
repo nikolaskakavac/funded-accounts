@@ -74,6 +74,13 @@ const translations = {
     en: 'You make an investment with our capital. If the financial instrument you invested in increases in value and you decide to CASH OUT, 80% of the profit is paid to your credit card or personal crypto account. We collect 20%'
   },
 
+  // Stats
+  'stats.avgProfit.title': { sr: 'Prosečan isplaćeni profit', en: 'Average profit amount payed out' },
+  'stats.avgProfit.amount': { sr: '2300€', en: '2300€' },
+  'stats.successRate.title': { sr: 'Januar stopa uspeha', en: 'January Success rate' },
+  'stats.successRate.subtitle': { sr: '(Procenat klijenata koji su ostvarili profit iznad 100€)', en: '(Percentage of clients who achieved a profit above 100€)' },
+  'stats.successRate.percentage': { sr: '61%', en: '61%' },
+
   // Our Goal
   'goal.title': { sr: 'Naš cilj', en: 'Our Goal' },
   'goal.description': {

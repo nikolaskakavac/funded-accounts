@@ -280,9 +280,61 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             </div>
           </div>
 
+        </div>
+      </section>
 
+      {/* STATS SEKCIJA */}
+      <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
+        <div className="max-w-5xl mx-auto space-y-8">
+          {/* dve kartice */}
+          <div className="grid gap-5 md:grid-cols-2">
+            {/* 1. Average profit */}
+            <div
+              className="group relative overflow-hidden rounded-3xl border border-emerald-500/40 
+                         bg-gradient-to-r from-[#02110b] via-black to-[#02110b]
+                         p-6 shadow-lg shadow-emerald-500/10 transition-all duration-200 ease-out 
+                         hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
+                         hover:border-emerald-400/70 hover:-rotate-1"
+            >
+              <div className="flex items-center justify-center mb-4">
+                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
+                  📊
+                </div>
+              </div>
+              <h3 className="text-center font-display text-[17px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-3">
+                {t('stats.avgProfit.title')}
+              </h3>
+              <p className="text-center font-sans text-[32px] sm:text-[40px] font-bold text-emerald-400 leading-none">
+                {t('stats.avgProfit.amount')}
+              </p>
+              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
+            </div>
 
-
+            {/* 2. Success rate */}
+            <div
+              className="group relative overflow-hidden rounded-3xl border border-emerald-500/40 
+                         bg-gradient-to-r from-[#02110b] via-black to-[#02110b]
+                         p-6 shadow-lg shadow-emerald-500/10 transition-all duration-200 ease-out 
+                         hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
+                         hover:border-emerald-400/70 hover:rotate-1"
+            >
+              <div className="flex items-center justify-center mb-4">
+                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
+                  🎯
+                </div>
+              </div>
+              <h3 className="text-center font-display text-[17px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-1">
+                {t('stats.successRate.title')}
+              </h3>
+              <p className="text-center font-sans text-[12px] text-slate-400 mb-3">
+                {t('stats.successRate.subtitle')}
+              </p>
+              <p className="text-center font-sans text-[32px] sm:text-[40px] font-bold text-emerald-400 leading-none">
+                {t('stats.successRate.percentage')}
+              </p>
+              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
+            </div>
+          </div>
         </div>
       </section>
 
