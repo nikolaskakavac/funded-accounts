@@ -92,13 +92,13 @@ const translations = {
     en: 'Through a natural selection process, our capital is directed over time toward those who achieve the best results.'
   },
   'goal.beginners': {
-    sr: 'Na taj način stvaramo sistem u kome i početnici mogu da ostvare značajne profite, dok se uspešnima otvara prostor za veće investicije i zajednički rast.',
-    en: 'In this way, we create a system where even beginners can achieve significant profits, while successful traders gain access to larger investments and mutual growth.'
+    sr: 'Na taj način stvaramo sistem u kome i početnici mogu da ostvare značajne profite, dok uspešni trejderi dobijaju pristup većim količinama kapitala.',
+    en: 'In this way, we create a system where beginners have a chance to achieve profits, while successful traders gain access to larger amounts of capital.'
   },
   'copyTrade.title': { sr: 'Copy Trade Opcija', en: 'Copy Trade Option' },
   'copyTrade.description': {
     sr: 'Kroz copy trade opciju dostupnu unutar aplikacije, korisnici mogu da aktiviraju automatsko kopiranje jednog od naših 5 profesionalnih trejdera. Tako oni bez prethodnog iskustva imaju bolju šansu da ostvare rezultate.',
-    en: 'Through the copy trade option available inside the app, users can activate automatic copying of one of our 5 professional traders. This gives those without prior experience a better chance to achieve results.'
+    en: 'Through the copy trade option available inside our app, users can activate automatic copying of one of our 5 professional traders. This gives those without prior experience a better chance to achieve results.'
   },
 
   // WhatsApp Call Request
@@ -115,8 +115,8 @@ const translations = {
   'plans.recommended': { sr: 'Preporučeno', en: 'Recommended' },
   'plans.loss': { sr: 'Ograničeni gubitak:', en: 'Limited loss:' },
   'plans.price': { sr: 'Cena:', en: 'Price:' },
-  'plans.payCard': { sr: '💳 Plati karticom', en: '💳 Pay by Card' },
-  'plans.payCrypto': { sr: '🪙 Plati kriptom', en: '🪙 Pay with Crypto' },
+  'plans.payCard': { sr: 'Plati karticom', en: 'Pay by Card' },
+  'plans.payCrypto': { sr: 'Plati kriptom', en: 'Pay with Crypto' },
   'plans.afterPayment': {
     sr: 'Nakon uspešne uplate, na tvoj Gmail stižu podaci za pristup (email i lozinka), a svoj aktivni plan vidiš u dashboard‑u na našem web sajtu.',
     en: 'After successful payment, your access credentials (email and password) arrive in your Gmail, and you can see your active plan in the dashboard on our website.'
@@ -246,7 +246,7 @@ const translations = {
   'contactForm.validationMessage': { sr: 'Poruka je obavezna', en: 'Message is required' },
 
   // Footer
-  'footer.professional': { sr: 'Profesionalno investiranje za svakoga.', en: 'Professional investing for everyone.' },
+  'footer.professional': { sr: 'Investirajte na pravi način.', en: 'Invest the right way.' },
   'footer.pricing': { sr: 'Planovi i cene', en: 'Plans & Pricing' },
   'footer.contact': { sr: 'Kontakt podrška', en: 'Contact Support' },
   'footer.rights': { sr: 'Sva prava zadržana.', en: 'All rights reserved.' },

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
-import Leaderboard from '../components/Leaderboard';
 import ContactForm from '../components/ContactForm';
 import { t } from '../utils/translations';
 import { getLang } from '../utils/lang';
@@ -353,7 +352,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             >
               <div className="flex items-center justify-center mb-4">
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-                  📊
+
                 </div>
               </div>
               <h3 className="text-center font-display text-[17px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-3">
@@ -375,7 +374,6 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             >
               <div className="flex items-center justify-center mb-4">
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-                  🎯
                 </div>
               </div>
               <h3 className="text-center font-display text-[17px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-1">
@@ -434,7 +432,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
       <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
         <div className="max-w-3xl mx-auto">
           <div className="rounded-3xl border-2 border-emerald-500/40 bg-gradient-to-b from-emerald-950/40 via-black/60 to-black/80 p-8 shadow-2xl shadow-emerald-500/20">
-            <h2 className="font-display text-[24px] sm:text-[28px] font-black uppercase tracking-[0.18em] text-emerald-400 mb-3 text-center">
+            <h2 className="font-display text-[24px] sm:text-[28px] font-extrabold uppercase tracking-[0.18em] text-emerald-400 mb-3 text-center">
               {t('whatsapp.title')}
             </h2>
             <p className="font-sans text-[16px] leading-relaxed text-emerald-100/90 mb-8 text-center max-w-xl mx-auto">
@@ -670,9 +668,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
         </div>
       </section>
 
-      <Leaderboard />
 
-      {/* FAQ */}
       <section className="bg-gradient-to-b from-black via-[#020617] to-black px-4 pt-10 pb-12">
         <div className="max-w-5xl mx-auto space-y-6">
           <div className="text-center">
@@ -772,14 +768,14 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             </button>
             
             {/* Legal links */}
-            <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-[11px] text-slate-500">
-              <button onClick={() => navigate('/terms')} className="hover:text-emerald-300 transition-colors">Terms</button>
-              <button onClick={() => navigate('/privacy')} className="hover:text-emerald-300 transition-colors">Privacy</button>
-              <button onClick={() => navigate('/aml')} className="hover:text-emerald-300 transition-colors">AML</button>
-              <button onClick={() => navigate('/cookies')} className="hover:text-emerald-300 transition-colors">Cookies</button>
-              <button onClick={() => navigate('/risk')} className="hover:text-emerald-300 transition-colors">Risk</button>
-              <button onClick={() => navigate('/refund')} className="hover:text-emerald-300 transition-colors">Refund</button>
-              <button onClick={() => navigate('/regulatory')} className="hover:text-emerald-300 transition-colors">Regulatory</button>
+            <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-[11px] text-emerald-300">
+              <button onClick={() => navigate('/terms')} className="hover:text-emerald-100 transition-colors">Terms</button>
+              <button onClick={() => navigate('/privacy')} className="hover:text-emerald-100 transition-colors">Privacy</button>
+              <button onClick={() => navigate('/aml')} className="hover:text-emerald-100 transition-colors">AML</button>
+              <button onClick={() => navigate('/cookies')} className="hover:text-emerald-100 transition-colors">Cookies</button>
+              <button onClick={() => navigate('/risk')} className="hover:text-emerald-100 transition-colors">Risk</button>
+              <button onClick={() => navigate('/refund')} className="hover:text-emerald-100 transition-colors">Refund</button>
+              <button onClick={() => navigate('/regulatory')} className="hover:text-emerald-100 transition-colors">Regulatory</button>
             </div>
             
             <p className="mt-1 text-[12px] text-slate-500">
