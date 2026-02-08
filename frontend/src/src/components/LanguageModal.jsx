@@ -42,18 +42,18 @@ const LanguageModal = ({ onLanguageSelected }) => {
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
 
       {/* Modal - Compact version */}
-      <div className="relative z-50 rounded-2xl border border-emerald-500/60 bg-gradient-to-b from-emerald-500/10 via-black/90 to-emerald-900/10 p-5 shadow-xl shadow-emerald-500/20 backdrop-blur-sm max-w-xs w-[85%]">
+      <div className="relative z-50 rounded-2xl border border-emerald-500/60 bg-gradient-to-b from-emerald-500/10 via-black/90 to-emerald-900/10 p-6 sm:p-8 shadow-xl shadow-emerald-500/20 backdrop-blur-sm max-w-md w-[90%] sm:w-[85%]">
         <div className="text-center space-y-4">
           <div className="space-y-1">
             <p className="font-display text-[10px] uppercase tracking-[0.22em] text-emerald-400">
               Welcome
             </p>
-            <h2 className="font-display text-[18px] sm:text-[20px] font-extrabold tracking-[0.1em] uppercase text-white">
-              Choose Language
+            <h2 className="font-display text-[20px] sm:text-[24px] font-extrabold tracking-[0.1em] uppercase text-white">
+              Choose Your Language
             </h2>
           </div>
 
-          <div className="flex gap-3 justify-center">
+          <div className="flex gap-4 sm:gap-5 justify-center">
             {/* English */}
             <button
               onClick={() => handleLanguageSelect('en')}
