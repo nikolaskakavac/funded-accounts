@@ -267,7 +267,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-                  🔑
+                  
                 </div>
                 <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
                   1
@@ -292,7 +292,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-                  💸
+                  
                 </div>
                 <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
                   2
@@ -317,7 +317,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-                  🤝
+                  
                 </div>
                 <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
                   3
@@ -573,7 +573,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     600€
                   </div>
                   <p className="text-xs font-sans text-emerald-300/80 mt-2">
-                    🎓 {lang === 'sr' ? 'Video obuka dolazi uz nalog' : lang === 'nl' ? 'Video training inbegrepen' : 'Video training included'}
+                    {lang === 'sr' ? 'Video obuka dolazi uz nalog' : lang === 'nl' ? 'Video training inbegrepen' : 'Video training included'}
                   </p>
                 </div>
                 <div className="mb-3 flex items-center justify-center gap-2 sm:gap-3">

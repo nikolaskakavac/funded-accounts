@@ -113,7 +113,7 @@ const Admin = ({ navigate, token, onLogout }) => {
             {whatsappCount > 0 && (
               <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-emerald-500/20 px-3 py-1 border border-emerald-500/50">
                 <span className="text-[12px] font-sans text-emerald-300">
-                  📞 {whatsappCount} novi WhatsApp {whatsappCount === 1 ? 'zahtev' : 'zahteva'}
+                  {whatsappCount} novi WhatsApp {whatsappCount === 1 ? 'zahtev' : 'zahteva'}
                 </span>
               </div>
             )}
@@ -309,7 +309,7 @@ const Admin = ({ navigate, token, onLogout }) => {
         {/* WhatsApp Requests */}
         <section className="mt-8 rounded-3xl border border-emerald-800/60 bg-black/80 p-5 shadow-xl shadow-emerald-500/20">
           <h2 className="mb-4 font-display text-[18px] font-semibold uppercase tracking-[0.14em] text-emerald-400">
-            📞 WhatsApp Call Requests
+            WhatsApp Call Requests
             {whatsappCount > 0 && (
               <span className="ml-2 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[12px] text-emerald-300">
                 {whatsappCount} new

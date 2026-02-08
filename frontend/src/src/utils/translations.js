@@ -107,7 +107,7 @@ const translations = {
 
   // Plans
   'plans.section': { sr: 'Planovi', en: 'Plans' },
-  'plans.title': { sr: 'Izaberi veličinu naloga.', en: 'Choose your account size.' },
+  'plans.title': { sr: 'Izaberi veličinu naloga', en: 'Choose your account size' },
   'plans.recommended': { sr: 'Preporučeno', en: 'Recommended' },
   'plans.loss': { sr: 'Ograničeni gubitak:', en: 'Limited loss:' },
   'plans.price': { sr: 'Cena:', en: 'Price:' },
@@ -115,7 +115,7 @@ const translations = {
   'plans.payCrypto': { sr: 'Plati kriptom', en: 'Pay with Crypto' },
   'plans.afterPayment': {
     sr: 'Nakon uspešne uplate, na tvoj Gmail stižu podaci za pristup (email i lozinka), a svoj aktivni plan vidiš u dashboard‑u na našem web sajtu.',
-    en: 'After successful payment, your access credentials (email and password) arrive in your Gmail, and you can see your active plan in the dashboard on our website.'
+    en: 'After successful payment, your access credentials will be sent to your email. You can view your active plan in the dashboard.'
   },
 
   // FAQ
@@ -461,12 +461,12 @@ const translations = {
     sr: 'Naš model omogućava investitorima da pristupe kapitalu, stručnoj podršci i bezbednom okruženju za ulaganje, bez potrebe da rizikuju sopstvena sredstva.',
     en: 'Our model allows investors to access capital, professional support, and a secure investment environment without risking their own funds.'
   },
-  'about.network.title': { sr: '🤝 Izgradnja mreže', en: '🤝 Building the Network' },
+  'about.network.title': { sr: 'Izgradnja mreže', en: 'Building the Network' },
   'about.network.description': {
     sr: 'Zajedno sa Norvestor Equiti fondom, gradimo mrežu investitora koji ostvaruju stabilne i dugoročne rezultate, dok region Balkana pozicioniramo kao novo središte pametnog investiranja.',
     en: 'Together with the Norvestor Equiti fund, we are building a network of investors achieving stable and long-term results, while positioning the Balkan region as a new hub for smart investing.'
   },
-  'about.mission.title': { sr: '🎯 Naša misija', en: '🎯 Our Mission' },
+  'about.mission.title': { sr: 'Naša misija', en: 'Our Mission' },
   'about.mission.description': {
     sr: 'Naš cilj je jasan – podržati uspešne investitore, smanjiti rizik i ostvariti zajednički rast.',
     en: 'Our goal is clear – to support successful investors, reduce risk, and achieve mutual growth.'

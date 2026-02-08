@@ -105,7 +105,7 @@ const Pricing = ({ navigate, token, onLogout }) => {
                     {selectedPlan.balance.toLocaleString()}€ kapitala
                   </p>
                   <p className="text-sm font-sans text-emerald-300/90 mt-3 flex items-center justify-center gap-2">
-                    <span>🎓</span> {lang === 'nl' ? 'Video training inbegrepen' : 'Video training included'}
+                    {lang === 'nl' ? 'Video training inbegrepen' : 'Video training included'}
                   </p>
                 </div>
 
@@ -165,7 +165,6 @@ const PlanCard = ({
       <div className="space-y-3">
         <div className="rounded-xl border border-emerald-600/50 bg-emerald-500/10 p-3 text-center">
           <p className="text-xs font-sans font-semibold text-emerald-200 flex items-center justify-center gap-1.5">
-            <span>🎓</span>
             <span>{lang === 'nl' ? 'Video training inbegrepen' : 'Video training included'}</span>
           </p>
         </div>
@@ -181,7 +180,7 @@ const PlanCard = ({
                   : 'bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5')
               }
             >
-              {isOnSiteSelected ? 'IZABRAN - PLAĆAJ ISPOD' : '💳 Plati karticom'}
+              {isOnSiteSelected ? 'IZABRAN - PLAĆAJ ISPOD' : 'Plati karticom'}
             </button>
             <button
   onClick={onCrypto}
@@ -190,7 +189,6 @@ const PlanCard = ({
 >
   <div className="flex w-full flex-col items-center justify-center gap-1.5 rounded-2xl bg-black/90 px-4 py-3 sm:py-3.5">
     <div className="flex items-center gap-2">
-      <span className="text-lg sm:text-xl">🪙</span>
       <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.18em] text-emerald-100 group-hover:text-emerald-50">
               {isPayingCrypto ? 'Kreiram adresu...' : `Plati kriptom (${cryptoPrice}€)`}
       </span>
