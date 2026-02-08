@@ -87,7 +87,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                   </div>
                   {lang === 'en' && (
                     <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                   )}
                 </button>
@@ -109,7 +109,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                   </div>
                   {lang === 'nl' && (
                     <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                   )}
                 </button>
