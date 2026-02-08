@@ -162,24 +162,23 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             <p className="font-sans text-[20px] sm:text-[22px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-6">
               {lang === 'sr' ? (
                 <>
-                  Kada kupiš nalog na našem websajtu, dobijaš log in podatke od novog trading naloga koji će biti popunjen pravim kapitalom. Svaki kupac dobija svoj, zaseban nalog.
+                  <span className="font-semibold text-white">Investiranje, pojednostavljeno.</span>
                   <br />
                   <br />
-                  <span className="font-semibold text-white">Tvoj zadatak je jasan:</span>{' '}
-                  ostvari profit investirajući u zlato ili neku od{' '}
-                  <span className="font-semibold text-white">kripto-valuta</span> sa našim novcem.
-                  Ti se fokusiraš isključivo na investiranje.
+                  Nudimo platformu gde osobe mogu iskusiti pravo investiranje bez potrebe da donose svoj kapitala. Svaki učesnik upravlja živim trading nalogom koji je financiran od nas, koristeći vlastitu strategiju i prosudbu.
+                  <br />
+                  <br />
+                  Naš cilj je da profesionalno investiranje učinimo dostupnijim - praktičnim, transparentnim i fokusiranim na vaše odluke umesto na vašu početnu sumu.
                 </>
               ) : (
                 <>
-                  When you become our client, you will receive login information for a newly created trading account that will be filled with real capital. Each customer is provided with their own separate account.
+                  <span className="font-semibold text-white">Investing, simplified.</span>
                   <br />
                   <br />
-                  <span className="font-semibold text-white">Your task is clear:</span>{' '}
-                  Achieve a profit by investing in gold, crypto or any other financial instrument available inside our trading platform.
+                  We provide a platform where individuals can experience real-world investing without needing to bring their own capital. Each participant manages a live trading account funded by us, using their own strategy and judgment.
                   <br />
                   <br />
-                  All the capital is provided by us, while you focus exclusively on your investing decisions.
+                  Our goal is to make professional-style investing more accessible - practical, transparent, and focused on your decisions rather than your starting balance.
                 </>
               )}
             </p>
