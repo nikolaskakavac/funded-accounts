@@ -7,7 +7,7 @@ import { submitWhatsAppRequest } from '../api';
 
 const Contact = ({ navigate, token, onLogout }) => {
   const lang = getLang();
-  const [whatsappPhone, setWhatsappPhone] = useState('+');
+  const [whatsappPhone, setWhatsappPhone] = useState('');
   const [whatsappSubmitting, setWhatsappSubmitting] = useState(false);
   const [whatsappMessage, setWhatsappMessage] = useState('');
 
@@ -24,7 +24,7 @@ const Contact = ({ navigate, token, onLogout }) => {
     try {
       await submitWhatsAppRequest(whatsappPhone);
       setWhatsappMessage(t('whatsapp.success', lang));
-      setWhatsappPhone('+');
+      setWhatsappPhone('');
     } catch (err) {
       setWhatsappMessage(t('whatsapp.error', lang));
     } finally {

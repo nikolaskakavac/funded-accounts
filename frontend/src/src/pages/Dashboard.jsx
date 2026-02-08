@@ -7,7 +7,7 @@ import { getLang } from '../utils/lang';
 const Dashboard = ({ navigate, token, onLogout }) => {
   const [user, setUser] = useState(null);
   const [cashout, setCashout] = useState({ status: 'none', requestedAt: null, loading: false, error: '' });
-  const [whatsappPhone, setWhatsappPhone] = useState('+');
+  const [whatsappPhone, setWhatsappPhone] = useState('');
   const [whatsappSubmitting, setWhatsappSubmitting] = useState(false);
   const [whatsappMessage, setWhatsappMessage] = useState('');
   const lang = getLang();
@@ -59,7 +59,7 @@ const Dashboard = ({ navigate, token, onLogout }) => {
     try {
       await submitWhatsAppRequest(whatsappPhone);
       setWhatsappMessage(t('whatsapp.success', lang));
-      setWhatsappPhone('+');
+      setWhatsappPhone('');
     } catch (err) {
       setWhatsappMessage(t('whatsapp.error', lang));
     } finally {

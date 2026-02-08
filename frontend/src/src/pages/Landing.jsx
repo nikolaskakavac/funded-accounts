@@ -12,7 +12,7 @@ import raiffeisenLogo from '/img/raiffeisen.png';
 
 const Landing = ({ navigate, token, onLogout = () => {} }) => {
   const [onSitePlanId, setOnSitePlanId] = useState(null);
-  const [whatsappPhone, setWhatsappPhone] = useState('+');
+  const [whatsappPhone, setWhatsappPhone] = useState('');
   const [whatsappSubmitting, setWhatsappSubmitting] = useState(false);
   const [whatsappMessage, setWhatsappMessage] = useState('');
   const lang = getLang();
@@ -37,7 +37,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
     try {
       await submitWhatsAppRequest(whatsappPhone);
       setWhatsappMessage(t('whatsapp.success', lang));
-      setWhatsappPhone('+');
+      setWhatsappPhone('');
     } catch (err) {
       setWhatsappMessage(t('whatsapp.error', lang));
     } finally {
