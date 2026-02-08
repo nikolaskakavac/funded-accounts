@@ -356,7 +356,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
               <h3 className="text-center font-display text-[17px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-3">
                 {t('stats.avgProfit.title')}
               </h3>
-              <p className="text-center font-sans text-[32px] sm:text-[40px] font-bold text-emerald-400 leading-none">
+              <p className="text-center font-sans text-[32px] sm:text-[40px] text-emerald-400 leading-none">
                 {t('stats.avgProfit.amount')}
               </p>
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
@@ -376,7 +376,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
               <p className="text-center font-sans text-[12px] text-slate-400 mb-3">
                 {t('stats.successRate.subtitle')}
               </p>
-              <p className="text-center font-sans text-[32px] sm:text-[40px] font-bold text-emerald-400 leading-none">
+              <p className="text-center font-sans text-[32px] sm:text-[40px] text-emerald-400 leading-none">
                 {t('stats.successRate.percentage')}
               </p>
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
@@ -408,10 +408,10 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
 
       <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-8 pb-10">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="font-display text-[20px] sm:text-[24px] font-semibold uppercase tracking-[0.18em] text-emerald-400 mb-4">
+          <h2 className="font-display text-[20px] sm:text-[24px] uppercase tracking-[0.18em] text-emerald-400 mb-4">
             {t('copyTrade.title')}
           </h2>
-          <p className="font-sans text-[18px] sm:text-[20px] leading-relaxed max-w-3xl mx-auto text-emerald-50/95">
+          <p className="font-sans text-[18px] sm:text-[20px] font-normal leading-relaxed max-w-3xl mx-auto text-emerald-50/95">
             {t('copyTrade.description')}
           </p>
         </div>
