@@ -18,8 +18,8 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
   const lang = getLang();
 
   const landingPlans = [
-    { id: '693db3e0e9cf589519c144fe', name: 'Nalog sa 10.000€', price: 300, cryptoPrice: 300, limitedLoss: 300 },
-    { id: '693db3ede9cf589519c14500', name: 'Nalog sa 20.000€', price: 600, cryptoPrice: 600, limitedLoss: 600 },
+    { id: '693db3e0e9cf589519c144fe', name: lang === 'sr' ? 'Nalog sa 10.000€' : 'Account with €10,000', price: 300, cryptoPrice: 300, limitedLoss: 300 },
+    { id: '693db3ede9cf589519c14500', name: lang === 'sr' ? 'Nalog sa 20.000€' : 'Account with €20,000', price: 600, cryptoPrice: 600, limitedLoss: 600 },
   ];
 
   const selectedPlan = landingPlans.find((p) => p.id === onSitePlanId);
@@ -156,7 +156,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
         <div className="max-w-5xl mx-auto">
           <section className="mt-0.5 sm:mt-1 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
             <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
-              Investing, Simplified
+              Investing Simplified
             </h2>
 
             <p className="font-sans text-[20px] sm:text-[22px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-6">
