@@ -7,7 +7,6 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [lang, setLangState] = useState(getLang());
   const role = (typeof window !== 'undefined' && localStorage.getItem('role')) || 'user';
-  const langFlag = lang === 'sr' ? '🇷🇸' : lang === 'nl' ? '🇳🇱' : '🇬🇧';
 
   useEffect(() => {
     const unsub = onLangChange((l) => setLangState(l));
@@ -29,9 +28,9 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
             >
               <span className="text-emerald-400">←</span>
               <span className="hidden sm:inline">
-                {lang === 'sr' ? 'Nazad na početnu' : lang === 'nl' ? 'Terug naar start' : 'Back to Home'}
+                {lang === 'nl' ? 'Terug naar start' : 'Back to Home'}
               </span>
-              <span className="sm:hidden">{lang === 'sr' ? 'Nazad' : lang === 'nl' ? 'Terug' : 'Back'}</span>
+              <span className="sm:hidden">{lang === 'nl' ? 'Terug' : 'Back'}</span>
             </button>
           )}
           <div
@@ -50,45 +49,25 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
         <div className="flex items-center gap-4 sm:gap-5 text-xs sm:text-sm font-sans">
           <div className="relative">
             <button
-              className="inline-flex items-center gap-2 rounded-full border border-emerald-600/60 px-3 py-1.5 uppercase tracking-[0.18em] text-slate-300 hover:bg-emerald-500/10"
+              className="inline-flex items-center gap-1 rounded-full border border-emerald-600/60 px-2 py-1 text-[11px] sm:text-xs font-sans uppercase tracking-[0.16em] text-slate-300 hover:bg-emerald-500/10 bg-black/40"
               onClick={() => setLangMenuOpen((o) => !o)}
             >
-              <span className="text-lg">{langFlag}</span>
-              <span>{lang === 'sr' ? 'SR' : lang === 'nl' ? 'NL' : 'EN'}</span>
-              <span className="text-emerald-300">☰</span>
+              <span>{lang === 'nl' ? 'NL' : 'EN'}</span>
             </button>
             {langMenuOpen && (
-              <div className="absolute right-0 mt-2 w-44 rounded-2xl border border-emerald-500/40 bg-black/90 p-2 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
-                <button
-                  onClick={() => {
-                    setLang('sr');
-                    setLangState('sr');
-                    setLangMenuOpen(false);
-                  }}
-                  className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all duration-200 ${
-                    lang === 'sr'
-                      ? 'bg-emerald-500/20 text-emerald-200'
-                      : 'text-slate-200 hover:bg-emerald-500/10 hover:scale-105'
-                  }`}
-                >
-                  {lang === 'sr' && <span className="text-emerald-300 animate-pulse">➤</span>}
-                  <span>🇷🇸</span>
-                  <span>Srpski</span>
-                </button>
+              <div className="absolute right-0 mt-1 w-32 rounded-xl border border-emerald-500/30 bg-black p-1 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200 z-50">
                 <button
                   onClick={() => {
                     setLang('en');
                     setLangState('en');
                     setLangMenuOpen(false);
                   }}
-                  className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all duration-200 ${
+                  className={`flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-[11px] sm:text-xs transition-all duration-200 ${
                     lang === 'en'
                       ? 'bg-emerald-500/20 text-emerald-200'
-                      : 'text-slate-200 hover:bg-emerald-500/10 hover:scale-105'
+                      : 'text-slate-300 hover:bg-emerald-500/10'
                   }`}
                 >
-                  {lang === 'en' && <span className="text-emerald-300 animate-pulse">➤</span>}
-                  <span>🇬🇧</span>
                   <span>English</span>
                 </button>
                 <button
@@ -97,14 +76,12 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                     setLangState('nl');
                     setLangMenuOpen(false);
                   }}
-                  className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all duration-200 ${
+                  className={`flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-[11px] sm:text-xs transition-all duration-200 ${
                     lang === 'nl'
                       ? 'bg-emerald-500/20 text-emerald-200'
-                      : 'text-slate-200 hover:bg-emerald-500/10 hover:scale-105'
+                      : 'text-slate-300 hover:bg-emerald-500/10'
                   }`}
                 >
-                  {lang === 'nl' && <span className="text-emerald-300 animate-pulse">➤</span>}
-                  <span>🇳🇱</span>
                   <span>Nederlands</span>
                 </button>
               </div>
@@ -160,7 +137,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 }}
                 className="py-2"
               >
-                {lang === 'sr' ? 'Početna' : lang === 'nl' ? 'Start' : 'Home'}
+                {lang === 'nl' ? 'Start' : 'Home'}
               </button>
               <button
                 onClick={() => {
@@ -192,7 +169,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 }}
                 className="py-2"
               >
-                {lang === 'sr' ? 'O nama' : lang === 'nl' ? 'Over ons' : 'About'}
+                {lang === 'nl' ? 'Over ons' : 'About'}
               </button>
               <button
                 onClick={() => {
@@ -202,7 +179,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 }}
                 className="py-2"
               >
-                {lang === 'sr' ? 'Kontakt' : lang === 'nl' ? 'Contact' : 'Contact'}
+                {lang === 'nl' ? 'Contact' : 'Contact'}
               </button>
 
 
