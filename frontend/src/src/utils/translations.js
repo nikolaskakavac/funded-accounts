@@ -124,7 +124,7 @@ const translations = {
   'faq.q1': { sr: 'Ko stoji iza Arbexfund.com?', en: 'Who is behind Arbexfund.com?' },
   'faq.a1': {
     sr: 'Arbex Fund B.V. je holandska kompanija osnovana 2025. godine od strane Pedje Stojanovića, izvršnog direktora Norvestor Equiti B.V., jednog od vodećih holandskih fondova privatnog kapitala koji se specijalizuje za modernu trading tehnologiju i investicije u obveznice.',
-    en: 'Arbex Fund B.V. Is a Dutch Company founded in 2025 by Pedja Stojanović, the managing director of Norvestor Equiti B.V., one of the leading Dutch private equity funds that specializes in modern trading technology and bond investments.'
+    en: 'Arbex Fund B.V. is a Dutch Company founded in 2025 by Kalo Bagijn, the managing director of Norvestor Equiti B.V., one of the leading Dutch private equity funds that specializes in modern trading technology and bond investments.'
   },
   'faq.q2': { sr: 'Kakav je naš poslovni model?', en: 'What\'s our business model?' },
   'faq.a2': {
@@ -145,10 +145,10 @@ const translations = {
   // Auth - Login
   'login.back': { sr: 'Nazad na sajt', en: 'Back to site' },
   'login.clientAccess': { sr: 'Klijent pristup', en: 'Client access' },
-  'login.title': { sr: 'Prijava na dashboard', en: 'Login to dashboard' },
+  'login.title': { sr: 'Prijava na dashboard', en: 'Log in to dashboard' },
   'login.subtitle': {
     sr: 'Unesi email i lozinku da vidiš svoj funded nalog, aktivan plan i istoriju isplata na jednom mestu.',
-    en: 'Enter email and password to view your funded account, active plan, and payout history in one place.'
+    en: 'Enter your email and password to access your account, see the active plan and track payout history all in one place.'
   },
   'login.email': { sr: 'Email', en: 'Email' },
   'login.password': { sr: 'Lozinka', en: 'Password' },
@@ -223,7 +223,7 @@ const translations = {
 
   // Contact Form
   'contactForm.title': { sr: 'Pošalji nam poruku', en: 'Send us a message' },
-  'contactForm.subtitle': { sr: 'Popuni formu ispod i odgovorićemo u roku od 24 sata.', en: 'Fill out the form below and we\'ll respond within 24 hours.' },
+  'contactForm.subtitle': { sr: 'Popuni formu ispod i odgovorićemo u roku od 24 sata.', en: 'Fill out the form below and we\'ll respond within 48 hours.' },
   'contactForm.name': { sr: 'Ime i prezime', en: 'Full name' },
   'contactForm.email': { sr: 'Email adresa', en: 'Email address' },
   'contactForm.subject': { sr: 'Naslov poruke', en: 'Message subject' },
