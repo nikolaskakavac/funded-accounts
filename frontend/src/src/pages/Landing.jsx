@@ -187,6 +187,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
               <button
                 onClick={(e) => {
                   e.preventDefault();
+                  window.scrollTo(0, 0);
                   navigate('/instruments');
                 }}
                 className="inline-flex items-center gap-2 rounded-full bg-emerald-500/20 border border-emerald-400 px-4 py-2 text-[14px] font-sans font-semibold tracking-[0.08em] text-emerald-300 hover:bg-emerald-500/30 transition-colors cursor-pointer"
