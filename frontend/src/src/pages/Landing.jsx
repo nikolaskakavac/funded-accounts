@@ -92,7 +92,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
           <Header navigate={navigate} token={token} onLogout={onLogout} showBackLink={false} />
 
             {/* HERO TEKST */}
-            <main className="px-4 pb-3 mt-4 flex-1 flex">
+            <main className="px-4 pb-3 flex-1 flex">
               <section className="w-full max-w-5xl mx-auto text-center">
                 <h1
                   className="text-left sm:text-center ml-2 sm:ml-0 font-display text-[38px] sm:text-[44px] lg:text-[72px] xl:text-[84px] leading-[1.03] font-extrabold tracking-[0.12em] uppercase
