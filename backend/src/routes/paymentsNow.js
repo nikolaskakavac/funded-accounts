@@ -130,8 +130,8 @@ router.post('/create', authMiddleware, async (req, res) => {
       status: 'pending',
     });
 
-    // Round crypto amount to nearest integer if available, include EUR amount
-    const roundedPayAmount = payAmount ? Math.round(payAmount) : null;
+    // Format crypto amount with proper decimals (up to 8 decimal places for crypto precision)
+    const roundedPayAmount = payAmount ? parseFloat(payAmount.toFixed(8)) : null;
     const eurAmount = price; // EUR amount (from planPricing)
 
     res.json({
