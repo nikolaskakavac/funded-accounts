@@ -100,11 +100,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                               opacity-0 translate-y-3 animate-[fadeUp_0.6s_ease-out_forwards]"
                   style={{ fontFamily: "'Room Black', sans-serif" }}
                 >
-                  {
-                    <>
-                      Invest with<br />our capital.
-                    </>
-                  }
+                  {t('hero.title.line1')}<br />{t('hero.title.line2')}
                 </h1>
 
                 <h2

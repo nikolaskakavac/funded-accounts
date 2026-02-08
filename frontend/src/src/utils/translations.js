@@ -12,6 +12,8 @@ const translations = {
 
   // Landing Hero
   'hero.title': { sr: 'Uloži sa našim kapitalom.', en: 'Invest with our capital.' },
+  'hero.title.line1': { sr: 'Uloži sa', en: 'Invest with' },
+  'hero.title.line2': { sr: 'našim kapitalom.', en: 'our capital.' },
   'hero.subtitle': { sr: 'Podeli profit.', en: 'Share the profit.' },
   'hero.learnMore': { sr: 'Saznaj više', en: 'Learn More' },
   'hero.viewPlans': { sr: 'Pogledaj planove', en: 'View Plans' },

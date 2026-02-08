@@ -9,6 +9,8 @@ const nlTranslations = {
 
   // Landing Hero
   'hero.title': 'Investeer in crypto met ons kapitaal.',
+  'hero.title.line1': 'Investeer in crypto',
+  'hero.title.line2': 'met ons kapitaal.',
   'hero.subtitle': 'Deel de winst.',
   'hero.learnMore': 'Meer informatie',
   'hero.viewPlans': 'Bekijk plannen',
