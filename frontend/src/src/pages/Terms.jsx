@@ -59,7 +59,7 @@ export default function Terms({ navigate, token, onLogout }) {
           <section>
             <h2 className="font-display text-[20px] font-bold text-emerald-300 mb-3">10. Contact Information</h2>
             <p>For questions about these Terms, please contact us:<br />
-            📧 support@arbexfund.com</p>
+            support@arbexfund.com</p>
           </section>
         </div>
       </div>

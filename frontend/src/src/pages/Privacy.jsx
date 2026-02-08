@@ -86,7 +86,7 @@ export default function Privacy({ navigate, token, onLogout }) {
           <section>
             <h2 className="font-display text-[20px] font-bold text-emerald-300 mb-3">10. Contact Us</h2>
             <p>If you have any questions about this Privacy Policy or your personal data, please contact:<br />
-            📧 support@arbexfund.com</p>
+            support@arbexfund.com</p>
           </section>
         </div>
       </div>

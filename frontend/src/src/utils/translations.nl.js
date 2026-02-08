@@ -63,7 +63,7 @@ const nlTranslations = {
   // WhatsApp Call Request
   'whatsapp.title': 'Vraag een gratis WhatsApp-gesprek aan',
   'whatsapp.description': 'Voer je telefoonnummer in en we nemen via WhatsApp contact met je op',
-  'whatsapp.placeholder': '+31...',
+  'whatsapp.placeholder': '+31 6 12345678',
   'whatsapp.submit': 'Verzenden',
   'whatsapp.success': 'Bedankt! We nemen binnenkort contact met je op.',
   'whatsapp.error': 'Fout bij het verzenden van verzoek',
@@ -370,11 +370,11 @@ const nlTranslations = {
   'leaderboard.title': 'TOP 10 KLANTEN',
 
   // About (extended)
-  'about.title': '🌍 Over ons',
+  'about.title': 'Over ons',
   'about.subtitle': 'Wereldwijd kapitaal koppelen aan lokaal potentieel',
-  'about.origin.title': '🏢 Onze oorsprong',
+  'about.origin.title': 'Onze oorsprong',
   'about.origin.description': 'Ons bedrijf maakt deel uit van de internationale corporatie Norvestor Equiti Ltd., een van de toonaangevende fondsen voor investeringen in cryptovaluta en obligaties.',
-  'about.regional.title': '🌍 Regionale aanpak',
+  'about.regional.title': 'Regionale aanpak',
   'about.regional.description': 'Als regionale partner van de Norvestor Equiti‑groep starten we activiteiten in de Balkan om moderne investeringskansen en professionele tools beschikbaar te maken in de regio.',
   'about.model.title': 'Ons model',
   'about.model.description': 'Ons model geeft investeerders toegang tot kapitaal, professionele ondersteuning en een veilige investeringsomgeving, allemaal zonder hun eigen geld te riskeren.',

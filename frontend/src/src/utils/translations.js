@@ -100,7 +100,7 @@ const translations = {
   // WhatsApp Call Request
   'whatsapp.title': { sr: 'Zatraži besplatan WhatsApp poziv', en: 'Request free WhatsApp consultation' },
   'whatsapp.description': { sr: 'Unesite broj telefona i mi ćemo vas kontaktirati putem WhatsApp-a', en: 'Enter your phone number and we\'ll contact you via WhatsApp.' },
-  'whatsapp.placeholder': { sr: '+381...', en: '+31 6 12345678' },
+  'whatsapp.placeholder': { sr: '+381 60 1234567', en: '+31 6 12345678' },
   'whatsapp.submit': { sr: 'Pošalji', en: 'Submit' },
   'whatsapp.success': { sr: 'Hvala! Kontaktiraćemo vas uskoro.', en: 'Thank you! We will contact you soon.' },
   'whatsapp.error': { sr: 'Greška pri slanju zahteva', en: 'Error sending request' },
@@ -444,24 +444,24 @@ const translations = {
   'partner.back': { sr: '← Nazad na O nama', en: '← Back to About' },
 
   // About Page
-  'about.title': { sr: '🌍 O nama', en: '🌍 About Us' },
+  'about.title': { sr: 'O nama', en: 'About Us' },
   'about.subtitle': { sr: 'Povezujemo globalni kapital sa lokalnim potencijalom', en: 'Connecting global capital with local potential' },
-  'about.whoWeAre.title': { sr: '👥 Ko smo mi?', en: '👥 Who Are We?' },
+  'about.whoWeAre.title': { sr: 'Ko smo mi?', en: 'Who Are We?' },
   'about.whoWeAre.description': {
     sr: 'Arbex Fund je osnovan od strane Kalo Bagijn-a sa ciljem da donese revoluciju u trading industriji kroz inovativne alate i pristupe. Naša misija je da omogućimo briljantnim investitorima pristup kapitalu i sredstvima potrebnim za globalni uspeh, razvojem zajednice stručnjaka koji se fokusiraju na rezultate.',
     en: 'Arbex Fund B.V. Is a Dutch Company founded in 2025 by Kalo Bagijn, the managing director of Norvestor Equiti B.V., one of the leading Dutch private equity funds that specializes in modern trading technology and bond investments. As a partner of the Norvestor Equiti group, we are launching operations to provide modern investment opportunities and professional tools for both individuals and teams.'
   },
-  'about.origin.title': { sr: '🏢 Naše poreklo', en: '🏢 Our Origin' },
+  'about.origin.title': { sr: 'Naše poreklo', en: 'Our Origin' },
   'about.origin.description': {
     sr: 'Naša kompanija deo je međunarodne korporacije Norvestor Equiti Ltd., jednog od vodećih kapitalnih fondova specijalizovanih za investicije u kriptovalute i obveznice.',
     en: 'Our company is part of the international corporation Norvestor Equiti Ltd., one of the leading capital funds specialized in cryptocurrency and bond investments.'
   },
-  'about.regional.title': { sr: '🌍 Regionalni pristup', en: '🌍 Regional Approach' },
+  'about.regional.title': { sr: 'Regionalni pristup', en: 'Regional Approach' },
   'about.regional.description': {
     sr: 'Kao regionalni partner Norvestor Equiti grupe, pokrećemo poslovanje na balkanskom tržištu kako bismo približili savremene investicione mogućnosti i profesionalne alate pojedincima i timovima širom regiona.',
     en: 'As a regional partner of the Norvestor Equiti group, we are launching operations in the Balkan market to bring modern investment opportunities and professional tools to individuals and teams across the region.'
   },
-  'about.model.title': { sr: '💼 Naš model', en: '💼 Our Model' },
+  'about.model.title': { sr: 'Naš model', en: 'Our Model' },
   'about.model.description': {
     sr: 'Naš model omogućava investitorima da pristupe kapitalu, stručnoj podršci i bezbednom okruženju za ulaganje, bez potrebe da rizikuju sopstvena sredstva.',
     en: 'Our model gives investors access to capital, professional support, and a secure investment environment, all without risking their own funds.'
@@ -476,8 +476,8 @@ const translations = {
     sr: 'Naš cilj je jasan - podržati uspešne investitore, smanjiti rizik i ostvariti zajednički rast.',
     en: 'Our goal is clear - to support successful investors and minimize risk, while promoting mutual growth. We are committed to providing the tools, resources, and expertise that enable every investor to make confident, informed decisions.'
   },
-  'about.registration': { sr: '📋 Registracioni broj kompanije:', en: '📋 Company Registration Number:' },
-  'about.partnershipButton': { sr: '🔗 Saznajte više o našem partnerstvu', en: '🔗 Learn more about our partnership' },
+  'about.registration': { sr: 'Registracioni broj kompanije:', en: 'Company Registration Number:' },
+  'about.partnershipButton': { sr: 'Saznajte više o našem partnerstvu', en: 'Learn more about our partnership' },
   'about.stats.clients.title': { sr: 'Klijenti', en: 'Clients' },
   'about.stats.clients.description': { sr: 'Aktivnih naloga na kripto tržištima sa stabilnim rezultatima.', en: 'Active accounts on crypto markets with stable results.' },
   'about.stats.profit.title': { sr: 'Podela profita', en: 'Profit Split' },
