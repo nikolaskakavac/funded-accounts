@@ -739,32 +739,31 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             </p>
           </div>
 
-          <div className="flex flex-col items-start gap-1 font-sans text-[13px] text-slate-400 sm:items-end">
-            <button
-              onClick={() => navigate('/#plans')}
-              className="text-emerald-300 hover:text-emerald-100 transition-colors"
-            >
-              {t('footer.pricing')}
-            </button>
-            <button
-              onClick={() => navigate('/contact')}
-              className="text-emerald-300 hover:text-emerald-100 transition-colors"
-            >
-              {t('footer.contact')}
-            </button>
-            
-            {/* Legal links */}
-            <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-[11px] text-emerald-300">
-              <button onClick={() => navigate('/terms')} className="hover:text-emerald-100 transition-colors">Terms</button>
-              <button onClick={() => navigate('/privacy')} className="hover:text-emerald-100 transition-colors">Privacy</button>
-              <button onClick={() => navigate('/aml')} className="hover:text-emerald-100 transition-colors">AML</button>
-              <button onClick={() => navigate('/cookies')} className="hover:text-emerald-100 transition-colors">Cookies</button>
-              <button onClick={() => navigate('/risk')} className="hover:text-emerald-100 transition-colors">Risk</button>
-              <button onClick={() => navigate('/refund')} className="hover:text-emerald-100 transition-colors">Refund</button>
-              <button onClick={() => navigate('/regulatory')} className="hover:text-emerald-100 transition-colors">Regulatory</button>
+          <div className="flex flex-col items-start gap-3 font-sans text-[13px] text-slate-400 sm:items-end">
+            <div className="flex flex-wrap gap-x-4 gap-y-2 items-center text-emerald-300">
+              <button
+                onClick={() => navigate('/#plans')}
+                className="hover:text-emerald-100 transition-colors"
+              >
+                {t('footer.pricing')}
+              </button>
+              <button
+                onClick={() => navigate('/contact')}
+                className="hover:text-emerald-100 transition-colors"
+              >
+                {t('footer.contact')}
+              </button>
+              <span className="text-slate-600">•</span>
+              <button onClick={() => navigate('/terms')} className="text-[12px] hover:text-emerald-100 transition-colors">Terms</button>
+              <button onClick={() => navigate('/privacy')} className="text-[12px] hover:text-emerald-100 transition-colors">Privacy</button>
+              <button onClick={() => navigate('/aml')} className="text-[12px] hover:text-emerald-100 transition-colors">AML</button>
+              <button onClick={() => navigate('/cookies')} className="text-[12px] hover:text-emerald-100 transition-colors">Cookies</button>
+              <button onClick={() => navigate('/risk')} className="text-[12px] hover:text-emerald-100 transition-colors">Risk</button>
+              <button onClick={() => navigate('/refund')} className="text-[12px] hover:text-emerald-100 transition-colors">Refund</button>
+              <button onClick={() => navigate('/regulatory')} className="text-[12px] hover:text-emerald-100 transition-colors">Regulatory</button>
             </div>
             
-            <p className="mt-1 text-[12px] text-slate-500">
+            <p className="text-[12px] text-slate-500">
               © {new Date().getFullYear()} Arbex. {t('footer.rights')}
             </p>
           </div>
