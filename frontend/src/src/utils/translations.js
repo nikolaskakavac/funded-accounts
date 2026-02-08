@@ -20,7 +20,7 @@ const translations = {
   'howItWorks.title': { sr: 'Naš proizvod', en: 'Our Product' },
   'howItWorks.description': {
     sr: 'Kada kupiš nalog na našem websajtu, dobijaš log in podatke od novog trading naloga koji će biti popunjen pravim kapitalom. Svaki kupac dobija svoj, zaseban nalog.',
-    en: 'When you purchase an account on our website, you receive login information of a new trading account that will be filled with real capital. Each customer gets their own separate account.'
+    en: 'When you become our client, you will receive login information for a newly created trading account that will be filled with real capital. Each customer is provided with their own separate account.'
   },
   'howItWorks.task': {
     sr: 'Tvoj zadatak je jasan:',
@@ -61,17 +61,17 @@ const translations = {
   'whatYouGet.capital.title': { sr: 'KORISNIČKO IME I LOZINKA', en: 'USERNAME AND PASSWORD' },
   'whatYouGet.capital.description': {
     sr: 'Dobijas email sa log in podacima (korisničko ime, lozinka) za svoj novi trading nalog na online trading platformi MetaTrader5.com',
-    en: 'You get an email with log in info (username, password) to your new trading account on an online trading platform called MetaTrader5.com'
+    en: 'You get an email with the login information (username, password) for your newly created trading account on an online trading platform MetaTrader5.com.'
   },
   'whatYouGet.platform.title': { sr: 'TRADING KAPITAL', en: 'TRADING CAPITAL' },
   'whatYouGet.platform.description': {
     sr: 'Tvoj nalog dobija kapital od nas. Ne rizikuješ vlastiti novac - korisiš naš kapital.',
-    en: 'Your account receives capital from us. You don\'t risk your own money - you use our capital.'
+    en: 'Your account receives capital from us. You don\'t risk your own money - you trade using our capital.'
   },
   'whatYouGet.profit.title': { sr: 'Podela profita', en: 'Profit Split' },
   'whatYouGet.profit.description': {
     sr: 'Ostvariš investiciju sa našim kapitalom. Ako finansijski instrument u koji si investirao poraste u vrijednosti i ti odlučiš da CASH OUT, 80% profita se isplaćuje na tvoju kreditnu karticu ili lični kripto račun. Mi skupljamo 20%',
-    en: 'You make an investment with our capital. If the financial instrument you invested in increases in value and you decide to CASH OUT, 80% of the profit is paid to your credit card or personal crypto account. We collect 20%'
+    en: 'You make an investment with our capital. If the financial instrument you invested in increases in value and you decide to CASH OUT, 80% of the profit is paid directly to your credit card or personal crypto account. We collect 20%.'
   },
 
   // Stats
@@ -85,26 +85,22 @@ const translations = {
   'goal.title': { sr: 'Naš cilj', en: 'Our Goal' },
   'goal.description': {
     sr: 'Naš model je zasnovan na jednostavnom principu — mi zarađujemo samo kada zarađuju naši klijenti.',
-    en: 'Our model is based on a simple principle — we only earn when our clients earn.'
-  },
-  'goal.selection': {
-    sr: 'Kroz prirodan proces selekcije, naš kapital se vremenom usmerava ka onima koji ostvaruju najbolje rezultate, čime se rizik za nas smanjuje, a dobit raste.',
-    en: 'Through a natural selection process, our capital is directed over time toward those who achieve the best results.'
+    en: 'Our model is based on a simple principle - We earn when our clients earn.'
   },
   'goal.beginners': {
     sr: 'Na taj način stvaramo sistem u kome i početnici mogu da ostvare značajne profite, dok uspešni trejderi dobijaju pristup većim količinama kapitala.',
-    en: 'In this way, we create a system where beginners have a chance to achieve profits, while successful traders gain access to larger amounts of capital.'
+    en: 'In this way, we create a system where beginners have a chance of achieving results, while successful traders gain access to larger amounts of capital.'
   },
-  'copyTrade.title': { sr: 'Copy Trade Opcija', en: 'Copy Trade Option' },
+  'copyTrade.title': { sr: 'Copy Trade Opcija', en: 'Copy Trade Feature' },
   'copyTrade.description': {
     sr: 'Kroz copy trade opciju dostupnu unutar aplikacije, korisnici mogu da aktiviraju automatsko kopiranje jednog od naših 5 profesionalnih trejdera. Tako oni bez prethodnog iskustva imaju bolju šansu da ostvare rezultate.',
-    en: 'Through the copy trade option available inside our app, users can activate automatic copying of one of our 5 professional traders. This gives those without prior experience a better chance to achieve results.'
+    en: 'Through the copy trade feature available inside the app, users can activate automatic copying of one of our five professional traders. This option gives those without prior experience a better chance of achieving strong results.'
   },
 
   // WhatsApp Call Request
   'whatsapp.title': { sr: 'Zatraži besplatan WhatsApp poziv', en: 'Request free WhatsApp consultation' },
-  'whatsapp.description': { sr: 'Unesite broj telefona i mi ćemo vas kontaktirati putem WhatsApp-a', en: 'Enter your phone number and we will contact you via WhatsApp' },
-  'whatsapp.placeholder': { sr: '+381...', en: '+...type your number' },
+  'whatsapp.description': { sr: 'Unesite broj telefona i mi ćemo vas kontaktirati putem WhatsApp-a', en: 'Enter your phone number and we\'ll contact you via WhatsApp.' },
+  'whatsapp.placeholder': { sr: '+381...', en: '+31 6 12345678' },
   'whatsapp.submit': { sr: 'Pošalji', en: 'Submit' },
   'whatsapp.success': { sr: 'Hvala! Kontaktiraćemo vas uskoro.', en: 'Thank you! We will contact you soon.' },
   'whatsapp.error': { sr: 'Greška pri slanju zahteva', en: 'Error sending request' },

@@ -54,8 +54,6 @@ const nlTranslations = {
   // Our Goal
   'goal.title': 'Ons doel',
   'goal.description': 'Ons model is gebaseerd op een eenvoudig principe — wij verdienen alleen wanneer onze klanten verdienen.',
-  'goal.selection':
-    'Via een natuurlijk selectieproces wordt ons kapitaal in de loop van de tijd gericht op degenen die de beste resultaten behalen, waardoor ons risico daalt en de winst toeneemt.',
   'goal.beginners':
     'Zo creëren we een systeem waarin ook beginners aanzienlijke winst kunnen behalen, terwijl succesvolle traders toegang krijgen tot grotere investeringen en gezamenlijke groei.',
   'copyTrade.title': 'Copy Trade Optie',

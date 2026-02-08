@@ -172,11 +172,14 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                 </>
               ) : (
                 <>
-                  When you purchase an account on our website, you receive login information of a new trading account that will be filled with real capital. Each customer gets their own separate account.
+                  When you become our client, you will receive login information for a newly created trading account that will be filled with real capital. Each customer is provided with their own separate account.
                   <br />
                   <br />
                   <span className="font-semibold text-white">Your task is clear:</span>{' '}
-                  Achieve a profit by investing in gold, crypto or another financial instrument available on our trading platform. All the capital comes from us, while you focus exclusively on your investing decisions.
+                  Achieve a profit by investing in gold, crypto or any other financial instrument available inside our trading platform.
+                  <br />
+                  <br />
+                  All the capital is provided by us, while you focus exclusively on your investing decisions.
                 </>
               )}
             </p>
@@ -399,11 +402,6 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
 </h2>
 <p className="font-sans text-[18px] sm:text-[20px] leading-[1.5] sm:leading-relaxed max-w-3xl mx-auto text-emerald-50/95 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
   {t('goal.description')}
-  
-  <br className="sm:hidden" />
-  <br />
-  
-  {t('goal.selection')}
   
   <br className="sm:hidden" />
   <br />
