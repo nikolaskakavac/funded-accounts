@@ -18,8 +18,8 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
   const lang = getLang();
 
   const landingPlans = [
-    { id: '693db3e0e9cf589519c144fe', name: 'Nalog sa 10.000€', price: 300, cryptoPrice: 255, limitedLoss: 300 },
-    { id: '693db3ede9cf589519c14500', name: 'Nalog sa 20.000€', price: 600, cryptoPrice: 510, limitedLoss: 600 },
+    { id: '693db3e0e9cf589519c144fe', name: 'Nalog sa 10.000€', price: 300, cryptoPrice: 300, limitedLoss: 300 },
+    { id: '693db3ede9cf589519c14500', name: 'Nalog sa 20.000€', price: 600, cryptoPrice: 600, limitedLoss: 600 },
   ];
 
   const selectedPlan = landingPlans.find((p) => p.id === onSitePlanId);
@@ -512,7 +512,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
-                    {t('plans.payCard')}
+                    Pay 330€ with Card
                   </button>
                   <button
                     onClick={() => {
@@ -523,10 +523,10 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   >
                     <div className="flex w-full flex-col items-center justify-center gap-1 rounded-2xl bg-black/90 px-4 py-2.5 sm:py-3">
                       <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.16em] text-emerald-100 group-hover:text-emerald-50">
-                        {t('plans.payCrypto')} ({landingPlans[0].cryptoPrice}€)
+                        Pay 300€ with Crypto
                       </span>
                       <span className="text-[10px] font-bold tracking-[0.08em] text-white">
-                        15% OFF TAX FREE
+                        (Tax free)
                       </span>
                     </div>
                     <span className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-[100%] transition-all duration-700" />
@@ -581,7 +581,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     }}
                     className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
                   >
-                    {t('plans.payCard')}
+                    Pay 630€ with Card
                   </button>
                   <button
                     onClick={() => {
@@ -592,10 +592,10 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   >
                     <div className="flex w-full flex-col items-center justify-center gap-1 rounded-2xl bg-black/90 px-4 py-2.5 sm:py-3">
                       <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.16em] text-emerald-100 group-hover:text-emerald-50">
-                        {t('plans.payCrypto')} ({landingPlans[1].cryptoPrice}€)
+                        Pay 600€ with Crypto
                       </span>
                       <span className="text-[10px] font-bold tracking-[0.08em] text-white">
-                        15% OFF TAX FREE
+                        (Tax free)
                       </span>
                     </div>
                     <span className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-[100%] transition-all duration-700" />
