@@ -436,7 +436,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
       <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
         <div className="max-w-3xl mx-auto">
           <div className="rounded-3xl border-2 border-emerald-500/40 bg-gradient-to-b from-emerald-950/40 via-black/60 to-black/80 p-8 shadow-2xl shadow-emerald-500/20">
-            <h2 className="font-display text-[24px] sm:text-[28px] font-extrabold uppercase tracking-[0.18em] text-emerald-400 mb-3 text-center">
+            <h2 className="font-display text-[24px] sm:text-[28px] font-black uppercase tracking-[0.18em] text-emerald-400 mb-3 text-center">
               {t('whatsapp.title')}
             </h2>
             <p className="font-sans text-[16px] leading-relaxed text-emerald-100/90 mb-8 text-center max-w-xl mx-auto">

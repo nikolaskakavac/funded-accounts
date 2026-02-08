@@ -89,7 +89,7 @@ const Contact = ({ navigate, token, onLogout }) => {
         <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black rounded-3xl border-2 border-emerald-500/40 p-8">
           <div className="max-w-3xl mx-auto">
             <div className="text-center">
-              <h2 className="font-display text-[24px] sm:text-[28px] font-extrabold uppercase tracking-[0.18em] text-emerald-400 mb-3">
+              <h2 className="font-display text-[24px] sm:text-[28px] font-black uppercase tracking-[0.18em] text-emerald-400 mb-3">
                 {t('whatsapp.title', lang)}
               </h2>
               <p className="font-sans text-[16px] leading-relaxed text-emerald-100/90 mb-8 max-w-xl mx-auto">
