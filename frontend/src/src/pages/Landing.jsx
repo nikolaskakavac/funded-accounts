@@ -156,25 +156,14 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
         <div className="max-w-5xl mx-auto">
           <section className="mt-0.5 sm:mt-1 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
             <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
-              Investing Simplified
+              {t('investingSimplified.title')}
             </h2>
 
             <p className="font-sans text-[20px] sm:text-[22px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-6">
-              {lang === 'sr' ? (
-                <>
-                  Nudimo platformu gde osobe mogu iskusiti pravo investiranje bez potrebe da donose svoj kapital. Svaki učesnik upravlja živim trading nalogom koji je finansiran od nas, koristeći vlastitu strategiju i prosudbu.
-                  <br />
-                  <br />
-                  Naš cilj je da profesionalno investiranje učinimo dostupnijim - praktičnim, transparentnim i fokusiranim na vaše odluke umesto na vašu početnu sumu.
-                </>
-              ) : (
-                <>
-                  We provide a platform where individuals can experience real-world investing without needing to bring their own capital. Each participant manages a live trading account funded by us, using their own strategy and judgment.
-                  <br />
-                  <br />
-                  Our goal is to make professional-style investing more accessible - practical, transparent, and focused on your decisions rather than your starting balance.
-                </>
-              )}
+              {t('investingSimplified.description1')}
+              <br />
+              <br />
+              {t('investingSimplified.description2')}
             </p>
           </section>
 

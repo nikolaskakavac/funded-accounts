@@ -13,6 +13,13 @@ const nlTranslations = {
   'hero.learnMore': 'Meer informatie',
   'hero.viewPlans': 'Bekijk plannen',
 
+  // Investing Simplified
+  'investingSimplified.title': 'Beleggen, vereenvoudigd',
+  'investingSimplified.description1':
+    'We bieden een platform waar individuen echte beleggingservaringen kunnen opdoen zonder hun eigen kapitaal in te hoeven brengen. Elke deelnemer beheert een live handelsrekening die door ons wordt gefinancierd, met eigen strategie en oordeel.',
+  'investingSimplified.description2':
+    'Ons doel is professioneel beleggen toegankelijker te maken - praktisch, transparant en gericht op uw beslissingen in plaats van uw startkapitaal.',
+
   // How it works
   'howItWorks.title': 'Ons product',
   'howItWorks.description':

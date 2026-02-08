@@ -16,6 +16,17 @@ const translations = {
   'hero.learnMore': { sr: 'Saznaj više', en: 'Learn More' },
   'hero.viewPlans': { sr: 'Pogledaj planove', en: 'View Plans' },
 
+  // Investing Simplified
+  'investingSimplified.title': { sr: 'Investiranje pojednostavljeno', en: 'Investing Simplified' },
+  'investingSimplified.description1': {
+    sr: 'Nudimo platformu gde osobe mogu iskusiti pravo investiranje bez potrebe da donose svoj kapital. Svaki učesnik upravlja živim trading nalogom koji je financiran od nas, koristeći vlastitu strategiju i prosudbu.',
+    en: 'We provide a platform where individuals can experience real-world investing without needing to bring their own capital. Each participant manages a live trading account funded by us, using their own strategy and judgment.'
+  },
+  'investingSimplified.description2': {
+    sr: 'Naš cilj je da profesionalno investiranje učinimo dostupnijim - praktičnim, transparentnim i fokusiranim na vaše odluke umesto na vašu početnu sumu.',
+    en: 'Our goal is to make professional-style investing more accessible - practical, transparent, and focused on your decisions rather than your starting balance.'
+  },
+
   // How it works
   'howItWorks.title': { sr: 'Naš proizvod', en: 'Our Product' },
   'howItWorks.description': {
