@@ -75,7 +75,7 @@ const translations = {
   },
 
   // Stats
-  'stats.avgProfit.title': { sr: 'Prosečan isplaćeni profit', en: 'Average profit amount payed out' },
+  'stats.avgProfit.title': { sr: 'Prosečan isplaćeni iznos', en: 'Average Payout Amount' },
   'stats.avgProfit.amount': { sr: '2300€', en: '2300€' },
   'stats.successRate.title': { sr: 'Januar stopa uspeha', en: 'January Success rate' },
   'stats.successRate.subtitle': { sr: '(Procenat klijenata koji su ostvarili profit iznad 100€)', en: '(Percentage of clients who achieved a profit above 100€)' },

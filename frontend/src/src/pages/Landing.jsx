@@ -344,9 +344,6 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                          hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
                          hover:border-emerald-400/70 hover:-rotate-1"
             >
-              <div className="flex items-center justify-center mb-4">
-                <span className="font-display text-[14px] font-extrabold text-emerald-300">AVERAGE</span>
-              </div>
               <h3 className="text-center font-display text-[17px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-3">
                 {t('stats.avgProfit.title')}
               </h3>
@@ -364,9 +361,6 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                          hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
                          hover:border-emerald-400/70 hover:rotate-1"
             >
-              <div className="flex items-center justify-center mb-4">
-                <span className="font-display text-[14px] font-extrabold text-emerald-300">SUCCESS</span>
-              </div>
               <h3 className="text-center font-display text-[17px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-1">
                 {t('stats.successRate.title')}
               </h3>
