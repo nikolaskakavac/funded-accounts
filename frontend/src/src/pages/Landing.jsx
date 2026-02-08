@@ -743,27 +743,32 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
           </div>
 
           <div className="flex flex-col items-start gap-3 font-sans text-[13px] text-slate-400 sm:items-end">
-            <div className="flex flex-wrap gap-x-4 gap-y-2 items-center text-emerald-300">
+            <div className="flex flex-col gap-2 items-start text-emerald-300 sm:items-end">
               <button
-                onClick={() => navigate('/#plans')}
+                onClick={() => {
+                  navigate('/#plans');
+                  window.scrollTo(0, 0);
+                }}
                 className="hover:text-emerald-100 transition-colors"
               >
                 {t('footer.pricing')}
               </button>
               <button
-                onClick={() => navigate('/contact')}
+                onClick={() => {
+                  navigate('/contact');
+                  window.scrollTo(0, 0);
+                }}
                 className="hover:text-emerald-100 transition-colors"
               >
                 {t('footer.contact')}
               </button>
-              <span className="text-slate-600">•</span>
-              <button onClick={() => navigate('/terms')} className="text-[12px] hover:text-emerald-100 transition-colors">Terms</button>
-              <button onClick={() => navigate('/privacy')} className="text-[12px] hover:text-emerald-100 transition-colors">Privacy</button>
-              <button onClick={() => navigate('/aml')} className="text-[12px] hover:text-emerald-100 transition-colors">AML</button>
-              <button onClick={() => navigate('/cookies')} className="text-[12px] hover:text-emerald-100 transition-colors">Cookies</button>
-              <button onClick={() => navigate('/risk')} className="text-[12px] hover:text-emerald-100 transition-colors">Risk</button>
-              <button onClick={() => navigate('/refund')} className="text-[12px] hover:text-emerald-100 transition-colors">Refund</button>
-              <button onClick={() => navigate('/regulatory')} className="text-[12px] hover:text-emerald-100 transition-colors">Regulatory</button>
+              <button onClick={() => { navigate('/terms'); window.scrollTo(0, 0); }} className="text-[12px] hover:text-emerald-100 transition-colors">Terms</button>
+              <button onClick={() => { navigate('/privacy'); window.scrollTo(0, 0); }} className="text-[12px] hover:text-emerald-100 transition-colors">Privacy</button>
+              <button onClick={() => { navigate('/aml'); window.scrollTo(0, 0); }} className="text-[12px] hover:text-emerald-100 transition-colors">AML</button>
+              <button onClick={() => { navigate('/cookies'); window.scrollTo(0, 0); }} className="text-[12px] hover:text-emerald-100 transition-colors">Cookies</button>
+              <button onClick={() => { navigate('/risk'); window.scrollTo(0, 0); }} className="text-[12px] hover:text-emerald-100 transition-colors">Risk</button>
+              <button onClick={() => { navigate('/refund'); window.scrollTo(0, 0); }} className="text-[12px] hover:text-emerald-100 transition-colors">Refund</button>
+              <button onClick={() => { navigate('/regulatory'); window.scrollTo(0, 0); }} className="text-[12px] hover:text-emerald-100 transition-colors">Regulatory</button>
             </div>
             
             <p className="text-[12px] text-slate-500">
