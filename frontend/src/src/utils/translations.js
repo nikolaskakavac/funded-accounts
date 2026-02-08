@@ -446,7 +446,7 @@ const translations = {
   // About Page
   'about.title': { sr: '🌍 O nama', en: '🌍 About Us' },
   'about.subtitle': { sr: 'Povezujemo globalni kapital sa lokalnim potencijalom', en: 'Connecting global capital with local potential' },
-  'about.whoWeAre.title': { sr: '👥 Ko smo mi?', en: '👥 Who We Are' },
+  'about.whoWeAre.title': { sr: '👥 Ko smo mi?', en: '👥 Who Are We?' },
   'about.whoWeAre.description': {
     sr: 'Arbex Fund je osnovan od strane Kalo Bagijn-a sa ciljem da donese revoluciju u trading industriji kroz inovativne alate i pristupe. Naša misija je da omogućimo briljantnim investitorima pristup kapitalu i sredstvima potrebnim za globalni uspeh, razvojem zajednice stručnjaka koji se fokusiraju na rezultate.',
     en: 'Arbex Fund B.V. Is a Dutch Company founded in 2025 by Kalo Bagijn, the managing director of Norvestor Equiti B.V., one of the leading Dutch private equity funds that specializes in modern trading technology and bond investments. As a partner of the Norvestor Equiti group, we are launching operations to provide modern investment opportunities and professional tools for both individuals and teams.'
