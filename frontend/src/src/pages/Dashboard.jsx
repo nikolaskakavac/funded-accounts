@@ -242,6 +242,7 @@ const Dashboard = ({ navigate, token, onLogout }) => {
               </h3>
               <ul className="space-y-1.5 font-sans text-[13px] text-slate-300">
                 <li>• {t('dashboardInfo.noCardsSaved', lang)}</li>
+                <li>• {t('dashboardInfo.encryptedTransactions', lang)}</li>
                 <li>• {t('dashboardInfo.activationTime', lang)}</li>
               </ul>
             </div>
