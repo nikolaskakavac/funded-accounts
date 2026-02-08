@@ -7,7 +7,7 @@ const translations = {
   'nav.plans': { sr: 'Planovi', en: 'Plans' },
   'nav.admin': { sr: 'Admin panel', en: 'Admin Panel' },
   'nav.logout': { sr: 'Odjava', en: 'Log out' },
-  'nav.login': { sr: 'Prijava', en: 'Login' },
+  'nav.login': { sr: 'Prijava', en: 'Log in' },
   'nav.register': { sr: 'Registracija', en: 'Register' },
 
   // Landing Hero
@@ -147,7 +147,7 @@ const translations = {
   'login.clientAccess': { sr: 'Klijent pristup', en: 'Client access' },
   'login.title': { sr: 'Prijava na dashboard', en: 'LOG IN TO DASHBOARD' },
   'login.subtitle': {
-    sr: 'Unesi email i lozinku da vidiš svoj funded nalog, aktivan plan i istoriju isplata na jednom mestu.',
+    sr: 'Unesi email i lozinku da vidiš svoj nalog, aktivan plan i istoriju isplata na jednom mestu.',
     en: 'Enter your email and password to access your account, see the active plan and track payout history all in one place.'
   },
   'login.email': { sr: 'Email', en: 'Email' },
@@ -327,8 +327,8 @@ const translations = {
   'login.clientAccess': { sr: 'Klijent pristup', en: 'Client access' },
   'login.title': { sr: 'Prijava na dashboard', en: 'LOG IN TO DASHBOARD' },
   'login.subtitle': {
-    sr: 'Unesi email i lozinku da vidiš svoj funded nalog, aktivan plan i istoriju isplata na jednom mestu.',
-    en: 'Enter email and password to view your funded account, active plan, and payout history in one place.'
+    sr: 'Unesi email i lozinku da vidiš svoj nalog, aktivan plan i istoriju isplata na jednom mestu.',
+    en: 'Enter email and password to view your account, active plan, and payout history in one place.'
   },
   'login.email': { sr: 'Email', en: 'Email' },
   'login.password': { sr: 'Lozinka', en: 'Password' },

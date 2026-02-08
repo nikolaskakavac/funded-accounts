@@ -26,7 +26,7 @@ const Login = ({ navigate, onLogin, onLogout }) => {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
       <Header navigate={navigate} token={''} onLogout={onLogout} />
-      <div className="relative mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-4 py-10 lg:px-8">
+      <div className="relative mx-auto max-w-5xl px-4 pt-8 pb-16 lg:px-8">
         {/* Back link */}
         <button
           onClick={() => navigate('/')}
