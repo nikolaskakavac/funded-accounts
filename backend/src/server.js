@@ -35,7 +35,17 @@ app.use('/webhooks', webhooksStripe); // ovde je /webhooks/stripe iz routera
 app.use('/webhooks/now', require('./routes/webhooksNow')); // NOWPayments IPN rute
 
 // 4) Global middleware (posle webhooka)
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://arbexfund.com',
+    'https://www.arbexfund.com'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // Language cookie based on Accept-Language on every request (keeps in sync when location/browser changes)
