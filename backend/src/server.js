@@ -44,8 +44,20 @@ app.use(cors({
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['Content-Length', 'X-JSON-Response'],
+  maxAge: 86400
 }));
+
+// Additional security headers for Safari compatibility
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('X-Content-Type-Options', 'nosniff');
+  res.header('X-Frame-Options', 'SAMEORIGIN');
+  res.header('Referrer-Policy', 'no-referrer-when-downgrade');
+  next();
+});
+
 app.use(express.json());
 
 // Language cookie based on Accept-Language on every request (keeps in sync when location/browser changes)
