@@ -120,10 +120,6 @@
                 </button>
               </form>
 
-              <p className="mt-5 font-sans text-[13px] text-slate-400">
-                {t('register.terms', lang)}
-              </p>
-
               <p className="mt-3 font-sans text-[13px] text-slate-400">
                 {t('register.haveAccount', lang)}{' '}
                 <button
