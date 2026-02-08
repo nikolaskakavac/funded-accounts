@@ -166,6 +166,40 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   <br />
                   <br />
                   Naš cilj je da profesionalno investiranje učinimo dostupnijim - praktičnim, transparentnim i fokusiranim na vaše odluke umesto na vašu početnu sumu.
+                </>
+              ) : (
+                <>
+                  We provide a platform where individuals can experience real-world investing without needing to bring their own capital. Each participant manages a live trading account funded by us, using their own strategy and judgment.
+                  <br />
+                  <br />
+                  Our goal is to make professional-style investing more accessible - practical, transparent, and focused on your decisions rather than your starting balance.
+                </>
+              )}
+            </p>
+            <div className="mt-4">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo(0, 0);
+                  navigate('/instruments');
+                }}
+                className="inline-flex items-center gap-2 rounded-full bg-emerald-500/20 border border-emerald-400 px-4 py-2 text-[14px] font-sans font-semibold tracking-[0.08em] text-emerald-300 hover:bg-emerald-500/30 transition-colors cursor-pointer"
+              >
+                {t('howItWorks.instruments')}
+                <span>→</span>
+              </button>
+            </div>
+          </section>
+
+          <section className="mt-10 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
+            <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
+              {t('howItWorks.title')}
+            </h2>
+
+            <p className="font-sans text-[20px] sm:text-[22px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-6">
+              {lang === 'sr' ? (
+                <>
+                  Kada kupiš nalog na našem websajtu, dobijaš log in podatke od novog trading naloga koji će biti popunjen pravim kapitalom. Svaki kupac dobija svoj, zaseban nalog.
                   <br />
                   <br />
                   <span className="font-semibold text-white">Tvoj zadatak je jasan:</span>{' '}
@@ -175,10 +209,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                 </>
               ) : (
                 <>
-                  We provide a platform where individuals can experience real-world investing without needing to bring their own capital. Each participant manages a live trading account funded by us, using their own strategy and judgment.
-                  <br />
-                  <br />
-                  Our goal is to make professional-style investing more accessible - practical, transparent, and focused on your decisions rather than your starting balance.
+                  When you become our client, you will receive login information for a newly created trading account that will be filled with real capital. Each customer is provided with their own separate account.
                   <br />
                   <br />
                   <span className="font-semibold text-white">Your task is clear:</span>{' '}
@@ -202,9 +233,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                 <span>→</span>
               </button>
             </div>
-          </section>
-
-          <section className="mt-10 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10">
+            
             <h2 className="text-center font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
               {t('risk.title')}
             </h2>

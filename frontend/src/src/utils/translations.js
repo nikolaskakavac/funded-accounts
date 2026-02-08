@@ -19,8 +19,8 @@ const translations = {
   // How it works
   'howItWorks.title': { sr: 'Naš proizvod', en: 'Our Product' },
   'howItWorks.description': {
-    sr: 'Nudimo platformu gde osobe mogu iskusiti pravo investiranje bez potrebe da donose svoj kapitala. Svaki učesnik upravlja živim trading nalogom koji je financiran od nas, koristeći vlastitu strategiju i prosudbu. Naš cilj je da profesionalno investiranje učinimo dostupnijim - praktičnim, transparentnim i fokusiranim na vaše odluke umesto na vašu početnu sumu. Tvoj zadatak je jasan: ostvari profit investirajući u zlato ili neku od kripto-valuta sa našim novcem. Ti se fokusiraš isključivo na investiranje.',
-    en: 'We provide a platform where individuals can experience real-world investing without needing to bring their own capital. Each participant manages a live trading account funded by us, using their own strategy and judgment. Our goal is to make professional-style investing more accessible - practical, transparent, and focused on your decisions rather than your starting balance. Your task is clear: Achieve a profit by investing in gold, crypto or any other financial instrument available inside our trading platform. All the capital is provided by us, while you focus exclusively on your investing decisions.'
+    sr: 'Kada kupiš nalog na našem websajtu, dobijaš log in podatke od novog trading naloga koji će biti popunjen pravim kapitalom. Svaki kupac dobija svoj, zaseban nalog.',
+    en: 'When you become our client, you will receive login information for a newly created trading account that will be filled with real capital. Each customer is provided with their own separate account.'
   },
   'howItWorks.task': {
     sr: 'Tvoj zadatak je jasan:',

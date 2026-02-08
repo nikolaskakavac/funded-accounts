@@ -16,7 +16,7 @@ const nlTranslations = {
   // How it works
   'howItWorks.title': 'Ons product',
   'howItWorks.description':
-    'We bieden een platform waar individuen echte beleggingservaringen kunnen opdoen zonder hun eigen kapitaal in te hoeven brengen. Elke deelnemer beheert een live handelsrekening die door ons wordt gefinancierd, met eigen strategie en oordeel. Ons doel is professioneel beleggen toegankelijker te maken - praktisch, transparant en gericht op uw beslissingen in plaats van uw startkapitaal. Uw taak is duidelijk: maak winst door te beleggen in goud, crypto of ander financieel instrument op ons handelsplatform. Al het kapitaal wordt door ons verstrekt, terwijl u zich uitsluitend op uw beleggingsbeslissingen concentreert.',
+    'Wanneer je een account op onze website koopt, ontvang je inloggegevens voor een al bestaand, vooraf gefinancierd crypto‑account. Elke klant krijgt zijn eigen, aparte account — geen delen met anderen.',
   'howItWorks.task': 'Jouw taak is duidelijk:',
   'howItWorks.profit': 'maak winst door te investeren in een van de',
   'howItWorks.crypto': 'cryptovaluta',
