@@ -449,7 +449,7 @@ const translations = {
   'about.whoWeAre.title': { sr: '👥 Ko smo mi?', en: '👥 Who We Are' },
   'about.whoWeAre.description': {
     sr: 'Arbex Fund je osnovan od strane Kalo Bagijn-a sa ciljem da donese revoluciju u trading industriji kroz inovativne alate i pristupe. Naša misija je da omogućimo briljantnim investitorima pristup kapitalu i sredstvima potrebnim za globalni uspeh, razvojem zajednice stručnjaka koji se fokusiraju na rezultate.',
-    en: 'Arbex Fund was founded by Kalo Bagijn with the mission to revolutionize the trading industry through innovative tools and approaches. Our goal is to enable brilliant investors to access the capital and resources needed for global success by building a community of results-focused professionals.'
+    en: 'Arbex Fund B.V. Is a Dutch Company founded in 2025 by Kalo Bagijn, the managing director of Norvestor Equiti B.V., one of the leading Dutch private equity funds that specializes in modern trading technology and bond investments. As a partner of the Norvestor Equiti group, we are launching operations to provide modern investment opportunities and professional tools for both individuals and teams.'
   },
   'about.origin.title': { sr: '🏢 Naše poreklo', en: '🏢 Our Origin' },
   'about.origin.description': {
@@ -464,17 +464,17 @@ const translations = {
   'about.model.title': { sr: '💼 Naš model', en: '💼 Our Model' },
   'about.model.description': {
     sr: 'Naš model omogućava investitorima da pristupe kapitalu, stručnoj podršci i bezbednom okruženju za ulaganje, bez potrebe da rizikuju sopstvena sredstva.',
-    en: 'Our model allows investors to access capital, professional support, and a secure investment environment without risking their own funds.'
+    en: 'Our model gives investors access to capital, professional support, and a secure investment environment, all without risking their own funds.'
   },
   'about.network.title': { sr: 'Izgradnja mreže', en: 'Building the Network' },
   'about.network.description': {
     sr: 'Zajedno sa Norvestor Equiti fondom, gradimo mrežu investitora koji ostvaruju stabilne i dugoročne rezultate, dok region Balkana pozicioniramo kao novo središte pametnog investiranja.',
-    en: 'Together with the Norvestor Equiti fund, we are building a network of investors achieving stable and long-term results, while positioning the Balkan region as a new hub for smart investing.'
+    en: 'Together with the Norvestor Equiti fund, we are building a network of investors delivering stable, long-term results and creating a platform for smart investing. Members gain access to professional guidance and proven strategies that help them achieve consistent performance.'
   },
   'about.mission.title': { sr: 'Naša misija', en: 'Our Mission' },
   'about.mission.description': {
     sr: 'Naš cilj je jasan - podržati uspešne investitore, smanjiti rizik i ostvariti zajednički rast.',
-    en: 'Our goal is clear - to support successful investors, reduce risk, and achieve mutual growth.'
+    en: 'Our goal is clear - to support successful investors and minimize risk, while promoting mutual growth. We are committed to providing the tools, resources, and expertise that enable every investor to make confident, informed decisions.'
   },
   'about.registration': { sr: '📋 Registracioni broj kompanije:', en: '📋 Company Registration Number:' },
   'about.partnershipButton': { sr: '🔗 Saznajte više o našem partnerstvu', en: '🔗 Learn more about our partnership' },
