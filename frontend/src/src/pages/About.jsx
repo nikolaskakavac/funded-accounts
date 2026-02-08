@@ -17,10 +17,6 @@ const About = ({ navigate, token, onLogout }) => {
             {t('about.title', lang)}
           </h1>
 
-          <p className="mt-3 font-sans text-[22px] sm:text-[24px] text-emerald-100/95 leading-relaxed">
-            {t('about.subtitle', lang)}
-          </p>
-
           {/* Glavni opis */}
           <div className="mt-8 space-y-6 max-w-4xl">
             {/* Ko smo mi */}

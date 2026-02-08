@@ -169,7 +169,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                 }}
                 className="py-2"
               >
-                {lang === 'nl' ? 'Over ons' : 'About'}
+                {lang === 'nl' ? 'Over ons' : 'About us'}
               </button>
               <button
                 onClick={() => {
