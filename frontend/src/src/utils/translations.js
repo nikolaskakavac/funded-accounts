@@ -158,7 +158,7 @@ const translations = {
   'login.registerCta': { sr: 'Registrujte se', en: 'Register' },
   'login.dashboard.see': { sr: 'Šta vidiš u dashboard‑u', en: 'What you see in the dashboard' },
   'login.dashboard.desc': {
-    sr: 'Pregled aktivnih planova, limite rizika i istoriju isplata – sve na jednom mestu, uz jasne metrike napretka.',
+    sr: 'Pregled aktivnih planova, limite rizika i istoriju isplatu - sve na jednom mestu, uz jasne metrike napretka.',
     en: 'View active plans, risk limits, and payout history in one place with clear progress metrics.'
   },
   'login.tips.title': { sr: 'Kratki saveti', en: 'Quick tips' },
@@ -203,7 +203,7 @@ const translations = {
   'contact.section': { sr: 'Kontakt', en: 'Contact' },
   'contact.title': { sr: 'Javi se timu', en: 'Contact the team' },
   'contact.subtitle': {
-    sr: 'Pitanja o nalozima, plaćanju ili saradnji – piši direktno timu i dobićeš odgovor u kratkom roku.',
+    sr: 'Pitanja o nalozima, plaćanju ili saradnji - piši direktno timu i dobićeš odgovor u kratkom roku.',
     en: 'Questions about accounts, payments, or affiliate collaborations - write directly to our team for a quick response.'
   },
   'contact.back': { sr: 'Nazad na sajt', en: 'Back to site' },
@@ -215,7 +215,7 @@ const translations = {
   'contact.biz.note': { sr: 'Partnerstva, affiliate i B2B upiti.', en: 'Partnerships, affiliates, and B2B inquiries.' },
   'contact.companyDetails': { sr: 'Detalji kompanije', en: 'Company details' },
   'contact.companyAddress': { sr: 'Naziv firme d.o.o.\nUlica i broj, Grad, Država', en: 'Company Name LLC\nStreet and number, City, Country' },
-  'contact.companyHours': { sr: 'Radnim danima 9–17h (CET). Na email obično odgovaramo u roku od 24 sata.', en: 'Weekdays 9–17h (CET). We usually respond to email within 24 hours.' },
+  'contact.companyHours': { sr: 'Radnim danima 9-17h (CET). Na email obično odgovaramo u roku od 24 sata.', en: 'Weekdays 9-17h (CET). We usually respond to email within 24 hours.' },
   'contact.whatToSend': { sr: 'Šta da pošalješ u poruci', en: 'What to include in your message' },
   'contact.msg.payment': { sr: '• Problem sa uplatom: email naloga, tip uplate (kartica/kripto) i vreme transakcije.', en: '• Payment issue: account email, payment type (card/crypto), and transaction time.' },
   'contact.msg.rules': { sr: '• Pitanje o pravilima: koji paket koristiš (10K ili 25K) i na kojoj platformi trguješ.', en: '• Rules question: which package you use (10K or 25K) and which platform you trade on.' },
@@ -337,7 +337,7 @@ const translations = {
   'login.registerCta': { sr: 'Registrujte se', en: 'Register' },
   'login.dashboard.see': { sr: 'Šta vidiš u dashboard‑u', en: 'What you see in the dashboard' },
   'login.dashboard.desc': {
-    sr: 'Pregled aktivnih planova, limite rizika i istoriju isplata – sve na jednom mestu, uz jasne metrike napretka.',
+    sr: 'Pregled aktivnih planova, limite rizika i istoriju isplata - sve na jednom mestu, uz jasne metrike napretka.',
     en: 'View active plans, risk limits, and payout history in one place with clear progress metrics.'
   },
   'login.tips.title': { sr: 'Kratki saveti', en: 'Quick tips' },
@@ -382,7 +382,7 @@ const translations = {
   'contact.section': { sr: 'Kontakt', en: 'Contact' },
   'contact.title': { sr: 'Javi se timu', en: 'Contact the team' },
   'contact.subtitle': {
-    sr: 'Pitanja o nalozima, plaćanju ili saradnji – piši direktno timu i dobićeš odgovor u kratkom roku.',
+    sr: 'Pitanja o nalozima, plaćanju ili saradnji - piši direktno timu i dobićeš odgovor u kratkom roku.',
     en: 'Questions about accounts, payments, or collaboration—write directly to the team for a quick reply.'
   },
   'contact.back': { sr: 'Nazad na sajt', en: 'Back to site' },
@@ -394,7 +394,7 @@ const translations = {
   'contact.biz.note': { sr: 'Partnerstva, affiliate i B2B upiti.', en: 'Partnerships, affiliates, and B2B inquiries.' },
   'contact.companyDetails': { sr: 'Detalji kompanije', en: 'Company details' },
   'contact.companyAddress': { sr: 'Naziv firme d.o.o.\nUlica i broj, Grad, Država', en: 'Company Name LLC\nStreet and number, City, Country' },
-  'contact.companyHours': { sr: 'Radnim danima 9–17h (CET). Na email obično odgovaramo u roku od 24 sata.', en: 'Weekdays 9–17h (CET). We usually respond to email within 24 hours.' },
+  'contact.companyHours': { sr: 'Radnim danima 9-17h (CET). Na email obično odgovaramo u roku od 24 sata.', en: 'Weekdays 9-17h (CET). We usually respond to email within 24 hours.' },
   'contact.whatToSend': { sr: 'Šta da pošalješ u poruci', en: 'What to include in your message' },
   'contact.msg.payment': { sr: '• Problem sa uplatom: email naloga, tip uplate (kartica/kripto) i vreme transakcije.', en: '• Payment issue: account email, payment type (card/crypto), and transaction time.' },
   'contact.msg.rules': { sr: '• Pitanje o pravilima: koji paket koristiš (10K ili 25K) i na kojoj platformi trguješ.', en: '• Rules question: which package you use (10K or 25K) and which platform you trade on.' },
@@ -468,8 +468,8 @@ const translations = {
   },
   'about.mission.title': { sr: 'Naša misija', en: 'Our Mission' },
   'about.mission.description': {
-    sr: 'Naš cilj je jasan – podržati uspešne investitore, smanjiti rizik i ostvariti zajednički rast.',
-    en: 'Our goal is clear – to support successful investors, reduce risk, and achieve mutual growth.'
+    sr: 'Naš cilj je jasan - podržati uspešne investitore, smanjiti rizik i ostvariti zajednički rast.',
+    en: 'Our goal is clear - to support successful investors, reduce risk, and achieve mutual growth.'
   },
   'about.registration': { sr: '📋 Registracioni broj kompanije:', en: '📋 Company Registration Number:' },
   'about.partnershipButton': { sr: '🔗 Saznajte više o našem partnerstvu', en: '🔗 Learn more about our partnership' },

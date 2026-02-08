@@ -105,7 +105,7 @@ const nlTranslations = {
   'login.registerCta': 'Registreren',
   'login.dashboard.see': 'Wat je ziet in het dashboard',
   'login.dashboard.desc':
-    'Overzicht van actieve plannen, risicolimieten en uitbetalingsgeschiedenis – alles op één plek met duidelijke voortgangsmetrics.',
+    'Overzicht van actieve plannen, risicolimieten en uitbetalingsgeschiedenis - alles op één plek met duidelijke voortgangsmetrics.',
   'login.tips.title': 'Korte tips',
   'login.tips.item1': '• Gebruik hetzelfde e‑mailadres dat je bij de aankoop gebruikte.',
   'login.tips.item2': '• Als je je wachtwoord wijzigt, worden alle actieve sessies uitgelogd.',
@@ -267,7 +267,7 @@ const nlTranslations = {
   // Contact (extended)
   'contact.companyDetails': 'Bedrijfsgegevens',
   'contact.companyAddress': 'Bedrijfsnaam LLC\nStraat en nummer, Stad, Land',
-  'contact.companyHours': 'Weekdagen 9–17u (CET). We antwoorden meestal binnen 24 uur per e‑mail.',
+  'contact.companyHours': 'Weekdagen 9-17u (CET). We antwoorden meestal binnen 24 uur per e-mail.',
   'contact.whatToSend': 'Wat je in je bericht moet opnemen',
   'contact.msg.payment': '• Betalingsprobleem: account‑e‑mail, betaalmethode (kaart/crypto) en tijdstip van transactie.',
   'contact.msg.rules': '• Vraag over regels: welk pakket je gebruikt (10K of 25K) en op welk platform je handelt.',

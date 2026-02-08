@@ -36,7 +36,7 @@ export const getMe = async (token) => {
   return res.json();
 };
 
-// Stripe – redirect + on‑site (intent)
+// Stripe - redirect + on-site (intent)
 
 export const createStripeCheckout = async (token, planId, opts) => {
   const url =
@@ -67,7 +67,7 @@ export const createStripeCheckout = async (token, planId, opts) => {
   return res.json(); // checkout: { url }, intent: { clientSecret }
 };
 
-// NOWPayments – crypto
+// NOWPayments - crypto
 
 export const createNowPayment = async (token, planId, payCurrency) => {
   const res = await fetch(`${API_BASE}/payments/now/create`, {
@@ -88,7 +88,7 @@ export const createNowPayment = async (token, planId, payCurrency) => {
   return body;
 };
 
-// NOWPayments – status check
+// NOWPayments - status check
 export const checkNowPaymentStatus = async (paymentId, token) => {
   const authToken = token || (typeof localStorage !== 'undefined' ? localStorage.getItem('token') : null);
   const res = await fetch(`${API_BASE}/payments/now/status/${paymentId}`, {
