@@ -102,7 +102,7 @@ const translations = {
   },
 
   // WhatsApp Call Request
-  'whatsapp.title': { sr: 'Zatraži besplatan WhatsApp poziv', en: 'Request free WhatsApp call' },
+  'whatsapp.title': { sr: 'Zatraži besplatan WhatsApp poziv', en: 'Request free WhatsApp consultation' },
   'whatsapp.description': { sr: 'Unesite broj telefona i mi ćemo vas kontaktirati putem WhatsApp-a', en: 'Enter your phone number and we will contact you via WhatsApp' },
   'whatsapp.placeholder': { sr: '+381...', en: '+...type your number' },
   'whatsapp.submit': { sr: 'Pošalji', en: 'Submit' },

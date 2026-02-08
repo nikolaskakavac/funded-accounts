@@ -13,6 +13,19 @@ const LanguageModal = ({ onLanguageSelected }) => {
     }
   }, []);
 
+  useEffect(() => {
+    // Prevent background scrolling when modal is visible
+    if (isVisible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isVisible]);
+
   const handleLanguageSelect = (lang) => {
     setLang(lang);
     setCurrentLang(lang);
