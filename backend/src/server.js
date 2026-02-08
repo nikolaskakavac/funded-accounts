@@ -55,6 +55,8 @@ app.use((req, res, next) => {
   res.header('X-Content-Type-Options', 'nosniff');
   res.header('X-Frame-Options', 'SAMEORIGIN');
   res.header('Referrer-Policy', 'no-referrer-when-downgrade');
+  res.header('Permissions-Policy', 'interest-cohort=(), geolocation=(), microphone=(), camera=(), payment=(), usb=(), unoptimized-images=(), sync-xhr=()');
+  res.header('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; storage-access-by-user-activation 'self'; upgrade-insecure-requests");
   next();
 });
 
