@@ -10,6 +10,7 @@ import CryptoPaymentPage from './pages/CryptoPaymentPage';
 import Admin from './pages/Admin';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Instruments from './pages/Instruments';
 import Partnerstvo from './pages/Partnerstvo';
 import OnSitePaymentPage from './pages/OnSitePayment';
 import Terms from './pages/Terms';
@@ -99,6 +100,8 @@ const App = () => {
     page = <Partnerstvo navigate={navigate} token={token} onLogout={handleLogout} />;
   } else if (path === '/contact') {
     page = <Contact navigate={navigate} token={token} onLogout={handleLogout} />;
+  } else if (path === '/instruments') {
+    page = <Instruments navigate={navigate} token={token} onLogout={handleLogout} />;
   } else if (path === '/login') {
     page = <Login navigate={navigate} onLogin={handleAuthSuccess} onLogout={handleLogout} />;
   } else if (path === '/register') {

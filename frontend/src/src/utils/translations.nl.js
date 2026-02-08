@@ -450,6 +450,28 @@ const nlTranslations = {
   'success.button.success': 'Dashboard →',
   'success.button.check': 'Controleer status',
   'cancel.section': 'Betaling geannuleerd',
+
+  // Instruments Page
+  'instruments.title': 'Beschikbare Financiële Instrumenten',
+  'instruments.description': 'Trade 1000+ financiële instrumenten waaronder forex, cryptocurrencies, aandelen, indices, grondstoffen en ETF\'s.',
+  'instruments.mostPopular': 'Populairste',
+  'instruments.forex': '💱 Forex / Valutaparen',
+  'instruments.forexDesc': 'Alle grote valutaparen: EUR/USD, GBP/USD, USD/JPY en veel meer met nauwkeurige spreads.',
+  'instruments.indices': '📈 Globale Aandelenmarkt Indices',
+  'instruments.indicesDesc': 'S&P 500, NASDAQ, FTSE 100, DAX 30, Nikkei 225 en alle belangrijke regionale indices.',
+  'instruments.commodities': '🛢 Grondstoffen & Energiebronnen',
+  'instruments.commoditiesDesc': 'Goud, zilver, platina, olie (Brent & WTI), aardgas, koffie, katoen, tarwe en meer.',
+  'instruments.stocks': '🏢 Populaire Aandelen (Globale Aandelen)',
+  'instruments.stocksDesc': 'Apple, Tesla, Amazon, Microsoft, Meta, Google, Netflix, Nike en honderden meer Amerikaanse, Britse en Europese bedrijven.',
+  'instruments.etfs': '📊 ETF\'s / Sectorfondsen',
+  'instruments.etfsDesc': 'Technologie, Schone Energie, Gezondheidszorg, Financiën, Robotica, Biotechnologie, Onroerend goed en meer.',
+  'instruments.crypto': '🪙 Cryptocurrencies',
+  'instruments.cryptoDesc': 'Bitcoin, Ethereum, Litecoin, Ripple, Cardano, Solana en tientallen meer cryptocurrencies.',
+  'instruments.futures': '🔄 Futures & Geavanceerde Contracten',
+  'instruments.futuresDesc': 'Oliefutures, Aandelenindex futures, Grondstoffutures, Valutafutures en meer.',
+  'instruments.other': '🌍 Andere Verhandelbare Markten',
+  'instruments.otherItems': 'Honderden wereldwijd aandelen (VS, Groot‑Brittannië, Europa, Azië), Forex majors, minors en exotische paren (60+), Grondstoffen (metalen, energiebronnen, landbouwproducten), ETF\'s voor thema\'s, sectoren en innovatie, Cryptocurrencies (grote coins + altcoins), Futures op olie, aandelenindices en grondstoffen',
+  'instruments.contact': 'Voor vragen over financiële instrumenten die niet op deze lijst staan, neem contact op met support@arbexfund.com',
 };
 
 export default nlTranslations;

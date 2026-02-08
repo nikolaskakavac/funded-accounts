@@ -559,6 +559,31 @@ const translations = {
   'crypto.copy': { sr: 'Kopiraj adresu', en: 'Copy address' },
   'crypto.payWithBtc': { sr: 'Plati BTC‑om', en: 'Pay with BTC' },
   'crypto.note.activate': { sr: 'Nakon potvrde uplate na mreži, paket se automatski aktivira na tvom nalogu. Potvrda može da potraje nekoliko minuta u zavisnosti od mreže.', en: 'After network confirmation, the package activates automatically on your account. Confirmation can take a few minutes depending on the network.' },
+
+  // Instruments Page
+  'instruments.title': { sr: 'Dostupni Finansijski Instrumenti', en: 'Available Financial Instruments' },
+  'instruments.description': { sr: 'Traduj preko 1000+ finansijskih instrumenata, uključujući forex, kripto, akcije, indekse, robu i ETF-e.', en: 'Trade 1000+ financial instruments including forex, cryptocurrencies, stocks, indices, commodities, and ETFs.' },
+  'instruments.mostPopular': { sr: 'Najpopularniji', en: 'Most Popular' },
+  'instruments.forex': { sr: '💱 Forex / Valutni parovi', en: '💱 Forex / Currency Pairs' },
+  'instruments.forexDesc': { sr: 'Svi glatki parovi eura, dollar, funte, jena i drugih valuta. Ukupno 60+ parova sa niskim spredovima.', en: 'All major currency pairs: EUR/USD, GBP/USD, USD/JPY, and dozens more with tight spreads.' },
+  'instruments.indices': { sr: '📈 Globalni Indeksi Tržišta', en: '📈 Global Stock Market Indices' },
+  'instruments.indicesDesc': { sr: 'S&P 500, NASDAQ, FTSE, DAX, Nikkei i svi važni regionalni indeksi sa živim cijenama.', en: 'S&P 500, NASDAQ, FTSE 100, DAX 30, Nikkei 225 and all major regional indices.' },
+  'instruments.commodities': { sr: '🛢 Robe & Energenti', en: '🛢 Commodities & Energies' },
+  'instruments.commoditiesDesc': { sr: 'Zlato, srebro, platina, nafta, prirodni gas i druge industrijske robe - sve na jednom mjestu.', en: 'Gold, Silver, Platinum, Oil (Brent & WTI), Natural Gas, Coffee, Cotton, Wheat, Sugar and more.' },
+  'instruments.stocks': { sr: '🏢 Popularne Akcije (Globalne)', en: '🏢 Popular Stocks (Global Shares)' },
+  'instruments.stocksDesc': { sr: 'Apple, Tesla, Amazon, Microsoft, Meta, Google, Netflix, Nike - stotine US, UK i European kompanija.', en: 'Apple, Tesla, Amazon, Microsoft, Meta, Google, Netflix, Nike and hundreds more US, UK, European companies.' },
+  'instruments.etfs': { sr: '📊 ETF-ovi / Sektor Fondovi', en: '📊 ETFs / Sector Funds' },
+  'instruments.etfsDesc': { sr: 'Tehnologi, čista energija, zdravstvo, finansije, robotika, biotehnologija, nekretnine i više.', en: 'Technology, Clean Energy, Healthcare, Financial, Commodity, Robotics, Biotech, Real Estate, and more.' },
+  'instruments.crypto': { sr: '🪙 Kriptovalute', en: '🪙 Cryptocurrencies' },
+  'instruments.cryptoDesc': { sr: 'Bitcoin, Ethereum, Litecoin, Ripple i 50+ altcoina sa niskom latencijom.', en: 'Bitcoin, Ethereum, Litecoin, Ripple, Cardano, Solana and dozens more cryptocurrencies.' },
+  'instruments.futures': { sr: '🔄 Futures & Napredni Ugovori', en: '🔄 Futures & Advanced Contracts' },
+  'instruments.futuresDesc': { sr: 'Naftni, akcijski indeksi, robni i valutni futures - sve MT5 opcije.', en: 'Oil futures, Stock index futures, Commodity futures, Currency futures and more.' },
+  'instruments.other': { sr: '🌍 Ostala Tržišta', en: '🌍 Other Tradable Markets' },
+  'instruments.otherItems': {
+    sr: 'Stotine globalnih akcija (SAD, UK, Evropa, Azija), Forex major, minor i egzotični parovi (60+), Robe (metali, energenti, poljoprivредни proizvodi), ETF-ovi za teme, sektore i inovacije, Kriptovalute (glavne kovanice + altcoini), Futures na naftu, akcijske indekse i robu',
+    en: 'Hundreds of global shares (US, UK, Europe, Asia), Forex majors, minors, and exotic pairs (60+ total), Commodities (metals, energies, agricultural products), ETFs for themes, sectors, innovation, and global markets, Cryptocurrencies (major coins + altcoins), Futures on oil, stock indexes, and commodities'
+  },
+  'instruments.contact': { sr: 'Za bilo koja pitanja o finansijskom instrumentu koji nije na ovoj listi, kontaktirajte nas na support@arbexfund.com', en: 'For any inquiry regarding a financial instrument not on this list, please contact us at support@arbexfund.com' },
 };
 
 export function t(key) {

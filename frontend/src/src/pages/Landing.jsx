@@ -184,13 +184,16 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
               )}
             </p>
             <div className="mt-4">
-              <a
-                href="#"
-                className="inline-flex items-center gap-2 rounded-full bg-emerald-500/20 border border-emerald-400 px-4 py-2 text-[14px] font-sans font-semibold tracking-[0.08em] text-emerald-300 hover:bg-emerald-500/30 transition-colors"
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/instruments');
+                }}
+                className="inline-flex items-center gap-2 rounded-full bg-emerald-500/20 border border-emerald-400 px-4 py-2 text-[14px] font-sans font-semibold tracking-[0.08em] text-emerald-300 hover:bg-emerald-500/30 transition-colors cursor-pointer"
               >
                 {t('howItWorks.instruments')}
                 <span>→</span>
-              </a>
+              </button>
             </div>
           </section>
 
@@ -265,10 +268,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                          hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
                          hover:border-emerald-400/70 hover:-rotate-1"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-                  
-                </div>
+              <div className="flex items-center justify-end mb-4">
                 <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
                   1
                 </div>
@@ -290,10 +290,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                          hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
                          hover:border-emerald-400/70 hover:-rotate-1"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-                  
-                </div>
+              <div className="flex items-center justify-end mb-4">
                 <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
                   2
                 </div>
@@ -315,10 +312,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                          hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
                          hover:border-emerald-400/70 hover:-rotate-1"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-                  
-                </div>
+              <div className="flex items-center justify-end mb-4">
                 <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
                   3
                 </div>
@@ -350,9 +344,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                          hover:border-emerald-400/70 hover:-rotate-1"
             >
               <div className="flex items-center justify-center mb-4">
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-
-                </div>
+                <span className="font-display text-[14px] font-extrabold text-emerald-300">AVERAGE</span>
               </div>
               <h3 className="text-center font-display text-[17px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-3">
                 {t('stats.avgProfit.title')}
@@ -372,8 +364,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                          hover:border-emerald-400/70 hover:rotate-1"
             >
               <div className="flex items-center justify-center mb-4">
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-[22px]">
-                </div>
+                <span className="font-display text-[14px] font-extrabold text-emerald-300">SUCCESS</span>
               </div>
               <h3 className="text-center font-display text-[17px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-1">
                 {t('stats.successRate.title')}
