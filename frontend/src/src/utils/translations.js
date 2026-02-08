@@ -204,7 +204,7 @@ const translations = {
   'contact.title': { sr: 'Javi se timu', en: 'Contact the team' },
   'contact.subtitle': {
     sr: 'Pitanja o nalozima, plaćanju ili saradnji – piši direktno timu i dobićeš odgovor u kratkom roku.',
-    en: 'Questions about accounts, payments, or collaboration—write directly to the team for a quick reply.'
+    en: 'Questions about accounts, payments, or affiliate collaborations - write directly to our team for a quick response.'
   },
   'contact.back': { sr: 'Nazad na sajt', en: 'Back to site' },
   'contact.support.title': { sr: 'Podrška za korisnike', en: 'Customer support' },
@@ -223,7 +223,7 @@ const translations = {
 
   // Contact Form
   'contactForm.title': { sr: 'Pošalji nam poruku', en: 'Send us a message' },
-  'contactForm.subtitle': { sr: 'Popuni formu ispod i odgovorićemo u roku od 24 sata.', en: 'Fill out the form below and we\'ll respond within 48 hours.' },
+  'contactForm.subtitle': { sr: 'Popuni formu ispod i odgovoriћemo u roku od 48 sati.', en: 'Fill out the form below and we\'ll respond within 48 hours.' },
   'contactForm.name': { sr: 'Ime i prezime', en: 'Full name' },
   'contactForm.email': { sr: 'Email adresa', en: 'Email address' },
   'contactForm.subject': { sr: 'Naslov poruke', en: 'Message subject' },
