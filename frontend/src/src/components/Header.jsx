@@ -49,7 +49,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
         <div className="flex items-center gap-4 sm:gap-5 text-xs sm:text-sm font-sans">
           <div className="relative">
             <button
-              className="inline-flex items-center gap-1.5 rounded-full border border-emerald-600/60 px-3 py-1.5 text-[11px] sm:text-xs font-sans uppercase tracking-[0.16em] text-slate-300 hover:bg-emerald-500/10 bg-black/40"
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-600/60 px-5 py-2.5 text-[11px] sm:text-xs font-sans uppercase tracking-[0.16em] text-slate-300 hover:bg-emerald-500/10 bg-black/40"
               onClick={() => setLangMenuOpen((o) => !o)}
             >
               {lang === 'nl' ? (
@@ -69,14 +69,21 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                     setLangState('en');
                     setLangMenuOpen(false);
                   }}
-                  className={`flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-[11px] sm:text-xs transition-all duration-200 ${
+                  className={`flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 text-[11px] sm:text-xs transition-all duration-200 ${
                     lang === 'en'
                       ? 'bg-emerald-500/20 text-emerald-200'
                       : 'text-slate-300 hover:bg-emerald-500/10'
                   }`}
                 >
-                  <img src="/img/gbp.avif" alt="EN" className="w-6 h-4 object-cover rounded-sm" />
-                  <span>English</span>
+                  <div className="flex items-center gap-2">
+                    <img src="/img/gbp.avif" alt="EN" className="w-6 h-4 object-cover rounded-sm" />
+                    <span>English</span>
+                  </div>
+                  {lang === 'en' && (
+                    <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  )}
                 </button>
                 <button
                   onClick={() => {
@@ -84,14 +91,21 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                     setLangState('nl');
                     setLangMenuOpen(false);
                   }}
-                  className={`flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-[11px] sm:text-xs transition-all duration-200 ${
+                  className={`flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 text-[11px] sm:text-xs transition-all duration-200 ${
                     lang === 'nl'
                       ? 'bg-emerald-500/20 text-emerald-200'
                       : 'text-slate-300 hover:bg-emerald-500/10'
                   }`}
                 >
-                  <img src="/img/ned.avif" alt="NL" className="w-6 h-4 object-cover rounded-sm" />
-                  <span>Nederlands</span>
+                  <div className="flex items-center gap-2">
+                    <img src="/img/ned.avif" alt="NL" className="w-6 h-4 object-cover rounded-sm" />
+                    <span>Nederlands</span>
+                  </div>
+                  {lang === 'nl' && (
+                    <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  )}
                 </button>
               </div>
             )}
