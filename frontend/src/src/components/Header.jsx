@@ -49,13 +49,17 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
         <div className="flex items-center gap-4 sm:gap-5 text-xs sm:text-sm font-sans">
           <div className="relative">
             <button
-              className="inline-flex items-center gap-1 rounded-full border border-emerald-600/60 px-2 py-1 text-[11px] sm:text-xs font-sans uppercase tracking-[0.16em] text-slate-300 hover:bg-emerald-500/10 bg-black/40"
+              className="inline-flex items-center gap-1.5 rounded-full border border-emerald-600/60 px-2 py-1 text-[11px] sm:text-xs font-sans uppercase tracking-[0.16em] text-slate-300 hover:bg-emerald-500/10 bg-black/40"
               onClick={() => setLangMenuOpen((o) => !o)}
             >
-              <span>{lang === 'nl' ? 'NL' : 'EN'}</span>
+              {lang === 'nl' ? (
+                <img src="/img/ned.avif" alt="NL" className="w-5 h-3.5 object-cover rounded-sm" />
+              ) : (
+                <img src="/img/gbp.avif" alt="EN" className="w-5 h-3.5 object-cover rounded-sm" />
+              )}
             </button>
             {langMenuOpen && (
-              <div className="absolute right-0 mt-1 w-32 rounded-xl border border-emerald-500/30 bg-black p-1 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200 z-50">
+              <div className="absolute right-0 mt-1 w-36 rounded-xl border border-emerald-500/30 bg-black p-1 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200 z-50">
                 <button
                   onClick={() => {
                     setLang('en');
@@ -68,6 +72,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                       : 'text-slate-300 hover:bg-emerald-500/10'
                   }`}
                 >
+                  <img src="/img/gbp.avif" alt="EN" className="w-6 h-4 object-cover rounded-sm" />
                   <span>English</span>
                 </button>
                 <button
@@ -82,6 +87,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                       : 'text-slate-300 hover:bg-emerald-500/10'
                   }`}
                 >
+                  <img src="/img/ned.avif" alt="NL" className="w-6 h-4 object-cover rounded-sm" />
                   <span>Nederlands</span>
                 </button>
               </div>
