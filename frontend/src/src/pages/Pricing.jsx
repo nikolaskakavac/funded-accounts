@@ -105,7 +105,7 @@ const Pricing = ({ navigate, token, onLogout }) => {
                     {selectedPlan.balance.toLocaleString()}€ kapitala
                   </p>
                   <p className="text-sm font-sans text-emerald-300/90 mt-3 flex items-center justify-center gap-2">
-                    <span>🎓</span> {lang === 'sr' ? 'Video obuka dolazi uz nalog' : lang === 'nl' ? 'Video training inbegrepen' : 'Video training included'}
+                    <span>🎓</span> {lang === 'nl' ? 'Video training inbegrepen' : 'Video training included'}
                   </p>
                 </div>
 
@@ -166,7 +166,7 @@ const PlanCard = ({
         <div className="rounded-xl border border-emerald-600/50 bg-emerald-500/10 p-3 text-center">
           <p className="text-xs font-sans font-semibold text-emerald-200 flex items-center justify-center gap-1.5">
             <span>🎓</span>
-            <span>{lang === 'sr' ? 'Video obuka dolazi uz nalog' : lang === 'nl' ? 'Video training inbegrepen' : 'Video training included'}</span>
+            <span>{lang === 'nl' ? 'Video training inbegrepen' : 'Video training included'}</span>
           </p>
         </div>
         {token ? (

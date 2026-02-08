@@ -100,15 +100,11 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                               opacity-0 translate-y-3 animate-[fadeUp_0.6s_ease-out_forwards]"
                   style={{ fontFamily: "'Room Black', sans-serif" }}
                 >
-                  {lang === 'sr' ? (
-                    <>
-                      Uloži sa<br />našim kapitalom.
-                    </>
-                  ) : (
+                  {
                     <>
                       Invest with<br />our capital.
                     </>
-                  )}
+                  }
                 </h1>
 
                 <h2
@@ -510,7 +506,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     {landingPlans[0].price}€
                   </div>
                   <p className="text-xs font-sans text-emerald-300/80 mt-2">
-                    🎓 {lang === 'sr' ? 'Video obuka dolazi uz nalog' : lang === 'nl' ? 'Video training inbegrepen' : 'Video training included'}
+                  {lang === 'nl' ? 'Video training inbegrepen' : 'Video training included'}
                   </p>
                 </div>
                 <div className="mb-3 flex items-center justify-center gap-2 sm:gap-3">
@@ -646,7 +642,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     onClick={() => navigate(`/pay-card/${selectedPlan.id}`)}
                     className="w-full rounded-2xl bg-emerald-500 py-3 text-sm font-sans font-semibold uppercase tracking-[0.18em] text-black shadow-[0_0_20px_rgba(16,185,129,0.7)] transition-all duration-200 disabled:opacity-60 hover:-translate-y-[1px] hover:bg-emerald-400"
                   >
-                    {lang === 'sr' ? 'Plati karticom' : lang === 'nl' ? 'Betaal met kaart' : 'Pay by card'}
+                    {lang === 'nl' ? 'Betaal met kaart' : 'Pay by card'}
                   </button>
                 </div>
 
@@ -655,7 +651,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                     onClick={() => setOnSitePlanId(null)}
                     className="text-sm text-slate-400 hover:underline"
                   >
-                    {lang === 'sr' ? 'Otkaži' : lang === 'nl' ? 'Annuleren' : 'Cancel'}
+                    {lang === 'nl' ? 'Annuleren' : 'Cancel'}
                   </button>
                 </div>
               </div>

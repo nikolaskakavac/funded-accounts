@@ -156,7 +156,7 @@ const ContactForm = () => {
                 ? 'border-red-500/70 focus:border-red-400'
                 : 'border-emerald-700/50 focus:border-emerald-500/80 focus:ring-1 focus:ring-emerald-500/30'
             }`}
-            placeholder={lang === 'sr' ? 'Marko Marković' : lang === 'nl' ? 'Jan Jansen' : 'John Doe'}
+            placeholder={lang === 'nl' ? 'Jan Jansen' : 'John Doe'}
           />
           {errors.name && (
             <p className="mt-1 font-sans text-[12px] text-red-400">{errors.name}</p>
