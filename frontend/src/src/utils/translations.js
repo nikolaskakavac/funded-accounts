@@ -145,7 +145,7 @@ const translations = {
   // Auth - Login
   'login.back': { sr: 'Nazad na sajt', en: 'Back to site' },
   'login.clientAccess': { sr: 'Klijent pristup', en: 'Client access' },
-  'login.title': { sr: 'Prijava na dashboard', en: 'Log in to dashboard' },
+  'login.title': { sr: 'Prijava na dashboard', en: 'LOG IN TO DASHBOARD' },
   'login.subtitle': {
     sr: 'Unesi email i lozinku da vidiš svoj funded nalog, aktivan plan i istoriju isplata na jednom mestu.',
     en: 'Enter your email and password to access your account, see the active plan and track payout history all in one place.'
@@ -153,9 +153,9 @@ const translations = {
   'login.email': { sr: 'Email', en: 'Email' },
   'login.password': { sr: 'Lozinka', en: 'Password' },
   'login.passwordPlaceholder': { sr: 'Vaša lozinka', en: 'Your password' },
-  'login.submit': { sr: 'Prijava', en: 'Login' },
+  'login.submit': { sr: 'Prijava', en: 'Log in' },
   'login.noAccount': { sr: 'Nemate nalog?', en: 'Don\'t have an account?' },
-  'login.registerCta': { sr: 'Registrujte se', en: 'Register' },
+  'login.registerCta': { sr: 'Registrujte se', en: 'Register now' },
   'login.dashboard.see': { sr: 'Šta vidiš u dashboard‑u', en: 'What you see in the dashboard' },
   'login.dashboard.desc': {
     sr: 'Pregled aktivnih planova, limite rizika i istoriju isplatu - sve na jednom mestu, uz jasne metrike napretka.',
@@ -169,7 +169,7 @@ const translations = {
   // Auth - Register
   'register.back': { sr: 'Nazad na sajt', en: 'Back to site' },
   'register.create': { sr: 'Kreiranje naloga', en: 'Create account' },
-  'register.title': { sr: 'Napravi pristup funded nalogu', en: 'Create access to your funded account' },
+  'register.title': { sr: 'Napravi pristup funded nalogu', en: 'CREATE ACCESS TO YOUR ACCOUNT' },
   'register.subtitle': {
     sr: 'Unesi email koji redovno proveravaš. Ovaj login koristiš za pristup dashboard‑u, praćenje plana i isplata.',
     en: 'Enter an email you check regularly. You\'ll use this login for dashboard access, plan tracking, and payouts.'
@@ -185,10 +185,10 @@ const translations = {
   'register.submit': { sr: 'Napravi nalog', en: 'Create account' },
   'register.terms': {
     sr: 'Kreiranjem naloga prihvataš osnovna pravila rizika i isplata koja će biti prikazana u tvom dashboard‑u.',
-    en: 'By creating an account, you accept the basic risk and payout rules that will be shown in your dashboard.'
+    en: ''
   },
   'register.haveAccount': { sr: 'Već imaš nalog?', en: 'Already have an account?' },
-  'register.loginCta': { sr: 'Prijava', en: 'Login' },
+  'register.loginCta': { sr: 'Prijava', en: 'Log in' },
   'register.after.title': { sr: 'Posle registracije', en: 'After registration' },
   'register.after.desc': {
     sr: 'Nakon registracije možeš odmah da se prijaviš, izabereš plan i završiš jednokratnu uplatu karticom ili kriptom. Status naloga pratiš kroz klijent dashboard.',
@@ -324,7 +324,7 @@ const translations = {
   // Auth - Login
   'login.back': { sr: 'Nazad na sajt', en: 'Back to site' },
   'login.clientAccess': { sr: 'Klijent pristup', en: 'Client access' },
-  'login.title': { sr: 'Prijava na dashboard', en: 'Login to dashboard' },
+  'login.title': { sr: 'Prijava na dashboard', en: 'LOG IN TO DASHBOARD' },
   'login.subtitle': {
     sr: 'Unesi email i lozinku da vidiš svoj funded nalog, aktivan plan i istoriju isplata na jednom mestu.',
     en: 'Enter email and password to view your funded account, active plan, and payout history in one place.'
@@ -332,9 +332,9 @@ const translations = {
   'login.email': { sr: 'Email', en: 'Email' },
   'login.password': { sr: 'Lozinka', en: 'Password' },
   'login.passwordPlaceholder': { sr: 'Vaša lozinka', en: 'Your password' },
-  'login.submit': { sr: 'Prijava', en: 'Login' },
+  'login.submit': { sr: 'Prijava', en: 'Log in' },
   'login.noAccount': { sr: 'Nemate nalog?', en: "Don't have an account?" },
-  'login.registerCta': { sr: 'Registrujte se', en: 'Register' },
+  'login.registerCta': { sr: 'Registrujte se', en: 'Register now' },
   'login.dashboard.see': { sr: 'Šta vidiš u dashboard‑u', en: 'What you see in the dashboard' },
   'login.dashboard.desc': {
     sr: 'Pregled aktivnih planova, limite rizika i istoriju isplata - sve na jednom mestu, uz jasne metrike napretka.',
@@ -348,7 +348,7 @@ const translations = {
   // Auth - Register
   'register.back': { sr: 'Nazad na sajt', en: 'Back to site' },
   'register.create': { sr: 'Kreiranje naloga', en: 'Create account' },
-  'register.title': { sr: 'Napravi pristup funded nalogu', en: 'Create access to your funded account' },
+  'register.title': { sr: 'Napravi pristup funded nalogu', en: 'CREATE ACCESS TO YOUR ACCOUNT' },
   'register.subtitle': {
     sr: 'Unesi email koji redovno proveravaš. Ovaj login koristiš za pristup dashboard‑u, praćenje plana i isplata.',
     en: "Enter an email you check regularly. You'll use this login for dashboard access, plan tracking, and payouts."
@@ -364,10 +364,10 @@ const translations = {
   'register.submit': { sr: 'Napravi nalog', en: 'Create account' },
   'register.terms': {
     sr: 'Kreiranjem naloga prihvataš osnovna pravila rizika i isplata koja će biti prikazana u tvom dashboard‑u.',
-    en: 'By creating an account, you accept the basic risk and payout rules that will be shown in your dashboard.'
+    en: ''
   },
   'register.haveAccount': { sr: 'Već imaš nalog?', en: 'Already have an account?' },
-  'register.loginCta': { sr: 'Prijava', en: 'Login' },
+  'register.loginCta': { sr: 'Prijava', en: 'Log in' },
   'register.after.title': { sr: 'Posle registracije', en: 'After registration' },
   'register.after.desc': {
     sr: 'Nakon registracije možeš odmah da se prijaviš, izabereš plan i završiš jednokratnu uplatu karticom ili kriptom. Status naloga pratiš kroz klijent dashboard.',

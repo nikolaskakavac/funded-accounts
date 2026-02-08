@@ -94,7 +94,7 @@ const nlTranslations = {
   // Auth - Login
   'login.back': 'Terug naar de site',
   'login.clientAccess': 'Klanttoegang',
-  'login.title': 'Inloggen op dashboard',
+  'login.title': 'INLOGGEN OP DASHBOARD',
   'login.subtitle':
     'Voer e‑mail en wachtwoord in om je funded‑account, actieve plan en uitbetalingsgeschiedenis op één plek te zien.',
   'login.email': 'E‑mail',
@@ -102,7 +102,7 @@ const nlTranslations = {
   'login.passwordPlaceholder': 'Je wachtwoord',
   'login.submit': 'Inloggen',
   'login.noAccount': 'Heb je geen account?',
-  'login.registerCta': 'Registreren',
+  'login.registerCta': 'Nu registreren',
   'login.dashboard.see': 'Wat je ziet in het dashboard',
   'login.dashboard.desc':
     'Overzicht van actieve plannen, risicolimieten en uitbetalingsgeschiedenis - alles op één plek met duidelijke voortgangsmetrics.',
@@ -114,7 +114,7 @@ const nlTranslations = {
   // Auth - Register
   'register.back': 'Terug naar de site',
   'register.create': 'Account aanmaken',
-  'register.title': 'Maak toegang tot je funded‑account',
+  'register.title': 'MAAK TOEGANG TOT JE FUNDED‑ACCOUNT',
   'register.subtitle':
     'Vul een e‑mail in die je regelmatig checkt. Deze login gebruik je voor dashboard‑toegang, plantracking en uitbetalingen.',
   'register.firstName': 'Voornaam',
@@ -126,8 +126,7 @@ const nlTranslations = {
   'register.password': 'Wachtwoord',
   'register.passwordPlaceholder': 'Min. 8 tekens',
   'register.submit': 'Account aanmaken',
-  'register.terms':
-    'Door een account aan te maken accepteer je de basisregels voor risico en uitbetalingen die in je dashboard worden getoond.',
+  'register.terms': '',
   'register.haveAccount': 'Heb je al een account?',
   'register.loginCta': 'Inloggen',
   'register.after.title': 'Na registratie',
