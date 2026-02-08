@@ -192,7 +192,9 @@ const nlTranslations = {
 
   // About
   'about.title': 'Over ons',
-  'about.subtitle': 'Een betrouwbare partner voor crypto‑investeringen.',
+  'about.subtitle': 'Een betrouwbare partner voor crypto-investeringen.',
+  'about.whoWeAre.title': 'Wie zijn wij?',
+  'about.whoWeAre.description': 'Arbex Fund is opgericht door Kalo Bagijn met de missie om de tradingbusiness te revolutioneren door middel van innovatieve tools en benaderingen. Ons doel is het mogelijk maken voor briljante investeerders om toegang te krijgen tot het kapitaal en de middelen die nodig zijn voor wereldwijd succes, door een gemeenschap van resultaatgericht professionals op te bouwen.',
   'about.origin.title': 'Onze oorsprong',
   'about.origin.description': 'Gebaseerd op transparantie, prestaties en langetermijnvisie.',
   'about.regional.title': 'Regionale focus',

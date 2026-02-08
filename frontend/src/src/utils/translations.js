@@ -446,6 +446,11 @@ const translations = {
   // About Page
   'about.title': { sr: '🌍 O nama', en: '🌍 About Us' },
   'about.subtitle': { sr: 'Povezujemo globalni kapital sa lokalnim potencijalom', en: 'Connecting global capital with local potential' },
+  'about.whoWeAre.title': { sr: '👥 Ko smo mi?', en: '👥 Who We Are' },
+  'about.whoWeAre.description': {
+    sr: 'Arbex Fund je osnovan od strane Kalo Bagijn-a sa ciljem da donese revoluciju u trading industriji kroz inovativne alate i pristupe. Naša misija je da omogućimo briljantnim investitorima pristup kapitalu i sredstvima potrebnim za globalni uspeh, razvojem zajednice stručnjaka koji se fokusiraju na rezultate.',
+    en: 'Arbex Fund was founded by Kalo Bagijn with the mission to revolutionize the trading industry through innovative tools and approaches. Our goal is to enable brilliant investors to access the capital and resources needed for global success by building a community of results-focused professionals.'
+  },
   'about.origin.title': { sr: '🏢 Naše poreklo', en: '🏢 Our Origin' },
   'about.origin.description': {
     sr: 'Naša kompanija deo je međunarodne korporacije Norvestor Equiti Ltd., jednog od vodećih kapitalnih fondova specijalizovanih za investicije u kriptovalute i obveznice.',

@@ -23,6 +23,16 @@ const About = ({ navigate, token, onLogout }) => {
 
           {/* Glavni opis */}
           <div className="mt-8 space-y-6 max-w-4xl">
+            {/* Ko smo mi */}
+            <div className="rounded-2xl border border-emerald-800/70 bg-black/80 p-6 shadow-lg shadow-emerald-500/20">
+              <p className="text-emerald-200 font-semibold mb-4 text-[20px] sm:text-[21px] flex items-center gap-2">
+                {t('about.whoWeAre.title', lang)}
+              </p>
+              <p className="font-sans text-[18px] sm:text-[19px] text-emerald-100/90 leading-relaxed">
+                {t('about.whoWeAre.description', lang)}
+              </p>
+            </div>
+
             {/* Naše poreklo */}
             <div className="rounded-2xl border border-emerald-800/70 bg-black/80 p-6 shadow-lg shadow-emerald-500/20">
               <p className="text-emerald-200 font-semibold mb-4 text-[20px] sm:text-[21px] flex items-center gap-2">
