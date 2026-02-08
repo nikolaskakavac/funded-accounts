@@ -75,21 +75,19 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                     setLangState('en');
                     setLangMenuOpen(false);
                   }}
-                  className={`flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 text-[11px] sm:text-xs transition-all duration-200 ${
+                  className={`flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-[11px] sm:text-xs transition-all duration-200 ${
                     lang === 'en'
                       ? 'bg-emerald-500/20 text-emerald-200'
                       : 'text-slate-300 hover:bg-emerald-500/10'
                   }`}
                 >
-                  <div className="flex items-center gap-2">
-                    <img src="/img/gbp.avif" alt="EN" className="w-6 h-4 object-cover rounded-sm" />
-                    <span>English</span>
-                  </div>
                   {lang === 'en' && (
                     <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   )}
+                  <img src="/img/gbp.avif" alt="EN" className="w-6 h-4 object-cover rounded-sm" />
+                  <span>English</span>
                 </button>
                 <button
                   onClick={() => {
@@ -97,21 +95,19 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                     setLangState('nl');
                     setLangMenuOpen(false);
                   }}
-                  className={`flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 text-[11px] sm:text-xs transition-all duration-200 ${
+                  className={`flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-[11px] sm:text-xs transition-all duration-200 ${
                     lang === 'nl'
                       ? 'bg-emerald-500/20 text-emerald-200'
                       : 'text-slate-300 hover:bg-emerald-500/10'
                   }`}
                 >
-                  <div className="flex items-center gap-2">
-                    <img src="/img/ned.avif" alt="NL" className="w-6 h-4 object-cover rounded-sm" />
-                    <span>Nederlands</span>
-                  </div>
                   {lang === 'nl' && (
                     <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   )}
+                  <img src="/img/ned.avif" alt="NL" className="w-6 h-4 object-cover rounded-sm" />
+                  <span>Nederlands</span>
                 </button>
               </div>
             )}
