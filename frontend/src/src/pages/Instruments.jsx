@@ -61,19 +61,6 @@ export default function Instruments({ navigate, token, onLogout }) {
       <Header navigate={navigate} token={token} onLogout={onLogout} showBackLink={true} />
       
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <p className="font-display text-[12px] uppercase tracking-[0.26em] text-emerald-400 mb-3">
-            {t('instruments.title', lang).split(' ')[0]}
-          </p>
-          <h1 className="font-display text-[32px] sm:text-[40px] font-extrabold tracking-[0.12em] uppercase text-slate-50 mb-4">
-            {t('instruments.title', lang)}
-          </h1>
-          <p className="font-sans text-[16px] text-emerald-100/90 max-w-2xl mx-auto">
-            {t('instruments.description', lang)}
-          </p>
-        </div>
-
         {/* Most Popular Section */}
         <section className="mb-10 rounded-3xl border border-emerald-800/60 bg-gradient-to-r from-[#02110b] via-black to-[#02110b] p-6 sm:p-8">
           <h2 className="font-display text-[20px] sm:text-[24px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-6">
