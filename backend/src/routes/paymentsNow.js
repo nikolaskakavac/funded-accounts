@@ -130,8 +130,17 @@ router.post('/create', authMiddleware, async (req, res) => {
       status: 'pending',
     });
 
-    // Format crypto amount with proper decimals (up to 8 decimal places for crypto precision)
-    const roundedPayAmount = payAmount ? parseFloat(payAmount.toFixed(8)) : null;
+    // Format crypto amount: ETH keeps decimals, others are rounded to integer
+    let roundedPayAmount = null;
+    if (payAmount) {
+      if (payCurrency === 'eth') {
+        // ETH: preserve up to 8 decimal places
+        roundedPayAmount = parseFloat(payAmount.toFixed(8));
+      } else {
+        // USDT, USDC: round to nearest integer
+        roundedPayAmount = Math.round(payAmount);
+      }
+    }
     const eurAmount = price; // EUR amount (from planPricing)
 
     res.json({
