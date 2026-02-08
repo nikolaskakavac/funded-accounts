@@ -174,9 +174,9 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   Kada kupiš nalog na našem websajtu, dobijaš log in podatke od novog trading naloga koji će biti popunjen pravim kapitalom. Svaki kupac dobija svoj, zaseban nalog.
                   <br />
                   <br />
-                  <span className="font-semibold text-white">Tvoj zadatak je jasan:</span>{' '}
+                  <span className="text-white">Tvoj zadatak je jasan:</span>{' '}
                   ostvari profit investirajući u zlato ili neku od{' '}
-                  <span className="font-semibold text-white">kripto-valuta</span> sa našim novcem.
+                  <span className="text-white">kripto-valuta</span> sa našim novcem.
                   Ti se fokusiraš isključivo na investiranje.
                 </>
               ) : (
@@ -184,7 +184,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   When you become our client, you will receive login information for a newly created trading account that will be filled with real capital. Each customer is provided with their own separate account.
                   <br />
                   <br />
-                  <span className="font-semibold text-white">Your task is clear:</span>{' '}
+                  <span className="text-white">Your task is clear:</span>{' '}
                   Achieve a profit by investing in gold, crypto or any other financial instrument available inside our trading platform.
                   <br />
                   <br />
@@ -283,10 +283,10 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   1
                 </div>
               </div>
-              <h3 className="font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
+              <h3 className="font-display text-[19px] tracking-[0.08em] uppercase text-emerald-300 mb-2">
                 {t('whatYouGet.capital.title')}
               </h3>
-              <p className="font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
+              <p className="font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed tracking-[0.01em]">
                 {t('whatYouGet.capital.description')}
               </p>
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
@@ -305,10 +305,10 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   2
                 </div>
               </div>
-              <h3 className="font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
+              <h3 className="font-display text-[19px] tracking-[0.08em] uppercase text-emerald-300 mb-2">
                 {t('whatYouGet.platform.title')}
               </h3>
-              <p className="font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
+              <p className="font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed tracking-[0.01em]">
                 {t('whatYouGet.platform.description')}
               </p>
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
@@ -327,10 +327,10 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                   3
                 </div>
               </div>
-              <h3 className="font-display text-[19px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-2">
+              <h3 className="font-display text-[19px] tracking-[0.08em] uppercase text-emerald-300 mb-2">
                 {t('whatYouGet.profit.title')}
               </h3>
-              <p className="font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed font-medium tracking-[0.01em]">
+              <p className="font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed tracking-[0.01em]">
                 {t('whatYouGet.profit.description')}
               </p>
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
@@ -353,7 +353,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                          hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
                          hover:border-emerald-400/70 hover:-rotate-1"
             >
-              <h3 className="text-center font-display text-[17px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-3">
+              <h3 className="text-center font-display text-[17px] tracking-[0.08em] uppercase text-emerald-300 mb-3">
                 {t('stats.avgProfit.title')}
               </h3>
               <p className="text-center font-sans text-[32px] sm:text-[40px] text-emerald-400 leading-none">
@@ -370,7 +370,7 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
                          hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
                          hover:border-emerald-400/70 hover:rotate-1"
             >
-              <h3 className="text-center font-display text-[17px] font-extrabold tracking-[0.08em] uppercase text-emerald-300 mb-1">
+              <h3 className="text-center font-display text-[17px] tracking-[0.08em] uppercase text-emerald-300 mb-1">
                 {t('stats.successRate.title')}
               </h3>
               <p className="text-center font-sans text-[12px] text-slate-400 mb-3">
