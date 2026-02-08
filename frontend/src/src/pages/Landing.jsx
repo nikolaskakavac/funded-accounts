@@ -156,29 +156,36 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
         <div className="max-w-5xl mx-auto">
           <section id="how-it-works" className="mt-0.5 sm:mt-1 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
             <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
-              {t('howItWorks.title')}
+              Investing, Simplified
             </h2>
 
             <p className="font-sans text-[20px] sm:text-[22px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-6">
               {lang === 'sr' ? (
                 <>
-                  <span className="font-semibold text-white">Investiranje, pojednostavljeno.</span>
-                  <br />
-                  <br />
                   Nudimo platformu gde osobe mogu iskusiti pravo investiranje bez potrebe da donose svoj kapitala. Svaki učesnik upravlja živim trading nalogom koji je financiran od nas, koristeći vlastitu strategiju i prosudbu.
                   <br />
                   <br />
                   Naš cilj je da profesionalno investiranje učinimo dostupnijim - praktičnim, transparentnim i fokusiranim na vaše odluke umesto na vašu početnu sumu.
+                  <br />
+                  <br />
+                  <span className="font-semibold text-white">Tvoj zadatak je jasan:</span>{' '}
+                  ostvari profit investirajući u zlato ili neku od{' '}
+                  <span className="font-semibold text-white">kripto-valuta</span> sa našim novcem.
+                  Ti se fokusiraš isključivo na investiranje.
                 </>
               ) : (
                 <>
-                  <span className="font-semibold text-white">Investing, simplified.</span>
-                  <br />
-                  <br />
                   We provide a platform where individuals can experience real-world investing without needing to bring their own capital. Each participant manages a live trading account funded by us, using their own strategy and judgment.
                   <br />
                   <br />
                   Our goal is to make professional-style investing more accessible - practical, transparent, and focused on your decisions rather than your starting balance.
+                  <br />
+                  <br />
+                  <span className="font-semibold text-white">Your task is clear:</span>{' '}
+                  Achieve a profit by investing in gold, crypto or any other financial instrument available inside our trading platform.
+                  <br />
+                  <br />
+                  All the capital is provided by us, while you focus exclusively on your investing decisions.
                 </>
               )}
             </p>
