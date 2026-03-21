@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import ContactForm from '../components/ContactForm';
 import { t } from '../utils/translations';
-import { getLang } from '../utils/lang';
-import { submitWhatsAppRequest } from '../api';
 
 // payment badge images
 import visaLogo from '/img/visa.png';
@@ -12,130 +11,108 @@ import raiffeisenLogo from '/img/raiffeisen.png';
 
 const Landing = ({ navigate, token, onLogout = () => {} }) => {
   const [onSitePlanId, setOnSitePlanId] = useState(null);
-  const [whatsappPhone, setWhatsappPhone] = useState('');
-  const [whatsappSubmitting, setWhatsappSubmitting] = useState(false);
-  const [whatsappMessage, setWhatsappMessage] = useState('');
-  const lang = getLang();
+  const [showInvestmentModal, setShowInvestmentModal] = useState(false);
 
   const landingPlans = [
-    { id: '693db3e0e9cf589519c144fe', name: lang === 'sr' ? 'Nalog sa 10.000€' : 'Account with €10,000', price: 300, cryptoPrice: 300, limitedLoss: 300 },
-    { id: '693db3ede9cf589519c14500', name: lang === 'sr' ? 'Nalog sa 20.000€' : 'Account with €20,000', price: 600, cryptoPrice: 600, limitedLoss: 600 },
+    {
+      id: '693db3e0e9cf589519c144fe',
+      name: 'INSTANT FUNDED ACCOUNT WITH 2.500€',
+      price: 150,
+      cryptoPrice: 150,
+      limitedLoss: 150,
+    },
+    {
+      id: '693db3ede9cf589519c14500',
+      name: 'INSTANT FUNDED ACCOUNT WITH 5.000€',
+      price: 300,
+      cryptoPrice: 300,
+      limitedLoss: 300,
+    },
+    {
+      id: '693db3ede9cf589519c14501',
+      name: 'INSTANT FUNDED ACCOUNT WITH 10.000€',
+      price: 1000,
+      cryptoPrice: 1000,
+      limitedLoss: 1000,
+    },
   ];
 
   const selectedPlan = landingPlans.find((p) => p.id === onSitePlanId);
 
-  const handleWhatsAppSubmit = async (e) => {
-    e.preventDefault();
-    if (!whatsappPhone || whatsappPhone.trim().length < 5) {
-      setWhatsappMessage(t('whatsapp.error', lang));
-      return;
-    }
-
-    setWhatsappSubmitting(true);
-    setWhatsappMessage('');
-
-    try {
-      await submitWhatsAppRequest(whatsappPhone);
-      setWhatsappMessage(t('whatsapp.success', lang));
-      setWhatsappPhone('');
-    } catch (err) {
-      setWhatsappMessage(t('whatsapp.error', lang));
-    } finally {
-      setWhatsappSubmitting(false);
-    }
-  };
-
-  const handlePhoneChange = (e) => {
-    let value = e.target.value;
-    
-    // Allow only numbers and + at the beginning
-    // Remove all non-numeric characters except +
-    value = value.replace(/[^\d+]/g, '');
-    
-    // Ensure + is only at the start
-    if (value.includes('+')) {
-      const plusCount = (value.match(/\+/g) || []).length;
-      if (plusCount > 1 || value.indexOf('+') !== 0) {
-        // Remove all + and add one at the start
-        value = '+' + value.replace(/\+/g, '');
+  // Handle investment conditions link clicks
+  useEffect(() => {
+    const handleInvestmentConditionsClick = (e) => {
+      if (e.target.classList.contains('investment-conditions-link')) {
+        e.preventDefault();
+        setShowInvestmentModal(true);
       }
-    } else if (!value.startsWith('+') && value.length > 0) {
-      // Add + at the beginning if not present
-      value = '+' + value;
-    }
-    
-    setWhatsappPhone(value);
-  };
+    };
+
+    document.addEventListener('click', handleInvestmentConditionsClick);
+    return () => document.removeEventListener('click', handleInvestmentConditionsClick);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
-      {/* HERO sa BTC pozadinom */}
-      <div
-        className="
-          flex flex-col
-          bg-no-repeat
-          bg-[center_65%]
-          bg-[length:120%]
-          sm:bg-[32%_40%]
-          sm:bg-[length:88%]
-          bg-[#111111]
-          w-screen
-          min-h-[640px]
-          sm:min-h-[680px]
-          md:min-h-[720px]
-          overflow-hidden
-        "
-        style={{ backgroundImage: "url('/img/crypto-bg.png')" }}
-      >
-        {/* transparent overlay */}
-        <div className="flex-1 bg-transparent flex flex-col relative overflow-hidden border-b border-emerald-500/10">
-          <Header navigate={navigate} token={token} onLogout={onLogout} showBackLink={false} />
+    <div className="min-h-screen bg-black text-white font-sans overflow-x-hidden flex flex-col">
+      <div className="flex-1">
+        {/* HERO sa BTC pozadinom */}
+        <div
+          className="
+            flex flex-col
+            bg-no-repeat
+            bg-[center_55%]
+            bg-[length:100%]
+            sm:bg-[32%_30%]
+            sm:bg-[length:72%]
+            lg:bg-[center_98%]
+            lg:bg-[length:40%]
+            xl:bg-[center_103%]
+            xl:bg-[length:35%]
+            bg-[#111111]
+            w-screen
+            min-h-[640px]
+            sm:min-h-[680px]
+            md:min-h-[720px]
+            lg:min-h-[850px]
+            overflow-hidden
+          "
+          style={{ backgroundImage: "url('/img/logohed.png')" }}
+        >
+          {/* transparent overlay */}
+          <div className="flex-1 bg-transparent flex flex-col relative overflow-hidden border-b border-sky-500/10">
+            <Header navigate={navigate} token={token} onLogout={onLogout} showBackLink={false} />
 
             {/* HERO TEKST */}
             <main className="px-4 pb-3 flex-1 flex">
               <section className="w-full max-w-5xl mx-auto text-center">
                 <h1
-                  className="text-left sm:text-center ml-2 sm:ml-0 font-display text-[38px] sm:text-[44px] lg:text-[72px] xl:text-[84px] leading-[1.03] font-extrabold tracking-[0.12em] uppercase
-                              drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-emerald-400
+                  className="text-center font-display font-black leading-tight tracking-[0.12em]
                               opacity-0 translate-y-3 animate-[fadeUp_0.6s_ease-out_forwards]"
                   style={{ fontFamily: "'Room Black', sans-serif" }}
                 >
-                  {t('hero.title.line1')}<br />{t('hero.title.line2')}
+                  <span className="block text-[30px] sm:text-[40px] lg:text-[70px] xl:text-[84px] 2xl:text-[96px] text-sky-300">
+                    Welcome to Arbex Fund
+                  </span>
+                  <span className="block mt-8 text-[26px] sm:text-[34px] lg:text-[60px] xl:text-[70px] 2xl:text-[82px] text-white">
+                    The First One-Rule
+                  </span>
+                  <span className="block text-[14px] sm:text-[18px] lg:text-[28px] tracking-[0.35em] text-white uppercase">
+                    INSTANT FUNDED COMPANY
+                  </span>
                 </h1>
 
-                <h2
-                  className="mt-4 text-left sm:text-center ml-2 sm:ml-0 text-[32px] sm:text-[38px] lg:text-[48px] leading-[1.1] font-extrabold tracking-[0.12em] uppercase
-                              drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-white
-                              opacity-0 translate-y-3 animate-[fadeUp_0.65s_ease-out_forwards]"
-                  style={{ fontFamily: "'Room Black', sans-serif" }}
-                >
-                  {t('hero.subtitle')}
-                </h2>
-
-
                 <div
-                  className="mt-80 sm:mt-24 space-y-4 w-full max-w-xl mx-auto pb-4 font-sans
-                              opacity-0 translate-y-3 animate-[fadeUp_0.9s_ease-out_forwards]"
+                  className="mt-96 sm:mt-28 lg:mt-6 xl:mt-8 space-y-4 w-full max-w-xl mx-auto pb-4 font-sans opacity-0 translate-y-3 animate-[fadeUp_0.9s_ease-out_forwards]"
                 >
                   <button
                     onClick={() => navigate('/#how-it-works')}
-                    className="relative w-full rounded-full bg-emerald-500 py-3.5 sm:py-4 text-[16px] sm:text-[18px]
-                               font-semibold tracking-[0.12em] uppercase text-black
-                               transition-all duration-200 ease-out hover:-translate-y-1
-                               hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:bg-emerald-400 active:translate-y-0
-                               before:absolute before:inset-0 before:rounded-full before:border
-                               before:border-emerald-500/40 before:animate-[pulseBorder_1.8s_ease-out_infinite]"
+                    className="relative w-full rounded-full bg-sky-500 py-3.5 sm:py-4 text-[16px] sm:text-[18px] font-semibold tracking-[0.12em] uppercase text-black transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(56,189,248,0.8)] hover:bg-sky-400 active:translate-y-0 before:absolute before:inset-0 before:rounded-full before:border before:border-sky-500/40 before:animate-[pulseBorder_1.8s_ease-out_infinite]"
                   >
                     {t('hero.learnMore')}
                   </button>
                   <button
                     onClick={() => navigate('/#plans')}
-                    className="w-full rounded-full border border-emerald-300/90 py-3.5 sm:py-4 text-[16px] sm:text-[18px]
-                               font-semibold tracking-[0.12em] uppercase text-emerald-100
-                               bg-[#111111]
-                               transition-all duration-200 ease-out hover:-translate-y-1
-                               hover:bg-emerald-900/60
-                               active:translate-y-0"
+                    className="w-full rounded-full border border-sky-300/90 py-3.5 sm:py-4 text-[16px] sm:text-[18px] font-semibold tracking-[0.12em] uppercase text-sky-100 bg-[#111111] transition-all duration-200 ease-out hover:-translate-y-1 hover:bg-sky-900/60 active:translate-y-0"
                   >
                     {t('hero.viewPlans')}
                   </button>
@@ -145,638 +122,718 @@ const Landing = ({ navigate, token, onLogout = () => {} }) => {
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-6 bg-gradient-to-b from-transparent to-black" />
           </div>
         </div>
-      
 
-      {/* BLOK: Kako funkcioniše + Pravila rizika */}
-      <div className="bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-16 sm:pt-2 pb-12">
-        <div className="max-w-5xl mx-auto">
-          <section className="mt-0.5 sm:mt-1 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
-            <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
-              {t('investingSimplified.title')}
-            </h2>
+        {/* BLOK: Kako funkcioniše + Pravila rizika */}
+        <div className="bg-gradient-to-b from-black via-sky-950 to-black px-4 pt-16 sm:pt-2 pb-12">
+          <div className="max-w-5xl mx-auto">
+            <section className="mt-0.5 sm:mt-1 rounded-3xl border border-sky-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
+              <h2 className="font-display font-black text-[22px] sm:text-[30px] uppercase tracking-[0.26em] text-sky-300 mb-6">
+                {t('investingSimplified.title')}
+              </h2>
 
-            <p className="font-sans text-[20px] sm:text-[22px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-6">
-              {t('investingSimplified.description1')}
-              <br />
-              <br />
-              {t('investingSimplified.description2')}
-            </p>
-          </section>
+              <div className="space-y-4 font-sans text-[19px] sm:text-[22px] leading-relaxed text-slate-50 max-w-3xl mx-auto">
+                <p>
+                  We provide a platform where individuals can engage in real-world investing without needing to bring their own capital. Each client manages a live investment account funded by us, using their own strategy and judgment.
+                </p>
+              </div>
+            </section>
 
-          <section id="how-it-works" className="mt-10 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
-            <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
-              {t('howItWorks.title')}
-            </h2>
+            <section id="how-it-works" className="mt-10 rounded-3xl border border-sky-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
+              <h2 className="font-display font-black text-[22px] sm:text-[30px] uppercase tracking-[0.26em] text-sky-300 mb-6">
+                <span className="block">INSTANT FUNDED</span>
+                <span className="block">ACCOUNTS</span>
+              </h2>
 
-            <p className="font-sans text-[20px] sm:text-[22px] text-emerald-50/95 leading-relaxed max-w-3xl mx-auto mb-6">
-              {lang === 'sr' ? (
-                <>
-                  Kada kupiš nalog na našem websajtu, dobijaš log in podatke od novog trading naloga koji će biti popunjen pravim kapitalom. Svaki kupac dobija svoj, zaseban nalog.
-                  <br />
-                  <br />
-                  <span className="text-white">Tvoj zadatak je jasan:</span>{' '}
-                  ostvari profit investirajući u zlato ili neku od{' '}
-                  <span className="text-white">kripto-valuta</span> sa našim novcem.
-                  Ti se fokusiraš isključivo na investiranje.
-                </>
-              ) : (
-                <>
-                  When you become our client, you will receive login information for a newly created trading account that will be filled with real capital. Each customer is provided with their own separate account.
-                  <br />
-                  <br />
-                  <span className="text-white">Your task is clear:</span>{' '}
-                  Achieve a profit by investing in gold, crypto or any other financial instrument available inside our trading platform.
-                  <br />
-                  <br />
-                  All the capital is provided by us, while you focus exclusively on your investing decisions.
-                </>
-              )}
-            </p>
-            <div className="mt-4">
+              <div className="space-y-4 font-sans text-[19px] sm:text-[22px] leading-relaxed text-slate-50 max-w-3xl mx-auto">
+                <p>
+                  An Instant Funded Account gives you access to a live investment account funded by Arbex Fund from the very beginning. There are no evaluations or demo stages – you start operating in real market conditions right away.
+                </p>
+                <p>
+                  You can apply your own strategy and manage the account independently, or choose to follow and automatically replicate the trades of experienced investors on the platform in real time.
+                </p>
+                <p>
+                  Profits generated on the account are real, with <span className="font-semibold text-sky-300">80% paid directly to you</span>.
+                </p>
+                <div className="pt-2">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.scrollTo(0, 0);
+                      navigate('/instruments');
+                    }}
+                    className="inline-flex items-center gap-2 rounded-full bg-black/40 border border-sky-400 px-4 py-2 text-[14px] font-sans tracking-[0.08em] text-sky-300 hover:bg-sky-500/10 transition-colors cursor-pointer"
+                  >
+                    View all financial instruments
+                    <span>→</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section className="mt-10 rounded-3xl border border-sky-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
+              <h2 className="font-display font-black text-[22px] sm:text-[30px] uppercase tracking-[0.24em] text-sky-300 mb-6">
+                <span className="block">SIMPLICITY IN</span>
+                <span className="block">FUNDING</span>
+                <span className="block text-[14px] sm:text-[16px] tracking-[0.35em] text-slate-400 mt-3">Only One Account Rule</span>
+              </h2>
+
+              <div className="space-y-4 font-sans text-[18px] sm:text-[20px] leading-relaxed text-slate-50 max-w-3xl mx-auto">
+                <p>
+                  Every Arbex Account has a Maximum Allowed Financial Loss, which also represents the account price.
+                </p>
+                <p>
+                  If that amount is exceeded, the account gets automatically deactivated. No additional costs.
+                </p>
+                <p>
+                  With this approach, you are able to invest the full size of your Arbex Account (2.500€, 5.000€ or 10.000€), while your maximum financial risk is limited only to the account price.
+                </p>
+                <div className="pt-2">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.scrollTo(0, 0);
+                      navigate('/#plans');
+                    }}
+                    className="inline-flex items-center gap-2 rounded-full bg-black/40 border border-sky-400 px-4 py-2 text-[14px] font-sans tracking-[0.12em] uppercase text-sky-300 hover:bg-sky-500/10 transition-colors cursor-pointer"
+                  >
+                    See Account Prices
+                    <span>→</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section className="mt-10 rounded-3xl border border-sky-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10">
+              <div className="text-center mb-6">
+                <p className="font-display text-[12px] uppercase tracking-[0.32em] text-sky-400 mb-2">Pioneer in Freedom</p>
+                <h2 className="font-display font-black text-[24px] sm:text-[32px] uppercase tracking-[0.2em] text-sky-300">
+                  Trade Without Restrictions
+                </h2>
+                <p className="mt-3 font-sans text-[18px] sm:text-[20px] text-slate-200">Focus on your strategy and performance – not platform rules.</p>
+              </div>
+
+              <div className="relative -mx-4 sm:mx-0">
+                <div
+                  className="mx-auto flex w-full max-w-[520px] sm:max-w-[560px] gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-thin scrollbar-thumb-sky-700/70"
+                  style={{
+                    paddingLeft: 'clamp(16px, calc((100% - 280px) / 2), 120px)',
+                    paddingRight: 'clamp(24px, calc((100% - 240px) / 2), 80px)',
+                  }}
+                >
+                  {[
+                    {
+                      title: 'No Evaluations',
+                      body: 'Start managing capital immediately without passing tests or challenges.',
+                    },
+                    {
+                      title: 'No Activity Rule',
+                      body: 'Trade when it fits your strategy – no minimum trading day requirements.',
+                    },
+                    {
+                      title: 'No Spread Rule',
+                      body: 'No artificial restrictions based on spreads or market conditions.',
+                    },
+                  ].map((item) => (
+                    <div
+                      key={item.title}
+                      className="flex-shrink-0 w-[260px] sm:w-[280px] snap-center rounded-3xl border border-sky-600/60 bg-gradient-to-b from-slate-900/60 via-black to-slate-900/20 p-6 shadow-lg shadow-sky-500/15"
+                    >
+                      <h3 className="font-display text-[18px] uppercase tracking-[0.2em] text-sky-300 mb-3">{item.title}</h3>
+                      <p className="font-sans text-[16px] text-slate-100 leading-relaxed">{item.body}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-8 text-center">
+                <p className="font-display text-[16px] sm:text-[18px] tracking-[0.3em] text-slate-300">
+                  Just Fair Instant Funding · Just profit split
+                </p>
+              </div>
+            </section>
+
+            <section id="investment-conditions" className="mt-10 rounded-3xl border border-sky-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10 text-center">
+              <h2 className="font-display font-bold text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-sky-300 mb-3">
+                {t('investmentModal.title')}
+              </h2>
+
+              <p className="font-sans text-[19px] sm:text-[21px] text-white leading-relaxed max-w-3xl mx-auto mb-6 break-words">
+                {t('investmentModal.description')}
+              </p>
+
+              <div className="max-w-3xl mx-auto space-y-3 text-center">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="group relative overflow-hidden rounded-3xl border border-sky-400/40 bg-gradient-to-b from-slate-900/60 via-black to-slate-900/20 px-7 py-6 text-left shadow-xl shadow-sky-500/10">
+                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-sky-400/50 bg-sky-500/20 text-xs font-semibold tracking-[0.08em] text-sky-100/90">
+                      5 K
+                    </div>
+                    <p className="font-sans text-[16px] sm:text-[23px] text-white leading-tight font-semibold mt-4 inline-flex flex-wrap sm:flex-nowrap items-center gap-1.5 sm:gap-4 sm:whitespace-nowrap">
+                      <span>{t('investmentModal.account5k')}</span>
+                      <span className="text-sky-300">→</span>
+                      <span>{t('investmentModal.loss5k')}</span>
+                    </p>
+                  </div>
+                  <div className="group relative overflow-hidden rounded-3xl border border-sky-400/40 bg-gradient-to-b from-slate-900/60 via-black to-slate-900/20 px-7 py-6 text-left shadow-xl shadow-sky-500/10">
+                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-sky-400/50 bg-sky-500/20 text-xs font-semibold tracking-[0.08em] text-sky-100/90">
+                      10 K
+                    </div>
+                    <p className="font-sans text-[16px] sm:text-[23px] text-white leading-tight font-semibold mt-4 inline-flex flex-wrap sm:flex-nowrap items-center gap-1.5 sm:gap-4 sm:whitespace-nowrap">
+                      <span>{t('investmentModal.account10k')}</span>
+                      <span className="text-sky-300">→</span>
+                      <span>{t('investmentModal.loss10k')}</span>
+                    </p>
+                  </div>
+                </div>
+                <div className="pt-1 space-y-2 text-left sm:text-center">
+                  <p className="font-sans text-[19px] sm:text-[21px] text-white leading-relaxed">
+                    <span className="text-sky-400 font-semibold">1.</span> {t('investmentModal.rule1')}
+                  </p>
+                  <p className="font-sans text-[19px] sm:text-[21px] text-white leading-relaxed">
+                    <span className="text-sky-400 font-semibold">2.</span> {t('investmentModal.rule2')}
+                  </p>
+                  <p className="font-sans text-[19px] sm:text-[21px] text-white leading-relaxed">
+                    <span className="text-sky-400 font-semibold">3.</span> {t('investmentModal.rule3')}
+                  </p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        {/* ŠTA DOBIJAŠ / PODELA / CILJ */}
+        <section className="relative bg-gradient-to-b from-black via-sky-950 to-black px-4 pt-10 pb-12">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-500/40 to-transparent" />
+
+          <div className="max-w-5xl mx-auto space-y-8">
+            <div className="text-center">
+              <h2 className="font-display font-bold text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-sky-300 mb-5">
+                Account Details
+              </h2>
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-3">
+              <div
+                className="group relative overflow-hidden rounded-3xl border border-sky-500/40 bg-gradient-to-r from-black via-[#0b111f] to-black p-6 shadow-lg shadow-sky-500/10 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-sky-500/40 hover:shadow-2xl hover:border-sky-400/70 hover:-rotate-1"
+              >
+                <div className="flex items-center justify-end mb-4">
+                  <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-sky-500 text-black text-sm text-center">
+                    1
+                  </div>
+                </div>
+                <h3 className="font-display text-[19px] tracking-[0.08em] uppercase text-sky-300 mb-2">
+                  USERNAME AND PASSWORD
+                </h3>
+                <p className="font-sans text-[19px] sm:text-[21px] text-slate-100/90 leading-relaxed tracking-[0.01em]">
+                  You get an email with the login information (username, password) for your newly created investment account on the online platform called MetaTrader5.com.
+                </p>
+                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-sky-500/10 via-transparent to-transparent" />
+              </div>
+
+              <div
+                className="group relative overflow-hidden rounded-3xl border border-sky-500/40 bg-gradient-to-r from-black via-[#0b111f] to-black p-6 shadow-lg shadow-sky-500/10 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-sky-500/40 hover:shadow-2xl hover:border-sky-400/70 hover:-rotate-1"
+              >
+                <div className="flex items-center justify-end mb-4">
+                  <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-sky-500 text-black text-sm text-center">
+                    2
+                  </div>
+                </div>
+                <h3 className="font-display text-[19px] tracking-[0.08em] uppercase text-sky-300 mb-2">
+                  INVESTMENT CAPITAL
+                </h3>
+                <p className="font-sans text-[19px] sm:text-[21px] text-slate-100/90 leading-relaxed tracking-[0.01em]">
+                  Your account receives capital from Arbex Fund. We supply the funds in accordance with our investment rule.
+                </p>
+                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-sky-500/10 via-transparent to-transparent" />
+              </div>
+
+              <div
+                className="group relative overflow-hidden rounded-3xl border border-sky-500/40 bg-gradient-to-r from-black via-[#0b111f] to-black p-6 shadow-lg shadow-sky-500/10 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-sky-500/40 hover:shadow-2xl hover:border-sky-400/70 hover:-rotate-1"
+              >
+                <div className="flex items-center justify-end mb-4">
+                  <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-sky-500 text-black text-sm text-center">
+                    3
+                  </div>
+                </div>
+                <h3 className="font-display text-[19px] tracking-[0.08em] uppercase text-sky-300 mb-2">
+                  PROFIT SPLIT
+                </h3>
+                <p className="font-sans text-[19px] sm:text-[21px] text-slate-100/90 leading-relaxed tracking-[0.01em]">
+                  If the financial instrument you invested in increases in value and you decide to CASH OUT, 80% of the profit is paid directly to your credit card or personal crypto account.
+                </p>
+                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-sky-500/10 via-transparent to-transparent" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative bg-gradient-to-b from-black via-sky-950 to-black px-4 pt-10 pb-12">
+          <div className="max-w-5xl mx-auto space-y-8">
+            <div className="grid gap-5 md:grid-cols-2">
+              <div
+                className="group relative overflow-hidden rounded-3xl border border-sky-500/40 bg-gradient-to-r from-black via-[#0b111f] to-black p-6 shadow-lg shadow-sky-500/10 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-sky-500/40 hover:shadow-2xl hover:border-sky-400/70 hover:-rotate-1"
+              >
+                <p className="text-center font-display text-[12px] uppercase tracking-[0.32em] text-slate-400 mb-1">
+                  GUARANTEE OF PAYOUT
+                </p>
+                <h3 className="text-center font-display text-[18px] tracking-[0.16em] uppercase text-sky-300 mb-4">
+                  AFM
+                </h3>
+                <p className="text-center font-sans text-[16px] text-slate-200 leading-relaxed">
+                  Avg profit amount payed out
+                </p>
+                <p className="text-center font-display text-[40px] text-sky-400 leading-none mt-2">
+                  2900€
+                </p>
+                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-sky-500/10 via-transparent to-transparent" />
+              </div>
+
+              <div
+                className="group relative overflow-hidden rounded-3xl border border-sky-500/40 bg-gradient-to-r from-black via-[#0b111f] to-black p-6 shadow-lg shadow-sky-500/10 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-sky-500/40 hover:shadow-2xl hover:border-sky-400/70 hover:rotate-1"
+              >
+                <h3 className="text-center font-display text-[18px] tracking-[0.16em] uppercase text-sky-300 mb-3">
+                  Success Rate
+                </h3>
+                <p className="text-center font-display text-[36px] text-sky-400 leading-none mb-2">
+                  39%
+                </p>
+                <p className="text-center font-sans text-[14px] text-slate-200 leading-relaxed">
+                  Success rate represents the percentage of clients who achieved profit above 100€ within the last period.
+                </p>
+                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-sky-500/10 via-transparent to-transparent" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative bg-gradient-to-b from-black via-sky-950 to-black px-4 pt-10 pb-12">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-500/40 to-transparent" />
+          <div className="max-w-5xl mx-auto space-y-6 text-center">
+            <div>
+              <p className="font-display text-[12px] uppercase tracking-[0.32em] text-sky-400 mb-2">
+                Video Education
+              </p>
+              <h2 className="font-display font-bold text-[26px] sm:text-[34px] uppercase tracking-[0.2em] text-sky-300">
+                See what our free video education is all about
+              </h2>
+            </div>
+
+            <div className="rounded-3xl border border-sky-500/40 bg-black/70 p-4 shadow-xl shadow-sky-500/10">
+              <div className="relative w-full pt-[56.25%] rounded-2xl overflow-hidden bg-gradient-to-b from-slate-900 via-black to-slate-900/60 border border-sky-500/30">
+                <button
+                  type="button"
+                  className="absolute inset-0 flex items-center justify-center"
+                  aria-label="Play education video"
+                >
+                  <span className="flex h-20 w-20 items-center justify-center rounded-full bg-sky-500 text-black text-xl font-bold shadow-[0_0_24px_rgba(56,189,248,0.6)]">
+                    ▶
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div>
               <button
                 onClick={(e) => {
                   e.preventDefault();
                   window.scrollTo(0, 0);
-                  navigate('/instruments');
+                  navigate('/register');
                 }}
-                className="inline-flex items-center gap-2 rounded-full bg-emerald-500/20 border border-emerald-400 px-4 py-2 text-[14px] font-sans font-semibold tracking-[0.08em] text-emerald-300 hover:bg-emerald-500/30 transition-colors cursor-pointer"
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-sky-500 to-sky-300 px-6 py-3 text-sm sm:text-base font-display uppercase tracking-[0.2em] text-black shadow-[0_0_24px_rgba(56,189,248,0.7)] hover:-translate-y-1 transition-transform"
               >
-                {t('howItWorks.instruments')}
-                <span>→</span>
+                Get Free Video Education Now
               </button>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section className="mt-10 rounded-3xl border border-emerald-700/70 bg-black/80 px-6 py-8 sm:px-10 sm:py-10">
-            <h2 className="text-center font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-5">
-              {t('risk.title')}
+        <section className="relative bg-gradient-to-b from-black via-sky-950 to-black px-4 pt-10 pb-12">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-500/40 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-sky-500/40 to-transparent" />
+
+          <div className="max-w-5xl mx-auto text-center">
+            <h2 className="font-display font-bold text-[24px] sm:text-[32px] uppercase tracking-[0.2em] text-sky-300 mb-6">
+              Popular for Beginners
             </h2>
-
-            <div className="mx-auto max-w-3xl text-center text-emerald-50/95">
-              <p className="font-sans text-[18px] sm:text-[20px] leading-relaxed">
-                {t('risk.bodyIntro')}
+            <div className="max-w-3xl mx-auto bg-black/70 border border-sky-500/40 rounded-3xl p-6 shadow-lg shadow-sky-500/10">
+              <p className="font-sans text-[19px] sm:text-[21px] font-normal leading-relaxed text-sky-50/95 break-words">
+                <span className="inline-flex max-w-full flex-wrap items-center justify-center rounded-full bg-gradient-to-r from-sky-500 to-sky-300 px-4 py-1.5 text-[12px] sm:text-[13px] font-extrabold uppercase tracking-[0.18em] sm:tracking-[0.26em] text-black shadow-[0_0_16px_rgba(56,189,248,0.55)] mb-4 text-center leading-tight break-words">
+                  Copy Arbex: Auto-Invest
+                </span>
+                <br />
+                <span className="break-words">
+                  New clients also have the option to activate the Copy Arbex Feature to automatically copy the investments of our successful clients in real time.
+                </span>
+                <br />
+                <span className="break-words">
+                  After Account Purchase, activate the Copy Arbex feature inside the app. Choose from five investors, ranked from lower to higher risk. We then take over your account.
+                </span>
+                <br />
+                <span className="break-words font-semibold text-slate-100/95 text-[18px] sm:text-[19px] tracking-[0.02em]">
+                  Simple. Automated. Built for real investing.
+                </span>
               </p>
+            </div>
+          </div>
+        </section>
 
-              <div className="mx-auto mt-5 mb-5 grid w-full max-w-3xl gap-4 sm:grid-cols-2">
-                <div className="group relative overflow-hidden rounded-3xl border border-emerald-500/40 bg-gradient-to-br from-emerald-500/10 via-black/80 to-emerald-900/20 px-6 py-6 text-left shadow-2xl shadow-emerald-500/20 backdrop-blur-sm">
-                  <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-emerald-400/10 blur-3xl" />
-                  </div>
-                  <div className="relative z-10 flex items-start justify-between">
-                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/15 text-[12px] font-semibold tracking-[0.2em] text-emerald-200">
-                      10K
+        {/* PLANOVI */}
+        <section id="plans" className="relative bg-gradient-to-b from-black via-sky-950 to-black px-4 pt-10 pb-14">
+          <div className="max-w-5xl mx-auto space-y-8">
+            <div className="text-center">
+              <p className="font-display text-[11px] uppercase tracking-[0.26em] text-sky-400">
+                START NOW
+              </p>
+              <h2 className="mt-2 font-display text-[28px] sm:text-[34px] font-bold tracking-[0.12em] uppercase text-sky-300">
+                CHOOSE ACCOUNT SIZE
+              </h2>
+            </div>
+
+            <div className="grid gap-7 justify-items-center sm:grid-cols-2 lg:grid-cols-3">
+              <div className="w-full max-w-sm">
+                <div className="relative flex h-full flex-col rounded-3xl border p-6 shadow-lg bg-gradient-to-b from-black via-[#02110b] to-black border-sky-700/40 hover:border-sky-400/80 hover:-translate-y-1 transition-all duration-200 ease-out">
+                  <div className="mb-4 text-center">
+                    <div className="font-display text-[24px] sm:text-[28px] font-semibold tracking-[0.08em] uppercase text-slate-50 break-words">
+                      {landingPlans[0].name}
                     </div>
                   </div>
-                  <p className="relative z-10 mt-4 font-sans text-[17px] sm:text-[18px] text-emerald-50/95 leading-relaxed">
-                    {t('risk.bodyPlan1')}
-                  </p>
-                </div>
-                <div className="group relative overflow-hidden rounded-3xl border border-emerald-500/40 bg-gradient-to-br from-emerald-500/10 via-black/80 to-emerald-900/20 px-6 py-6 text-left shadow-2xl shadow-emerald-500/20 backdrop-blur-sm">
-                  <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-emerald-400/10 blur-3xl" />
-                  </div>
-                  <div className="relative z-10 flex items-start justify-between">
-                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/15 text-[12px] font-semibold tracking-[0.2em] text-emerald-200">
-                      20K
+                  <div className="mt-4 text-center text-sky-100">
+                    <p className="text-sm font-display uppercase tracking-[0.3em] text-sky-200">Price:</p>
+                    <p className="mt-2 text-3xl font-display text-sky-50">{landingPlans[0].price}€</p>
+                    <p className="mt-2 text-sm font-sans tracking-wide text-sky-200">Video education included</p>
+                    <div className="mt-4 mb-6 flex items-center justify-center gap-2 sm:gap-3">
+                      <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
+                        <img src={visaLogo} alt="Visa" className="h-5 w-8 object-contain" />
+                      </div>
+                      <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
+                        <img src={mastercardLogo} alt="Mastercard" className="h-5 w-8 object-contain" />
+                      </div>
+                      <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
+                        <img src={raiffeisenLogo} alt="Raiffeisen Bank" className="h-5 w-10 object-contain" />
+                      </div>
                     </div>
                   </div>
-                  <p className="relative z-10 mt-4 font-sans text-[17px] sm:text-[18px] text-emerald-50/95 leading-relaxed">
-                    {t('risk.bodyPlan2')}
-                  </p>
+                  <div className="mt-auto flex flex-col gap-2">
+                    <button
+                      onClick={() => {
+                        if (!token) {
+                          window.scrollTo(0, 0);
+                          navigate('/register');
+                        } else navigate('/pay-card/693db3e0e9cf589519c144fe');
+                      }}
+                      className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 bg-sky-500 text-black border-2 border-sky-500 hover:bg-sky-400 hover:-translate-y-0.5"
+                    >
+                      {`Pay ${landingPlans[0].price}€ with Card`}
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (!token) {
+                          window.scrollTo(0, 0);
+                          navigate('/register');
+                        } else {
+                          window.scrollTo(0, 0);
+                          navigate('/pay-crypto/693db3e0e9cf589519c144fe');
+                        }
+                      }}
+                      className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 bg-transparent border-2 border-sky-400 text-sky-100 hover:bg-sky-500/10 hover:-translate-y-0.5"
+                    >
+                      {`Pay ${landingPlans[0].cryptoPrice}€ with Crypto`}
+                    </button>
+                    <p className="mt-4 text-xs font-sans tracking-[0.2em] text-sky-300 uppercase text-center">
+                      Account Deactivation at (-{landingPlans[0].limitedLoss}€)
+                    </p>
+                  </div>
                 </div>
-                <p className="sm:col-span-2 font-sans text-[18px] sm:text-[20px] leading-relaxed text-emerald-50/95">
-                  {t('risk.bodyLimit')}
+              </div>
+
+              <div className="w-full max-w-sm">
+                <div className="relative flex h-full flex-col rounded-3xl border p-6 shadow-lg bg-gradient-to-b from-black via-[#02110b] to-black border-sky-400 shadow-sky-500/30 hover:-translate-y-2 ring-2 ring-sky-500/20 transition-all duration-200 ease-out">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-sky-500 to-sky-300 px-4 py-0.5 text-[10px] font-display uppercase tracking-[0.2em] text-black shadow-md">
+                    {t('plans.recommended')}
+                  </div>
+                  <div className="mb-4 text-center">
+                    <div className="font-display text-[24px] sm:text-[28px] font-semibold tracking-[0.08em] uppercase text-slate-50 break-words">
+                      {landingPlans[1].name}
+                    </div>
+                  </div>
+                  <div className="mt-4 text-center text-sky-100">
+                    <p className="text-sm font-display uppercase tracking-[0.3em] text-sky-200">Price:</p>
+                    <p className="mt-2 text-3xl font-display text-sky-50">{landingPlans[1].price}€</p>
+                    <p className="mt-2 text-sm font-sans tracking-wide text-sky-200">Video education included</p>
+                    <div className="mt-4 mb-6 flex items-center justify-center gap-2 sm:gap-3">
+                      <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
+                        <img src={visaLogo} alt="Visa" className="h-5 w-8 object-contain" />
+                      </div>
+                      <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
+                        <img src={mastercardLogo} alt="Mastercard" className="h-5 w-8 object-contain" />
+                      </div>
+                      <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
+                        <img src={raiffeisenLogo} alt="Raiffeisen Bank" className="h-5 w-10 object-contain" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-auto flex flex-col gap-2">
+                    <button
+                      onClick={() => {
+                        if (!token) {
+                          window.scrollTo(0, 0);
+                          navigate('/register');
+                        } else navigate('/pay-card/693db3ede9cf589519c14500');
+                      }}
+                      className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 bg-sky-500 text-black border-2 border-sky-500 hover:bg-sky-400 hover:-translate-y-0.5"
+                    >
+                      {`Pay ${landingPlans[1].price}€ with Card`}
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (!token) {
+                          window.scrollTo(0, 0);
+                          navigate('/register');
+                        } else {
+                          window.scrollTo(0, 0);
+                          navigate('/pay-crypto/693db3ede9cf589519c14500');
+                        }
+                      }}
+                      className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 bg-transparent border-2 border-sky-400 text-sky-100 hover:bg-sky-500/10 hover:-translate-y-0.5"
+                    >
+                      {`Pay ${landingPlans[1].cryptoPrice}€ with Crypto`}
+                    </button>
+                    <p className="mt-4 text-xs font-sans tracking-[0.2em] text-sky-300 uppercase text-center">
+                      Account Deactivation at (-{landingPlans[1].limitedLoss}€)
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-full max-w-sm">
+                <div className="relative flex h-full flex-col rounded-3xl border p-6 shadow-lg bg-gradient-to-b from-black via-[#02110b] to-black border-sky-700/40 hover:border-sky-400/80 hover:-translate-y-1 transition-all duration-200 ease-out">
+                  <div className="mb-4 text-center">
+                    <div className="font-display text-[24px] sm:text-[28px] font-semibold tracking-[0.08em] uppercase text-slate-50 break-words">
+                      {landingPlans[2].name}
+                    </div>
+                  </div>
+                  <div className="mt-4 text-center text-sky-100">
+                    <p className="text-sm font-display uppercase tracking-[0.3em] text-sky-200">Price:</p>
+                    <p className="mt-2 text-3xl font-display text-sky-50">{landingPlans[2].price}€</p>
+                    <p className="mt-2 text-sm font-sans tracking-wide text-sky-200">Video education included</p>
+                    <div className="mt-4 mb-6 flex items-center justify-center gap-2 sm:gap-3">
+                      <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
+                        <img src={visaLogo} alt="Visa" className="h-5 w-8 object-contain" />
+                      </div>
+                      <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
+                        <img src={mastercardLogo} alt="Mastercard" className="h-5 w-8 object-contain" />
+                      </div>
+                      <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
+                        <img src={raiffeisenLogo} alt="Raiffeisen Bank" className="h-5 w-10 object-contain" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-auto flex flex-col gap-2">
+                    <button
+                      onClick={() => {
+                        if (!token) {
+                          window.scrollTo(0, 0);
+                          navigate('/register');
+                        } else navigate('/pay-card/693db3ede9cf589519c14501');
+                      }}
+                      className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 bg-sky-500 text-black border-2 border-sky-500 hover:bg-sky-400 hover:-translate-y-0.5"
+                    >
+                      {`Pay ${landingPlans[2].price}€ with Card`}
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (!token) {
+                          window.scrollTo(0, 0);
+                          navigate('/register');
+                        } else {
+                          window.scrollTo(0, 0);
+                          navigate('/pay-crypto/693db3ede9cf589519c14501');
+                        }
+                      }}
+                      className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 bg-transparent border-2 border-sky-400 text-sky-100 hover:bg-sky-500/10 hover:-translate-y-0.5"
+                    >
+                      {`Pay ${landingPlans[2].cryptoPrice}€ with Crypto`}
+                    </button>
+                    <p className="mt-4 text-xs font-sans tracking-[0.2em] text-sky-300 uppercase text-center">
+                      Account Deactivation at (-{landingPlans[2].limitedLoss}€)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {token && selectedPlan && (
+              <div className="mt-8 flex justify-center">
+                <div className="w-full max-w-lg rounded-3xl border-2 border-sky-500/80 bg-gradient-to-b from-sky-500/10 via-black/80 to-sky-900/10 p-8 shadow-2xl shadow-sky-500/30 backdrop-blur-sm">
+                  <div className="text-center mb-6">
+                    <p className="text-xs font-sans uppercase tracking-[0.28em] text-sky-400">
+                      {t('plans.selectedPlanHeading')}
+                    </p>
+                    <p className="mt-4 text-2xl font-display tracking-[0.1em] uppercase text-slate-50 break-words">
+                      {selectedPlan.name}
+                    </p>
+                    <p className="text-4xl font-display tracking-[0.15em] text-sky-400 mt-2">
+                      {selectedPlan.price}€
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <button
+                      onClick={() => {
+                        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                      }}
+                      className="w-full rounded-2xl bg-[#1A1F71] py-3 text-sm font-sans uppercase tracking-[0.18em] text-white border-2 border-[#1A1F71] shadow-[0_0_18px_rgba(26,31,113,0.6)] transition-all duration-200 disabled:opacity-60 hover:-translate-y-[1px] hover:bg-[#252A7E]"
+                    >
+                      {t('plans.createAccountCta')}
+                    </button>
+                  </div>
+
+                  <div className="mt-4 text-center">
+                    <button
+                      onClick={() => setOnSitePlanId(null)}
+                      className="text-sm text-slate-400 hover:underline"
+                    >
+                      {t('plans.cancelSelection')}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <p className="mt-8 font-sans text-[13px] text-slate-400 max-w-3xl mx-auto text-center">
+              {t('plans.afterPayment')}
+            </p>
+          </div>
+        </section>
+
+        <section className="bg-gradient-to-b from-black via-[#020617] to-black px-4 pt-10 pb-12">
+          <div className="max-w-5xl mx-auto space-y-6">
+            <div className="text-center">
+              <p className="font-display text-[11px] uppercase tracking-[0.24em] text-sky-400">
+                {t('faq.section')}
+              </p>
+              <h2 className="mt-2 font-display text-[26px] sm:text-[30px] tracking-[0.12em] uppercase text-sky-300">
+                {t('faq.title')}
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              <div className="rounded-2xl border border-sky-700/50 bg-black/60 px-5 py-4">
+                <h3 className="font-display text-[15px] sm:text-[16px] tracking-[0.08em] uppercase text-sky-300">
+                  {t('faq.q1')}
+                </h3>
+                <p className="mt-1 font-sans text-[14px] sm:text-[15px] text-slate-200/90 leading-relaxed">
+                  {t('faq.a1')}
                 </p>
               </div>
 
-              <p className="font-sans text-[18px] sm:text-[20px] leading-relaxed text-emerald-50/95">
-                {t('risk.bodyConclusion')}
+              <div className="rounded-2xl border border-sky-700/50 bg-black/60 px-5 py-4">
+                <h3 className="font-display text-[15px] sm:text-[16px] tracking-[0.08em] uppercase text-sky-300">
+                  {t('faq.q2')}
+                </h3>
+                <p className="mt-1 font-sans text-[14px] sm:text-[15px] text-slate-200/90 leading-relaxed">
+                  {t('faq.a2')}
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-sky-700/50 bg-black/60 px-5 py-4">
+                <h3 className="font-display text-[15px] sm:text-[16px] tracking-[0.08em] uppercase text-sky-300">
+                  {t('faq.q3')}
+                </h3>
+                <p className="mt-1 font-sans text-[14px] sm:text-[15px] text-slate-200/90 leading-relaxed">
+                 {t('faq.a3')}
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-sky-700/50 bg-black/60 px-5 py-4">
+                <h3 className="font-display text-[15px] sm:text-[16px] tracking-[0.08em] uppercase text-sky-300">
+                  {t('faq.q4')}
+                </h3>
+                <p className="mt-1 font-sans text-[14px] sm:text-[15px] text-slate-200/90 leading-relaxed">
+                  {t('faq.a4')}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-gradient-to-b from-black via-sky-950 to-black px-4 py-14">
+          <div className="max-w-5xl mx-auto space-y-8">
+            <div className="text-center">
+              <p className="font-display text-[11px] uppercase tracking-[0.26em] text-sky-400">
+                {t('contact.section')}
+              </p>
+              <h2 className="mt-2 font-display text-[28px] sm:text-[34px] tracking-[0.12em] uppercase text-sky-300">
+                {t('contact.title')}
+              </h2>
+              <p className="mt-3 font-sans text-[15px] text-sky-100/90 max-w-2xl mx-auto">
+                {t('contact.subtitle')}
               </p>
             </div>
-          </section>
-        </div>
+
+            <div className="rounded-3xl border border-sky-800/60 bg-black/80 p-8 shadow-lg shadow-sky-500/20">
+              <ContactForm />
+            </div>
+          </div>
+        </section>
       </div>
 
-      {/* ŠTA DOBIJAŠ / PODELA / CILJ */}
-      <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
+      <Footer navigate={navigate} />
 
-        <div className="max-w-5xl mx-auto space-y-8">
-          <div className="text-center">
-            <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-emerald-400 mb-3">
-              {t('whatYouGet.title')}
+      {showInvestmentModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={() => setShowInvestmentModal(false)}
+        >
+          <div
+            className="relative w-[95%] max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl border border-sky-700/70 bg-black/95 px-6 py-8 sm:px-10 sm:py-10 text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowInvestmentModal(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-sky-400 transition-colors"
+              aria-label="Close modal"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <h2 className="font-display font-bold text-[24px] sm:text-[32px] uppercase tracking-[0.26em] text-sky-300 mb-3">
+              {t('investmentModal.title')}
             </h2>
-          </div>
 
-          {/* tri glavne kartice */}
-          <div className="grid gap-5 md:grid-cols-3">
-            {/* 1. Kapital za trgovanje */}
-            <div
-              className="group relative overflow-hidden rounded-3xl border border-emerald-500/40 
-                         bg-gradient-to-r from-[#02110b] via-black to-[#02110b]
-                         p-6 shadow-lg shadow-emerald-500/10 transition-all duration-200 ease-out 
-                         hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
-                         hover:border-emerald-400/70 hover:-rotate-1"
-            >
-              <div className="flex items-center justify-end mb-4">
-                <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
-                  1
-                </div>
-              </div>
-              <h3 className="font-display text-[19px] tracking-[0.08em] uppercase text-emerald-300 mb-2">
-                {t('whatYouGet.capital.title')}
-              </h3>
-              <p className="font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed tracking-[0.01em]">
-                {t('whatYouGet.capital.description')}
-              </p>
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
-            </div>
-
-            {/* 2. Platforma i obuka */}
-            <div
-              className="group relative overflow-hidden rounded-3xl border border-emerald-500/40 
-                         bg-gradient-to-r from-[#02110b] via-black to-[#02110b]
-                         p-6 shadow-lg shadow-emerald-500/10 transition-all duration-200 ease-out 
-                         hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
-                         hover:border-emerald-400/70 hover:-rotate-1"
-            >
-              <div className="flex items-center justify-end mb-4">
-                <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
-                  2
-                </div>
-              </div>
-              <h3 className="font-display text-[19px] tracking-[0.08em] uppercase text-emerald-300 mb-2">
-                {t('whatYouGet.platform.title')}
-              </h3>
-              <p className="font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed tracking-[0.01em]">
-                {t('whatYouGet.platform.description')}
-              </p>
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
-            </div>
-
-            {/* 3. Podela profita */}
-            <div
-              className="group relative overflow-hidden rounded-3xl border border-emerald-500/40 
-                         bg-gradient-to-r from-[#02110b] via-black to-[#02110b]
-                         p-6 shadow-lg shadow-emerald-500/10 transition-all duration-200 ease-out 
-                         hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
-                         hover:border-emerald-400/70 hover:-rotate-1"
-            >
-              <div className="flex items-center justify-end mb-4">
-                <div className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-black text-sm font-bold text-center">
-                  3
-                </div>
-              </div>
-              <h3 className="font-display text-[19px] tracking-[0.08em] uppercase text-emerald-300 mb-2">
-                {t('whatYouGet.profit.title')}
-              </h3>
-              <p className="font-sans text-[18px] sm:text-[20px] text-slate-100/90 leading-relaxed tracking-[0.01em]">
-                {t('whatYouGet.profit.description')}
-              </p>
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* STATS SEKCIJA */}
-      <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
-        <div className="max-w-5xl mx-auto space-y-8">
-          {/* dve kartice */}
-          <div className="grid gap-5 md:grid-cols-2">
-            {/* 1. Average profit */}
-            <div
-              className="group relative overflow-hidden rounded-3xl border border-emerald-500/40 
-                         bg-gradient-to-r from-[#02110b] via-black to-[#02110b]
-                         p-6 shadow-lg shadow-emerald-500/10 transition-all duration-200 ease-out 
-                         hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
-                         hover:border-emerald-400/70 hover:-rotate-1"
-            >
-              <h3 className="text-center font-display text-[17px] tracking-[0.08em] uppercase text-emerald-300 mb-3">
-                {t('stats.avgProfit.title')}
-              </h3>
-              <p className="text-center font-sans text-[32px] sm:text-[40px] text-emerald-400 leading-none">
-                {t('stats.avgProfit.amount')}
-              </p>
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
-            </div>
-
-            {/* 2. Success rate */}
-            <div
-              className="group relative overflow-hidden rounded-3xl border border-emerald-500/40 
-                         bg-gradient-to-r from-[#02110b] via-black to-[#02110b]
-                         p-6 shadow-lg shadow-emerald-500/10 transition-all duration-200 ease-out 
-                         hover:-translate-y-1 hover:shadow-emerald-500/40 hover:shadow-2xl
-                         hover:border-emerald-400/70 hover:rotate-1"
-            >
-              <h3 className="text-center font-display text-[17px] tracking-[0.08em] uppercase text-emerald-300 mb-1">
-                {t('stats.successRate.title')}
-              </h3>
-              <p className="text-center font-sans text-[12px] text-slate-400 mb-3">
-                {t('stats.successRate.subtitle')}
-              </p>
-              <p className="text-center font-sans text-[32px] sm:text-[40px] text-emerald-400 leading-none">
-                {t('stats.successRate.percentage')}
-              </p>
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
-  {/* gornja linija */}
-  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
-  {/* donja linija */}
-  <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
-
-  <div className="max-w-5xl mx-auto text-center">
-   <h2 className="font-display text-[24px] sm:text-[32px] uppercase tracking-[0.2em] text-emerald-400 mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-  {t('goal.title')}
-</h2>
-<p className="font-sans text-[18px] sm:text-[20px] leading-[1.5] sm:leading-relaxed max-w-3xl mx-auto text-emerald-50/95 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
-  {t('goal.description')}
-  
-  <br className="sm:hidden" />
-  <br />
-  
-  {t('goal.beginners')}
-</p>
-  </div>
-</section>
-
-      <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-8 pb-10">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="font-display text-[20px] sm:text-[24px] uppercase tracking-[0.18em] text-emerald-400 mb-4">
-            {t('copyTrade.title')}
-          </h2>
-          <p className="font-sans text-[18px] sm:text-[20px] font-normal leading-relaxed max-w-3xl mx-auto text-emerald-50/95">
-            {t('copyTrade.description')}
-          </p>
-        </div>
-      </section>
-
-      {/* WhatsApp Call Request */}
-      <section className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-12">
-        <div className="max-w-3xl mx-auto">
-          <div className="rounded-3xl border-2 border-emerald-500/40 bg-gradient-to-b from-emerald-950/40 via-black/60 to-black/80 p-8 shadow-2xl shadow-emerald-500/20">
-            <h2 className="font-display text-[24px] sm:text-[28px] font-black uppercase tracking-[0.18em] text-emerald-400 mb-3 text-center">
-              {t('whatsapp.title')}
-            </h2>
-            <p className="font-sans text-[16px] leading-relaxed text-emerald-100/90 mb-8 text-center max-w-xl mx-auto">
-              {t('whatsapp.description')}
+            <p className="font-sans text-[15px] sm:text-[17px] text-slate-300/90 mb-5 max-w-2xl mx-auto">
+              {t('investmentModal.description')}
             </p>
-            
-            <form onSubmit={handleWhatsAppSubmit} className="max-w-sm mx-auto">
-              <div className="space-y-4">
-                <input
-                  type="tel"
-                  value={whatsappPhone}
-                  onChange={handlePhoneChange}
-                  placeholder={t('whatsapp.placeholder', lang)}
-                  pattern="\+[0-9]+"
-                  title="Phone number must start with + followed by digits only"
-                  className="w-full rounded-2xl border-2 border-emerald-500/60 bg-black/80 px-6 py-4 text-[17px] font-medium text-center text-slate-100 placeholder:text-slate-500 focus:border-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/40 shadow-lg shadow-emerald-500/10 transition-all"
-                  disabled={whatsappSubmitting}
-                />
-                <button
-                  type="submit"
-                  disabled={whatsappSubmitting}
-                  className="w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 px-8 py-4 text-[15px] font-sans font-bold uppercase tracking-[0.18em] text-black shadow-[0_0_24px_rgba(16,185,129,0.8)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_0_32px_rgba(16,185,129,1)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
-                >
-                  {whatsappSubmitting ? '...' : t('whatsapp.submit', lang)}
-                </button>
+
+            <div className="max-w-3xl mx-auto space-y-3 text-center">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="rounded-2xl border border-sky-400/40 bg-gradient-to-b from-sky-500/10 to-black/70 px-4 py-3 shadow-lg shadow-sky-500/10">
+                  <p className="font-sans text-[17px] sm:text-[18px] text-sky-50 leading-relaxed font-medium">
+                    {t('investmentModal.plan1')}
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-sky-400/40 bg-gradient-to-b from-sky-500/10 to-black/70 px-4 py-3 shadow-lg shadow-sky-500/10">
+                  <p className="font-sans text-[17px] sm:text-[18px] text-sky-50 leading-relaxed font-medium">
+                    {t('investmentModal.plan2')}
+                  </p>
+                </div>
               </div>
-              {whatsappMessage && (
-                <p className={`mt-4 text-center text-[15px] font-medium ${whatsappMessage.includes('Hvala') || whatsappMessage.includes('Thank') || whatsappMessage.includes('Bedankt') ? 'text-emerald-300' : 'text-red-400'}`}>
-                  {whatsappMessage}
+              <div className="pt-1 space-y-2">
+                <p className="font-sans text-[17px] sm:text-[19px] text-slate-200/90 leading-relaxed">
+                  <span className="text-sky-400 font-semibold">1.</span> {t('investmentModal.rule1')}
                 </p>
-              )}
-            </form>
-          </div>
-        </div>
-      </section>
-
-      {/* PLANOVI */}
-      <section id="plans" className="relative bg-gradient-to-b from-black via-emerald-950 to-black px-4 pt-10 pb-14">
-        <div className="max-w-5xl mx-auto space-y-8">
-          <div className="text-center">
-            <p className="font-display text-[11px] uppercase tracking-[0.26em] text-emerald-400">
-              {t('plans.section')}
-            </p>
-            <h2 className="mt-2 font-display text-[28px] sm:text-[34px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
-              {t('plans.title')}
-            </h2>
-            
-          </div>
-
-          <div className="grid gap-7 justify-items-center sm:grid-cols-2">
-            {/* 10K - 300€ */}
-            <div className="w-full max-w-sm">
-              <div className="relative flex h-full flex-col rounded-3xl border p-6 shadow-lg
-                              bg-gradient-to-b from-black via-[#02110b] to-black
-                              border-emerald-400 shadow-emerald-500/30 hover:-translate-y-2 ring-2 ring-emerald-500/20
-                              transition-all duration-200 ease-out">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-300 px-4 py-0.5 text-[10px] font-display uppercase tracking-[0.2em] text-black shadow-md">
-                  {t('plans.recommended')}
-                </div>
-                <div className="mb-4 space-y-1 text-center">
-                  <div className="font-display text-[24px] sm:text-[28px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
-                    {lang === 'sr'
-                      ? 'Investicioni nalog sa 10.000€'
-                      : lang === 'nl'
-                        ? 'Account met €10.000'
-                        : 'Investment Account with €10,000'}
-                  </div>
-                  <div className="font-sans text-[14px] text-emerald-400/80 mt-1">
-                    {t('plans.loss')} {landingPlans[0].limitedLoss}€
-                  </div>
-                  <div className="font-display text-[16px] font-semibold tracking-[0.08em] text-emerald-300">
-                    {t('plans.price')}
-                  </div>
-                  <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
-                    {landingPlans[0].price}€
-                  </div>
-                  <p className="text-xs font-sans text-emerald-300/80 mt-2">
-                  {lang === 'nl' ? 'Video training inbegrepen' : 'Video training included'}
-                  </p>
-                </div>
-                <div className="mb-3 flex items-center justify-center gap-2 sm:gap-3">
-                  <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
-                    <img src={visaLogo} alt="Visa" className="h-5 w-8 object-contain" />
-                  </div>
-                  <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
-                    <img src={mastercardLogo} alt="Mastercard" className="h-5 w-8 object-contain" />
-                  </div>
-                  <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
-                    <img src={raiffeisenLogo} alt="Raiffeisen Bank" className="h-5 w-10 object-contain" />
-                  </div>
-                </div>
-                  <div className="mt-auto flex flex-col gap-2">
-                  <button
-                    onClick={() => {
-                      if (!token) navigate('/register');
-                      else navigate('/pay-card/693db3e0e9cf589519c144fe');
-                    }}
-                    className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
-                  >
-                    Pay 330€ with Card
-                  </button>
-                  <button
-                    onClick={() => {
-                      if (!token) navigate('/register');
-                      else navigate('/pay-crypto/693db3e0e9cf589519c144fe');
-                    }}
-                    className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/20 via-emerald-400/30 to-cyan-400/30 p-[1px] shadow-[0_0_35px_rgba(34,197,94,0.55)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_50px_rgba(34,197,94,0.85)]"
-                  >
-                    <div className="flex w-full flex-col items-center justify-center gap-1 rounded-2xl bg-black/90 px-4 py-2.5 sm:py-3">
-                      <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.16em] text-emerald-100 group-hover:text-emerald-50">
-                        Pay 300€ with Crypto
-                      </span>
-                      <span className="text-[10px] font-bold tracking-[0.08em] text-white">
-                        (Tax free)
-                      </span>
-                    </div>
-                    <span className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-[100%] transition-all duration-700" />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* 20K - 600€ */}
-            <div className="w-full max-w-sm">
-              <div className="relative flex h-full flex-col rounded-3xl border p-6 shadow-lg
-                              bg-gradient-to-b from-black via-[#02110b] to-black
-                              border-emerald-700/40 hover:border-emerald-400/80 hover:-translate-y-1
-                              transition-all duration-200 ease-out">
-                <div className="mb-4 space-y-1 text-center">
-                  <div className="font-display text-[24px] sm:text-[28px] font-extrabold tracking-[0.08em] uppercase text-slate-50">
-                    {lang === 'sr'
-                      ? 'Investicioni nalog sa 20.000€'
-                      : lang === 'nl'
-                        ? 'Account met €20.000'
-                        : 'Investment Account with €20,000'}
-                  </div>
-                  <div className="font-sans text-[14px] text-emerald-400/80 mt-1">
-                    {t('plans.loss')} {landingPlans[1].limitedLoss}€
-                  </div>
-                  <div className="font-display text-[16px] font-semibold tracking-[0.08em] text-emerald-300">
-                    {t('plans.price')}
-                  </div>
-                  <div className="font-display text-[28px] sm:text-[32px] font-extrabold tracking-[0.08em] text-emerald-300">
-                    600€
-                  </div>
-                  <p className="text-xs font-sans text-emerald-300/80 mt-2">
-                    {lang === 'sr' ? 'Video obuka dolazi uz nalog' : lang === 'nl' ? 'Video training inbegrepen' : 'Video training included'}
-                  </p>
-                </div>
-                <div className="mb-3 flex items-center justify-center gap-2 sm:gap-3">
-                  <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
-                    <img src={visaLogo} alt="Visa" className="h-5 w-8 object-contain" />
-                  </div>
-                  <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
-                    <img src={mastercardLogo} alt="Mastercard" className="h-5 w-8 object-contain" />
-                  </div>
-                  <div className="flex items-center gap-1 rounded-md bg-slate-800/50 px-2 py-1">
-                    <img src={raiffeisenLogo} alt="Raiffeisen Bank" className="h-5 w-10 object-contain" />
-                  </div>
-                </div>
-                <div className="mt-auto flex flex-col gap-2">
-                  <button
-                    onClick={() => {
-                      if (!token) navigate('/register');
-                      else navigate('/pay-card/693db3ede9cf589519c14500');
-                    }}
-                    className="w-full rounded-2xl py-3 font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-400 text-black hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
-                  >
-                    Pay 630€ with Card
-                  </button>
-                  <button
-                    onClick={() => {
-                      if (!token) navigate('/register');
-                      else navigate('/pay-crypto/693db3ede9cf589519c14500');
-                    }}
-                    className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/20 via-emerald-400/30 to-cyan-400/30 p-[1px] shadow-[0_0_35px_rgba(34,197,94,0.55)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_50px_rgba(34,197,94,0.85)]"
-                  >
-                    <div className="flex w-full flex-col items-center justify-center gap-1 rounded-2xl bg-black/90 px-4 py-2.5 sm:py-3">
-                      <span className="font-sans text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.16em] text-emerald-100 group-hover:text-emerald-50">
-                        Pay 600€ with Crypto
-                      </span>
-                      <span className="text-[10px] font-bold tracking-[0.08em] text-white">
-                        (Tax free)
-                      </span>
-                    </div>
-                    <span className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-[100%] transition-all duration-700" />
-                  </button>
-                </div>
+                <p className="font-sans text-[17px] sm:text-[19px] text-slate-200/90 leading-relaxed">
+                  <span className="text-sky-400 font-semibold">2.</span> {t('investmentModal.rule2')}
+                </p>
+                <p className="font-sans text-[17px] sm:text-[19px] text-slate-200/90 leading-relaxed">
+                  <span className="text-sky-400 font-semibold">3.</span> {t('investmentModal.rule3')}
+                </p>
               </div>
             </div>
           </div>
-
-          {token && selectedPlan && (
-            <div className="mt-8 flex justify-center">
-              <div className="w-full max-w-lg rounded-3xl border-2 border-emerald-500/80 bg-gradient-to-b from-emerald-500/10 via-black/80 to-emerald-900/10 p-8 shadow-2xl shadow-emerald-500/30 backdrop-blur-sm">
-                <div className="text-center mb-6">
-                  <p className="mt-4 text-2xl font-display font-extrabold tracking-[0.1em] uppercase text-slate-50">
-                    {lang === 'sr'
-                      ? `Investicioni ${selectedPlan.name}`
-                      : lang === 'nl'
-                        ? `Investeringsaccount ${selectedPlan.name}`
-                        : `Investment ${selectedPlan.name}`}
-                  </p>
-                  <p className="text-4xl font-display font-extrabold tracking-[0.15em] text-emerald-400 mt-2">
-                    {selectedPlan.price}€
-                  </p>
-                </div>
-
-                <div className="space-y-3">
-                  <button
-                    onClick={() => navigate(`/pay-card/${selectedPlan.id}`)}
-                    className="w-full rounded-2xl bg-emerald-500 py-3 text-sm font-sans font-semibold uppercase tracking-[0.18em] text-black shadow-[0_0_20px_rgba(16,185,129,0.7)] transition-all duration-200 disabled:opacity-60 hover:-translate-y-[1px] hover:bg-emerald-400"
-                  >
-                    {lang === 'nl' ? 'Betaal met kaart' : 'Pay by card'}
-                  </button>
-                </div>
-
-                <div className="mt-4 text-center">
-                  <button
-                    onClick={() => setOnSitePlanId(null)}
-                    className="text-sm text-slate-400 hover:underline"
-                  >
-                    {lang === 'nl' ? 'Annuleren' : 'Cancel'}
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          <p className="mt-8 font-sans text-[13px] text-slate-400 max-w-3xl mx-auto text-center">
-            {t('plans.afterPayment')}
-          </p>
         </div>
-      </section>
-
-
-      <section className="bg-gradient-to-b from-black via-[#020617] to-black px-4 pt-10 pb-12">
-        <div className="max-w-5xl mx-auto space-y-6">
-          <div className="text-center">
-            <p className="font-display text-[11px] uppercase tracking-[0.24em] text-emerald-400">
-              {t('faq.section')}
-            </p>
-            <h2 className="mt-2 font-display text-[26px] sm:text-[30px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
-              {t('faq.title')}
-            </h2>
-          </div>
-
-          <div className="space-y-4">
-            <div className="rounded-2xl border border-emerald-700/50 bg-black/60 px-5 py-4">
-              <h3 className="font-display text-[15px] sm:text-[16px] font-semibold tracking-[0.08em] uppercase text-emerald-300">
-                {t('faq.q1')}
-              </h3>
-              <p className="mt-1 font-sans text-[14px] sm:text-[15px] text-slate-200/90 leading-relaxed">
-                {t('faq.a1')}
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-emerald-700/50 bg-black/60 px-5 py-4">
-              <h3 className="font-display text-[15px] sm:text-[16px] font-semibold tracking-[0.08em] uppercase text-emerald-300">
-                {t('faq.q2')}
-              </h3>
-              <p className="mt-1 font-sans text-[14px] sm:text-[15px] text-slate-200/90 leading-relaxed">
-                {t('faq.a2')}
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-emerald-700/50 bg-black/60 px-5 py-4">
-              <h3 className="font-display text-[15px] sm:text-[16px] font-semibold tracking-[0.08em] uppercase text-emerald-300">
-                {t('faq.q3')}
-              </h3>
-              <p className="mt-1 font-sans text-[14px] sm:text-[15px] text-slate-200/90 leading-relaxed">
-               {t('faq.a3')}
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-emerald-700/50 bg-black/60 px-5 py-4">
-              <h3 className="font-display text-[15px] sm:text-[16px] font-semibold tracking-[0.08em] uppercase text-emerald-300">
-                {t('faq.q4')}
-              </h3>
-              <p className="mt-1 font-sans text-[14px] sm:text-[15px] text-slate-200/90 leading-relaxed">
-                {t('faq.a4')}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT SECTION */}
-      <section className="bg-gradient-to-b from-black via-emerald-950 to-black px-4 py-14">
-        <div className="max-w-5xl mx-auto space-y-8">
-          <div className="text-center">
-            <p className="font-display text-[11px] uppercase tracking-[0.26em] text-emerald-400">
-              {t('contact.section')}
-            </p>
-            <h2 className="mt-2 font-display text-[28px] sm:text-[34px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
-              {t('contact.title')}
-            </h2>
-            <p className="mt-3 font-sans text-[15px] text-emerald-100/90 max-w-2xl mx-auto">
-              {t('contact.subtitle')}
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-emerald-800/60 bg-black/80 p-8 shadow-lg shadow-emerald-500/20">
-            <ContactForm />
-          </div>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="border-t border-emerald-800/40 bg-black px-4 py-8">
-        <div className="max-w-5xl mx-auto flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <div className="font-display text-[18px] font-semibold tracking-[0.16em] uppercase text-slate-50">
-              Arbex
-            </div>
-            <p className="mt-1 font-sans text-[13px] text-slate-400">
-              {t('footer.professional')}
-            </p>
-          </div>
-
-          <div className="flex flex-col items-start gap-3 font-sans text-[13px] text-slate-400 sm:items-end">
-            <div className="flex flex-col gap-2 items-start text-emerald-300 sm:items-end">
-              <button
-                onClick={() => {
-                  navigate('/#plans');
-                  window.scrollTo(0, 0);
-                }}
-                className="hover:text-emerald-100 transition-colors"
-              >
-                {t('footer.pricing')}
-              </button>
-              <button
-                onClick={() => {
-                  navigate('/contact');
-                  window.scrollTo(0, 0);
-                }}
-                className="hover:text-emerald-100 transition-colors"
-              >
-                {t('footer.contact')}
-              </button>
-              <button onClick={() => { navigate('/terms'); window.scrollTo(0, 0); }} className="text-[12px] hover:text-emerald-100 transition-colors">Terms</button>
-              <button onClick={() => { navigate('/privacy'); window.scrollTo(0, 0); }} className="text-[12px] hover:text-emerald-100 transition-colors">Privacy</button>
-              <button onClick={() => { navigate('/aml'); window.scrollTo(0, 0); }} className="text-[12px] hover:text-emerald-100 transition-colors">AML</button>
-              <button onClick={() => { navigate('/cookies'); window.scrollTo(0, 0); }} className="text-[12px] hover:text-emerald-100 transition-colors">Cookies</button>
-              <button onClick={() => { navigate('/risk'); window.scrollTo(0, 0); }} className="text-[12px] hover:text-emerald-100 transition-colors">Risk</button>
-              <button onClick={() => { navigate('/refund'); window.scrollTo(0, 0); }} className="text-[12px] hover:text-emerald-100 transition-colors">Refund</button>
-              <button onClick={() => { navigate('/regulatory'); window.scrollTo(0, 0); }} className="text-[12px] hover:text-emerald-100 transition-colors">Regulatory</button>
-            </div>
-            
-            <p className="text-[12px] text-slate-500">
-              © {new Date().getFullYear()} Arbex. {t('footer.rights')}
-            </p>
-          </div>
-        </div>
-      </footer>
+      )}
     </div>
   );
 };

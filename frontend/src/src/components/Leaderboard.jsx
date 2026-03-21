@@ -74,7 +74,7 @@ const Leaderboard = () => {
                   </div>
 
                   <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
-                    <div className="font-sans text-emerald-50 min-w-0 flex-1">
+                    <div className="font-sans text-sky-50 min-w-0 flex-1">
                       <div className="text-[14px] sm:text-[16px] truncate font-medium flex items-center gap-2">
                         <img src={item.countryFlag} alt={item.countryName} className="h-5 w-6 object-cover rounded-sm" />
                         <span>{item.firstName && item.lastName ? `${item.firstName} ${item.lastName}` : item.email}</span>
@@ -106,3 +106,5 @@ const Leaderboard = () => {
 };
 
 export default Leaderboard;
+
+

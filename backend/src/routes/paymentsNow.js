@@ -32,8 +32,9 @@ async function npRequestWithRetry(makeRequest, retries = 1, backoffMs = 1200) {
 
 // Plan pricing overrides by payment method (EUR)
 const planPricing = {
-  '693db3e0e9cf589519c144fe': { stripe: 300, crypto: 11 }, // 10k (crypto testing price)
-  '693db3ede9cf589519c14500': { stripe: 600, crypto: 510 }, // 20k
+  '693db3e0e9cf589519c144fe': { stripe: 150, crypto: 150 }, // 2.5k account
+  '693db3ede9cf589519c14500': { stripe: 300, crypto: 300 }, // 5k account
+  '693db3ede9cf589519c14501': { stripe: 1000, crypto: 1000 }, // 10k account
 };
 
 // Allowed crypto coins and mapping to NOWPayments codes (all ERC20)
@@ -132,13 +133,14 @@ router.post('/create', authMiddleware, async (req, res) => {
 
     // Format crypto amount: ETH keeps decimals, others are rounded to integer
     let roundedPayAmount = null;
-    if (payAmount) {
+    const payAmountNum = typeof payAmount === 'string' ? parseFloat(payAmount) : payAmount;
+    if (Number.isFinite(payAmountNum)) {
       if (payCurrency === 'eth') {
         // ETH: preserve up to 8 decimal places
-        roundedPayAmount = parseFloat(payAmount.toFixed(8));
+        roundedPayAmount = Number(payAmountNum.toFixed(8));
       } else {
         // USDT, USDC: round to nearest integer
-        roundedPayAmount = Math.round(payAmount);
+        roundedPayAmount = Math.round(payAmountNum);
       }
     }
     const eurAmount = price; // EUR amount (from planPricing)

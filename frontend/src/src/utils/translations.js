@@ -2,38 +2,49 @@ import { getLang } from './lang';
 import nlTranslations from './translations.nl';
 
 const translations = {
-  // Navigation & Header
-  'nav.dashboard': { sr: 'Dashboard', en: 'Dashboard' },
-  'nav.plans': { sr: 'Planovi', en: 'Plans' },
-  'nav.admin': { sr: 'Admin panel', en: 'Admin Panel' },
-  'nav.logout': { sr: 'Odjava', en: 'Log out' },
-  'nav.login': { sr: 'Prijava', en: 'Log in' },
-  'nav.register': { sr: 'Registracija', en: 'Register' },
+  // Investment Modal (custom text for modal and section)
+  'whatYouGet.platform.conditionsLink': { sr: 'uslovi investiranja', en: 'Investment Conditions' },
+  'investmentModal.title': { sr: 'Uslovi investiranja', en: 'Investment Conditions' },
+  'investmentModal.plan1': { sr: '5.000€ nalog → 300€ dozvoljeni gubitak', en: '€5,000 account → €300 allowed loss' },
+  'investmentModal.plan2': { sr: '10.000€ nalog → 500€ dozvoljeni gubitak', en: '€10,000 account → €500 allowed loss' },
+  'investmentModal.rule1': { sr: 'Možeš investirati ceo iznos (5.000€ ili 10.000€) bez dodatnih troškova.', en: 'You can invest the full amount (5,000€ or 10,000€) with no additional costs.' },
+  'investmentModal.rule2': { sr: 'Ako prekoračiš dozvoljeni gubitak, nalog se automatski gasi i nema dodatnih troškova.', en: 'If you exceed the allowed loss, your account is automatically deactivated and there are no extra charges.' },
+  'investmentModal.rule3': { sr: 'Isplata profita moguća je nakon minimum 30 dana od kupovine naloga, radi doslednosti strategije i upravljanja rizikom.', en: 'Profit payout is possible only after a minimum of 30 days from account purchase, to ensure consistent strategy and risk management.' },
+  'investmentModal.description': { sr: 'Svaki nalog ima unapred definisan maksimalni dozvoljeni gubitak koji ujedno predstavlja i njegovu cenu.', en: 'Each account has a predefined maximum loss amount which also represents its price.' },
+  'investmentModal.account5k': { sr: 'Nalog od 5.000€', en: '€5,000 account' },
+  'investmentModal.loss5k': { sr: '€300 dozvoljeni gubitak', en: '€300 allowed loss' },
+  'investmentModal.account10k': { sr: 'Nalog od 10.000€', en: '€10,000 account' },
+  'investmentModal.loss10k': { sr: '€500 dozvoljeni gubitak', en: '€500 allowed loss' },
 
   // Landing Hero
   'hero.title': { sr: 'Uloži sa našim kapitalom.', en: 'Invest with our capital.' },
-  'hero.title.line1': { sr: 'Uloži sa', en: 'Invest with' },
-  'hero.title.line2': { sr: 'našim kapitalom.', en: 'our capital.' },
-  'hero.subtitle': { sr: 'Podeli profit.', en: 'Share the profit.' },
+  'hero.title.line1': { sr: 'Investing', en: 'Investing' },
+  'hero.title.line2': { sr: 'Simplified', en: 'Simplified' },
+  'hero.subtitle': { sr: '', en: '' },
   'hero.learnMore': { sr: 'Saznaj više', en: 'Learn More' },
-  'hero.viewPlans': { sr: 'Pogledaj planove', en: 'View Plans' },
+  'hero.viewPlans': { sr: 'Izaberi nalog', en: 'Choose Account' },
 
   // Investing Simplified
-  'investingSimplified.title': { sr: 'Investiranje pojednostavljeno', en: 'Investing Simplified' },
+  'investingSimplified.title': { sr: 'Arbex Platform', en: 'Arbex Platform' },
   'investingSimplified.description1': {
-    sr: 'Nudimo platformu gde osobe mogu iskusiti pravo investiranje bez potrebe da donose svoj kapital. Svaki učesnik upravlja živim trading nalogom koji je financiran od nas, koristeći vlastitu strategiju i prosudbu.',
-    en: 'We provide a platform where individuals can experience real-world investing without needing to bring their own capital. Each participant manages a live trading account funded by us, using their own strategy and judgment.'
+    sr: 'We provide a platform where individuals can experience real-world investing without needing to bring their own capital. Each client manages a live investment account funded by us, using their own strategy and judgment.',
+    en: 'We provide a platform where individuals can experience real-world investing without needing to bring their own capital. Each client manages a live investment account funded by us, using their own strategy and judgment.'
   },
   'investingSimplified.description2': {
-    sr: 'Naš cilj je da profesionalno investiranje učinimo dostupnijim - praktičnim, transparentnim i fokusiranim na vaše odluke umesto na vašu početnu sumu.',
-    en: 'Our goal is to make professional-style investing more accessible - practical, transparent, and focused on your decisions rather than your starting balance.'
+    sr: 'This setup lets clients engage directly with live markets, make their own investment decisions, or simply copy our professional investors in real time.',
+    en: 'This setup lets clients engage directly with live markets, make their own investment decisions, or simply copy our professional investors in real time.'
   },
 
   // How it works
-  'howItWorks.title': { sr: 'Naš proizvod', en: 'Our Product' },
+  'howItWorks.title': { sr: 'Arbex Account', en: 'Arbex Account' },
   'howItWorks.description': {
     sr: 'Kada kupiš nalog na našem websajtu, dobijaš log in podatke od novog trading naloga koji će biti popunjen pravim kapitalom. Svaki kupac dobija svoj, zaseban nalog.',
     en: 'When you become our client, you will receive login information for a newly created trading account that will be filled with real capital. Each customer is provided with their own separate account.'
+  },
+  'howItWorks.goalTitle': { sr: 'Cilj: Ostvari profit', en: 'Goal: Achieve profit' },
+  'howItWorks.goalDescription': {
+    sr: 'investirajući u kripto, zlato ili bilo koji drugi finansijski instrument dostupan na našoj investicionoj platformi.',
+    en: 'by investing in crypto, gold, or any other financial instrument available on our investment platform.'
   },
   'howItWorks.task': {
     sr: 'Tvoj zadatak je jasan:',
@@ -47,62 +58,72 @@ const translations = {
   'howItWorks.instruments': { sr: 'Saznaj više o dostupnim finansijskim instrumentima', en: 'Find out all available financial instruments' },
 
   // Trading Rule
-  'risk.title': { sr: 'Pravilo Trgovanja', en: 'Trading Rule' },
+  'risk.title': { sr: 'Investment rule', en: 'Investment rule' },
   'risk.bodyIntro': {
     sr: 'Svaki nalog ima unapred određen dozvoljeni gubitak - iznos koji ujedno predstavlja i njegovu cenu:',
-    en: 'Each account has a predefined maximum loss amount, which also represents its price:'
+    en: 'Each account has a predefined maximum Allowed Loss, which also represents its price:'
   },
   'risk.bodyPlan1': {
-    sr: '10.000€ nalog → 300€ dozvoljeni gubitak',
-    en: '€10,000 account → €300 allowed loss'
+    sr: '5.000€ nalog → 300€ dozvoljeni gubitak',
+    en: '€5.000 account → €300 allowed loss'
   },
   'risk.bodyPlan2': {
-    sr: '20.000€ nalog → 600€ dozvoljeni gubitak',
-    en: '€20,000 account → €600 allowed loss'
+    sr: '10.000€ nalog → 500€ dozvoljeni gubitak',
+    en: '€10.000 account → €500 allowed loss'
   },
   'risk.bodyLimit': {
     sr: 'Ako se taj iznos prekorači, pristup nalogu se automatski ukida.',
-    en: 'If that amount is exceeded, account access is automatically revoked.'
+    en: 'If that amount is exceeded, the account is automatically deactivated.'
   },
   'risk.bodyConclusion': {
     sr: 'Ovim pristupom, maksimalni rizik gubitka ograničen je samo na cenu naloga, bez dodatnih troškova.',
-    en: 'With this approach, your maximum loss risk is limited only to the account price, with no additional costs.'
+    en: 'With this approach, you are able invest the full 5.000€ or 10.000€, while your maximum financial risk is limited only to the account price, with no additional costs.'
+  },
+  'risk.companyInfo': {
+    sr: 'Arbex Fund B.V. je holandska kompanija osnovana 2025. od strane Milosa Jevrosimovica i Kala Bagjna, osnivača BinckBanka, jedne od najvećih evropskih online investment banski.',
+    en: 'Arbex Fund B.V. is a Dutch Company founded in 2025 by Milos Jevrosimovic and Kalo Bagijn, the Founder of BinckBank, one of the largest European online investment banks.'
   },
 
   // What You Get
-  'whatYouGet.title': { sr: 'Šta tačno dobijaš kupovinom naloga?', en: 'What exactly do you get by purchasing an account?' },
+  'whatYouGet.title': { sr: 'Account Details', en: 'Account Details' },
   'whatYouGet.capital.title': { sr: 'KORISNIČKO IME I LOZINKA', en: 'USERNAME AND PASSWORD' },
   'whatYouGet.capital.description': {
-    sr: 'Dobijas email sa log in podacima (korisničko ime, lozinka) za svoj novi trading nalog na online trading platformi MetaTrader5.com',
-    en: 'You get an email with the login information (username, password) for your newly created trading account on an online trading platform MetaTrader5.com.'
+    sr: 'Dobijaš email sa podacima za prijavu (korisničko ime, lozinka) za svoj novi investicioni nalog na platformi MetaTrader5.com.',
+    en: 'You get an email with the login information (username, password) for your newly created investment account on the online platform called <a href="https://www.metatrader5.com" target="_blank" rel="noopener noreferrer" style="color:#38bdf8;text-decoration:underline">MetaTrader5.com</a>.'
   },
-  'whatYouGet.platform.title': { sr: 'TRADING KAPITAL', en: 'TRADING CAPITAL' },
+  'whatYouGet.platform.title': { sr: 'INVESTICIONI KAPITAL', en: 'INVESTMENT CAPITAL' },
   'whatYouGet.platform.description': {
-    sr: 'Tvoj nalog dobija kapital od nas. Ne rizikuješ vlastiti novac - korisiš naš kapital.',
-    en: 'Your account receives capital from us. You don\'t risk your own money - you trade using our capital.'
+    sr: 'Tvoj nalog dobija kapital od Arbex Fund-a. Mi obezbeđujemo sredstva u skladu sa <a href="#" class="investment-conditions-link" style="color:#38bdf8;text-decoration:underline;cursor:pointer">investicionim uslovima</a>.',
+    en: 'Your account receives capital from Arbex Fund. We supply the funds in accordance with the <a href="#" class="investment-conditions-link" style="color:#38bdf8;text-decoration:underline;cursor:pointer">investment conditions</a>.'
   },
-  'whatYouGet.profit.title': { sr: 'Podela profita', en: 'Profit Split' },
+  'whatYouGet.profit.title': { sr: 'Podela profita', en: 'PROFIT SPLIT' },
   'whatYouGet.profit.description': {
-    sr: 'Ostvariš investiciju sa našim kapitalom. Ako finansijski instrument u koji si investirao poraste u vrijednosti i ti odlučiš da CASH OUT, 80% profita se isplaćuje na tvoju kreditnu karticu ili lični kripto račun. Mi skupljamo 20%',
-    en: 'You make an investment with our capital. If the financial instrument you invested in increases in value and you decide to CASH OUT, 80% of the profit is paid directly to your credit card or personal crypto account. We collect 20%.'
+    sr: 'Ako finansijski instrument u koji si investirao poraste u vrednosti i odlučiš da CASH OUT, 80% profita se isplaćuje na tvoju kreditnu karticu ili lični kripto račun.',
+    en: 'If the financial instrument you invested in increases in value and you decide to CASH OUT, 80% of the profit is paid directly to your credit card or personal crypto account.'
   },
 
   // Stats
-  'stats.avgProfit.title': { sr: 'Prosečan isplaćeni iznos', en: 'Average Profit Amount Payed Out to Clients' },
-  'stats.avgProfit.amount': { sr: '2.300€', en: '2.300€' },
+  'stats.avgProfit.title': { sr: 'Prosečan isplaćeni iznos', en: 'Average profit amount payed out' },
+  'stats.avgProfit.amount': { sr: '2900€', en: '2900€' },
   'stats.successRate.title': { sr: 'Januar stopa uspeha', en: 'January Success rate' },
   'stats.successRate.subtitle': { sr: '(Procenat klijenata koji su ostvarili profit iznad 100€)', en: '(Percentage of clients who achieved a profit above 100€)' },
   'stats.successRate.percentage': { sr: '61%', en: '61%' },
 
-  // Our Goal
-  'goal.title': { sr: 'Naš cilj', en: 'Our Goal' },
+  // Our Model
+  'goal.title': { sr: 'Naš model', en: 'Our Model' },
+  'howToStart.title': { sr: 'How to start', en: 'How to start' },
+  'copyArbex.badge': { sr: 'Copy Arbex: Auto-invest za nove klijente', en: 'Copy Arbex: New Client Auto‑Invest' },
+  'copyArbex.description': {
+    sr: 'Opcija Copy Arbex omogućava novim klijentima da automatski kopiraju investicije naših pet profesionalnih investitora. Kada aktiviraš ovu funkciju u aplikaciji, tvoj nalog prati iste poteze koje prave profesionalci. Klijent bira jednog od pet investitora, poređanih od nižeg ka višem riziku, i tako lako pronalazi stil koji mu odgovara.',
+    en: 'The Copy Arbex feature allows new clients to automatically copy the investments of our five professional investors. By activating this feature in the app, their account executes the same investment actions as the professionals. Clients can choose from five investors, ranked from low risk to high risk, making it easy to select the approach that suits them and start investing with confidence.'
+  },
   'goal.description': {
-    sr: 'Naš model je zasnovan na jednostavnom principu — mi zarađujemo samo kada zarađuju naši klijenti.',
-    en: 'Our model is based on a simple principle - We earn when our clients earn.'
+    sr: 'Naš model je zasnovan na jednostavnom principu - dajemo vam jaču investicionu moć.',
+    en: 'Our model is based on a simple principle - We give you stronger investment power.'
   },
   'goal.beginners': {
-    sr: 'Na taj način stvaramo sistem u kome i početnici mogu da ostvare značajne profite, dok uspešni trejderi dobijaju pristup većim količinama kapitala.',
-    en: 'In this way, we create a system where beginners have a chance of achieving results, while successful traders gain access to larger amounts of capital.'
+    sr: 'Na taj način klijenti dobijaju potencijal za veće prinose u poređenju sa ulaganjem sopstvenog kapitala.',
+    en: 'In this way, clients access the potential for larger returns compared to investing with personal capital.'
   },
   'copyTrade.title': { sr: 'Copy Trade Opcija', en: 'Copy Trade Feature' },
   'copyTrade.description': {
@@ -110,34 +131,35 @@ const translations = {
     en: 'Through the copy trade feature available inside the app, users can activate automatic copying of one of our five professional traders. This option gives those without prior experience a better chance of achieving strong results.'
   },
 
-  // WhatsApp Call Request
-  'whatsapp.title': { sr: 'Zatraži besplatan WhatsApp poziv', en: 'Request free WhatsApp consultation' },
-  'whatsapp.description': { sr: 'Unesite broj telefona i mi ćemo vas kontaktirati putem WhatsApp-a', en: 'Enter your phone number and we\'ll contact you via WhatsApp.' },
-  'whatsapp.placeholder': { sr: '+381 60 1234567', en: '+31 6 12345678' },
-  'whatsapp.submit': { sr: 'Pošalji', en: 'Submit' },
-  'whatsapp.success': { sr: 'Hvala! Kontaktiraćemo vas uskoro.', en: 'Thank you! We will contact you soon.' },
-  'whatsapp.error': { sr: 'Greška pri slanju zahteva', en: 'Error sending request' },
-
   // Plans
   'plans.section': { sr: 'Planovi', en: 'Plans' },
   'plans.title': { sr: 'Izaberi veličinu naloga', en: 'Choose your account size' },
+  'plans.plan5k.title': { sr: 'Investicioni nalog sa 5.000€', en: 'Investment account with €5,000' },
+  'plans.plan10k.title': { sr: 'Investicioni nalog sa 10.000€', en: 'Investment account with €10,000' },
   'plans.recommended': { sr: 'Preporučeno', en: 'Recommended' },
-  'plans.loss': { sr: 'Ograničeni gubitak:', en: 'Limited loss:' },
+  'plans.loss': { sr: 'Stop loss:', en: 'Stop loss:' },
   'plans.price': { sr: 'Cena:', en: 'Price:' },
-  'plans.payCard': { sr: 'Plati karticom', en: 'Pay by Card' },
-  'plans.payCrypto': { sr: 'Plati kriptom', en: 'Pay with Crypto' },
+  'plans.trainingIncluded': { sr: 'Video obuka uključena uz nalog', en: 'Video education included' },
+  'plans.payCard': { sr: 'Plati karticom', en: 'Pay 300€ with Card' },
+  'plans.payCrypto': { sr: 'Plati kriptom', en: 'Pay 270€ with Crypto' },
+  'plans.payCard2': { sr: 'Plati karticom', en: 'Pay 500€ with Card' },
+  'plans.payCrypto2': { sr: 'Plati kriptom', en: 'Pay 450€ with Crypto' },
+  'plans.taxFree': { sr: 'Bez poreza', en: '(Tax free)' },
   'plans.afterPayment': {
-    sr: 'Nakon uspešne uplate, na tvoj Gmail stižu podaci za pristup (email i lozinka), a svoj aktivni plan vidiš u dashboard‑u na našem web sajtu.',
-    en: 'After successful payment, your access credentials will be sent to your email. You can view your active plan in the dashboard.'
+    sr: 'After successful payment, your access credentials will be sent to your email. You can view your account status in the dashboard on our website',
+    en: 'After successful payment, your access credentials will be sent to your email. You can view your account status in the dashboard on our website'
   },
+  'plans.createAccountCta': { sr: 'Kreiraj svoj nalog', en: 'Create your account' },
+  'plans.selectedPlanHeading': { sr: 'Tvoj izabrani nalog', en: 'Your selected account' },
+  'plans.cancelSelection': { sr: 'Otkaži', en: 'Cancel' },
 
   // FAQ
   'faq.section': { sr: 'Česta pitanja', en: 'FAQ' },
-  'faq.title': { sr: 'Šta treba da znaš pre kupovine?', en: 'What should you know before purchasing?' },
+  'faq.title': { sr: 'FAQ', en: 'FAQ' },
   'faq.q1': { sr: 'Ko stoji iza Arbexfund.com?', en: 'Who is behind Arbexfund.com?' },
   'faq.a1': {
-    sr: 'Arbex Fund B.V. je holandska kompanija osnovana 2025. godine od strane Pedje Stojanovića, izvršnog direktora Norvestor Equiti B.V., jednog od vodećih holandskih fondova privatnog kapitala koji se specijalizuje za modernu trading tehnologiju i investicije u obveznice.',
-    en: 'Arbex Fund B.V. is a Dutch Company founded in 2025 by Kalo Bagijn, the managing director of Norvestor Equiti B.V., one of the leading Dutch private equity funds that specializes in modern trading technology and bond investments.'
+    sr: 'Arbex Fund B.V. je holandska kompanija osnovana 2025. godine od strane Milosa Jevrosimovica i Kala Bagjna, osnivača BinckBanka, jedne od najvećih evropskih online investment banski.',
+    en: 'Arbex Fund B.V. is a Dutch Company founded in 2025 by Milos Jevrosimovic and Kalo Bagijn, the Founder of BinckBank, one of the largest European online investment banks.'
   },
   'faq.q2': { sr: 'Kakav je naš poslovni model?', en: 'What\'s our business model?' },
   'faq.a2': {
@@ -157,7 +179,7 @@ const translations = {
 
   // Auth - Login
   'login.back': { sr: 'Nazad na sajt', en: 'Back to site' },
-  'login.clientAccess': { sr: 'Klijent pristup', en: 'Client access' },
+  'login.clientAccess': { sr: 'Pristup nalogu', en: 'Account access' },
   'login.title': { sr: 'Prijava na dashboard', en: 'LOG IN TO DASHBOARD' },
   'login.subtitle': {
     sr: 'Unesi email i lozinku da vidiš svoj nalog, aktivan plan i istoriju isplata na jednom mestu.',
@@ -217,7 +239,7 @@ const translations = {
   'contact.title': { sr: 'Javi se timu', en: 'Contact the team' },
   'contact.subtitle': {
     sr: 'Pitanja o nalozima, plaćanju ili saradnji - piši direktno timu i dobićeš odgovor u kratkom roku.',
-    en: 'Questions about accounts, payments, or affiliate collaborations - write directly to our team for a quick response.'
+    en: 'Questions about accounts, payments, or collaborations - write directly to our team for a quick response.'
   },
   'contact.back': { sr: 'Nazad na sajt', en: 'Back to site' },
   'contact.support.title': { sr: 'Podrška za korisnike', en: 'Customer support' },
@@ -254,43 +276,60 @@ const translations = {
   'contactForm.validationSubject': { sr: 'Naslov je obavezan', en: 'Subject is required' },
   'contactForm.validationMessage': { sr: 'Poruka je obavezna', en: 'Message is required' },
 
+  // Navigation
+  'nav.plans': { sr: 'Planovi', en: 'Plans' },
+  'nav.contact': { sr: 'Kontakt podrška', en: 'Contact support' },
+  'nav.dashboard': { sr: 'Dashboard', en: 'Dashboard' },
+  'nav.admin': { sr: 'Admin panel', en: 'Admin panel' },
+  'nav.logout': { sr: 'Odjava', en: 'Logout' },
+  'nav.login': { sr: 'Prijava', en: 'Login' },
+  'nav.register': { sr: 'Registracija', en: 'Register' },
+
   // Footer
-  'footer.professional': { sr: 'Investirajte na pravi način.', en: 'Invest the right way.' },
+  'footer.professional': { sr: 'Investiranje, pojednostavljeno.', en: 'Investing, simplified.' },
   'footer.pricing': { sr: 'Planovi i cene', en: 'Plans & Pricing' },
   'footer.contact': { sr: 'Kontakt podrška', en: 'Contact Support' },
+  'footer.termsFull': { sr: 'Uslovi korišćenja', en: 'Terms and Conditions' },
+  'footer.privacyFull': { sr: 'Politika privatnosti', en: 'Privacy Policy' },
+  'footer.amlFull': { sr: 'AML politika', en: 'AML Policy' },
+  'footer.cookiesFull': { sr: 'Politika kolačića', en: 'Cookie Policy' },
+  'footer.riskFull': { sr: 'Upozorenje o riziku', en: 'Risk Warning' },
+  'footer.refundFull': { sr: 'Politika povraćaja', en: 'Refund Policy' },
+  'footer.regulatoryFull': { sr: 'Regulatorne informacije', en: 'Regulatory Information' },
   'footer.rights': { sr: 'Sva prava zadržana.', en: 'All rights reserved.' },
 
   // Dashboard
   'dashboard.clientZone': { sr: 'Klijent zona', en: 'Client Zone' },
   'dashboard.title': { sr: 'Dashboard', en: 'Dashboard' },
   'dashboard.description': { sr: 'Pregled naloga, plana i balansa.', en: 'Account, plan and balance overview.' },
-  'dashboard.balance': { sr: 'Balans', en: 'Account overview' },
-  'dashboard.balanceDescription': { sr: 'Vrednost tvog aktivnog plana.', en: 'Active plan value' },
+  'dashboard.balance': { sr: 'Pregled naloga', en: 'Account overview' },
+  'dashboard.balanceDescription': { sr: 'Aktivna vrednost naloga.', en: 'Active account value' },
   'dashboard.account': { sr: 'Nalog', en: 'Account' },
   'dashboard.accountDescription': { sr: 'Tvoj email i status naloga.', en: 'Email & account status' },
   'dashboard.email': { sr: 'Email adresa', en: 'Email address' },
   'dashboard.name': { sr: 'Ime i prezime', en: 'Name' },
-  'dashboard.plan': { sr: 'Plan', en: 'Plan' },
+  'dashboard.plan': { sr: 'Veličina naloga', en: 'Account size' },
   'dashboard.paid': { sr: 'Plaćeno:', en: 'Paid:' },
-  'dashboard.noActivePlan': { sr: 'Trenutno nemaš aktivan plan.', en: 'You currently have no active plan.' },
-  'dashboard.upgradePlan': { sr: 'Nadogradi plan', en: 'Upgrade Plan' },
-  'dashboard.buyPlan': { sr: 'Kupi plan', en: 'Buy Plan' },
+  'dashboard.noActivePlan': { sr: 'You have no active trading account yet', en: 'You have no active trading account yet' },
+  'dashboard.upgradePlan': { sr: 'Kupi novi nalog', en: 'Buy new account' },
+  'dashboard.buyPlan': { sr: 'Kupi nalog', en: 'Buy account' },
   'dashboard.cashOut': { sr: 'Zahtev za isplatu', en: 'Request Payout' },
   'dashboard.cashOutPending': { sr: 'Zahtev poslat', en: 'Request Sent' },
-  'dashboard.loginStays': { sr: 'Login ostaje isti nakon nadogradnje.', en: 'Login details remain the same after upgrading' },
+  'dashboard.loginStays': { sr: 'Login details remain the same after upgrading.', en: 'Login details remain the same after upgrading.' },
   'dashboard.requestSent': { sr: 'Poslato:', en: 'Sent:' },
   'dashboard.funded.active': { sr: 'Aktivan', en: 'Active' },
-  'dashboard.funded.noPlan': { sr: 'Nema plana', en: 'No plan' },
+  'dashboard.funded.noPlan': { sr: 'Nema naloga', en: 'No account' },
 
   // Dashboard Info Cards
   'dashboardInfo.payments': { sr: 'Plaćanja', en: 'Payments' },
-  'dashboardInfo.noCardsSaved': { sr: 'Ne čuvamo brojeve kartica.', en: 'We don\'t store card details.' },
-  'dashboardInfo.encryptedTransactions': { sr: 'Sve transakcije su šifrovane i sigurno procesuirane.', en: 'All transactions are encrypted and securely processed.' },
-  'dashboardInfo.activationTime': { sr: 'Aktivacija plana je trenutna.', en: 'Plan activation is immediate' },
+  'dashboardInfo.noCardsSaved': { sr: 'We do not store, collect, or have direct access to any of your card details. All payment information is handled securely by trusted third-party providers, ensuring your data remains private and protected at all times.', en: 'We do not store, collect, or have direct access to any of your card details. All payment information is handled securely by trusted third-party providers, ensuring your data remains private and protected at all times.' },
+  'dashboardInfo.encryptedTransactions': { sr: 'There are no recurring or hidden fees. Each account is purchased once.', en: 'There are no recurring or hidden fees. Each account is purchased once.' },
+  'dashboardInfo.activationTime': { sr: 'Make sure your email is up to date to receive notifications and payout information.', en: 'Make sure your email is up to date to receive notifications and payout information.' },
+  'dashboardInfo.paymentSupport': { sr: 'Contact our support team if you encounter any issues or have questions about the payment process.', en: 'Contact our support team if you encounter any issues or have questions about the payment process.' },
   'dashboardInfo.nextSteps': { sr: 'Sledeći koraci', en: 'Next Steps' },
-  'dashboardInfo.refreshPage': { sr: 'Ako plan ne vidiš odmah, osveži stranicu posle par minuta.', en: 'If you don\'t see the plan immediately, refresh the page after a few minutes.' },
-  'dashboardInfo.keepEmailUpdated': { sr: 'Drži email ažuriranim zbog obaveštenja i isplata.', en: 'Keep your email up to date for notifications and payouts.' },
-  'dashboardInfo.supportFromDashboard': { sr: 'Upravljaj zahtevima za pomoć i izmenama plana direktno iz dashboard‑a.', en: 'Manage support requests and plan changes directly from your dashboard.' },
+  'dashboardInfo.refreshPage': { sr: 'After successful payment, you receive the login information and education material for your MetaTrader5.com live investment account.', en: 'After successful payment, you receive the login information and education material for your MetaTrader5.com live investment account.' },
+  'dashboardInfo.keepEmailUpdated': { sr: 'You start investing.', en: 'You start investing.' },
+  'dashboardInfo.supportFromDashboard': { sr: 'Manage support requests and plan changes directly from your dashboard.', en: 'Manage support requests and plan changes directly from your dashboard.' },
 
   // Crypto Payment
   'crypto.title': { sr: 'Kripto uplata', en: 'Crypto Payment' },
@@ -301,7 +340,10 @@ const translations = {
   'crypto.creating': { sr: 'Kreiranje uplate…', en: 'Creating payment…' },
   'crypto.sendExactly': { sr: 'Pošalji tačno', en: 'Send exactly' },
   'crypto.toAddress': { sr: 'na ovu adresu:', en: 'to this address:' },
+    'crypto.rightCoinHint': { sr: 'Kako da znam da saljem pravi coin?', en: 'How do I know if I am sending the right coin?' },
   'crypto.copyAddress': { sr: 'Kopiraj adresu', en: 'Copy Address' },
+  'crypto.copySuccess': { sr: 'Kopirano!', en: 'Copied!' },
+  'crypto.copyError': { sr: 'Kopiranje nije uspelo.', en: 'Copy failed.' },
   'crypto.paymentId': { sr: 'Payment ID:', en: 'Payment ID:' },
   'crypto.afterConfirmation': { sr: 'Nakon potvrde na blockchain‑u, tvoj plan se automatski aktivira u dashboard‑u.', en: 'After blockchain confirmation, your plan will be automatically activated in the dashboard.' },
 
@@ -337,7 +379,7 @@ const translations = {
 
   // Auth - Login
   'login.back': { sr: 'Nazad na sajt', en: 'Back to site' },
-  'login.clientAccess': { sr: 'Klijent pristup', en: 'Client access' },
+  'login.clientAccess': { sr: 'Pristup nalogu', en: 'Account access' },
   'login.title': { sr: 'Prijava na dashboard', en: 'LOG IN TO DASHBOARD' },
   'login.subtitle': {
     sr: 'Unesi email i lozinku da vidiš svoj nalog, aktivan plan i istoriju isplata na jednom mestu.',
@@ -397,7 +439,7 @@ const translations = {
   'contact.title': { sr: 'Javi se timu', en: 'Contact the team' },
   'contact.subtitle': {
     sr: 'Pitanja o nalozima, plaćanju ili saradnji - piši direktno timu i dobićeš odgovor u kratkom roku.',
-    en: 'Questions about accounts, payments, or collaboration—write directly to the team for a quick reply.'
+    en: 'Questions about accounts, payments, or collaborations - write directly to our team for a quick response.'
   },
   'contact.back': { sr: 'Nazad na sajt', en: 'Back to site' },
   'contact.support.title': { sr: 'Podrška za korisnike', en: 'Customer support' },
@@ -510,6 +552,9 @@ const translations = {
   'about.expectations.support.description': { sr: 'Tim stručnjaka stoji iza tebe kroz svaki korak procesa.', en: 'A team of experts stands behind you at every step of the process.' },
 
   // On-site Stripe Checkout
+  'onsite.payment': { sr: 'Plaćanje', en: 'Payment' },
+  'onsite.secure': { sr: 'Sve transakcije su sigurne i šifrovane', en: 'All transactions are secure and encrypted' },
+  'onsite.amountToPay': { sr: 'Iznos za plaćanje:', en: 'Amount to pay:' },
   'onsite.firstName': { sr: 'Ime', en: 'First name' },
   'onsite.lastName': { sr: 'Prezime', en: 'Last name' },
   'onsite.address': { sr: 'Adresa (ulica, broj, grad)', en: 'Address (street, number, city)' },
@@ -518,13 +563,17 @@ const translations = {
   'onsite.phonePlaceholder': { sr: '+381 6x xxx xxxx', en: '+1 234 567 8900' },
   'onsite.cardNumber': { sr: 'Broj kartice', en: 'Card Number' },
   'onsite.expiry': { sr: 'Datum isteka', en: 'Expiration Date' },
-  'onsite.cvc': { sr: 'CVV', en: 'CVV' },
+  'onsite.expiryShort': { sr: 'MM/GG', en: 'MM/YY' },
+  'onsite.cvc': { sr: 'CVV', en: 'Security code' },
+  'onsite.cardholderName': { sr: 'Ime na kartici', en: 'Cardholder name' },
+  'onsite.nameOnCard': { sr: 'Ime na kartici', en: 'Name on card' },
+  'onsite.amountToPay': { sr: 'Iznos za plaćanje', en: 'Amount to pay' },
   'onsite.error.unavailable': { sr: 'Plaćanje trenutno nije dostupno. Pokušaj ponovo kasnije.', en: 'Payment is currently unavailable. Please try again later.' },
   'onsite.error.create': { sr: 'Nije moguće kreirati Stripe uplatu.', en: 'Unable to create Stripe payment.' },
   'onsite.error.cardField': { sr: 'Polje za broj kartice nije učitano. Osveži stranicu.', en: 'Card number field not loaded. Refresh the page.' },
   'onsite.error.stripe': { sr: 'Stripe greška. Pokušaj ponovo.', en: 'Stripe error. Please try again.' },
   'onsite.submit.processing': { sr: 'Obrada uplate...', en: 'Processing payment...' },
-  'onsite.submit.pay': { sr: 'Plati karticom', en: 'Pay by card' },
+  'onsite.submit.pay': { sr: 'PROCEED', en: 'PROCEED' },
 
   // On-site Payment Page
   'onsite.page.section': { sr: 'Plaćanje karticom', en: 'Card payment' },
@@ -557,7 +606,7 @@ const translations = {
   'cancel.back': { sr: 'Nazad na planove', en: 'Back to plans' },
 
   // Crypto Payment (extended)
-  'crypto.coin.usdt': { sr: 'USDT ERC-20', en: 'USDT ERC-20' },
+  'crypto.coin.usdt': { sr: 'USDT', en: 'USDT' },
   'crypto.coin.usdt.note': { sr: 'Tether Ethereum', en: 'Tether on Ethereum' },
   'crypto.coin.esdt': { sr: 'ESDT', en: 'ESDT' },
   'crypto.coin.esdt.note': { sr: 'MultiversX (EGLD)', en: 'MultiversX (EGLD)' },
@@ -593,8 +642,8 @@ const translations = {
   'instruments.futuresDesc': { sr: 'Naftni, akcijski indeksi, robni i valutni futures - sve MT5 opcije.', en: 'Oil futures, Stock index futures, Commodity futures, Currency futures and more.' },
   'instruments.other': { sr: 'Ostala Tržišta', en: 'Other Tradable Markets' },
   'instruments.otherItems': {
-    sr: 'Stotine globalnih akcija (SAD, UK, Evropa, Azija), Forex major, minor i egzotični parovi (60+), Robe (metali, energenti, poljoprivредни proizvodi), ETF-ovi za teme, sektore i inovacije, Kriptovalute (glavne kovanice + altcoini), Futures na naftu, akcijske indekse i robu',
-    en: 'Hundreds of global shares (US, UK, Europe, Asia), Forex majors, minors, and exotic pairs (60+ total), Commodities (metals, energies, agricultural products), ETFs for themes, sectors, innovation, and global markets, Cryptocurrencies (major coins + altcoins), Futures on oil, stock indexes, and commodities'
+    sr: 'Stotine globalnih akcija (SAD, UK, Evropa, Azija); Forex major, minor i egzotični parovi (60+); Robe (metali, energenti, poljoprivredni proizvodi); ETF-ovi za teme, sektore i inovacije; Kriptovalute (glavne kovanice + altcoini); Futures na naftu, akcijske indekse i robu',
+    en: 'Hundreds of global shares (US, UK, Europe, Asia); Forex majors, minors, and exotic pairs (60+ total); Commodities (metals, energies, agricultural products); ETFs for themes, sectors, innovation, and global markets; Cryptocurrencies (major coins + altcoins); Futures on oil, stock indexes, and commodities'
   },
   'instruments.contact': { sr: 'Za bilo koja pitanja o finansijskom instrumentu koji nije na ovoj listi, kontaktirajte nas na support@arbexfund.com', en: 'For any inquiry regarding a financial instrument not on this list, please contact us at support@arbexfund.com' },
 };

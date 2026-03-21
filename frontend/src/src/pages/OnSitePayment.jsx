@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import Header from '../components/Header';
 import OnSiteStripeCheckout from '../components/OnSiteStripeCheckout';
+import Footer from '../components/Footer';
 import { t } from '../utils/translations';
 import { getLang } from '../utils/lang';
 import visaLogo from '/img/visa.png';
@@ -22,24 +23,28 @@ const OnSitePaymentPage = ({ navigate, token, onLogout, planId }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50">
+    <div className="min-h-screen bg-gradient-to-b from-black via-sky-950 to-black text-slate-50 flex flex-col">
       <Header navigate={navigate} token={token} onLogout={onLogout} />
 
-      <div className="mx-auto max-w-5xl px-4 pb-16 pt-6 sm:pt-8">
-        <header className="mb-8 text-center">
-          <p className="font-display text-[12px] uppercase tracking-[0.26em] text-emerald-400">{t('onsite.page.section', lang)}</p>
-          <h1 className="mt-2 font-display text-[26px] sm:text-[30px] font-extrabold tracking-[0.12em] uppercase text-slate-50">
-            {t('onsite.page.title', lang)}
-          </h1>
+      <div className="mx-auto max-w-5xl px-4 pb-16 pt-6 sm:pt-8 flex-1">
+        <header className="mb-8">
+          <div className="text-left sm:text-center mb-6">
+            <h1 className="font-display text-[24px] sm:text-[28px] font-bold tracking-[0.12em] uppercase text-sky-300">
+              {t('onsite.payment', lang)}
+            </h1>
+            <p className="mt-2 font-sans text-[13px] text-sky-100/80">
+              {t('onsite.secure', lang)}
+            </p>
+          </div>
         
-          <div className="mt-2 flex items-center justify-center gap-3">
+          <div className="flex items-center justify-start sm:justify-center gap-3">
             <img src={visaLogo} alt="Visa" className="h-5 w-8 object-contain" />
             <img src={mastercardLogo} alt="Mastercard" className="h-5 w-8 object-contain" />
             <img src={raiffeisenLogo} alt="Raiffeisen Bank" className="h-5 w-10 object-contain" />
           </div>
         </header>
 
-        <section className="mx-auto max-w-lg rounded-3xl border-2 border-emerald-500/80 bg-gradient-to-b from-emerald-500/10 via-black/80 to-emerald-900/10 p-8 shadow-2xl shadow-emerald-500/30 backdrop-blur-sm">
+        <section className="mx-auto max-w-lg rounded-3xl border-2 border-sky-500/80 bg-gradient-to-b from-sky-500/10 via-black/80 to-sky-900/10 p-8 shadow-2xl shadow-sky-500/30 backdrop-blur-sm">
           <OnSiteStripeCheckout
             token={token}
             planId={planId}
@@ -56,8 +61,11 @@ const OnSitePaymentPage = ({ navigate, token, onLogout, planId }) => {
           </button>
         </div>
       </div>
+      <Footer navigate={navigate} />
     </div>
   );
 };
 
 export default OnSitePaymentPage;
+
+

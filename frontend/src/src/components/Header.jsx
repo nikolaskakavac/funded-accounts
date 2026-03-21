@@ -18,15 +18,15 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
   return (
     <>
       {/* FIXED HEADER */}
-      <div className="fixed top-0 left-0 right-0 z-40 border-b border-emerald-500/20 bg-black/80 backdrop-blur-lg">
+      <div className="fixed top-0 left-0 right-0 z-40 border-b border-sky-500/20 bg-black/80 backdrop-blur-lg">
         <header className="flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 max-w-5xl mx-auto w-full">
         <div className="flex items-center gap-3 sm:gap-4">
           {showBackLink && (
             <button
               onClick={() => navigate('/')}
-              className="inline-flex items-center gap-2 rounded-full border border-emerald-600 px-3 sm:px-4 py-1.5 sm:py-2 text-[12px] sm:text-[13px] font-sans uppercase tracking-[0.14em] text-emerald-200 transition-all duration-200 hover:bg-emerald-500/10 hover:-translate-y-[1px]"
+              className="inline-flex items-center gap-2 rounded-full border border-sky-600 px-3 sm:px-4 py-1.5 sm:py-2 text-[12px] sm:text-[13px] font-sans font-normal uppercase tracking-[0.14em] text-sky-200 transition-all duration-200 hover:bg-sky-500/10 hover:-translate-y-[1px]"
             >
-              <span className="text-emerald-400">←</span>
+              <span className="text-sky-400">←</span>
               <span className="hidden sm:inline">
                 {lang === 'nl' ? 'Terug naar start' : 'Back to Home'}
               </span>
@@ -34,7 +34,8 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
             </button>
           )}
           <div
-            className="text-xl sm:text-2xl font-display font-semibold tracking-[0.12em] uppercase cursor-pointer"
+            className="text-xl sm:text-2xl font-display font-normal tracking-[0.12em] uppercase cursor-pointer"
+            style={{ fontWeight: 600 }}
             role="button"
             tabIndex={0}
             onClick={() => navigate('/')}
@@ -46,10 +47,10 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 sm:gap-5 text-xs sm:text-sm font-sans">
+        <div className="flex items-center gap-4 sm:gap-5 text-xs sm:text-sm font-sans font-normal">
           <div className="relative">
             <button
-              className="inline-flex items-center gap-1.5 rounded-full border border-emerald-600/60 px-3 py-1.5 text-[11px] sm:text-xs font-sans uppercase tracking-[0.16em] text-slate-300 hover:bg-emerald-500/10 bg-black/40"
+              className="inline-flex items-center justify-center gap-1.5 rounded-full border border-sky-600/60 px-3 py-1.5 text-[11px] sm:text-xs font-sans font-normal uppercase tracking-[0.16em] text-slate-300 hover:bg-sky-500/10 bg-black/40"
               onClick={() => setLangMenuOpen((o) => !o)}
             >
               {lang === 'nl' ? (
@@ -63,31 +64,33 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                   <span>EN</span>
                 </>
               )}
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7" />
               </svg>
             </button>
             {langMenuOpen && (
-              <div className="absolute right-0 mt-1 w-36 rounded-xl border border-emerald-500/30 bg-black p-1 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200 z-50">
+              <div className="absolute right-0 mt-1 w-max rounded-xl border border-sky-500/30 bg-black px-2 py-1 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200 z-50">
                 <button
                   onClick={() => {
                     setLang('en');
                     setLangState('en');
                     setLangMenuOpen(false);
                   }}
-                  className={`flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-[11px] sm:text-xs transition-all duration-200 ${
+                  className={`flex items-center gap-0 rounded-lg px-2 py-1.5 text-[11px] sm:text-xs transition-all duration-200 ${
                     lang === 'en'
-                      ? 'bg-emerald-500/20 text-emerald-200'
-                      : 'text-slate-300 hover:bg-emerald-500/10'
+                      ? 'bg-sky-500/20 text-sky-200'
+                      : 'text-slate-300 hover:bg-sky-500/10'
                   }`}
                 >
                   {lang === 'en' && (
-                    <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7m0 0l-7 7" />
                     </svg>
                   )}
-                  <img src="/img/gbp.avif" alt="EN" className="w-6 h-4 object-cover rounded-sm" />
-                  <span>English</span>
+                  <div className="flex items-center gap-2 ml-1">
+                    <img src="/img/gbp.avif" alt="EN" className="w-6 h-4 object-cover rounded-sm" />
+                    <span>English</span>
+                  </div>
                 </button>
                 <button
                   onClick={() => {
@@ -95,19 +98,21 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                     setLangState('nl');
                     setLangMenuOpen(false);
                   }}
-                  className={`flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-[11px] sm:text-xs transition-all duration-200 ${
+                  className={`flex items-center gap-0 rounded-lg px-2 py-1.5 text-[11px] sm:text-xs transition-all duration-200 ${
                     lang === 'nl'
-                      ? 'bg-emerald-500/20 text-emerald-200'
-                      : 'text-slate-300 hover:bg-emerald-500/10'
+                      ? 'bg-sky-500/20 text-sky-200'
+                      : 'text-slate-300 hover:bg-sky-500/10'
                   }`}
                 >
+                  <div className="flex items-center gap-2">
+                    <img src="/img/ned.avif" alt="NL" className="w-6 h-4 object-cover rounded-sm" />
+                    <span>Nederlands</span>
+                  </div>
                   {lang === 'nl' && (
-                    <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7m0 0l-7 7" />
                     </svg>
                   )}
-                  <img src="/img/ned.avif" alt="NL" className="w-6 h-4 object-cover rounded-sm" />
-                  <span>Nederlands</span>
                 </button>
               </div>
             )}
@@ -144,7 +149,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
 
       {/* OVERLAY MENI */}
       {menuOpen && (
-        <div className="fixed inset-0 z-30 bg-black/75 backdrop-blur-sm border-b border-emerald-500/30 overflow-y-auto">
+        <div className="fixed inset-0 z-30 bg-black/75 backdrop-blur-sm border-b border-sky-500/30 overflow-y-auto">
           <div className="max-w-5xl mx-auto px-4 pt-[84px] sm:pt-[96px] pb-4 relative">
             {/* CLOSE BUTTON */}
             <button
@@ -153,16 +158,26 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
             >
              
             </button>
-            <nav className="flex flex-col gap-2 text-sm font-sans font-medium tracking-[0.14em] uppercase text-center">
+            <nav className="flex flex-col gap-2 text-sm font-sans font-normal tracking-[0.14em] uppercase text-center">
+              <button
+                onClick={() => {
+                  setMenuOpen(false);
+                  navigate('/about');
+                  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                }}
+                className="py-2 font-medium"
+              >
+                {lang === 'nl' ? 'Over ons' : 'About us'}
+              </button>
               <button
                 onClick={() => {
                   setMenuOpen(false);
                   navigate('/');
                   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                 }}
-                className="py-2"
+                className="py-2 font-medium"
               >
-                {lang === 'nl' ? 'Start' : 'Home'}
+                {lang === 'nl' ? 'Start' : 'Homepage'}
               </button>
               <button
                 onClick={() => {
@@ -170,9 +185,19 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                   navigate('/#plans');
                   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                 }}
-                className="py-2"
+                className="py-2 font-medium"
               >
-                {t('nav.plans')}
+                {lang === 'nl' ? 'Account opties' : 'Account options'}
+              </button>
+              <button
+                onClick={() => {
+                  setMenuOpen(false);
+                  navigate('/contact');
+                  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                }}
+                className="py-2 font-medium"
+              >
+                {t('nav.contact', lang)}
               </button>
               {token && (
                 <button
@@ -181,31 +206,11 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                     navigate('/dashboard');
                     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                   }}
-                  className="py-2"
+                  className="py-2 font-medium"
                 >
                   {t('nav.dashboard')}
                 </button>
               )}
-              <button
-                onClick={() => {
-                  setMenuOpen(false);
-                  navigate('/about');
-                  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-                }}
-                className="py-2"
-              >
-                {lang === 'nl' ? 'Over ons' : 'About us'}
-              </button>
-              <button
-                onClick={() => {
-                  setMenuOpen(false);
-                  navigate('/contact');
-                  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-                }}
-                className="py-2"
-              >
-                {lang === 'nl' ? 'Contact' : 'Contact'}
-              </button>
 
 
               {token ? (
@@ -217,7 +222,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                         navigate('/admin');
                         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                       }}
-                      className="mt-3 rounded-full border border-emerald-500/80 py-2 text-sm font-semibold text-emerald-300"
+                      className="mt-3 rounded-full border border-sky-500/80 py-2 text-sm font-semibold text-sky-300"
                     >
                       {t('nav.admin')}
                     </button>
@@ -240,7 +245,7 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
                     navigate('/login');
                     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                   }}
-                  className="mt-3 rounded-full bg-emerald-500 py-2 text-sm font-semibold text-black"
+                  className="mt-3 rounded-full bg-sky-500 py-2 text-sm font-semibold text-black"
                 >
                   {t('nav.login')}
                 </button>
@@ -251,9 +256,11 @@ const Header = ({ navigate, token, onLogout, showBackLink = true }) => {
       )}
 
       {/* Spacer to offset fixed header height */}
-      <div className="h-[100px] sm:h-[112px]" />
+      <div className="h-[80px] sm:h-[96px]" />
     </>
   );
 };
 
 export default Header;
+
+

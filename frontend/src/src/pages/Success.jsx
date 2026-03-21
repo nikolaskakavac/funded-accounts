@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { checkNowPaymentStatus } from '../api';
+import Footer from '../components/Footer';
 import { t } from '../utils/translations';
 import { getLang } from '../utils/lang';
 
@@ -85,38 +86,43 @@ const Success = ({ navigate }) => {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black text-slate-50 flex items-center justify-center px-4">
-      <div className="max-w-md w-full rounded-3xl border border-emerald-600/60 bg-black/80 p-7 text-center shadow-xl shadow-emerald-500/30">
+    <div className="min-h-screen bg-gradient-to-b from-black via-sky-950 to-black text-slate-50 flex flex-col">
+      <div className="flex-1 flex items-center justify-center px-4">
+        <div className="max-w-md w-full rounded-3xl border border-sky-600/60 bg-black/80 p-7 text-center shadow-xl shadow-sky-500/30">
         <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center ${
-          status === 'success' ? 'bg-emerald-500/20 border-2 border-emerald-400' : 
+          status === 'success' ? 'bg-sky-500/20 border-2 border-sky-400' : 
           status === 'error' ? 'bg-red-500/20 border-2 border-red-400' : 
           'bg-yellow-500/20 border-2 border-yellow-400'
         }`}>
           {status === 'success' ? '✅' : status === 'error' ? '❌' : '⏳'}
         </div>
         
-        <p className="font-display text-[12px] uppercase tracking-[0.26em] mb-2 text-emerald-400">
+        <p className="font-display text-[12px] uppercase tracking-[0.26em] mb-2 text-sky-400">
           {status === 'success' ? t('success.status.success', lang) : status === 'error' ? t('success.status.error', lang) : t('success.status.pending', lang)}
         </p>
         <h1 className={`font-display text-[26px] sm:text-[32px] font-extrabold tracking-[0.12em] uppercase mb-4 ${
-          status === 'success' ? 'text-emerald-300' : status === 'error' ? 'text-red-300' : 'text-yellow-300'
+          status === 'success' ? 'text-sky-300' : status === 'error' ? 'text-red-300' : 'text-yellow-300'
         }`}>
           {status === 'success' ? t('success.title.success', lang) : status === 'error' ? t('success.title.error', lang) : t('success.title.pending', lang)}
         </h1>
-        <p className="mt-3 font-sans text-[15px] text-emerald-100/90 leading-relaxed mb-6">
+        <p className="mt-3 font-sans text-[15px] text-sky-100/90 leading-relaxed mb-6">
           {message || t('success.msg.checking', lang)}
         </p>
-        <button
-          onClick={() => navigate('/dashboard')}
-          className="w-full rounded-full bg-emerald-500 px-4 py-3
-                     text-lg font-sans font-semibold uppercase tracking-[0.16em] text-black
-                     shadow-[0_0_20px_rgba(16,185,129,0.7)] transition-all duration-200 hover:-translate-y-1 hover:bg-emerald-400"
-        >
-          {status === 'success' ? t('success.button.success', lang) : t('success.button.check', lang)}
-        </button>
+          <button
+            onClick={() => navigate('/dashboard')}
+            className="w-full rounded-full bg-sky-500 px-4 py-3
+                       text-lg font-sans font-semibold uppercase tracking-[0.16em] text-black
+                       shadow-[0_0_20px_rgba(56,189,248,0.7)] transition-all duration-200 hover:-translate-y-1 hover:bg-sky-400"
+          >
+            {status === 'success' ? t('success.button.success', lang) : t('success.button.check', lang)}
+          </button>
+        </div>
       </div>
+      <Footer navigate={navigate} />
     </div>
   );
 };
 
 export default Success;
+
+

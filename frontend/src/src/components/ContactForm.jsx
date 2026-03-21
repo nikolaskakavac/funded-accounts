@@ -114,7 +114,7 @@ const ContactForm = () => {
         <h2 className="font-display text-[24px] sm:text-[28px] font-extrabold tracking-[0.12em] uppercase text-slate-50 mb-2">
           {t('contactForm.title', lang)}
         </h2>
-        <p className="font-sans text-[14px] sm:text-[15px] text-emerald-100/90">
+        <p className="font-sans text-[14px] sm:text-[15px] text-sky-100/90">
           {t('contactForm.subtitle', lang)}
         </p>
       </div>
@@ -123,16 +123,16 @@ const ContactForm = () => {
       {result && (
         <div className={`mb-6 rounded-2xl p-4 border ${
           result.type === 'success' 
-            ? 'border-emerald-500/50 bg-emerald-500/10' 
+            ? 'border-sky-500/50 bg-sky-500/10' 
             : 'border-red-500/50 bg-red-500/10'
         }`}>
           <h3 className={`font-display text-[14px] font-semibold tracking-[0.08em] uppercase ${
-            result.type === 'success' ? 'text-emerald-300' : 'text-red-300'
+            result.type === 'success' ? 'text-sky-300' : 'text-red-300'
           }`}>
             {result.title}
           </h3>
           <p className={`font-sans text-[13px] mt-1 ${
-            result.type === 'success' ? 'text-emerald-200' : 'text-red-200'
+            result.type === 'success' ? 'text-sky-200' : 'text-red-200'
           }`}>
             {result.message}
           </p>
@@ -143,7 +143,7 @@ const ContactForm = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Name Field */}
         <div>
-          <label className="block font-sans text-[13px] font-semibold tracking-[0.08em] uppercase text-emerald-300 mb-2">
+          <label className="block font-sans text-[13px] font-semibold tracking-[0.08em] uppercase text-sky-300 mb-2">
             {t('contactForm.name', lang)}
           </label>
           <input
@@ -154,7 +154,7 @@ const ContactForm = () => {
             className={`w-full rounded-2xl border bg-black/60 px-4 py-3 font-sans text-[14px] text-slate-50 outline-none transition-all ${
               errors.name
                 ? 'border-red-500/70 focus:border-red-400'
-                : 'border-emerald-700/50 focus:border-emerald-500/80 focus:ring-1 focus:ring-emerald-500/30'
+                : 'border-sky-700/50 focus:border-sky-500/80 focus:ring-1 focus:ring-sky-500/30'
             }`}
             placeholder={lang === 'nl' ? 'Jan Jansen' : 'John Doe'}
           />
@@ -165,7 +165,7 @@ const ContactForm = () => {
 
         {/* Email Field */}
         <div>
-          <label className="block font-sans text-[13px] font-semibold tracking-[0.08em] uppercase text-emerald-300 mb-2">
+          <label className="block font-sans text-[13px] font-semibold tracking-[0.08em] uppercase text-sky-300 mb-2">
             {t('contactForm.email', lang)}
           </label>
           <input
@@ -176,7 +176,7 @@ const ContactForm = () => {
             className={`w-full rounded-2xl border bg-black/60 px-4 py-3 font-sans text-[14px] text-slate-50 outline-none transition-all ${
               errors.email
                 ? 'border-red-500/70 focus:border-red-400'
-                : 'border-emerald-700/50 focus:border-emerald-500/80 focus:ring-1 focus:ring-emerald-500/30'
+                : 'border-sky-700/50 focus:border-sky-500/80 focus:ring-1 focus:ring-sky-500/30'
             }`}
             placeholder="example@email.com"
           />
@@ -187,7 +187,7 @@ const ContactForm = () => {
 
         {/* Subject Field */}
         <div>
-          <label className="block font-sans text-[13px] font-semibold tracking-[0.08em] uppercase text-emerald-300 mb-2">
+          <label className="block font-sans text-[13px] font-semibold tracking-[0.08em] uppercase text-sky-300 mb-2">
             {t('contactForm.subject', lang)}
           </label>
           <input
@@ -199,7 +199,7 @@ const ContactForm = () => {
             className={`w-full rounded-2xl border bg-black/60 px-4 py-3 font-sans text-[14px] text-slate-50 outline-none transition-all ${
               errors.subject
                 ? 'border-red-500/70 focus:border-red-400'
-                : 'border-emerald-700/50 focus:border-emerald-500/80 focus:ring-1 focus:ring-emerald-500/30'
+                : 'border-sky-700/50 focus:border-sky-500/80 focus:ring-1 focus:ring-sky-500/30'
             }`}
           />
           {errors.subject && (
@@ -209,7 +209,7 @@ const ContactForm = () => {
 
         {/* Message Field */}
         <div>
-          <label className="block font-sans text-[13px] font-semibold tracking-[0.08em] uppercase text-emerald-300 mb-2">
+          <label className="block font-sans text-[13px] font-semibold tracking-[0.08em] uppercase text-sky-300 mb-2">
             {t('contactForm.message', lang)}
           </label>
           <textarea
@@ -221,7 +221,7 @@ const ContactForm = () => {
             className={`w-full rounded-2xl border bg-black/60 px-4 py-3 font-sans text-[14px] text-slate-50 outline-none resize-none transition-all ${
               errors.message
                 ? 'border-red-500/70 focus:border-red-400'
-                : 'border-emerald-700/50 focus:border-emerald-500/80 focus:ring-1 focus:ring-emerald-500/30'
+                : 'border-sky-700/50 focus:border-sky-500/80 focus:ring-1 focus:ring-sky-500/30'
             }`}
           />
           {errors.message && (
@@ -233,7 +233,7 @@ const ContactForm = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 py-3.5 font-sans font-semibold uppercase tracking-[0.16em] text-black transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed hover:shadow-[0_0_30px_rgba(16,185,129,0.8)] hover:-translate-y-0.5"
+          className="w-full rounded-2xl bg-gradient-to-r from-sky-500 to-sky-400 py-3.5 font-sans font-semibold uppercase tracking-[0.16em] text-black transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed hover:shadow-[0_0_30px_rgba(56,189,248,0.8)] hover:-translate-y-0.5"
         >
           {loading ? t('contactForm.sending', lang) : t('contactForm.submit', lang)}
         </button>
@@ -243,3 +243,5 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+
+

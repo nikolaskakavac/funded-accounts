@@ -14,8 +14,9 @@ const FRONTEND_URL =
 
 // Plan pricing overrides by payment method (EUR)
 const planPricing = {
-  '693db3e0e9cf589519c144fe': { stripe: 300, crypto: 5 }, // 10k (uvek 300 EUR)
-  '693db3ede9cf589519c14500': { stripe: 600, crypto: 600 }, // 20k
+  '693db3e0e9cf589519c144fe': { stripe: 150, crypto: 150 }, // 2.5k account
+  '693db3ede9cf589519c14500': { stripe: 300, crypto: 300 }, // 5k account
+  '693db3ede9cf589519c14501': { stripe: 1000, crypto: 1000 }, // 10k account
 };
 
 const getStripeAmount = (planId, fallbackPrice) => {

@@ -1,4 +1,27 @@
 const nlTranslations = {
+  'investmentModal.title': 'Investeringsvoorwaarden',
+  'investmentModal.description': 'Elke account heeft een vooraf bepaald maximaal verliesbedrag dat ook de prijs vertegenwoordigt.',
+  'investmentModal.plan1': '€5.000 account → €300 toegestaan verlies',
+  'investmentModal.plan2': '€10.000 account → €500 toegestaan verlies',
+  'investmentModal.rule1': 'Je kunt het volledige bedrag van 5.000€ of 10.000€ investeren.',
+  'investmentModal.rule2': 'Als het maximaal toegestane verlies wordt overschreden, wordt je account automatisch gedeactiveerd. Geen extra kosten.',
+  'investmentModal.rule3': 'Uitbetaling van winst kan alleen na minimaal 30 dagen (na aankoop van het account) om consistente strategie en risicobeheer te garanderen.',
+  'investmentModal.account5k': '€5.000 account',
+  'investmentModal.loss5k': '€300 toegestaan verlies',
+  'investmentModal.account10k': '€10.000 account',
+  'investmentModal.loss10k': '€500 toegestaan verlies',
+  'copyArbex.badge': 'Copy Arbex: Nieuwe klant auto-invest',
+  'copyArbex.description': 'Met de Copy Arbex-functie kunnen nieuwe klanten automatisch de investeringen van onze vijf professionele beleggers kopiëren. Door de functie in de app te activeren, voert hun account dezelfde acties uit als de professionals. Klanten kiezen uit vijf beleggers, gerangschikt van laag naar hoog risico, zodat ze eenvoudig een aanpak kiezen die bij hen past.',
+  'plans.createAccountCta': 'Maak je account aan',
+      'nav.contact': 'Contact support',
+    // Footer full page titles
+    'footer.termsFull': 'Gebruiksvoorwaarden',
+    'footer.privacyFull': 'Privacybeleid',
+    'footer.amlFull': 'Anti-witwasbeleid (AML)',
+    'footer.cookiesFull': 'Cookiebeleid',
+    'footer.riskFull': 'Risicowaarschuwing',
+    'footer.refundFull': 'Terugbetalingsbeleid',
+    'footer.regulatoryFull': 'Regelgevende informatie',
   // Navigation & Header
   'nav.dashboard': 'Dashboard',
   'nav.plans': 'Plannen',
@@ -8,24 +31,26 @@ const nlTranslations = {
   'nav.register': 'Registreren',
 
   // Landing Hero
-  'hero.title': 'Investeer in crypto met ons kapitaal.',
-  'hero.title.line1': 'Investeer in crypto',
-  'hero.title.line2': 'met ons kapitaal.',
-  'hero.subtitle': 'Deel de winst.',
+  'hero.title': 'Investing Simplified',
+  'hero.title.line1': 'Investing',
+  'hero.title.line2': 'Simplified',
+  'hero.subtitle': '',
   'hero.learnMore': 'Meer informatie',
-  'hero.viewPlans': 'Bekijk plannen',
+  'hero.viewPlans': 'Choose Account',
 
   // Investing Simplified
-  'investingSimplified.title': 'Beleggen, vereenvoudigd',
+  'investingSimplified.title': 'Arbex Platform',
   'investingSimplified.description1':
-    'We bieden een platform waar individuen echte beleggingservaringen kunnen opdoen zonder hun eigen kapitaal in te hoeven brengen. Elke deelnemer beheert een live handelsrekening die door ons wordt gefinancierd, met eigen strategie en oordeel.',
+    'We provide a platform where individuals can experience real-world investing without needing to bring their own capital. Each client manages a live investment account funded by us, using their own strategy and judgment.',
   'investingSimplified.description2':
-    'Ons doel is professioneel beleggen toegankelijker te maken - praktisch, transparant en gericht op uw beslissingen in plaats van uw startkapitaal.',
+    'This setup lets clients engage directly with live markets, make their own investment decisions, or simply copy our professional investors in real time.',
 
   // How it works
-  'howItWorks.title': 'Ons product',
+  'howItWorks.title': 'Arbex Account',
   'howItWorks.description':
     'Wanneer je een account op onze website koopt, ontvang je inloggegevens voor een al bestaand, vooraf gefinancierd crypto‑account. Elke klant krijgt zijn eigen, aparte account — geen delen met anderen.',
+  'howItWorks.goalTitle': 'Doel: Bereik winst',
+  'howItWorks.goalDescription': 'door te investeren in crypto, goud of een ander financieel instrument dat op ons platform beschikbaar is.',
   'howItWorks.task': 'Jouw taak is duidelijk:',
   'howItWorks.profit': 'maak winst door te investeren in een van de',
   'howItWorks.crypto': 'cryptovaluta',
@@ -38,18 +63,18 @@ const nlTranslations = {
   'howItWorks.infrastructure': 'technische infrastructuur',
 
   // Trading Rule
-  'risk.title': 'Handelsregel',
+  'risk.title': 'Investment rule',
   'risk.bodyIntro':
     'Elke account heeft een vooraf bepaald maximaal verliesbedrag, dat tegelijk de prijs van de account is:',
-  'risk.bodyPlan1': '€10.000 account → €300 toegestaan verlies',
-  'risk.bodyPlan2': '€20.000 account → €600 toegestaan verlies',
+  'risk.bodyPlan1': '€5.000 account → €300 toegestaan verlies',
+  'risk.bodyPlan2': '€10.000 account → €500 toegestaan verlies',
   'risk.bodyLimit':
     'Als dit bedrag wordt overschreden, wordt de toegang tot de account automatisch beëindigd.',
   'risk.bodyConclusion':
     'Met deze aanpak is je maximale verliesrisico beperkt tot alleen de prijs van de account, zonder extra kosten.',
 
   // What You Get
-  'whatYouGet.title': 'Wat krijg je precies bij het kopen van een account?',
+  'whatYouGet.title': 'Account Details',
   'whatYouGet.capital.title': 'Investeringskapitaal',
   'whatYouGet.capital.description':
     'Je krijgt geld van ons dat je kunt investeren in de cryptovaluta naar keuze. Je riskeert niet je eigen geld, maar gebruikt ons kapitaal.',
@@ -60,33 +85,41 @@ const nlTranslations = {
   'whatYouGet.profit.description':
     'Wanneer de cryptovaluta waarin je hebt geïnvesteerd stijgt en je besluit te cashen, wordt 80% van de winst uitbetaald op je creditcard of persoonlijke crypto‑rekening, en 20% houden wij.',
 
-  // Our Goal
-  'goal.title': 'Ons doel',
-  'goal.description': 'Ons model is gebaseerd op een eenvoudig principe — wij verdienen alleen wanneer onze klanten verdienen.',
+  // Stats
+  'stats.avgProfit.title': 'Gemiddeld uitbetaalde winst',
+  'stats.avgProfit.amount': '2900€',
+  'stats.successRate.title': 'Succespercentage januari',
+  'stats.successRate.subtitle': '(Percentage klanten met winst boven 100€)',
+  'stats.successRate.percentage': '61%',
+
+  // Our Model
+  'goal.title': 'Ons model',
+  'howToStart.title': 'How to start',
+  'goal.description': 'Ons model is gebaseerd op een eenvoudig principe - we geven je meer investeringskracht.',
   'goal.beginners':
-    'Zo creëren we een systeem waarin ook beginners aanzienlijke winst kunnen behalen, terwijl succesvolle traders toegang krijgen tot grotere investeringen en gezamenlijke groei.',
+    'Zo krijgen klanten potentieel voor grotere rendementen vergeleken met investeren met eigen kapitaal.',
   'copyTrade.title': 'Copy Trade Optie',
   'copyTrade.description':
     'Via de copy trade-optie in de app kunnen gebruikers het automatisch kopiëren van één van onze 5 professionele traders activeren. Zo hebben ook mensen zonder eerdere ervaring een betere kans om resultaten te behalen.',
 
-  // WhatsApp Call Request
-  'whatsapp.title': 'Vraag een gratis WhatsApp-gesprek aan',
-  'whatsapp.description': 'Voer je telefoonnummer in en we nemen via WhatsApp contact met je op',
-  'whatsapp.placeholder': '+31 6 12345678',
-  'whatsapp.submit': 'Verzenden',
-  'whatsapp.success': 'Bedankt! We nemen binnenkort contact met je op.',
-  'whatsapp.error': 'Fout bij het verzenden van verzoek',
-
   // Plans
   'plans.section': 'Plannen',
-  'plans.title': 'Kies je accountgrootte.',
+  'plans.title': 'Kies je accountgrootte',
+  'plans.plan5k.title': 'Account met €5.000',
+  'plans.plan10k.title': 'Account met €10.000',
   'plans.recommended': 'Aanbevolen',
-  'plans.loss': 'Beperkt verlies:',
+  'plans.loss': 'Stop loss:',
   'plans.price': 'Prijs:',
-  'plans.payCard': 'Betaal met kaart',
-  'plans.payCrypto': 'Betaal met crypto',
+  'plans.trainingIncluded': 'Videotraining inbegrepen',
+  'plans.payCard': 'Betaal 300€ met kaart',
+  'plans.payCrypto': 'Betaal 270€ met crypto',
+  'plans.payCard2': 'Betaal 500€ met kaart',
+  'plans.payCrypto2': 'Betaal 450€ met crypto',
+  'plans.taxFree': '(Belastingvrij)',
   'plans.afterPayment':
-    'Na een succesvolle betaling ontvang je toegang (e‑mail en wachtwoord) in je Gmail, en je ziet je actieve plan in het dashboard op onze website.',
+    'Na een succesvolle betaling worden je toegangsgegevens per e-mail gestuurd. Je kunt de status van je account bekijken in het dashboard op onze website',
+  'plans.selectedPlanHeading': 'Je gekozen account',
+  'plans.cancelSelection': 'Annuleren',
 
   // FAQ
   'faq.section': 'Veelgestelde vragen',
@@ -255,7 +288,7 @@ const nlTranslations = {
   'cancel.back': 'Terug naar plannen',
 
   // Crypto Payment (extended)
-  'crypto.coin.usdt': 'USDT ERC-20',
+  'crypto.coin.usdt': 'USDT',
   'crypto.coin.usdt.note': 'Tether op Ethereum',
   'crypto.coin.esdt': 'ESDT',
   'crypto.coin.esdt.note': 'MultiversX (EGLD)',
@@ -300,9 +333,9 @@ const nlTranslations = {
   'contactForm.validationMessage': 'Bericht is verplicht',
 
   // Footer
-  'footer.professional': 'Professioneel investeren voor iedereen.',
+  'footer.professional': 'Investeren, vereenvoudigd.',
   'footer.pricing': 'Plannen en prijzen',
-  'footer.contact': 'Contact & support',
+  'footer.contact': 'Contact support',
   'footer.rights': 'Alle rechten voorbehouden.',
 
   // Dashboard (extended)
@@ -317,25 +350,26 @@ const nlTranslations = {
   'dashboard.name': 'Naam',
   'dashboard.plan': 'Plan',
   'dashboard.paid': 'Betaald:',
-  'dashboard.noActivePlan': 'Je hebt momenteel geen actief plan.',
+  'dashboard.noActivePlan': 'You have no active trading account yet',
   'dashboard.upgradePlan': 'Plan upgraden',
   'dashboard.buyPlan': 'Plan kopen',
   'dashboard.cashOut': 'Cash‑out verzoek',
   'dashboard.cashOutPending': 'Verzoek verzonden',
-  'dashboard.loginStays': 'Login blijft hetzelfde na upgrade.',
+  'dashboard.loginStays': 'Login details remain the same after upgrading.',
   'dashboard.requestSent': 'Verzonden:',
   'dashboard.funded.active': 'Actief',
   'dashboard.funded.noPlan': 'Geen plan',
 
   // Dashboard Info Cards
   'dashboardInfo.payments': 'Betalingen',
-  'dashboardInfo.noCardsSaved': 'We slaan geen kaartgegevens op.',
-  'dashboardInfo.encryptedTransactions': 'Alle transacties zijn versleuteld en veilig verwerkt.',
-  'dashboardInfo.activationTime': 'Planactivatie is onmiddellijk',
+  'dashboardInfo.noCardsSaved': 'We do not store, collect, or have direct access to any of your card details. All payment information is handled securely by trusted third-party providers, ensuring your data remains private and protected at all times.',
+  'dashboardInfo.encryptedTransactions': 'There are no recurring or hidden fees. Each account is purchased once.',
+  'dashboardInfo.activationTime': 'Make sure your email is up to date to receive notifications and payout information.',
+  'dashboardInfo.paymentSupport': 'Contact our support team if you encounter any issues or have questions about the payment process.',
   'dashboardInfo.nextSteps': 'Volgende stappen',
-  'dashboardInfo.refreshPage': 'Zie je het plan niet meteen, ververs de pagina na een paar minuten.',
-  'dashboardInfo.keepEmailUpdated': 'Houd uw e‑mail up‑to‑date voor meldingen en uitbetalingen.',
-  'dashboardInfo.supportFromDashboard': 'Beheer ondersteuningsverzoeken en planwijzigingen rechtstreeks vanuit uw dashboard.',
+  'dashboardInfo.refreshPage': 'After successful payment, you will receive the login information and education material for your MetaTrader5.com live trading account',
+  'dashboardInfo.keepEmailUpdated': 'You start investing',
+  'dashboardInfo.supportFromDashboard': 'Manage support requests and plan changes directly from your dashboard.',
 
   // Crypto Payment (basic)
   'crypto.title': 'Crypto‑betaling',
@@ -346,7 +380,10 @@ const nlTranslations = {
   'crypto.creating': 'Betaling aanmaken…',
   'crypto.sendExactly': 'Stuur exact',
   'crypto.toAddress': 'naar dit adres:',
+  'crypto.rightCoinHint': 'Hoe weet ik of ik de juiste coin verstuur?',
   'crypto.copyAddress': 'Kopieer adres',
+  'crypto.copySuccess': 'Gekopieerd!',
+  'crypto.copyError': 'Kopieren mislukt.',
   'crypto.paymentId': 'Betalings‑ID:',
   'crypto.afterConfirmation': 'Na blockchain‑bevestiging wordt je plan automatisch geactiveerd in het dashboard.',
 
@@ -438,7 +475,7 @@ const nlTranslations = {
   'onsite.cvc': 'CVV',
   'onsite.error.stripe': 'Stripe‑fout. Probeer opnieuw.',
   'onsite.submit.processing': 'Betaling verwerken...',
-  'onsite.submit.pay': 'Betaal met kaart',
+  'onsite.amountToPay': 'Bedrag te betalen',
 
   // Success & Cancel (extended)
   'success.status.success': 'Gelukt',
