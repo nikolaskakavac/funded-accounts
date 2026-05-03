@@ -5,6 +5,8 @@ const Transaction = require('../models/Transaction');
 const User = require('../models/User');
 const authMiddleware = require('../utils/authMiddleware');
 const { sendWelcomeEmail } = require('../utils/mailer');
+const { createAffiliateCommissionFromTransaction } = require('../utils/affiliate');
+const { resolveCheckoutDiscountCode, applyCheckoutDiscount } = require('../utils/discounts');
 
 const router = express.Router();
 
@@ -32,9 +34,27 @@ async function npRequestWithRetry(makeRequest, retries = 1, backoffMs = 1200) {
 
 // Plan pricing overrides by payment method (EUR)
 const planPricing = {
-  '693db3e0e9cf589519c144fe': { stripe: 150, crypto: 150 }, // 2.5k account
-  '693db3ede9cf589519c14500': { stripe: 300, crypto: 300 }, // 5k account
-  '693db3ede9cf589519c14501': { stripe: 1000, crypto: 1000 }, // 10k account
+  '693db3e0e9cf589519c144fe': { stripe: 150, crypto: 150 }, // 5k account
+  '693db3ede9cf589519c14501': { stripe: 300, crypto: 300 }, // 10k account
+  '693db3ede9cf589519c14500': { stripe: 800, crypto: 800 }, // 25k account
+};
+
+const planDetails = {
+  '693db3e0e9cf589519c144fe': {
+    name: 'INSTANT FUNDED ACCOUNT WITH 5.000€',
+    balance: '5.000€',
+    description: '5.000€ funded account',
+  },
+  '693db3ede9cf589519c14501': {
+    name: 'INSTANT FUNDED ACCOUNT WITH 10.000€',
+    balance: '10.000€',
+    description: '10.000€ funded account',
+  },
+  '693db3ede9cf589519c14500': {
+    name: 'INSTANT FUNDED ACCOUNT WITH 25.000€',
+    balance: '25.000€',
+    description: '25.000€ funded account',
+  },
 };
 
 // Allowed crypto coins and mapping to NOWPayments codes (all ERC20)
@@ -58,8 +78,35 @@ const getCryptoAmount = (planId) => {
   return planPricing[planId]?.crypto;
 };
 
+async function ensurePlan(planId) {
+  let plan = await Plan.findById(planId);
+  if (plan) return plan;
+
+  const price = getCryptoAmount(planId);
+  const details = planDetails[planId];
+  if (!price || !details) return null;
+
+  try {
+    plan = await Plan.create({
+      _id: planId,
+      ...details,
+      price,
+      currency: 'eur',
+      stripePriceId: `manual_${planId}`,
+      nowMeta: { autoCreatedForCrypto: true },
+    });
+  } catch (err) {
+    if (err?.code !== 11000) {
+      throw err;
+    }
+    plan = await Plan.findById(planId);
+  }
+
+  return plan;
+}
+
 router.post('/create', authMiddleware, async (req, res) => {
-  const { planId, pay_currency } = req.body;
+  const { planId, pay_currency, expected_amount, discountCode } = req.body;
   const normalizedPayCurrency = normalizePayCurrency(pay_currency);
   if (!normalizedPayCurrency) {
     return res.status(400).json({
@@ -71,18 +118,33 @@ router.post('/create', authMiddleware, async (req, res) => {
     console.log('NOW create user:', req.user);
     console.log('NOW create headers:', req.headers.authorization);
 
-    const plan = await Plan.findById(planId);
+    const plan = await ensurePlan(planId);
     if (!plan) {
       return res.status(404).json({ message: 'Plan not found' });
     }
 
     const userId = req.user?.id; // ako auth radi, ovo je setovano
 
-    const price = getCryptoAmount(plan._id.toString());
+    const basePrice = getCryptoAmount(plan._id.toString());
+    if (!basePrice) {
+      return res.status(400).json({ message: 'Unsupported plan for crypto payment' });
+    }
+    const discount = await resolveCheckoutDiscountCode(discountCode);
+    const price = applyCheckoutDiscount(basePrice, discount.valid);
+
+    const expectedAmount = Number(expected_amount);
+    if (Number.isFinite(expectedAmount) && expectedAmount !== price) {
+      console.warn('NOWPayments expected amount mismatch ignored:', {
+        expected: expectedAmount,
+        actual: price,
+        planId: plan._id.toString(),
+      });
+    }
+
     console.log('[DEBUG] planId:', planId, 'override price:', price);
     console.log('[DEBUG] Final price for NOWPayments:', price);
-    // Try with USD for payment creation - NOWPayments prefers USD for estimates
-    const priceCurrency = 'usd';
+    // Use EUR as the source amount so the displayed account price matches the crypto equivalent.
+    const priceCurrency = 'eur';
 
     const payload = {
       price_amount: price,
@@ -129,6 +191,7 @@ router.post('/create', authMiddleware, async (req, res) => {
       amount: price,
       currency: 'eur',
       status: 'pending',
+      discountCode: discount.valid ? discount.code : undefined,
     });
 
     // Format crypto amount: ETH keeps decimals, others are rounded to integer
@@ -151,6 +214,10 @@ router.post('/create', authMiddleware, async (req, res) => {
       pay_amount: roundedPayAmount,
       pay_currency: payCurrency,
       eur_amount: eurAmount,
+      fiat_amount: eurAmount,
+      fiat_currency: priceCurrency.toUpperCase(),
+      discount_applied: discount.valid,
+      discount_code: discount.valid ? discount.code : '',
       invoice_url: payment.invoice_url || `https://nowpayments.io/payment/?iid=${payment.payment_id}`,
     });
   } catch (err) {
@@ -189,6 +256,7 @@ router.get('/status/:paymentId', authMiddleware, async (req, res) => {
     if (tx && payment.payment_status === 'finished' && tx.status !== 'paid') {
       tx.status = 'paid';
       await tx.save();
+      await createAffiliateCommissionFromTransaction(tx);
 
       const user = await User.findById(tx.user);
       const plan = await Plan.findById(tx.plan);

@@ -5,16 +5,16 @@ const translations = {
   // Investment Modal (custom text for modal and section)
   'whatYouGet.platform.conditionsLink': { sr: 'uslovi investiranja', en: 'Investment Conditions' },
   'investmentModal.title': { sr: 'Uslovi investiranja', en: 'Investment Conditions' },
-  'investmentModal.plan1': { sr: '5.000€ nalog → 300€ dozvoljeni gubitak', en: '€5,000 account → €300 allowed loss' },
-  'investmentModal.plan2': { sr: '10.000€ nalog → 500€ dozvoljeni gubitak', en: '€10,000 account → €500 allowed loss' },
+  'investmentModal.plan1': { sr: '5.000€ nalog → 150€ dozvoljeni gubitak', en: '€5,000 account → €150 allowed loss' },
+  'investmentModal.plan2': { sr: '10.000€ nalog → 300€ dozvoljeni gubitak', en: '€10,000 account → €300 allowed loss' },
   'investmentModal.rule1': { sr: 'Možeš investirati ceo iznos (5.000€ ili 10.000€) bez dodatnih troškova.', en: 'You can invest the full amount (5,000€ or 10,000€) with no additional costs.' },
   'investmentModal.rule2': { sr: 'Ako prekoračiš dozvoljeni gubitak, nalog se automatski gasi i nema dodatnih troškova.', en: 'If you exceed the allowed loss, your account is automatically deactivated and there are no extra charges.' },
   'investmentModal.rule3': { sr: 'Isplata profita moguća je nakon minimum 30 dana od kupovine naloga, radi doslednosti strategije i upravljanja rizikom.', en: 'Profit payout is possible only after a minimum of 30 days from account purchase, to ensure consistent strategy and risk management.' },
   'investmentModal.description': { sr: 'Svaki nalog ima unapred definisan maksimalni dozvoljeni gubitak koji ujedno predstavlja i njegovu cenu.', en: 'Each account has a predefined maximum loss amount which also represents its price.' },
   'investmentModal.account5k': { sr: 'Nalog od 5.000€', en: '€5,000 account' },
-  'investmentModal.loss5k': { sr: '€300 dozvoljeni gubitak', en: '€300 allowed loss' },
+  'investmentModal.loss5k': { sr: '€150 dozvoljeni gubitak', en: '€150 allowed loss' },
   'investmentModal.account10k': { sr: 'Nalog od 10.000€', en: '€10,000 account' },
-  'investmentModal.loss10k': { sr: '€500 dozvoljeni gubitak', en: '€500 allowed loss' },
+  'investmentModal.loss10k': { sr: '€300 dozvoljeni gubitak', en: '€300 allowed loss' },
 
   // Landing Hero
   'hero.title': { sr: 'Uloži sa našim kapitalom.', en: 'Invest with our capital.' },
@@ -85,7 +85,7 @@ const translations = {
   },
 
   // What You Get
-  'whatYouGet.title': { sr: 'Account Details', en: 'Account Details' },
+  'whatYouGet.title': { sr: 'Šta dobijaš nakon kupovine', en: 'What You Get After Purchase' },
   'whatYouGet.capital.title': { sr: 'KORISNIČKO IME I LOZINKA', en: 'USERNAME AND PASSWORD' },
   'whatYouGet.capital.description': {
     sr: 'Dobijaš email sa podacima za prijavu (korisničko ime, lozinka) za svoj novi investicioni nalog na platformi MetaTrader5.com.',
@@ -141,9 +141,9 @@ const translations = {
   'plans.price': { sr: 'Cena:', en: 'Price:' },
   'plans.trainingIncluded': { sr: 'Video obuka uključena uz nalog', en: 'Video education included' },
   'plans.payCard': { sr: 'Plati karticom', en: 'Pay 300€ with Card' },
-  'plans.payCrypto': { sr: 'Plati kriptom', en: 'Pay 270€ with Crypto' },
+  'plans.payCrypto': { sr: 'Plati kriptom', en: 'Pay 150€ with Crypto' },
   'plans.payCard2': { sr: 'Plati karticom', en: 'Pay 500€ with Card' },
-  'plans.payCrypto2': { sr: 'Plati kriptom', en: 'Pay 450€ with Crypto' },
+  'plans.payCrypto2': { sr: 'Plati kriptom', en: 'Pay 300€ with Crypto' },
   'plans.taxFree': { sr: 'Bez poreza', en: '(Tax free)' },
   'plans.afterPayment': {
     sr: 'After successful payment, your access credentials will be sent to your email. You can view your account status in the dashboard on our website',
@@ -281,8 +281,8 @@ const translations = {
   'nav.contact': { sr: 'Kontakt podrška', en: 'Contact support' },
   'nav.dashboard': { sr: 'Dashboard', en: 'Dashboard' },
   'nav.admin': { sr: 'Admin panel', en: 'Admin panel' },
-  'nav.logout': { sr: 'Odjava', en: 'Logout' },
-  'nav.login': { sr: 'Prijava', en: 'Login' },
+  'nav.logout': { sr: 'Odjava', en: 'Log out' },
+  'nav.login': { sr: 'Prijava', en: 'Log in' },
   'nav.register': { sr: 'Registracija', en: 'Register' },
 
   // Footer
@@ -569,9 +569,9 @@ const translations = {
   'onsite.nameOnCard': { sr: 'Ime na kartici', en: 'Name on card' },
   'onsite.amountToPay': { sr: 'Iznos za plaćanje', en: 'Amount to pay' },
   'onsite.error.unavailable': { sr: 'Plaćanje trenutno nije dostupno. Pokušaj ponovo kasnije.', en: 'Payment is currently unavailable. Please try again later.' },
-  'onsite.error.create': { sr: 'Nije moguće kreirati Stripe uplatu.', en: 'Unable to create Stripe payment.' },
+  'onsite.error.create': { sr: 'Nije moguce kreirati uplatu karticom.', en: 'Unable to create card payment.' },
   'onsite.error.cardField': { sr: 'Polje za broj kartice nije učitano. Osveži stranicu.', en: 'Card number field not loaded. Refresh the page.' },
-  'onsite.error.stripe': { sr: 'Stripe greška. Pokušaj ponovo.', en: 'Stripe error. Please try again.' },
+  'onsite.error.stripe': { sr: 'Greska pri placanju karticom. Pokusaj ponovo.', en: 'Card payment error. Please try again.' },
   'onsite.submit.processing': { sr: 'Obrada uplate...', en: 'Processing payment...' },
   'onsite.submit.pay': { sr: 'PROCEED', en: 'PROCEED' },
 
@@ -588,7 +588,7 @@ const translations = {
   'success.title.error': { sr: 'Neuspeh', en: 'Failed' },
   'success.title.pending': { sr: 'Čekamo potvrdu', en: 'Awaiting confirmation' },
   'success.msg.generic': { sr: 'Kupovina je uspešno izvršena.', en: 'Purchase completed successfully.' },
-  'success.msg.stripe': { sr: 'Plan uspešno aktiviran preko Stripe {method}!', en: 'Plan successfully activated via Stripe {method}!' },
+  'success.msg.stripe': { sr: 'Plan je uspesno aktiviran placanjem karticom!', en: 'Plan successfully activated by card payment!' },
   'success.msg.now': { sr: 'Plan uspešno aktiviran preko NowPayments!', en: 'Plan successfully activated via NowPayments!' },
   'success.msg.pending': { sr: 'NowPayments: {status}. Čekamo 10s...', en: 'NowPayments: {status}. Waiting 10s...' },
   'success.msg.failed': { sr: 'NowPayments plaćanje neuspešno.', en: 'NowPayments payment failed.' },
@@ -646,6 +646,15 @@ const translations = {
     en: 'Hundreds of global shares (US, UK, Europe, Asia); Forex majors, minors, and exotic pairs (60+ total); Commodities (metals, energies, agricultural products); ETFs for themes, sectors, innovation, and global markets; Cryptocurrencies (major coins + altcoins); Futures on oil, stock indexes, and commodities'
   },
   'instruments.contact': { sr: 'Za bilo koja pitanja o finansijskom instrumentu koji nije na ovoj listi, kontaktirajte nas na support@arbexfund.com', en: 'For any inquiry regarding a financial instrument not on this list, please contact us at support@arbexfund.com' },
+};
+
+translations['risk.bodyPlan1'] = {
+  sr: '5.000€ nalog → 150€ dozvoljeni gubitak',
+  en: '€5.000 account → €150 allowed loss'
+};
+translations['risk.bodyPlan2'] = {
+  sr: '10.000€ nalog → 300€ dozvoljeni gubitak',
+  en: '€10.000 account → €300 allowed loss'
 };
 
 export function t(key) {

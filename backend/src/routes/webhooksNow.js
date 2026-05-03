@@ -3,6 +3,7 @@ const Transaction = require('../models/Transaction');
 const User = require('../models/User');
 const Plan = require('../models/Plan');
 const { sendPurchaseConfirmation, sendCredentialsNotification } = require('../utils/mailer');
+const { createAffiliateCommissionFromTransaction } = require('../utils/affiliate');
 
 const router = express.Router();
 
@@ -44,6 +45,7 @@ router.post('/ipn', express.raw({ type: '*/*' }), async (req, res) => {
     if (payment_status === 'finished') {
       tx.status = 'paid';
       await tx.save();
+      await createAffiliateCommissionFromTransaction(tx);
 
       const user = await User.findById(tx.user);
       const plan = await Plan.findById(tx.plan);
@@ -57,7 +59,7 @@ router.post('/ipn', express.raw({ type: '*/*' }), async (req, res) => {
           await sendPurchaseConfirmation(user.email, {
             planName: plan.name,
             amount: tx.amount,
-            currency: tx.currency || 'USD',
+            currency: tx.currency || 'eur',
             paymentMethod: 'Cryptocurrency',
             orderId: tx._id.toString()
           });

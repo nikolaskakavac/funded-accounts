@@ -15,6 +15,7 @@ const adminRoutes = require('./routes/admin');
 const cashoutRoutes = require('./routes/cashout');
 const contactRoutes = require('./routes/contact');
 const whatsappRoutes = require('./routes/whatsapp');
+const affiliateRoutes = require('./routes/affiliate');
 const webhooksStripe = require('./routes/webhooksStripe');
 
 const User = require('./models/User');
@@ -91,6 +92,7 @@ app.use('/payments/now', nowRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/whatsapp', whatsappRoutes);
+app.use('/api/affiliate', affiliateRoutes);
 app.use('/cashout', cashoutRoutes);
 
 // 7) Health check

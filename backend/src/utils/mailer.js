@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const { getEnglishPlanName } = require('./planDisplay');
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -23,14 +24,14 @@ const emailHeader = `
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; color: #333; background: #f4f4f4; margin: 0; padding: 0; }
     .container { max-width: 600px; margin: 20px auto; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    .header { background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 30px; text-align: center; }
+    .header { background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%); padding: 30px; text-align: center; }
     .header h1 { color: #fff; margin: 0; font-size: 28px; font-weight: 700; }
     .content { padding: 30px; }
-    .content h2 { color: #10b981; margin-top: 0; }
+    .content h2 { color: #0284c7; margin-top: 0; }
     .content p { margin: 15px 0; }
-    .highlight-box { background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 20px 0; border-radius: 4px; }
-    .button { display: inline-block; background: #10b981; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; margin: 20px 0; }
-    .button:hover { background: #059669; }
+    .highlight-box { background: #f0f9ff; border-left: 4px solid #38bdf8; padding: 15px; margin: 20px 0; border-radius: 4px; }
+    .button { display: inline-block; background: #0284c7; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; margin: 20px 0; }
+    .button:hover { background: #0369a1; }
     .footer { background: #f9fafb; padding: 20px; text-align: center; font-size: 12px; color: #6b7280; border-top: 1px solid #e5e7eb; }
     .divider { height: 1px; background: #e5e7eb; margin: 25px 0; }
   </style>
@@ -46,17 +47,100 @@ const emailHeader = `
 const emailFooter = `
     </div>
     <div class="footer">
-      <p>© ${new Date().getFullYear()} Arbex Fund. All rights reserved.</p>
-      <p>Norvestor Equiti Ltd. | Registration: EQS-BAL-2025-047</p>
-      <p><a href="https://arbexfund.com" style="color: #10b981; text-decoration: none;">arbexfund.com</a></p>
+      <p>&copy; ${new Date().getFullYear()} Arbex Fund. All rights reserved.</p>
+      <p>Autoriteit Financi&euml;le Markten (License Number: 14000716)</p>
+      <p><a href="https://arbexfund.com" style="color: #0284c7; text-decoration: none;">arbexfund.com</a></p>
     </div>
   </div>
 </body>
 </html>
 `;
 
+async function sendWelcomeEmail(toEmail) {
+  const mailOptions = {
+    from: `"Arbex Fund Support" <${process.env.SMTP_USER}>`,
+    to: toEmail,
+    subject: 'Welcome to Arbex Fund',
+    html: `${emailHeader}
+      <h2>Welcome to Arbex Fund</h2>
+      <p>Hello,</p>
+      <p>Your Arbex Fund account has been created successfully.</p>
+      <p>You can now log in to your dashboard and continue with your account activation or payment process.</p>
+      <p>If you need any help, contact us at <a href="mailto:support@arbexfund.com" style="color: #0284c7;">support@arbexfund.com</a>.</p>
+      <p style="margin-top: 30px;">Best regards,<br><strong>Arbex Fund Support Team</strong></p>
+    ${emailFooter}`,
+  };
+
+  await transporter.sendMail(mailOptions);
+}
+
+async function sendEmailVerification(toEmail, verificationUrl) {
+  const mailOptions = {
+    from: `"Arbex Fund Support" <${process.env.SMTP_USER}>`,
+    to: toEmail,
+    subject: 'Confirm your Arbex Fund email',
+    html: `${emailHeader}
+      <h2>Confirm your email</h2>
+      <p>Hello,</p>
+      <p>Please confirm your email address to activate your Arbex Fund account.</p>
+      <p>
+        <a class="button" href="${escapeHtml(verificationUrl)}">Confirm Email</a>
+      </p>
+      <p>If the button does not work, copy and paste this link into your browser:</p>
+      <p style="word-break: break-all;"><a href="${escapeHtml(verificationUrl)}" style="color: #0284c7;">${escapeHtml(verificationUrl)}</a></p>
+      <p>This link expires in 24 hours.</p>
+      <p style="margin-top: 30px;">Best regards,<br><strong>Arbex Fund Support Team</strong></p>
+    ${emailFooter}`,
+  };
+
+  await transporter.sendMail(mailOptions);
+}
+
+async function sendEmailVerificationCode(toEmail, code) {
+  const mailOptions = {
+    from: `"Arbex Fund Support" <${process.env.SMTP_USER}>`,
+    to: toEmail,
+    subject: 'Your Arbex Fund confirmation code',
+    html: `${emailHeader}
+      <h2>Confirm your account</h2>
+      <p>Hello,</p>
+      <p>Use this code to confirm your Arbex Fund account creation:</p>
+      <div class="highlight-box" style="text-align: center;">
+        <strong style="font-size: 28px; letter-spacing: 6px;">${escapeHtml(code)}</strong>
+      </div>
+      <p>This code expires in 15 minutes.</p>
+      <p>If you did not create an Arbex Fund account, you can ignore this email.</p>
+      <p style="margin-top: 30px;">Best regards,<br><strong>Arbex Fund Support Team</strong></p>
+    ${emailFooter}`,
+  };
+
+  await transporter.sendMail(mailOptions);
+}
+
+async function sendPasswordResetCode(toEmail, code) {
+  const mailOptions = {
+    from: `"Arbex Fund Support" <${process.env.SMTP_USER}>`,
+    to: toEmail,
+    subject: 'Your Arbex Fund password reset code',
+    html: `${emailHeader}
+      <h2>Reset your password</h2>
+      <p>Hello,</p>
+      <p>Use this code to reset your Arbex Fund password:</p>
+      <div class="highlight-box" style="text-align: center;">
+        <strong style="font-size: 28px; letter-spacing: 6px;">${escapeHtml(code)}</strong>
+      </div>
+      <p>This code expires in 15 minutes.</p>
+      <p>If you did not request a password reset, you can ignore this email.</p>
+      <p style="margin-top: 30px;">Best regards,<br><strong>Arbex Fund Support Team</strong></p>
+    ${emailFooter}`,
+  };
+
+  await transporter.sendMail(mailOptions);
+}
+
 // 1. Purchase Confirmation Email
 async function sendPurchaseConfirmation(toEmail, { planName, amount, currency, paymentMethod, orderId }) {
+  const normalizedPlanName = getEnglishPlanName({ name: planName, price: amount });
   const mailOptions = {
     from: `"Arbex Fund" <${process.env.SMTP_USER}>`,
     to: toEmail,
@@ -68,14 +152,14 @@ async function sendPurchaseConfirmation(toEmail, { planName, amount, currency, p
       
       <div class="highlight-box">
         <strong>Order ID:</strong> ${escapeHtml(orderId || 'Pending')}<br>
-        <strong>Plan:</strong> ${escapeHtml(planName)}<br>
+        <strong>Plan:</strong> ${escapeHtml(normalizedPlanName)}<br>
         <strong>Payment method:</strong> ${escapeHtml(paymentMethod)}<br>
         <strong>Amount:</strong> ${amount} ${currency.toUpperCase()}
       </div>
 
       <p>You'll receive another email soon to let you know that your trading account is being created.</p>
 
-      <p>If you have any questions about your purchase or need assistance, please contact <a href="mailto:support@arbexfund.com" style="color: #10b981;">support@arbexfund.com</a>.</p>
+      <p>If you have any questions about your purchase or need assistance, please contact <a href="mailto:support@arbexfund.com" style="color: #0284c7;">support@arbexfund.com</a>.</p>
       
       <p>We're glad to have you on board and look forward to getting you started.</p>
       
@@ -100,14 +184,14 @@ async function sendCredentialsNotification(toEmail) {
       <p>While we complete the setup, please take a moment to install the MetaTrader 5 application from the App Store (iOS) or Google Play Store (Android) so that you'll be ready to log in as soon as your credentials arrive.</p>
 
       <div class="highlight-box">
-        <strong>📱 Download MetaTrader 5:</strong><br><br>
-        <strong>iOS:</strong> <a href="https://apps.apple.com/app/metatrader-5/id413251709" style="color: #10b981;">App Store</a><br>
-        <strong>Android:</strong> <a href="https://play.google.com/store/apps/details?id=net.metaquotes.metatrader5" style="color: #10b981;">Google Play Store</a>
+        <strong>Download MetaTrader 5:</strong><br><br>
+        <strong>iOS:</strong> <a href="https://apps.apple.com/app/metatrader-5/id413251709" style="color: #0284c7;">App Store</a><br>
+        <strong>Android:</strong> <a href="https://play.google.com/store/apps/details?id=net.metaquotes.metatrader5" style="color: #0284c7;">Google Play Store</a>
       </div>
 
       <p>Once your account details are issued, you'll receive another email from Arbex Fund Support with your secure login information.</p>
 
-      <p>If you do not see that message after 48 hours, check your spam or junk folder, or contact <a href="mailto:support@arbexfund.com" style="color: #10b981;">support@arbexfund.com</a> so we can help.</p>
+      <p>If you do not see that message after 48 hours, check your spam or junk folder, or contact <a href="mailto:support@arbexfund.com" style="color: #0284c7;">support@arbexfund.com</a> so we can help.</p>
 
       <p>Thank you for your patience and for choosing Arbex Fund. We're excited to have you trading with us soon.</p>
     ${emailFooter}`
@@ -120,22 +204,22 @@ async function sendCredentialsNotification(toEmail) {
 async function sendContactEmail({ name, email, subject, message }) {
   const mailOptions = {
     from: `"Arbex Contact Form" <${process.env.SMTP_USER}>`,
-    to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
+    to: 'support@arbexfund.com',
     replyTo: email,
     subject: `[Contact Form] ${subject}`,
     html: `${emailHeader}
-      <h2>📨 New Contact Form Submission</h2>
+      <h2>New Contact Form Submission</h2>
       
       <div class="highlight-box">
         <p><strong>From:</strong> ${escapeHtml(name)}</p>
-        <p><strong>Email:</strong> <a href="mailto:${escapeHtml(email)}" style="color: #10b981;">${escapeHtml(email)}</a></p>
+        <p><strong>Email:</strong> <a href="mailto:${escapeHtml(email)}" style="color: #0284c7;">${escapeHtml(email)}</a></p>
         <p><strong>Subject:</strong> ${escapeHtml(subject)}</p>
       </div>
 
       <div class="divider"></div>
 
       <h3>Message:</h3>
-      <p style="white-space: pre-wrap; background: #f9fafb; padding: 15px; border-radius: 4px; border-left: 3px solid #10b981;">${escapeHtml(message)}</p>
+      <p style="white-space: pre-wrap; background: #f9fafb; padding: 15px; border-radius: 4px; border-left: 3px solid #38bdf8;">${escapeHtml(message)}</p>
 
       <div class="divider"></div>
       
@@ -153,7 +237,7 @@ async function sendContactAutoReply(toEmail, name) {
     to: toEmail,
     subject: 'We Received Your Message - Arbex Fund',
     html: `${emailHeader}
-      <h2>✅ Message Received</h2>
+      <h2>Message Received</h2>
       <p>Dear ${escapeHtml(name)},</p>
       <p>Thank you for contacting Arbex Fund! We have received your message and our team will review it shortly.</p>
       
@@ -161,11 +245,11 @@ async function sendContactAutoReply(toEmail, name) {
         <p><strong>Response Time:</strong> We typically respond within 24 hours during business days.</p>
       </div>
 
-      <h3>📞 Need Immediate Assistance?</h3>
+      <h3>Need Immediate Assistance?</h3>
       <p>If your matter is urgent, you can also reach us through:</p>
       <ul>
-        <li>📧 Email: <a href="mailto:support@arbexfund.com" style="color: #10b981;">support@arbexfund.com</a></li>
-        <li>🌐 Website: <a href="https://arbexfund.com/contact" style="color: #10b981;">arbexfund.com/contact</a></li>
+        <li>Email: <a href="mailto:support@arbexfund.com" style="color: #0284c7;">support@arbexfund.com</a></li>
+        <li>Website: <a href="https://arbexfund.com/contact" style="color: #0284c7;">arbexfund.com/contact</a></li>
       </ul>
 
       <p>We appreciate your patience and look forward to assisting you!</p>
@@ -189,6 +273,10 @@ function escapeHtml(text) {
 }
 
 module.exports = { 
+  sendWelcomeEmail,
+  sendEmailVerification,
+  sendEmailVerificationCode,
+  sendPasswordResetCode,
   sendPurchaseConfirmation,
   sendCredentialsNotification,
   sendContactEmail,

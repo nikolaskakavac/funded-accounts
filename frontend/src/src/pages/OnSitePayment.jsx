@@ -18,6 +18,7 @@ const OnSitePaymentPage = ({ navigate, token, onLogout, planId }) => {
 
   // If not logged in, redirect to register
   if (!token) {
+    localStorage.setItem('authRedirectTo', `/pay-card/${planId}`);
     navigate('/register');
     return null;
   }
@@ -54,6 +55,16 @@ const OnSitePaymentPage = ({ navigate, token, onLogout, planId }) => {
             }}
           />
         </section>
+
+        <div className="mx-auto mt-4 max-w-lg rounded-3xl border border-sky-800/50 bg-black/70 p-4 text-left text-[12px] font-sans leading-relaxed text-slate-300 space-y-1">
+          <p className="font-semibold text-slate-100">Full name of registered company: Arbex Fund B. V.</p>
+          <p>Address: Barbara Strozzilaan 310</p>
+          <p>Postal code: 1083 HN</p>
+          <p>Contact email: arbexfund@support.com</p>
+          <p>Contact phone number: +31 6 19 36 42 04</p>
+          <p>AFM License number: 14000716</p>
+          <p>Yes, our business is licensed by the AFM (Autoriteit Financiele Markten).</p>
+        </div>
 
         <div className="mt-4 text-center">
           <button onClick={() => navigate('/#plans')} className="text-sm text-slate-400 hover:underline">

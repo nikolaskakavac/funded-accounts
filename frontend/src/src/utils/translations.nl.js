@@ -74,7 +74,7 @@ const nlTranslations = {
     'Met deze aanpak is je maximale verliesrisico beperkt tot alleen de prijs van de account, zonder extra kosten.',
 
   // What You Get
-  'whatYouGet.title': 'Account Details',
+  'whatYouGet.title': 'What You Get After Purchase',
   'whatYouGet.capital.title': 'Investeringskapitaal',
   'whatYouGet.capital.description':
     'Je krijgt geld van ons dat je kunt investeren in de cryptovaluta naar keuze. Je riskeert niet je eigen geld, maar gebruikt ons kapitaal.',
@@ -112,9 +112,9 @@ const nlTranslations = {
   'plans.price': 'Prijs:',
   'plans.trainingIncluded': 'Videotraining inbegrepen',
   'plans.payCard': 'Betaal 300€ met kaart',
-  'plans.payCrypto': 'Betaal 270€ met crypto',
+  'plans.payCrypto': 'Betaal 150€ met crypto',
   'plans.payCard2': 'Betaal 500€ met kaart',
-  'plans.payCrypto2': 'Betaal 450€ met crypto',
+  'plans.payCrypto2': 'Betaal 300€ met crypto',
   'plans.taxFree': '(Belastingvrij)',
   'plans.afterPayment':
     'Na een succesvolle betaling worden je toegangsgegevens per e-mail gestuurd. Je kunt de status van je account bekijken in het dashboard op onze website',
@@ -267,7 +267,7 @@ const nlTranslations = {
   'onsite.page.section': 'Betaling ter plaatse',
   'onsite.page.title': 'Betaal met kaart',
   'onsite.page.back': 'Terug naar plannen',
-  'onsite.error.unavailable': 'Stripe is momenteel niet beschikbaar.',
+  'onsite.error.unavailable': 'Betaling is momenteel niet beschikbaar.',
   'onsite.error.create': 'Kan betaling niet aanmaken. Probeer opnieuw.',
   'onsite.error.cardField': 'Kaartveld ontbreekt.',
   'onsite.form.title': 'Kaartgegevens',
@@ -277,7 +277,7 @@ const nlTranslations = {
   'onsite.form.phone': 'Telefoon',
   'onsite.form.pay': 'Betaal',
   'onsite.form.processing': 'Verwerken…',
-  'onsite.form.secure': 'Beveiligde betaling via Stripe',
+  'onsite.form.secure': 'Beveiligde kaartbetaling',
 
   // Success & Cancel
   'success.title': 'Betaling geslaagd',
@@ -473,7 +473,7 @@ const nlTranslations = {
   'onsite.cardNumber': 'Kaartnummer',
   'onsite.expiry': 'Vervaldatum',
   'onsite.cvc': 'CVV',
-  'onsite.error.stripe': 'Stripe‑fout. Probeer opnieuw.',
+  'onsite.error.stripe': 'Kaartbetaling mislukt. Probeer opnieuw.',
   'onsite.submit.processing': 'Betaling verwerken...',
   'onsite.amountToPay': 'Bedrag te betalen',
 
@@ -485,7 +485,7 @@ const nlTranslations = {
   'success.title.error': 'Mislukt',
   'success.title.pending': 'Wachten op bevestiging',
   'success.msg.generic': 'Aankoop succesvol afgerond.',
-  'success.msg.stripe': 'Plan succesvol geactiveerd via Stripe {method}!',
+  'success.msg.stripe': 'Plan succesvol geactiveerd met kaartbetaling!',
   'success.msg.now': 'Plan succesvol geactiveerd via NowPayments!',
   'success.msg.pending': 'NowPayments: {status}. Wachten 10s...',
   'success.msg.failed': 'NowPayments‑betaling mislukt.',
@@ -518,6 +518,45 @@ const nlTranslations = {
   'instruments.other': 'Andere Verhandelbare Markten',
   'instruments.otherItems': 'Honderden wereldwijd aandelen (VS, Groot‑Brittannië, Europa, Azië), Forex majors, minors en exotische paren (60+), Grondstoffen (metalen, energiebronnen, landbouwproducten), ETF\'s voor thema\'s, sectoren en innovatie, Cryptocurrencies (grote coins + altcoins), Futures op olie, aandelenindices en grondstoffen',
   'instruments.contact': 'Voor vragen over financiële instrumenten die niet op deze lijst staan, neem contact op met support@arbexfund.com',
+  // Dutch coverage fixes
+  'whatYouGet.platform.conditionsLink': 'Investeringsvoorwaarden',
+  'hero.viewPlans': 'Kies account',
+  'investingSimplified.description1': 'Wij bieden een platform waarop klanten echte markten kunnen ervaren zonder eigen kapitaal in te leggen. Elke klant beheert een live beleggingsaccount dat door ons wordt gefinancierd.',
+  'investingSimplified.description2': 'Klanten kunnen zelf beslissen hoe ze investeren, of ervoor kiezen om onze professionele beleggers automatisch te volgen.',
+  'howItWorks.instruments': 'Bekijk alle beschikbare financiële instrumenten',
+  'risk.companyInfo': 'Arbex Fund B.V. is een Nederlands bedrijf opgericht in 2025 door Milos Jevrosimovic en Kalo Bagijn, oprichter van BinckBank, een van de grootste online investeringsbanken van Europa.',
+  'whatYouGet.title': 'What You Get After Purchase',
+  'whatYouGet.capital.title': 'Gebruikersnaam en wachtwoord',
+  'whatYouGet.capital.description': 'Je ontvangt per e-mail de inloggegevens voor je nieuwe beleggingsaccount op MetaTrader5.com.',
+  'whatYouGet.platform.title': 'Beleggingskapitaal',
+  'whatYouGet.platform.description': 'Je account ontvangt kapitaal van Arbex Fund. Wij leveren de middelen volgens de investeringsvoorwaarden.',
+  'howToStart.title': 'Hoe begin je',
+  'faq.q4': 'Is ons bedrijf gelicentieerd?',
+  'faq.a4': 'Ja, ons bedrijf is gelicentieerd door de AFM (Autoriteit Financiële Markten). AFM-licentienummer: 14000716.',
+  'dashboard.noActivePlan': 'Je hebt nog geen actieve tradingaccount',
+  'dashboard.loginStays': 'Inloggegevens blijven hetzelfde na een upgrade.',
+  'dashboardInfo.noCardsSaved': 'Wij bewaren, verzamelen of bekijken je kaartgegevens niet. Alle betaalinformatie wordt veilig verwerkt door vertrouwde externe betaalproviders.',
+  'dashboardInfo.encryptedTransactions': 'Er zijn geen terugkerende of verborgen kosten. Elke account wordt één keer gekocht.',
+  'dashboardInfo.activationTime': 'Zorg dat je e-mailadres actueel is om meldingen en uitbetalingsinformatie te ontvangen.',
+  'dashboardInfo.paymentSupport': 'Neem contact op met support als je problemen hebt of vragen hebt over het betaalproces.',
+  'dashboardInfo.refreshPage': 'Na succesvolle betaling ontvang je de inloggegevens en het educatiemateriaal voor je live tradingaccount op MetaTrader5.com.',
+  'dashboardInfo.keepEmailUpdated': 'Je kunt daarna beginnen met investeren.',
+  'crypto.copyError': 'Kopiëren mislukt.',
+  'crypto.invoiceFallback': 'Open de factuur om het exacte bedrag en adres te bekijken.',
+  'crypto.openInvoice': 'Open factuur',
+  'onsite.payment': 'Betaling',
+  'onsite.secure': 'Alle transacties zijn veilig en versleuteld',
+  'onsite.expiryShort': 'MM/JJ',
+  'onsite.cardholderName': 'Naam op kaart',
+  'onsite.nameOnCard': 'Naam op kaart',
+  'onsite.submit.pay': 'DOORGAAN',
 };
+
+nlTranslations['investmentModal.plan1'] = '€5.000 account → €150 toegestaan verlies';
+nlTranslations['investmentModal.plan2'] = '€10.000 account → €300 toegestaan verlies';
+nlTranslations['investmentModal.loss5k'] = '€150 toegestaan verlies';
+nlTranslations['investmentModal.loss10k'] = '€300 toegestaan verlies';
+nlTranslations['risk.bodyPlan1'] = '€5.000 account → €150 toegestaan verlies';
+nlTranslations['risk.bodyPlan2'] = '€10.000 account → €300 toegestaan verlies';
 
 export default nlTranslations;

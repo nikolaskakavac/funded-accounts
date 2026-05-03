@@ -2,7 +2,16 @@ const express = require('express');
 const Transaction = require('../models/Transaction');
 const User = require('../models/User');
 const Plan = require('../models/Plan');
+const AffiliateCommission = require('../models/AffiliateCommission');
+const ReservedAffiliateCode = require('../models/ReservedAffiliateCode');
 const authMiddleware = require('../utils/authMiddleware');
+const {
+  createAffiliateCommissionFromTransaction,
+  normalizeAffiliateCode,
+  isValidAffiliateCode,
+  syncPendingReferralsForCode,
+} = require('../utils/affiliate');
+const { normalizePlanObject } = require('../utils/planDisplay');
 
 const router = express.Router();
 
@@ -23,7 +32,10 @@ router.get('/transactions', async (req, res) => {
       .populate('plan', 'name price balance')
       .sort({ createdAt: -1 });
 
-    res.json(txs);
+    res.json(txs.map((tx) => ({
+      ...tx.toObject(),
+      plan: normalizePlanObject(tx.plan?.toObject ? tx.plan.toObject() : tx.plan),
+    })));
   } catch (err) {
     console.error('Admin transactions error:', err.message);
     res.status(500).json({ message: 'Server error' });
@@ -80,6 +92,196 @@ router.patch('/transactions/:id', async (req, res) => {
   }
 });
 
+router.get('/affiliate/commissions', async (req, res) => {
+  try {
+    const commissions = await AffiliateCommission.find({})
+      .populate('affiliateUser', 'email affiliateCode affiliatePayoutMethod affiliatePayoutDetails affiliatePayoutNotes')
+      .populate('referredUser', 'email')
+      .populate('plan', 'name')
+      .populate('transaction', 'provider createdAt')
+      .sort({ createdAt: -1 });
+
+    res.json(commissions.map((item) => ({
+      ...item.toObject(),
+      plan: normalizePlanObject(item.plan?.toObject ? item.plan.toObject() : item.plan),
+    })));
+  } catch (err) {
+    console.error('Admin affiliate commissions error:', err.message);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+router.patch('/affiliate/commissions/:id', async (req, res) => {
+  try {
+    const { status, notes } = req.body || {};
+    const update = {};
+
+    if (status) {
+      update.status = status;
+      update.paidAt = status === 'paid' ? new Date() : null;
+    }
+    if (notes !== undefined) {
+      update.notes = String(notes || '').trim();
+    }
+
+    const commission = await AffiliateCommission.findByIdAndUpdate(
+      req.params.id,
+      update,
+      { new: true }
+    )
+      .populate('affiliateUser', 'email affiliateCode affiliatePayoutMethod affiliatePayoutDetails affiliatePayoutNotes')
+      .populate('referredUser', 'email')
+      .populate('plan', 'name')
+      .populate('transaction', 'provider createdAt');
+
+    if (!commission) {
+      return res.status(404).json({ message: 'Affiliate commission not found' });
+    }
+
+    res.json({
+      ...commission.toObject(),
+      plan: normalizePlanObject(commission.plan?.toObject ? commission.plan.toObject() : commission.plan),
+    });
+  } catch (err) {
+    console.error('Admin affiliate update error:', err.message);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+router.post('/affiliate/custom-code', async (req, res) => {
+  try {
+    const { email, code } = req.body || {};
+    const normalizedEmail = String(email || '').trim().toLowerCase();
+    const normalizedCode = normalizeAffiliateCode(code);
+
+    if (!normalizedEmail || !normalizedCode) {
+      return res.status(400).json({ message: 'Email and code are required' });
+    }
+
+    if (!isValidAffiliateCode(normalizedCode)) {
+      return res.status(400).json({
+        message: 'Code must be 3-24 characters and use only letters, numbers, underscores, or hyphens',
+      });
+    }
+
+    const user = await User.findOne({ email: normalizedEmail });
+    const existing = await User.findOne({ affiliateCode: normalizedCode }).select('_id email affiliateCode');
+    if (existing && String(existing.email).toLowerCase() !== normalizedEmail) {
+      return res.status(409).json({ message: 'Affiliate code is already in use' });
+    }
+
+    const existingReservation = await ReservedAffiliateCode.findOne({ affiliateCode: normalizedCode })
+      .select('_id email affiliateCode');
+    if (existingReservation && String(existingReservation.email).toLowerCase() !== normalizedEmail) {
+      return res.status(409).json({ message: 'Affiliate code is already reserved for another email' });
+    }
+
+    const reservation = await ReservedAffiliateCode.findOneAndUpdate(
+      { email: normalizedEmail },
+      {
+        email: normalizedEmail,
+        affiliateCode: normalizedCode,
+        claimedByUser: user?._id || null,
+      },
+      {
+        new: true,
+        upsert: true,
+        setDefaultsOnInsert: true,
+      }
+    );
+
+    if (user) {
+      user.affiliateCode = normalizedCode;
+      await user.save();
+      await syncPendingReferralsForCode(user, normalizedCode);
+    }
+
+    res.json({
+      success: true,
+      target: user ? 'user' : 'reservation',
+      user: user
+        ? {
+            id: user._id,
+            email: user.email,
+            affiliateCode: user.affiliateCode,
+          }
+        : null,
+      reservation: {
+        id: reservation._id,
+        email: reservation.email,
+        affiliateCode: reservation.affiliateCode,
+      },
+    });
+  } catch (err) {
+    console.error('Admin custom affiliate code error:', err.message);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+router.post('/affiliate/test-commission', async (req, res) => {
+  try {
+    const {
+      referredEmail,
+      planId,
+      provider = 'stripe',
+      amount,
+    } = req.body || {};
+
+    if (!referredEmail) {
+      return res.status(400).json({ message: 'referredEmail is required' });
+    }
+
+    const normalizedEmail = String(referredEmail).trim().toLowerCase();
+    const referredUser = await User.findOne({ email: normalizedEmail });
+    if (!referredUser) {
+      return res.status(404).json({ message: 'Referred user not found' });
+    }
+
+    if (!referredUser.referredBy) {
+      return res.status(400).json({ message: 'This user is not linked to any affiliate' });
+    }
+
+    const plan =
+      (planId ? await Plan.findById(planId) : null) ||
+      (await Plan.findOne({ price: 150 })) ||
+      (await Plan.findOne().sort({ price: 1 }));
+
+    if (!plan) {
+      return res.status(404).json({ message: 'No plan found for affiliate test' });
+    }
+
+    const finalAmount = Number.isFinite(Number(amount)) && Number(amount) > 0
+      ? Number(amount)
+      : Number(plan.price) || 150;
+
+    const tx = await Transaction.create({
+      user: referredUser._id,
+      plan: plan._id,
+      provider: provider === 'nowpayments' ? 'nowpayments' : 'stripe',
+      providerPaymentId: `affiliate_test_${Date.now()}`,
+      amount: finalAmount,
+      currency: plan.currency || 'eur',
+      status: 'paid',
+      active: true,
+    });
+
+    referredUser.currentPlan = plan._id;
+    await referredUser.save();
+
+    const commission = await createAffiliateCommissionFromTransaction(tx);
+
+    res.json({
+      success: true,
+      transactionId: tx._id,
+      commission,
+      message: 'Affiliate test commission created',
+    });
+  } catch (err) {
+    console.error('Admin affiliate test commission error:', err.message);
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
 // TEST ENDPOINT - kreiraj test transakciju
 router.post('/test-transaction', async (req, res) => {
   try {
@@ -95,7 +297,7 @@ router.post('/test-transaction', async (req, res) => {
     }
 
     // Nađi plan
-    const plan = await Plan.findOne({ name: 'Nalog sa 10.000€' });
+    const plan = await Plan.findOne({ price: 300 });
     if (!plan) {
       return res.status(404).json({ message: 'Plan not found' });
     }

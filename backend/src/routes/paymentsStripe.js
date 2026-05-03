@@ -1,50 +1,82 @@
-
 const express = require('express');
 const Stripe = require('stripe');
 const Plan = require('../models/Plan');
 const Transaction = require('../models/Transaction');
 const authMiddleware = require('../utils/authMiddleware');
+const { resolveCheckoutDiscountCode, applyCheckoutDiscount } = require('../utils/discounts');
 
 const router = express.Router();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// FRONTEND domen
 const FRONTEND_URL =
   process.env.FRONTEND_URL || 'https://fundedaccounts.netlify.app';
 
-// Plan pricing overrides by payment method (EUR)
 const planPricing = {
-  '693db3e0e9cf589519c144fe': { stripe: 150, crypto: 150 }, // 2.5k account
-  '693db3ede9cf589519c14500': { stripe: 300, crypto: 300 }, // 5k account
-  '693db3ede9cf589519c14501': { stripe: 1000, crypto: 1000 }, // 10k account
+  '693db3e0e9cf589519c144fe': { stripe: 150, crypto: 150 },
+  '693db3ede9cf589519c14501': { stripe: 300, crypto: 300 },
+  '693db3ede9cf589519c14500': { stripe: 800, crypto: 800 },
+};
+
+const planDetails = {
+  '693db3e0e9cf589519c144fe': {
+    name: 'INSTANT FUNDED ACCOUNT WITH 5.000 EUR',
+    balance: 5000,
+    description: '5.000 EUR funded account',
+  },
+  '693db3ede9cf589519c14501': {
+    name: 'INSTANT FUNDED ACCOUNT WITH 10.000 EUR',
+    balance: 10000,
+    description: '10.000 EUR funded account',
+  },
+  '693db3ede9cf589519c14500': {
+    name: 'INSTANT FUNDED ACCOUNT WITH 25.000 EUR',
+    balance: 25000,
+    description: '25.000 EUR funded account',
+  },
 };
 
 const getStripeAmount = (planId, fallbackPrice) => {
-  // TEST MODE: Svi planovi = 1€ (100 centimes)
   if (process.env.STRIPE_SECRET_KEY?.startsWith('sk_test')) {
-    return 100; // 1€ za test
+    return 100;
   }
-  
-  // LIVE MODE
-  const p = planPricing[planId]?.stripe;
-  return p ? Math.round(p * 100) : 30000;
+
+  const price = planPricing[planId]?.stripe;
+  return price ? Math.round(price * 100) : Math.round((Number(fallbackPrice) || 300) * 100);
 };
 
-// POST /payments/stripe/checkout-session (redirect Stripe Checkout)
+async function ensurePlan(planId) {
+  let plan = await Plan.findById(planId);
+  if (plan) return plan;
+
+  const price = planPricing[planId]?.stripe;
+  const details = planDetails[planId];
+  if (!price || !details) return null;
+
+  try {
+    plan = await Plan.create({
+      _id: planId,
+      ...details,
+      price,
+      currency: 'eur',
+      stripePriceId: `manual_${planId}`,
+      nowMeta: { autoCreatedForPayment: true },
+    });
+  } catch (err) {
+    if (err?.code !== 11000) {
+      throw err;
+    }
+    plan = await Plan.findById(planId);
+  }
+
+  return plan;
+}
+
 router.post('/checkout-session', authMiddleware, async (req, res) => {
   const { planId } = req.body;
 
   try {
-    console.log(
-      'Stripe checkout-session called by user',
-      req.user?.id,
-      'for plan',
-      planId
-    );
-
-    const plan = await Plan.findById(planId);
+    const plan = await ensurePlan(planId);
     if (!plan) {
-      console.warn('Stripe checkout-session: Plan not found for id', planId);
       return res.status(404).json({ message: 'Plan not found' });
     }
 
@@ -71,40 +103,28 @@ router.post('/checkout-session', authMiddleware, async (req, res) => {
       },
     });
 
-    console.log(
-      'Stripe checkout-session created:',
-      session.id,
-      'for user',
-      req.user.id
-    );
-
-    // opciono: ovde možeš da kreiraš Transaction sa status 'pending' za Checkout,
-    // ako to već ne radiš u webhooku
-
     res.json({ url: session.url });
   } catch (err) {
     console.error('Stripe checkout error:', err);
-    res
-      .status(500)
-      .json({ message: 'Stripe error', error: err.message });
+    res.status(500).json({ message: 'Stripe error', error: err.message });
   }
 });
 
-// POST /payments/stripe/create-intent (on‑site payment, Stripe Elements)
 router.post('/create-intent', authMiddleware, async (req, res) => {
-  const { planId, phone } = req.body;
+  const { planId, phone, discountCode } = req.body;
 
   try {
-    console.log('create-intent called:', { planId, phone, userId: req.user?.id });
-
-    const plan = await Plan.findById(planId);
+    const plan = await ensurePlan(planId);
     if (!plan) {
       return res.status(404).json({ message: 'Plan not found' });
     }
 
-    console.log('Plan found:', plan.name, plan.price, plan.currency);
-
-    const amountInCents = getStripeAmount(plan._id.toString(), plan.price);
+    const discount = await resolveCheckoutDiscountCode(discountCode);
+    const baseAmount = planPricing[plan._id.toString()]?.stripe || Number(plan.price) || 0;
+    const finalAmount = process.env.STRIPE_SECRET_KEY?.startsWith('sk_test')
+      ? 1
+      : applyCheckoutDiscount(baseAmount, discount.valid);
+    const amountInCents = Math.round(finalAmount * 100);
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amountInCents,
@@ -114,30 +134,35 @@ router.post('/create-intent', authMiddleware, async (req, res) => {
         userId: req.user.id.toString(),
         planId: plan._id.toString(),
         phone: phone || '',
-        price: (amountInCents / 100).toString(),
+        price: finalAmount.toString(),
+        discountCode: discount.valid ? discount.code : '',
+        discountRate: discount.valid ? '0.05' : '0',
       },
     });
 
-   await Transaction.create({
-  user: req.user.id, // ili req.user._id ako middleware tako vraća, ali kod tebe gore koristiš id
-  plan: plan._id,
-  provider: 'stripe',
-  providerPaymentId: paymentIntent.id,
-  amount: amountInCents / 100,
-  currency: plan.currency || 'eur',
-  status: 'pending',
-  phone: phone || '',
-  balance: plan.balance
-});
+    await Transaction.create({
+      user: req.user.id,
+      plan: plan._id,
+      provider: 'stripe',
+      providerPaymentId: paymentIntent.id,
+      amount: finalAmount,
+      currency: plan.currency || 'eur',
+      status: 'pending',
+      phone: phone || '',
+      discountCode: discount.valid ? discount.code : undefined,
+    });
 
-
-    console.log('✅ PaymentIntent created:', paymentIntent.id);
-    res.json({ clientSecret: paymentIntent.client_secret });
+    res.json({
+      clientSecret: paymentIntent.client_secret,
+      amount: finalAmount,
+      currency: plan.currency || 'eur',
+      discountApplied: discount.valid,
+      discountCode: discount.valid ? discount.code : '',
+    });
   } catch (err) {
-    console.error('❌ create-intent ERROR:', err);
+    console.error('create-intent error:', err);
     res.status(500).json({ message: 'Stripe error', error: err.message });
   }
 });
-
 
 module.exports = router;

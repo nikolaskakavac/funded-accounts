@@ -4,10 +4,12 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { t } from '../utils/translations';
 import { getLang } from '../utils/lang';
+import { authMessage } from '../utils/authMessages';
 
 const Login = ({ navigate, onLogin, onLogout }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const lang = getLang();
 
   const submit = async (e) => {
@@ -17,9 +19,11 @@ const Login = ({ navigate, onLogin, onLogout }) => {
       if (res.token && res.user) {
         onLogin(res);
       } else {
-        alert(res.message || 'Prijava nije uspela.');
+        alert(authMessage(res.message, 'Login failed. Please try again.'));
       }
     } catch (e) {
+      alert('Login failed. Please try again.');
+      return;
       alert('Greška pri prijavi. Pokušajte ponovo.');
     }
   };
@@ -53,6 +57,12 @@ const Login = ({ navigate, onLogin, onLogout }) => {
                   className="w-full rounded-2xl border border-sky-700 bg-black/60 px-3.5 py-2.5 text-[14px] font-sans text-slate-50 outline-none transition
                              placeholder:text-slate-500 focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
                   type="email"
+                  id="login-email"
+                  name="email"
+                  autoComplete="email"
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  inputMode="email"
                   placeholder={t('register.emailPlaceholder', lang)}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -62,15 +72,27 @@ const Login = ({ navigate, onLogin, onLogout }) => {
 
               <div className="space-y-1.5">
                 <label className="font-sans text-[13px] font-medium text-sky-100">{t('login.password', lang)}</label>
-                <input
-                  className="w-full rounded-2xl border border-sky-700 bg-black/60 px-3.5 py-2.5 text-[14px] font-sans text-slate-50 outline-none transition
-                             placeholder:text-slate-500 focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
-                  type="password"
-                  placeholder={t('login.passwordPlaceholder', lang)}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+                <div className="relative">
+                  <input
+                    className="w-full rounded-2xl border border-sky-700 bg-black/60 px-3.5 py-2.5 pr-20 text-[14px] font-sans text-slate-50 outline-none transition
+                               placeholder:text-slate-500 focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
+                    type={showPassword ? 'text' : 'password'}
+                    id="login-password"
+                    name="password"
+                    autoComplete="current-password"
+                    placeholder={t('login.passwordPlaceholder', lang)}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((value) => !value)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] font-sans font-semibold uppercase tracking-[0.12em] text-sky-300 transition hover:text-sky-100"
+                  >
+                    {showPassword ? 'Hide' : 'Show'}
+                  </button>
+                </div>
               </div>
 
               <button
@@ -83,6 +105,14 @@ const Login = ({ navigate, onLogin, onLogout }) => {
                 {t('login.submit', lang)}
               </button>
             </form>
+
+            <button
+              type="button"
+              onClick={() => navigate('/forgot-password')}
+              className="mt-3 font-sans text-[13px] font-semibold text-sky-300 transition-colors hover:text-sky-100"
+            >
+              Forgot password?
+            </button>
 
             <p className="mt-5 font-sans text-[13px] text-slate-400">
               {t('login.noAccount', lang)}{' '}

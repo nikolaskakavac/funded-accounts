@@ -3,6 +3,7 @@ const Stripe = require('stripe');
 const Transaction = require('../models/Transaction');
 const User = require('../models/User');
 const { sendPurchaseConfirmation, sendCredentialsNotification } = require('../utils/mailer');
+const { createAffiliateCommissionFromTransaction } = require('../utils/affiliate');
 
 const router = express.Router();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -41,6 +42,7 @@ router.post('/stripe', express.raw({ type: 'application/json' }), (req, res) => 
         
         await tx.save();
         await tx.user.save();
+        await createAffiliateCommissionFromTransaction(tx);
 
         console.log(`🎉 Plan ${tx.plan.name} activated for ${tx.user.email}`);
         

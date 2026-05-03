@@ -4,6 +4,15 @@
 body{
   overflow-x:hidden;
 }
+
+@font-face {
+  font-family: 'Acherus Militant Local';
+  src: url('/fonts/AcherusMilitant2-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Metropolis kao custom webfont */
 @font-face {
   font-family: 'Metropolis Web';
@@ -32,6 +41,10 @@ body{
 
 html, body, #root {
   @apply font-sans;
+}
+
+.font-display {
+  font-family: 'Acherus Militant Local', sans-serif;
 }
 
 /* Override Tailwind font-semibold to normal weight */
@@ -63,4 +76,3 @@ button {
     box-shadow: 0 0 0 18px rgba(16, 185, 129, 0);
   }
 }
-
